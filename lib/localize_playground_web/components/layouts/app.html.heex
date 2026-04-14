@@ -1,0 +1,21 @@
+<header class="lp-header">
+  <a class="lp-brand" href="/">
+    <img class="lp-logo" src="/assets/logo.png" alt="Localize" />
+    <h1>Localize Playground</h1>
+  </a>
+  <nav class="lp-tabs">
+    <a class={"#{if @live_action == :numbers, do: "active"}"} href="/numbers">Numbers</a>
+    <a class="disabled" title="Coming soon">Dates &amp; Times</a>
+    <a class="disabled" title="Coming soon">Units</a>
+    <a class="disabled" title="Coming soon">Messages</a>
+    <a class="disabled" title="Coming soon">Calendars</a>
+    <a class="disabled" title="Coming soon">Lists</a>
+    <a class="disabled" title="Coming soon">Collation</a>
+  </nav>
+</header>
+<main class="lp-main">
+  {@inner_content}
+</main>
+<footer class="lp-footer">
+  Explore CLDR via <a href="https://github.com/elixir-localize/localize">Localize</a>.
+</footer>
