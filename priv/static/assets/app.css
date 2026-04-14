@@ -445,6 +445,100 @@ input[type="text"],
   .lp-ext-row { grid-template-columns: 1fr; }
 }
 
+/* Collation tab */
+.lp-coll-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  max-width: 640px;
+}
+
+.lp-coll-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.lp-coll-option {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--lp-border);
+  border-radius: 10px;
+  background: var(--lp-surface);
+}
+.lp-coll-option-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lp-coll-option-label strong { font-size: 13px; color: var(--lp-text); }
+.lp-coll-option-desc { font-size: 12px; color: var(--lp-text-dim); line-height: 1.4; }
+.lp-coll-option-control select { width: 100%; }
+
+.lp-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--lp-text-dim);
+  cursor: pointer;
+}
+.lp-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--lp-accent);
+}
+
+.lp-words-link {
+  color: var(--lp-accent);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.lp-words-link:hover { text-decoration-style: solid; }
+
+.lp-coll-words {
+  width: 100%;
+  background: var(--lp-bg);
+  color: var(--lp-text);
+  border: 1px solid var(--lp-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.lp-coll-result {
+  background: var(--lp-surface);
+  border: 1px solid var(--lp-border);
+  border-radius: 12px;
+  padding: 16px 28px;
+  font-family: ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+  counter-reset: coll;
+  list-style: none;
+  padding-left: 48px;
+}
+.lp-coll-result li {
+  position: relative;
+}
+.lp-coll-result li::before {
+  counter-increment: coll;
+  content: counter(coll) ".";
+  position: absolute;
+  left: -36px;
+  width: 28px;
+  text-align: right;
+  color: var(--lp-text-faint);
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .lp-coll-option { grid-template-columns: 1fr; }
+}
+
 /* Data table */
 .lp-table {
   width: 100%;

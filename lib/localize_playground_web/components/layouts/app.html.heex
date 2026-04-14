@@ -11,7 +11,7 @@
     <a class="disabled" title="Coming soon">Messages</a>
     <a class="disabled" title="Coming soon">Calendars</a>
     <a class="disabled" title="Coming soon">Lists</a>
-    <a class="disabled" title="Coming soon">Collation</a>
+    <a class={"#{if @live_action == :collation, do: "active"}"} href={tab_href(@current_locale, "/collation")}>Collation</a>
   </nav>
 </header>
 <main class="lp-main">
