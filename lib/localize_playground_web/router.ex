@@ -13,7 +13,8 @@ defmodule LocalizePlaygroundWeb.Router do
   scope "/", LocalizePlaygroundWeb do
     pipe_through :browser
 
-    live "/", PageLive, :numbers
+    live "/", LocalesLive, :locales
+    live "/locales", LocalesLive, :locales
     live "/numbers", PageLive, :numbers
   end
 end

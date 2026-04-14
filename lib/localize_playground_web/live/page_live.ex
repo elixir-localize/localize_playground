@@ -81,7 +81,14 @@ defmodule LocalizePlaygroundWeb.PageLive do
   ]
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(params, _session, socket) do
+    initial_locale =
+      case Map.get(params, "locale") do
+        nil -> "en"
+        "" -> "en"
+        value -> value
+      end
+
     socket =
       socket
       |> assign(:style_groups, @style_groups)
@@ -95,6 +102,9 @@ defmodule LocalizePlaygroundWeb.PageLive do
       |> assign(:locale_options, NumberView.locale_options())
       |> assign(:currency_options, NumberView.currency_options())
       |> assign_defaults()
+      |> assign(:locale, initial_locale)
+      |> maybe_apply_u_extensions(true)
+      |> refresh_rbnf_rules_if_needed()
       |> compute_output()
 
     {:ok, socket}
@@ -293,6 +303,7 @@ defmodule LocalizePlaygroundWeb.PageLive do
     |> assign(:pattern_meta, meta)
     |> assign(:locale_symbols, NumberView.locale_symbols(locale, non_default(assigns.number_system)))
     |> assign(:call_code, build_call_code(assigns, number_result, options))
+    |> assign(:current_locale, to_string(assigns.locale))
     |> assign(:options_for_display, sanitize_options_for_display(options, style_atom))
   end
 

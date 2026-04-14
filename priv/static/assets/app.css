@@ -348,6 +348,103 @@ input[type="text"],
 }
 .lp-meta-table dd pre { margin: 0; }
 
+/* Language / Script / Territory row — compact fields so they sit side-by-side */
+.lp-lst-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 200px));
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .lp-lst-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* U-extensions grid */
+.lp-helper { font-size: 12px; margin: 0 0 12px; }
+
+.lp-ext-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lp-ext-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.lp-ext-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--lp-border);
+  border-radius: 10px;
+  background: var(--lp-surface);
+}
+.lp-ext-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lp-ext-label strong { font-size: 13px; color: var(--lp-text); }
+.lp-ext-label code {
+  font-size: 11px;
+  color: var(--lp-accent);
+  background: color-mix(in srgb, var(--lp-accent) 14%, transparent);
+  padding: 1px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+.lp-ext-desc {
+  font-size: 12px;
+  color: var(--lp-text-dim);
+  line-height: 1.4;
+}
+.lp-ext-control select, .lp-ext-control input { width: 100%; }
+
+/* Canonical locale card */
+.lp-canonical-section h2 { color: var(--lp-accent); }
+.lp-canonical-wrapper { display: flex; flex-direction: column; gap: 12px; }
+.lp-canonical {
+  position: relative;
+  background: var(--lp-surface);
+  border: 1px solid var(--lp-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.lp-canonical-text {
+  margin: 0;
+  padding: 22px 72px 22px 22px;
+  font-family: ui-monospace, monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--lp-text);
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: auto;
+}
+.lp-canonical .lp-copy-btn { top: 14px; right: 14px; }
+
+.lp-canonical-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lp-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--lp-accent);
+  color: #0b1220;
+  font-weight: 600;
+  font-size: 13px;
+}
+.lp-primary-btn:hover { text-decoration: none; background: var(--lp-accent-strong); color: #0b1220; }
+
+@media (max-width: 700px) {
+  .lp-ext-row { grid-template-columns: 1fr; }
+}
+
 /* Data table */
 .lp-table {
   width: 100%;

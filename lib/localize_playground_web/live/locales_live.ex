@@ -1,0 +1,317 @@
+defmodule LocalizePlaygroundWeb.LocalesLive do
+  @moduledoc """
+  Locale builder tab. Users pick a language, script, and territory; apply
+  any of the BCP-47 `-u-` extensions; and see the resulting canonical
+  locale string. That locale propagates to the other tabs via the URL.
+  """
+
+  use LocalizePlaygroundWeb, :live_view
+
+  alias LocalizePlaygroundWeb.LocaleView
+
+  @impl true
+  def mount(params, _session, socket) do
+    seed =
+      case Map.get(params, "locale") do
+        nil -> "en"
+        "" -> "en"
+        other -> other
+      end
+
+    socket =
+      socket
+      |> assign(:languages, LocaleView.languages())
+      |> assign(:all_scripts, LocaleView.scripts())
+      |> assign(:all_territories, LocaleView.territories())
+      |> assign(:u_extensions, LocaleView.u_extensions())
+      |> assign(:collation_extensions, LocaleView.collation_extensions())
+      |> seed_from_locale(seed)
+      |> compute()
+
+    {:ok, socket}
+  end
+
+  defp build_value_options(territory) do
+    context = %{territory: territory}
+
+    LocaleView.all_u_extensions()
+    |> Map.new(fn {key, _title, _desc} ->
+      {key, LocaleView.u_extension_values(key, context)}
+    end)
+  end
+
+  defp seed_from_locale(socket, raw) do
+    case Localize.validate_locale(raw) do
+      {:ok, %Localize.LanguageTag{} = tag} ->
+        u = tag.locale || %{}
+
+        extensions =
+          LocaleView.all_u_extensions()
+          |> Map.new(fn {key, _, _} ->
+            value = Map.get(u, key)
+            {key, if(is_nil(value), do: "", else: to_string(value))}
+          end)
+
+        socket
+        |> assign(:language, to_string(tag.language || "en"))
+        |> assign(:script, to_string(tag.script || ""))
+        |> assign(:territory, to_string(tag.territory || ""))
+        |> assign(:extensions, extensions)
+
+      _ ->
+        default_extensions =
+          LocaleView.all_u_extensions()
+          |> Map.new(fn {key, _, _} -> {key, ""} end)
+
+        socket
+        |> assign(:language, "en")
+        |> assign(:script, "")
+        |> assign(:territory, "")
+        |> assign(:extensions, default_extensions)
+    end
+  end
+
+  @impl true
+  def handle_event("update", params, socket) do
+    previous_language = socket.assigns.language
+    previous_territory = socket.assigns.territory
+    language = Map.get(params, "language", socket.assigns.language) |> clean_subtag()
+    script = Map.get(params, "script", socket.assigns.script) |> clean_subtag()
+    territory = Map.get(params, "territory", socket.assigns.territory) |> clean_subtag()
+
+    {script, territory} =
+      if language != previous_language do
+        {scripts, territories} = LocaleView.scripts_and_territories_for_language(language)
+        {reset_if_invalid(script, scripts), reset_if_invalid(territory, territories)}
+      else
+        {script, territory}
+      end
+
+    existing = socket.assigns.extensions
+
+    territory_changed? = territory != previous_territory
+
+    extensions =
+      Enum.reduce(existing, %{}, fn {key, current}, acc ->
+        new_value =
+          case Map.get(params, "ext_#{key}") do
+            nil -> current
+            value -> String.trim(value)
+          end
+
+        # Subdivision codes are scoped to a territory; clear the stale
+        # value whenever the territory changes.
+        new_value = if key == :sd and territory_changed?, do: "", else: new_value
+
+        Map.put(acc, key, new_value)
+      end)
+
+    socket =
+      socket
+      |> assign(:language, language)
+      |> assign(:script, script)
+      |> assign(:territory, territory)
+      |> assign(:extensions, extensions)
+      |> compute()
+
+    {:noreply, socket}
+  end
+
+  defp clean_subtag(nil), do: ""
+  defp clean_subtag(value), do: String.trim(value)
+
+  defp reset_if_invalid("", _), do: ""
+  defp reset_if_invalid(value, []), do: value
+  defp reset_if_invalid(value, allowed), do: if(value in allowed, do: value, else: "")
+
+  defp compute(socket) do
+    %{language: lang, script: script, territory: territory, extensions: extensions} =
+      socket.assigns
+
+    {scripts_for_lang, territories_for_lang} =
+      LocaleView.scripts_and_territories_for_language(lang)
+
+    raw = LocaleView.assemble_locale_string(lang, nilify(script), nilify(territory), extensions)
+
+    {canonical, error} =
+      case LocaleView.build(lang, nilify(script), nilify(territory), extensions) do
+        {:ok, canonical, _tag, _raw} -> {canonical, nil}
+        {:error, message} -> {raw, message}
+      end
+
+    socket
+    |> assign(:scripts_for_lang, scripts_for_lang)
+    |> assign(:territories_for_lang, territories_for_lang)
+    |> assign(:raw_locale, raw)
+    |> assign(:canonical_locale, canonical)
+    |> assign(:current_locale, canonical)
+    |> assign(:u_value_options, build_value_options(nilify(territory)))
+    |> assign(:error, error)
+  end
+
+  defp nilify(""), do: nil
+  defp nilify(value), do: value
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
+      <.section title="Language, script, territory">
+        <div class="lp-lst-row">
+          <.field label="Language" for="language" hint="e.g. en, zh, ar">
+            <input
+              id="language"
+              name="language"
+              type="text"
+              list="languages"
+              value={@language}
+              phx-debounce="150"
+            />
+            <datalist id="languages">
+              <option :for={lang <- @languages} value={lang}></option>
+            </datalist>
+          </.field>
+
+          <.field label="Script" for="script" hint={if @scripts_for_lang == [], do: "Any ISO-15924 script", else: "Known for this language"}>
+            <select id="script" name="script">
+              <option value="">(unspecified)</option>
+              <optgroup :if={@scripts_for_lang != []} label="For this language">
+                <option :for={s <- @scripts_for_lang} value={s} selected={@script == s}>{s}</option>
+              </optgroup>
+              <optgroup label="All scripts">
+                <option :for={s <- @all_scripts} value={s} selected={@script == s}>{s}</option>
+              </optgroup>
+            </select>
+          </.field>
+
+          <.field label="Territory" for="territory" hint={if @territories_for_lang == [], do: "Any ISO-3166 territory", else: "Known for this language"}>
+            <select id="territory" name="territory">
+              <option value="">(unspecified)</option>
+              <optgroup :if={@territories_for_lang != []} label="For this language">
+                <option :for={t <- @territories_for_lang} value={t} selected={@territory == t}>{t}</option>
+              </optgroup>
+              <optgroup label="All territories">
+                <option :for={t <- @all_territories} value={t} selected={@territory == t}>{t}</option>
+              </optgroup>
+            </select>
+          </.field>
+        </div>
+      </.section>
+
+      <.section title="Canonical locale" class="lp-canonical-section">
+        <.canonical_card canonical={@canonical_locale} raw={@raw_locale} error={@error} />
+      </.section>
+
+      <.section title="Unicode -u extensions">
+        <p class="lp-muted lp-helper">
+          Each extension adds a <code>-u-KEY-VALUE</code> segment to the locale. Leave a field blank to omit it.
+        </p>
+        <.ext_group
+          extensions={@u_extensions}
+          values={@extensions}
+          options={@u_value_options}
+        />
+      </.section>
+
+      <.section title="Unicode -u collation extensions">
+        <p class="lp-muted lp-helper">
+          Collation-specific knobs that tune string sorting. These share the <code>-u-</code> namespace with the fields above.
+        </p>
+        <.ext_group
+          extensions={@collation_extensions}
+          values={@extensions}
+          options={@u_value_options}
+        />
+      </.section>
+    </form>
+    """
+  end
+
+  attr :extensions, :list, required: true
+  attr :values, :map, required: true
+  attr :options, :map, required: true
+
+  defp ext_group(assigns) do
+    ~H"""
+    <div class="lp-ext-grid">
+      <div :for={{key, title, description} <- @extensions} class="lp-ext-row">
+        <div class="lp-ext-label">
+          <div class="lp-ext-title">
+            <strong>{title}</strong>
+            <code>-u-{key}</code>
+          </div>
+          <span class="lp-ext-desc">{description}</span>
+        </div>
+        <div class="lp-ext-control">
+          <.ext_input
+            key={key}
+            value={Map.get(@values, key, "")}
+            options={Map.get(@options, key, [])}
+          />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  attr :key, :atom, required: true
+  attr :value, :string, required: true
+  attr :options, :list, required: true
+
+  defp ext_input(%{options: []} = assigns) do
+    ~H"""
+    <input
+      name={"ext_#{@key}"}
+      type="text"
+      value={@value}
+      placeholder="(default)"
+      phx-debounce="200"
+    />
+    """
+  end
+
+  defp ext_input(assigns) do
+    ~H"""
+    <select name={"ext_#{@key}"}>
+      <option value="">(default)</option>
+      <option :for={{value, label} <- @options} value={value} selected={@value == value}>
+        {label}
+      </option>
+    </select>
+    """
+  end
+
+  attr :canonical, :string, required: true
+  attr :raw, :string, required: true
+  attr :error, :any, required: true
+
+  defp canonical_card(assigns) do
+    ~H"""
+    <div class="lp-canonical-wrapper">
+      <div class="lp-canonical" phx-hook="CopyToClipboard" id="canonical-wrapper">
+        <pre class="lp-canonical-text" id="canonical-text">{@canonical}</pre>
+        <button
+          type="button"
+          class="lp-copy-btn"
+          aria-label="Copy canonical locale to clipboard"
+          data-copy-target="#canonical-text"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="9" height="9" rx="1.5" />
+            <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
+          </svg>
+          <span class="lp-copy-label">Copy</span>
+        </button>
+      </div>
+
+      <div :if={@error} class="lp-error">
+        <strong>Not a valid locale yet:</strong> {@error}
+      </div>
+
+      <div :if={@raw != @canonical and !@error} class="lp-muted lp-helper">
+        You entered <code>{@raw}</code>; it canonicalized to <code>{@canonical}</code>.
+      </div>
+    </div>
+    """
+  end
+end

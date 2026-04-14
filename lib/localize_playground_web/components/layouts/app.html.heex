@@ -4,7 +4,8 @@
     <h1>Localize Playground</h1>
   </a>
   <nav class="lp-tabs">
-    <a class={"#{if @live_action == :numbers, do: "active"}"} href="/numbers">Numbers</a>
+    <a class={"#{if @live_action == :locales, do: "active"}"} href={tab_href(@current_locale, "/locales")}>Locales</a>
+    <a class={"#{if @live_action == :numbers, do: "active"}"} href={tab_href(@current_locale, "/numbers")}>Numbers</a>
     <a class="disabled" title="Coming soon">Dates &amp; Times</a>
     <a class="disabled" title="Coming soon">Units</a>
     <a class="disabled" title="Coming soon">Messages</a>
