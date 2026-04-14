@@ -41,6 +41,9 @@ defmodule LocalizePlaygroundWeb.CollationLive do
       |> assign(:words_text, words)
       |> assign(:options, option_values)
       |> assign(:option_specs, CollationView.option_specs())
+      |> assign(:reorder_codes, [])
+      |> assign(:reorder_choices, CollationView.reorder_choices())
+      |> assign(:reorder_selection, "")
       |> assign(:current_locale, seed_locale)
       |> compute()
 
@@ -95,6 +98,8 @@ defmodule LocalizePlaygroundWeb.CollationLive do
         words_text
       end
 
+    reorder_selection = Map.get(params, "reorder_selection", socket.assigns.reorder_selection)
+
     socket =
       socket
       |> assign(:locale, locale)
@@ -103,11 +108,69 @@ defmodule LocalizePlaygroundWeb.CollationLive do
       |> assign(:collation, collation)
       |> assign(:words_text, words_text)
       |> assign(:options, options)
+      |> assign(:reorder_selection, reorder_selection)
       |> assign(:current_locale, if(locale == "", do: "en", else: locale))
       |> compute()
 
     _ = previous_locale
     {:noreply, socket}
+  end
+
+  def handle_event("reorder_add", _params, socket) do
+    code = socket.assigns.reorder_selection
+
+    socket =
+      if code in [nil, ""] or code in socket.assigns.reorder_codes do
+        socket
+      else
+        socket
+        |> assign(:reorder_codes, socket.assigns.reorder_codes ++ [code])
+        |> assign(:reorder_selection, "")
+        |> compute()
+      end
+
+    {:noreply, socket}
+  end
+
+  def handle_event("reorder_remove", %{"code" => code}, socket) do
+    codes = Enum.reject(socket.assigns.reorder_codes, &(&1 == code))
+
+    {:noreply, socket |> assign(:reorder_codes, codes) |> compute()}
+  end
+
+  def handle_event("reorder_move", %{"code" => code, "direction" => direction}, socket) do
+    codes = socket.assigns.reorder_codes
+    index = Enum.find_index(codes, &(&1 == code))
+
+    new_codes =
+      cond do
+        is_nil(index) ->
+          codes
+
+        direction == "up" and index > 0 ->
+          swap(codes, index, index - 1)
+
+        direction == "down" and index < length(codes) - 1 ->
+          swap(codes, index, index + 1)
+
+        true ->
+          codes
+      end
+
+    {:noreply, socket |> assign(:reorder_codes, new_codes) |> compute()}
+  end
+
+  def handle_event("reorder_clear", _params, socket) do
+    {:noreply, socket |> assign(:reorder_codes, []) |> compute()}
+  end
+
+  defp swap(list, i, j) do
+    a = Enum.at(list, i)
+    b = Enum.at(list, j)
+
+    list
+    |> List.replace_at(i, b)
+    |> List.replace_at(j, a)
   end
 
   defp language_of(locale) when is_binary(locale) do
@@ -117,12 +180,15 @@ defmodule LocalizePlaygroundWeb.CollationLive do
   defp compute(socket) do
     words = parse_words(socket.assigns.words_text)
 
+    reorder = CollationView.normalize_reorder(socket.assigns.reorder_codes || [])
+
     full_options =
       CollationView.build_options(
         socket.assigns.locale,
         socket.assigns.collation,
         socket.assigns.options
       )
+      |> maybe_append(:reorder, reorder)
 
     {result, error} =
       case CollationView.sort(words, full_options) do
@@ -136,6 +202,9 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     |> assign(:call_opts, format_call_opts(full_options))
     |> assign(:error, error)
   end
+
+  defp maybe_append(opts, _key, []), do: opts
+  defp maybe_append(opts, key, value), do: opts ++ [{key, value}]
 
   defp parse_words(text) do
     text
@@ -193,6 +262,64 @@ defmodule LocalizePlaygroundWeb.CollationLive do
             </div>
           </div>
         </div>
+      </.section>
+
+      <.section title="Reorder codes (-u-kr)">
+        <p class="lp-muted lp-helper">
+          Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add <code>Cyrl</code> then <code>Latn</code> to make Cyrillic sort before Latin.
+        </p>
+
+        <div class="lp-reorder-picker">
+          <select name="reorder_selection">
+            <option value="">Pick a script or group…</option>
+            <option
+              :for={{value, label} <- @reorder_choices}
+              value={value}
+              disabled={value in @reorder_codes}
+              selected={@reorder_selection == value}
+            >
+              {label}
+            </option>
+          </select>
+          <button type="button" phx-click="reorder_add" class="lp-secondary-btn" disabled={@reorder_selection in ["", nil]}>
+            Add
+          </button>
+          <button :if={@reorder_codes != []} type="button" phx-click="reorder_clear" class="lp-ghost-btn">
+            Clear all
+          </button>
+        </div>
+
+        <ol :if={@reorder_codes != []} class="lp-reorder-list">
+          <li :for={{code, index} <- Enum.with_index(@reorder_codes)} class="lp-reorder-chip">
+            <span class="lp-reorder-pos">{index + 1}.</span>
+            <code class="lp-reorder-code">{code}</code>
+            <div class="lp-reorder-actions">
+              <button
+                type="button"
+                phx-click="reorder_move"
+                phx-value-code={code}
+                phx-value-direction="up"
+                disabled={index == 0}
+                aria-label="Move up"
+              >▲</button>
+              <button
+                type="button"
+                phx-click="reorder_move"
+                phx-value-code={code}
+                phx-value-direction="down"
+                disabled={index == length(@reorder_codes) - 1}
+                aria-label="Move down"
+              >▼</button>
+              <button
+                type="button"
+                phx-click="reorder_remove"
+                phx-value-code={code}
+                aria-label="Remove"
+                class="lp-reorder-remove"
+              >✕</button>
+            </div>
+          </li>
+        </ol>
       </.section>
 
       <.section title="Word list">

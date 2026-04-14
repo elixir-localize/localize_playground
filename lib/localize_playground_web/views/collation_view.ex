@@ -48,7 +48,115 @@ defmodule LocalizePlaygroundWeb.CollationView do
 
     # Korean Hangul syllables. Sort order follows jamo sequence
     # ㄱ ㄲ ㄴ ㄷ … (the reason 바나나 comes after 나).
-    "ko" => ~w(가족 고양이 나무 다리 바나나 사과 안녕 아이 저녁 한국)
+    "ko" => ~w(가족 고양이 나무 다리 바나나 사과 안녕 아이 저녁 한국),
+
+    # ---------- Latin: Germanic / Scandinavian ----------
+    "da" => ~w(aften bjerg dag øst ære æble århus åben zebra zoo),
+    "no" => ~w(aften berg dag øst ære æple ålesund åpen zebra zoo),
+    "sv" => ~w(aften berg dag äpple ögon åker zebra zoo ökän åska),
+    "is" => ~w(afi bók dagur ævi öld þing þorp yfir ýmis óður ísi),
+    "fo" => ~w(afi brot dag ær ø åa þorp ýmis),
+    "af" => ~w(appel baba hond klein môre oma straat tante vrou wyn),
+    "fy" => ~w(appel bern dei foark eagje hûs ien joun ko mem),
+
+    # ---------- Latin: Finno-Ugric ----------
+    "fi" => ~w(aamu ilma joki kesä lumi meri päivä sää yö ääni),
+    "et" => ~w(aare ema ilm järv keel küla pere sõber tee üks õhtu),
+    "hu" => ~w(alma csaba dal gyűrű lyuk nyár szem tűz ünnep zászló zsír),
+    "se" => ~w(áhkku beana čuovga doahppu eatni goahti njunnes šattolaš),
+
+    # ---------- Latin: Baltic ----------
+    "lt" => ~w(ąžuolas beržas čia drėbti ėsti geras įrankis knyga šalis žmogus),
+    "lv" => ~w(ābols čigāns drūms ēna īss ķirsis ļauns meža ņemt šalle žagata),
+
+    # ---------- Latin: Celtic ----------
+    "cy" => ~w(cath chwaer dyn ddysgu ffordd ng hy llyn rhedeg thyst),
+
+    # ---------- Latin: Romance (remaining) ----------
+    "ca" => ~w(àvia català època enciam farina hivern ínsula òptim pluja sí),
+    "ro" => ~w(ales băț cârnat doină fum împărat înger nor parc ștampilă țap),
+    "gl" => ~w(auga casa día follaxe home lúa mesa niño pan rúa),
+    "pt" => ~w(açúcar água bala casa dúvida é enxame fé língua nação),
+    "eo" => ~w(bona ĉokolado domo eĉ ĝojo ĥoro ĵurnalo kuracisto ŝati ŭnikoda),
+    "mt" => ~w(ajruplan bieb ċitt ġawhra għama ħabib it mejda rebħa żmien),
+    "sq" => ~w(aeroplan buzë çaj dhëmb ëndërr gjysh jetë llambë nënë pastërti shok),
+
+    # ---------- Latin: Turkic / Altaic ----------
+    "tr" => ~w(ağa bahçe çay dağ giriş hasat ışık İstanbul kızıl öğrenci pamuk şeker),
+    "az" => ~w(acı bağ çay dəniz ələk gün hövsələ işıq kənd oğlan öküz şəhər),
+    "uz" => ~w(ariq bola gilos dastur hokim ish kun maktab oʻqituvchi soat yoʻl),
+    "tk" => ~w(agaç bagşy çörek dag ene guşak işik kitap mekdep nahar öý şeker),
+    "kk" => ~w(ана бала ғалым да ел желтоқсан зауыт ин көл құс ң өзен шаш),
+    "ky" => ~w(ата бала дос жаан ит кол мектеп ноокат өзөн сүйүү таш),
+
+    # ---------- Latin: Southeast Asian / tonal ----------
+    "vi" => ~w(ba bà bá bả bã bạ cà cá mà má mạ ngày nghĩa),
+
+    # ---------- Latin: African ----------
+    "ha" => ~w(bera ɓera ɗaya dagɔ duka kafa sanya taimako yaro ƙofa),
+    "yo" => ~w(apá ẹja iyán òkun orí ọmọ ṣọ́bì tútù wa yàrá),
+    "ig" => ~w(ahụ bụ chọ dị ekele gbọ iheọma kpị mma ọma ụmụ),
+    "wo" => ~w(ànd bokk dafa ëllëg góor jigéen lew neel tàmbali waa),
+    "ee" => ~w(agbo ɖevi ƒe gbɔ haya ɣe lã mi nɔvi ŋku ɔkra ʋu),
+    "om" => ~w(abbaa baala caalaa dhadhaa gootichaa haala jechaa qabsoo),
+    "lkt" => ~w(aŋpétu bloká čha čhaŋté glépi háŋhepi iŋa kiŋ lakhóta),
+    "so" => ~w(aabbe beer cayn dhar eeg geesi hoy iraq jaal qaad),
+
+    # ---------- Latin: other ----------
+    "haw" => ~w(aloha hale ʻāina kai mele nui ola pua wai),
+    "vo" => ~w(blüf fam gas hel kad lom nem pel ro sül),
+    "fil" => ~w(araw bata dalaga ganda hayop ina kape lola mahal ngayon saya),
+
+    # ---------- Cyrillic (remaining) ----------
+    "be" => ~w(абітурыент бел горад дом ёлка жыццё іран канец лес мая ўсе час шчасце),
+    "mn" => ~w(ахуй бага газар дом есөн жил зам өнөөдөр тусгаар үзэсгэлэн ю я),
+    "cu" => ~w(азъ боукы вѣдѣ глаголь добро есть живѣте ꙁемꙗ ижеи како людꙗ),
+
+    # ---------- Greek ----------
+    "el" => ~w(άρτος βιβλίο γέρος δέντρο έτος ζωή θάλασσα ήλιος ξένος υγεία ψυχή ωραίος),
+
+    # ---------- Armenian ----------
+    "hy" => ~w(աշակերտ բարի գիտություն դաս եղբայր զգեստ էական թագավոր ժամանակ ինչ լույս),
+
+    # ---------- Georgian ----------
+    "ka" => ~w(აბანო ბავშვი გაზაფხული დედა ვერცხლი ზაფხული თავი კატა მთა სახლი ჭადარი ჯანმრთელობა),
+
+    # ---------- Arabic-script ----------
+    "ar" => ~w(أب أم بيت تفاحة ثلج جمل حليب خبز دار ربيع زرافة سمك شمس قمر مفتاح),
+    "fa" => ~w(آب بهار پدر تابستان ثمر جنگل چای حق دل ذهن ر ز),
+    "ur" => ~w(آم باپ پانی تارا جنگ حصہ دل ذہن سمندر شام قلم میں یار),
+    "ps" => ~w(اثر بارون پلار ټوټه څنګه حوض درد ځلمی ژبه سپین ک مور),
+    "he" => ~w(אב אם בית גן דג הר וו זמן חג יום כלב לילה מים נוף סוף עולם שלום),
+
+    # ---------- Indic ----------
+    "hi" => ~w(अनार आम इमली ईख उल्लू ऊँट गाय घर चाय दूध पानी फल भालू मछली),
+    "mr" => ~w(आई उंट ऊब एकता काकडी खेळ गावा घर डॉक्टर तारा पाणी मुल),
+    "sa" => ~w(अगस्त्य आत्मा इन्द्र ईश्वर उत्तर ऋषि एक ऐक्य ओंकार औषधि कमल ज्ञान),
+    "bn" => ~w(আম ইঁদুর ঈগল উট ঊষা এক ওষুধ কলম খবর গান ঘুম চায়া),
+    "or" => ~w(ଆଇ ଇଳ ଉଆସ ଏକ କଇଡ଼ ଖଇ ଗଳ ଚଷ ଜଳ ଟେକ ଣ ତର),
+    "pa" => ~w(ਆਮ ਇੱਕ ਈਸਾ ਉਚਾਈ ਏਕਤਾ ਕਹਾਣੀ ਖਾਣਾ ਗੱਲ ਘਰ ਚੱਲ),
+    "gu" => ~w(અગત આમળાં ઈંટ ઉનાળો ઊંટ એક ઓરડો કૃષ્ણ ખેતર ગામ),
+    "kn" => ~w(ಅಕ್ಷರ ಆನೆ ಇಲಿ ಈಶ ಉರಿ ಏಕ ಓದು ಕಣ್ಣು ಖಗ ಗಾನ),
+    "ml" => ~w(അമ്മ ആന ഇര ഈശ ഉപ്പ് ഏകാഗ്രത ഓണം കണ്ണ് ഖണ്ഡം ഗാനം),
+    "ta" => ~w(அம்மா ஆடு இலை ஈ உலகம் எறும்பு ஏழு கண் சந்திரன் தமிழ் நாய் பழம் மழை),
+    "te" => ~w(అమ్మ ఆవు ఇల్లు ఈశ ఉల్లి ఎరుపు ఓం కలం ఖగం గాలి చదువు త్యాగం),
+    "si" => ~w(අම්මා ආත්මය ඉඟුරු උඩ ඌරා ඍ එලි කාලය ගස ජල ධනය),
+    "ne" => ~w(आमा बच्चा गाउँ घर चिया डोको तारा धरती पाखुरा फुल),
+
+    # ---------- Southeast Asian scripts ----------
+    "th" => ~w(กา ขา คน งู จาน ฉันทา ช้าง ดาว ตา ถ้า ทะเล นก ผลไม้ ฝน รัก),
+    "lo" => ~w(ກາ ຂ ຄ ງ ຈ ຊ ດ ຕ ຖ ທ ນ ປ ພ ມ ຍ),
+    "km" => ~w(កណ្តុរ ខាងកើត គ្រូ ឆ្កែ ជួប ដ ត ថ ទ នក ផ្កា ភ្នំ ស្វាយ),
+    "my" => ~w(ကျွန်တော် ခင်ဗျား ဂ ဃ င စ ဆ ဇ ဈ ည ဋ),
+
+    # ---------- Tibetan / Dzongkha ----------
+    "bo" => ~w(ཀ ཁ ག ང ཅ ཆ ཇ ཉ ཏ ཐ ད ན པ ཕ བ མ),
+    "dz" => ~w(ཀ ཁ ག ང ཅ ཆ ཇ ཉ ཏ ཐ ད ན པ ཕ བ),
+
+    # ---------- Ethiopic / Semitic (non-Arabic) ----------
+    "am" => ~w(ሀ ለ ሐ መ ሠ ረ ሰ ሸ ቀ በ ተ ቸ ኀ ነ ኘ አ),
+    "ti" => ~w(ሀ ለ ሐ መ ሰ ረ ሸ ቀ በ ተ ቸ ኀ ነ ኘ),
+    "chr" => ~w(Ꭰ Ꭱ Ꭲ Ꭳ Ꭴ Ꭵ Ꭶ Ꭷ Ꭸ Ꭹ Ꭺ Ꭻ Ꭼ Ꭽ)
   }
 
   @doc """
@@ -224,4 +332,45 @@ defmodule LocalizePlaygroundWeb.CollationView do
   defp coerce_option(:normalization, true), do: true
   defp coerce_option(:numeric, true), do: true
   defp coerce_option(_, _), do: nil
+
+  @doc """
+  Returns the ordered list of choices for the -u-kr reorder-code
+  picker. Script atoms come from `Localize.Script.available_scripts/0`;
+  CLDR-defined special groups are prepended.
+  """
+  @spec reorder_choices() :: [{String.t(), String.t()}]
+  def reorder_choices do
+    specials = [
+      {"digit", "digit — digits"},
+      {"punct", "punct — punctuation"},
+      {"symbol", "symbol — general symbols"},
+      {"currency", "currency — currency symbols"},
+      {"space", "space — whitespace"},
+      {"others", "others — everything else"}
+    ]
+
+    scripts =
+      case Localize.Script.available_scripts() do
+        {:ok, list} ->
+          list
+          |> Enum.map(&{to_string(&1), to_string(&1)})
+          |> Enum.sort_by(fn {_code, label} -> label end)
+
+        _ ->
+          []
+      end
+
+    specials ++ scripts
+  end
+
+  @doc """
+  Converts the UI's list of string codes into the atom list that
+  `Localize.Collation.sort/2` expects for the `:reorder` option.
+  """
+  @spec normalize_reorder([String.t()]) :: [atom()]
+  def normalize_reorder(codes) do
+    codes
+    |> Enum.reject(&(&1 in [nil, ""]))
+    |> Enum.map(&String.to_atom/1)
+  end
 end

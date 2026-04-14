@@ -495,6 +495,99 @@ input[type="text"],
 }
 .lp-words-link:hover { text-decoration-style: solid; }
 
+.lp-reorder-picker {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.lp-reorder-picker select { flex: 0 1 280px; }
+
+.lp-secondary-btn, .lp-ghost-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid var(--lp-border);
+}
+.lp-secondary-btn {
+  background: var(--lp-accent);
+  color: #0b1220;
+  border-color: var(--lp-accent);
+}
+.lp-secondary-btn:hover { background: var(--lp-accent-strong); }
+.lp-secondary-btn:disabled {
+  background: var(--lp-surface-2);
+  color: var(--lp-text-faint);
+  border-color: var(--lp-border);
+  cursor: not-allowed;
+}
+.lp-ghost-btn {
+  background: transparent;
+  color: var(--lp-text-dim);
+}
+.lp-ghost-btn:hover { color: var(--lp-text); background: var(--lp-surface-2); }
+
+.lp-reorder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lp-reorder-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--lp-surface);
+  border: 1px solid var(--lp-border);
+  border-radius: 8px;
+}
+.lp-reorder-pos {
+  font-family: ui-monospace, monospace;
+  color: var(--lp-text-faint);
+  font-size: 12px;
+  min-width: 24px;
+}
+.lp-reorder-code {
+  flex: 1;
+  font-family: ui-monospace, monospace;
+  color: var(--lp-accent);
+  font-size: 13px;
+}
+.lp-reorder-actions {
+  display: flex;
+  gap: 4px;
+}
+.lp-reorder-actions button {
+  background: transparent;
+  border: 1px solid var(--lp-border);
+  color: var(--lp-text-dim);
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.lp-reorder-actions button:hover { color: var(--lp-text); background: var(--lp-surface-2); }
+.lp-reorder-actions button:disabled {
+  color: var(--lp-text-faint);
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.lp-reorder-actions .lp-reorder-remove:hover {
+  color: var(--lp-fail);
+  border-color: var(--lp-fail);
+}
+
 .lp-coll-words {
   width: 100%;
   background: var(--lp-bg);
