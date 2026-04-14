@@ -14,7 +14,41 @@ defmodule LocalizePlaygroundWeb.CollationView do
     "fr" => ~w(cote côte coté côté coeur cœur père pere PÈRE peru),
     "de" => ~w(Müller Mueller Muller strasse straße Straße Zürich Oel Öl Weiß),
     "it" => ~w(città citta perché perche è e uomo uòmo cosa così),
-    "es" => ~w(ñandú nino niño llama luna chico cabra coche amigo zorro)
+    "es" => ~w(ñandú nino niño llama luna chico cabra coche amigo zorro),
+
+    # Slavic, Latin script. Words chosen to exercise each language's
+    # diacritics and digraphs — notably "ch" in Czech/Slovak which
+    # sorts after "h", and Polish "ł" / "ś" / "ż" which follow their
+    # base letters.
+    "cs" => ~w(čas chléb dům hora kočka noc řeka šéf zelený žena),
+    "sk" => ~w(čas chlieb dom hora ľad nôta rok škola ženích živý),
+    "pl" => ~w(abak ązab cień ćma dom łoś Nowak ogród świat żuraw),
+    "sl" => ~w(cesta čas dom hiša reka sončen šola zebra žaba živalca),
+    "hr" => ~w(car čas ćao dan džep đak ljeto njega riba škola žena),
+
+    # Slavic, Cyrillic script. Demonstrates how the tailored alphabet
+    # orders language-specific letters (Ukrainian ґ, є, ї, Serbian ђ,
+    # љ, њ, Macedonian ѓ, ѕ, ќ, Bulgarian ъ, etc.).
+    "ru" => ~w(арбуз бабушка волк гриб дом ёлка жизнь забор игра ягода),
+    "uk" => ~w(абрикос бджола відро ґрунт дорога єдність жовтень зірка їжак яблуко),
+    "bg" => ~w(автор бяло вода град дом жена зелен изкуство къща ябълка),
+    "sr" => ~w(агент брат виши говор дан ђак жао љубав њива царина),
+    "mk" => ~w(автор бел град ѓавол дружба ѕвезда живот јаглен љубов њива),
+
+    # East Asian. Chinese words are chosen so that the three main
+    # tailorings (pinyin, stroke, zhuyin) visibly reorder the list:
+    # simple-stroke characters come first under "stroke", but in
+    # pinyin alphabetical order they are scattered.
+    "zh" => ~w(一 人 山 水 中国 北京 上海 你好 谢谢 再见),
+
+    # Japanese mixes hiragana, katakana and kanji. The default
+    # tailoring sorts kana by gojūon order (あいうえお…) and keeps
+    # same-reading forms together.
+    "ja" => ~w(あめ アイス 桜 さくら サクラ 富士山 東京 おはよう こんにちは ありがとう),
+
+    # Korean Hangul syllables. Sort order follows jamo sequence
+    # ㄱ ㄲ ㄴ ㄷ … (the reason 바나나 comes after 나).
+    "ko" => ~w(가족 고양이 나무 다리 바나나 사과 안녕 아이 저녁 한국)
   }
 
   @doc """

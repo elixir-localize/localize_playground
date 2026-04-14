@@ -205,6 +205,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
           rows="10"
           class="lp-coll-words"
           phx-debounce="250"
+          phx-update="replace"
           spellcheck="false"
         >{@words_text}</textarea>
       </.section>
