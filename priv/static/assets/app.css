@@ -495,6 +495,22 @@ input[type="text"],
 }
 .lp-words-link:hover { text-decoration-style: solid; }
 
+/* Dates & Times tab */
+.lp-dt-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  max-width: 800px;
+}
+.lp-dt-format-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+  max-width: 700px;
+}
+.lp-mono-input { font-family: ui-monospace, monospace; }
+
 /* Collation: sorted result decorations */
 .lp-result-toolbar {
   display: flex;

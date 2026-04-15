@@ -21,7 +21,8 @@ defmodule LocalizePlayground.MixProject do
 
   defp deps do
     [
-      {:localize, "~> 0.12"},
+      {:localize, "~> 0.12", override: true},
+      {:calendrical, path: "../calendrical"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 1.0"},

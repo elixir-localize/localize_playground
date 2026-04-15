@@ -6,7 +6,9 @@
   <nav class="lp-tabs">
     <a class={"#{if @live_action == :locales, do: "active"}"} href={tab_href(@current_locale, "/locales")}>Locales</a>
     <a class={"#{if @live_action == :numbers, do: "active"}"} href={tab_href(@current_locale, "/numbers")}>Numbers</a>
-    <a class="disabled" title="Coming soon">Dates &amp; Times</a>
+    <a class={"#{if @live_action == :dates, do: "active"}"} href={tab_href(@current_locale, "/dates")}>Dates &amp; Times</a>
+    <a class={"#{if @live_action == :intervals, do: "active"}"} href={tab_href(@current_locale, "/intervals")}>Intervals</a>
+    <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>Durations</a>
     <a class="disabled" title="Coming soon">Units</a>
     <a class="disabled" title="Coming soon">Messages</a>
     <a class="disabled" title="Coming soon">Calendars</a>
