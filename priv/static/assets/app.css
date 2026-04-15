@@ -423,6 +423,36 @@ input[type="text"],
 }
 .lp-canonical .lp-copy-btn { top: 14px; right: 14px; }
 
+.lp-canon-hint {
+  margin: 0 0 12px;
+}
+
+.lp-display-name {
+  background: var(--lp-surface);
+  border: 1px solid var(--lp-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lp-display-name-code {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--lp-text-dim);
+  word-break: break-word;
+}
+.lp-display-name-value {
+  font-size: 15px;
+  color: var(--lp-text);
+  font-weight: 500;
+}
+.lp-display-name-error {
+  color: var(--lp-fail);
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
 .lp-canonical-actions {
   display: flex;
   gap: 8px;

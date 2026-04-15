@@ -139,14 +139,46 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         {:error, message} -> {raw, message}
       end
 
+    {standard_name, dialect_name} =
+      if error, do: {nil, nil}, else: resolve_display_names(canonical)
+
     socket
     |> assign(:scripts_for_lang, scripts_for_lang)
     |> assign(:territories_for_lang, territories_for_lang)
     |> assign(:raw_locale, raw)
     |> assign(:canonical_locale, canonical)
     |> assign(:current_locale, canonical)
+    |> assign(:display_name_standard, standard_name)
+    |> assign(:display_name_dialect, dialect_name)
     |> assign(:u_value_options, build_value_options(nilify(territory)))
     |> assign(:error, error)
+  end
+
+  # Returns `{standard, dialect}` where each is either `{:ok, name}` or
+  # `{:error, message}`, and `dialect` is `nil` when identical to
+  # standard (no point displaying the same string twice).
+  defp resolve_display_names(canonical) do
+    standard = safe_display_name(canonical, [])
+    dialect = safe_display_name(canonical, language_display: :dialect)
+
+    dialect_different? =
+      case {standard, dialect} do
+        {{:ok, a}, {:ok, b}} -> a != b
+        _ -> true
+      end
+
+    {standard, if(dialect_different?, do: dialect, else: nil)}
+  end
+
+  defp safe_display_name(canonical, options) do
+    Localize.Locale.LocaleDisplay.display_name(canonical, options)
+    |> case do
+      {:ok, name} -> {:ok, name}
+      {:error, exception} when is_exception(exception) -> {:error, Exception.message(exception)}
+      other -> {:error, inspect(other)}
+    end
+  rescue
+    exception -> {:error, Exception.message(exception)}
   end
 
   defp nilify(""), do: nil
@@ -199,7 +231,16 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
       </.section>
 
       <.section title="Canonical locale" class="lp-canonical-section">
-        <.canonical_card canonical={@canonical_locale} raw={@raw_locale} error={@error} />
+        <div :if={@raw_locale != @canonical_locale and !@error} class="lp-muted lp-helper lp-canon-hint">
+          You entered <code>{@raw_locale}</code>; it canonicalized to <code>{@canonical_locale}</code>.
+        </div>
+        <.canonical_card
+          canonical={@canonical_locale}
+          raw={@raw_locale}
+          error={@error}
+          display_name_standard={@display_name_standard}
+          display_name_dialect={@display_name_dialect}
+        />
       </.section>
 
       <.section title="Unicode -u extensions">
@@ -284,6 +325,8 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
   attr :canonical, :string, required: true
   attr :raw, :string, required: true
   attr :error, :any, required: true
+  attr :display_name_standard, :any, default: nil
+  attr :display_name_dialect, :any, default: nil
 
   defp canonical_card(assigns) do
     ~H"""
@@ -304,14 +347,53 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         </button>
       </div>
 
+      <.display_name_row
+        :if={@display_name_standard}
+        canonical={@canonical}
+        result={@display_name_standard}
+        options={[]}
+      />
+      <.display_name_row
+        :if={@display_name_dialect}
+        canonical={@canonical}
+        result={@display_name_dialect}
+        options={[language_display: :dialect]}
+      />
+
       <div :if={@error} class="lp-error">
         <strong>Not a valid locale yet:</strong> {@error}
-      </div>
-
-      <div :if={@raw != @canonical and !@error} class="lp-muted lp-helper">
-        You entered <code>{@raw}</code>; it canonicalized to <code>{@canonical}</code>.
       </div>
     </div>
     """
   end
+
+  attr :canonical, :string, required: true
+  attr :result, :any, required: true
+  attr :options, :list, default: []
+
+  defp display_name_row(assigns) do
+    assigns = assign(assigns, :code, build_display_name_code(assigns.canonical, assigns.options))
+    ~H"""
+    <div class="lp-display-name">
+      <code class="lp-display-name-code">{@code}</code>
+      <div class={"lp-display-name-value" <> display_name_error_class(@result)}>
+        {display_name_text(@result)}
+      </div>
+    </div>
+    """
+  end
+
+  defp build_display_name_code(canonical, []),
+    do: "Localize.Locale.LocaleDisplay.display_name(#{inspect(canonical)})"
+
+  defp build_display_name_code(canonical, options) do
+    kv = options |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{inspect(v)}" end)
+    "Localize.Locale.LocaleDisplay.display_name(#{inspect(canonical)}, #{kv})"
+  end
+
+  defp display_name_text({:ok, name}), do: name
+  defp display_name_text({:error, message}), do: "error: " <> message
+
+  defp display_name_error_class({:ok, _}), do: ""
+  defp display_name_error_class(_), do: " lp-display-name-error"
 end
