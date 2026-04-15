@@ -12,7 +12,7 @@ defmodule LocalizePlaygroundWeb.UiLocale do
   @catalog [
     %{id: "ar", territory: :SA},
     %{id: "de", territory: :DE},
-    %{id: "en", territory: nil, flag: "🇺🇸🇬🇧"},
+    %{id: "en", territory: nil, flag: "🇺🇸"},
     %{id: "en-GB", territory: :GB},
     %{id: "es", territory: :ES},
     %{id: "es-MX", territory: :MX},
@@ -34,7 +34,7 @@ defmodule LocalizePlaygroundWeb.UiLocale do
     %{id: "uk", territory: :UA},
     %{id: "vi", territory: :VN},
     %{id: "zh-Hans", territory: :CN},
-    %{id: "zh-Hant", territory: :TW}
+    %{id: "zh-Hant", territory: nil}
   ]
 
   @default "en"

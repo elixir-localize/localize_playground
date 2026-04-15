@@ -384,7 +384,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
       <.section title={gettext("Locale & value")}>
         <div class="lp-dt-top">
-          <.field label={gettext("Locale")} for="locale" hint={gettext("Any BCP-47 locale. Shared with other tabs.")}>
+          <.field label={gettext("Locale")} for="locale">
             <input
               id="locale"
               name="locale"

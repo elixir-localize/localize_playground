@@ -11,7 +11,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
       <div class="lp-dt-top">
-        <.field label={gettext("Locale")} for="locale" hint={gettext("Type a CLDR locale such as en, de, zh-Hant")}>
+        <.field label={gettext("Locale")} for="locale">
           <input
             id="locale"
             name="locale"

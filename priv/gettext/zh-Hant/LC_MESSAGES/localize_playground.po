@@ -653,7 +653,7 @@ msgstr "3–5 · 1.5–2.5"
 #: lib/localize_playground_web/live/durations_live.ex:12
 #, elixir-autogen, icu-format
 msgid "A raw duration in seconds"
-msgstr ""
+msgstr "原始秒數時長"
 
 #: lib/localize_playground_web/live/page_live.ex:20
 #, elixir-autogen, icu-format
@@ -683,12 +683,12 @@ msgstr ""
 #: lib/localize_playground_web/live/durations_live.ex:11
 #, elixir-autogen, icu-format
 msgid "Between two dates"
-msgstr ""
+msgstr "兩個日期之間"
 
 #: lib/localize_playground_web/live/dates_live.ex:23
 #, elixir-autogen, icu-format
 msgid "CLDR skeleton like yMMMd — locale picks the pattern"
-msgstr ""
+msgstr "類似 yMMMd 的 CLDR 骨架 — 由地區設定決定樣式"
 
 #: lib/localize_playground_web/views/locale_view.ex:16
 #, elixir-autogen, icu-format
@@ -713,7 +713,7 @@ msgstr ""
 #: lib/localize_playground_web/live/dates_live.ex:18
 #, elixir-autogen, icu-format
 msgid "Combined, with locale join pattern"
-msgstr ""
+msgstr "組合，使用地區設定的連接樣式"
 
 #: lib/localize_playground_web/live/page_live.ex:17
 #, elixir-autogen, icu-format
@@ -773,7 +773,7 @@ msgstr ""
 #: lib/localize_playground_web/live/durations_live.ex:11
 #, elixir-autogen, icu-format
 msgid "Elapsed time between two moments"
-msgstr ""
+msgstr "兩個時刻之間的經過時間"
 
 #: lib/localize_playground_web/views/locale_view.ex:20
 #, elixir-autogen, icu-format
@@ -783,7 +783,7 @@ msgstr "表情呈現"
 #: lib/localize_playground_web/live/page_live.ex:21
 #, elixir-autogen, icu-format
 msgid "Enter a CLDR format string"
-msgstr ""
+msgstr "輸入 CLDR 格式字串"
 
 #: lib/localize_playground_web/live/numbers_live.ex:492
 #, elixir-autogen, icu-format
@@ -815,12 +815,12 @@ msgstr "小數位數"
 #: lib/localize_playground_web/live/durations_live.ex:10
 #, elixir-autogen, icu-format
 msgid "From parts"
-msgstr ""
+msgstr "從各部分"
 
 #: lib/localize_playground_web/live/durations_live.ex:12
 #, elixir-autogen, icu-format
 msgid "From seconds"
-msgstr ""
+msgstr "從秒"
 
 #: lib/localize_playground_web/live/numbers_live.ex:487
 #, elixir-autogen, icu-format
@@ -866,12 +866,12 @@ msgstr ""
 #: lib/localize_playground_web/live/dates_live.ex:16
 #, elixir-autogen, icu-format
 msgid "Just the date — no time of day"
-msgstr ""
+msgstr "只有日期 — 沒有時間"
 
 #: lib/localize_playground_web/live/dates_live.ex:17
 #, elixir-autogen, icu-format
 msgid "Just the time — no date"
-msgstr ""
+msgstr "只有時間 — 沒有日期"
 
 #: lib/localize_playground_web/live/numbers_live.ex:341
 #, elixir-autogen, icu-format
@@ -907,7 +907,7 @@ msgstr "減號"
 #: lib/localize_playground_web/live/page_live.ex:15
 #, elixir-autogen, icu-format
 msgid "Money amounts with currency symbols"
-msgstr ""
+msgstr "帶貨幣符號的金額"
 
 #: lib/localize_playground_web/live/numbers_live.ex:373
 #, elixir-autogen, icu-format
@@ -962,7 +962,7 @@ msgstr "百分號"
 #: lib/localize_playground_web/live/page_live.ex:14
 #, elixir-autogen, icu-format
 msgid "Plain numbers with locale grouping"
-msgstr ""
+msgstr "使用地區設定分組的普通數字"
 
 #: lib/localize_playground_web/live/numbers_live.ex:489
 #, elixir-autogen, icu-format
@@ -982,7 +982,7 @@ msgstr "範圍"
 #: lib/localize_playground_web/live/dates_live.ex:24
 #, elixir-autogen, icu-format
 msgid "Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm"
-msgstr ""
+msgstr "原始 CLDR 樣式，例如 yyyy-MM-dd 'at' HH:mm"
 
 #: lib/localize_playground_web/views/locale_view.ex:28
 #, elixir-autogen, icu-format
@@ -1007,7 +1007,7 @@ msgstr "規則名稱"
 #: lib/localize_playground_web/live/page_live.ex:16
 #, elixir-autogen, icu-format
 msgid "Scaled by 100 with a % sign"
-msgstr ""
+msgstr "乘以 100 並帶 % 號"
 
 #: lib/localize_playground_web/views/locale_view.ex:46
 #, elixir-autogen, icu-format
@@ -1037,7 +1037,7 @@ msgstr ""
 #: lib/localize_playground_web/live/page_live.ex:18
 #, elixir-autogen, icu-format
 msgid "Spellout / RBNF"
-msgstr ""
+msgstr "拼寫 / RBNF"
 
 #: lib/localize_playground_web/views/locale_view.ex:37
 #, elixir-autogen, icu-format
@@ -1047,7 +1047,7 @@ msgstr ""
 #: lib/localize_playground_web/views/locale_view.ex:29
 #, elixir-autogen, icu-format
 msgid "Subdivision"
-msgstr ""
+msgstr "細分"
 
 #: lib/localize_playground_web/live/numbers_live.ex:493
 #, elixir-autogen, icu-format
@@ -1068,22 +1068,22 @@ msgstr "符號"
 #: lib/localize_playground_web/live/dates_live.ex:17
 #, elixir-autogen, icu-format
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 #: lib/localize_playground_web/live/durations_live.ex:17
 #, elixir-autogen, icu-format
 msgid "Time pattern"
-msgstr ""
+msgstr "時間樣式"
 
 #: lib/localize_playground_web/live/numbers_live.ex:498
 #, elixir-autogen, icu-format
 msgid "Time separator"
-msgstr ""
+msgstr "時間分隔符號"
 
 #: lib/localize_playground_web/views/locale_view.ex:31
 #, elixir-autogen, icu-format
 msgid "Time zone"
-msgstr ""
+msgstr "時區"
 
 #: lib/localize_playground_web/views/locale_view.ex:43
 #, elixir-autogen, icu-format
@@ -1125,7 +1125,7 @@ msgstr ""
 #: lib/localize_playground_web/live/durations_live.ex:10
 #, elixir-autogen, icu-format
 msgid "Years, months, days, hours, minutes, seconds"
-msgstr ""
+msgstr "年、月、日、時、分、秒"
 
 #: lib/localize_playground_web/views/locale_view.ex:20
 #, elixir-autogen, icu-format
@@ -1184,7 +1184,7 @@ msgstr ""
 #: lib/localize_playground_web/live/dates_live.ex:488
 #, elixir-autogen, icu-format
 msgid "ASCII-only"
-msgstr ""
+msgstr "僅 ASCII"
 
 #: lib/localize_playground_web/views/collation_view.ex:309
 #, elixir-autogen, icu-format
@@ -1199,7 +1199,7 @@ msgstr "替代"
 #: lib/localize_playground_web/views/collation_view.ex:316
 #, elixir-autogen, icu-format
 msgid "Applied at tertiary strength."
-msgstr ""
+msgstr "在三級強度下套用。"
 
 #: lib/localize_playground_web/views/collation_view.ex:401
 #, elixir-autogen, icu-format
@@ -1229,12 +1229,12 @@ msgstr "不分大小寫"
 #: lib/localize_playground_web/views/collation_view.ex:306
 #, elixir-autogen, icu-format
 msgid "Clear every override."
-msgstr ""
+msgstr "清除所有覆寫。"
 
 #: lib/localize_playground_web/views/collation_view.ex:308
 #, elixir-autogen, icu-format
 msgid "Collapses uppercase and lowercase."
-msgstr ""
+msgstr "合併大小寫。"
 
 #: lib/localize_playground_web/views/collation_view.ex:306
 #, elixir-autogen, icu-format
@@ -1244,12 +1244,12 @@ msgstr "預設"
 #: lib/localize_playground_web/live/dates_live.ex:573
 #, elixir-autogen, icu-format
 msgid "Derived pattern"
-msgstr ""
+msgstr "衍生樣式"
 
 #: lib/localize_playground_web/views/collation_view.ex:314
 #, elixir-autogen, icu-format
 msgid "Digit runs compared as numbers — item2 before item10."
-msgstr ""
+msgstr "數字序列按數值比較 — item2 在 item10 之前。"
 
 #: lib/localize_playground_web/live/collation_live.ex:412
 #, elixir-autogen, icu-format
@@ -1259,7 +1259,7 @@ msgstr "此處每個選項都在地區設定的內建調整之上套用。保留
 #: lib/localize_playground_web/live/collation_live.ex:517
 #, elixir-autogen, icu-format
 msgid "Enable"
-msgstr ""
+msgstr "啟用"
 
 #: lib/localize_playground_web/views/collation_view.ex:317
 #, elixir-autogen, icu-format
@@ -1274,7 +1274,7 @@ msgstr ""
 #: lib/localize_playground_web/live/collation_live.ex:376
 #, elixir-autogen, icu-format
 msgid "Hide sort keys"
-msgstr ""
+msgstr "隱藏排序鍵"
 
 #: lib/localize_playground_web/views/collation_view.ex:362
 #, elixir-autogen, icu-format
@@ -1294,7 +1294,7 @@ msgstr "忽略標點"
 #: lib/localize_playground_web/views/collation_view.ex:310
 #, elixir-autogen, icu-format
 msgid "Ignores accents and case."
-msgstr ""
+msgstr "忽略重音和大小寫。"
 
 #: lib/localize_playground_web/views/collation_view.ex:399
 #, elixir-autogen, icu-format
@@ -1304,17 +1304,17 @@ msgstr "插入專用的大小寫比較層級，使一級強度也能區分大小
 #: lib/localize_playground_web/live/intervals_live.ex:107
 #, elixir-autogen, icu-format
 msgid "Invalid date in range"
-msgstr ""
+msgstr "範圍內的日期無效"
 
 #: lib/localize_playground_web/live/intervals_live.ex:125
 #, elixir-autogen, icu-format
 msgid "Invalid date/time in range"
-msgstr ""
+msgstr "範圍內的日期時間無效"
 
 #: lib/localize_playground_web/live/intervals_live.ex:116
 #, elixir-autogen, icu-format
 msgid "Invalid time in range"
-msgstr ""
+msgstr "範圍內的時間無效"
 
 #: lib/localize_playground_web/views/collation_view.ex:386
 #, elixir-autogen, icu-format
@@ -1349,7 +1349,7 @@ msgstr "數值模式"
 #: lib/localize_playground_web/live/collation_live.ex:490
 #, elixir-autogen, icu-format
 msgid "One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise."
-msgstr ""
+msgstr "每行一個單字。更換語言會換成新的種子列表；否則保留你的編輯。"
 
 #: lib/localize_playground_web/live/collation_live.ex:397
 #, elixir-autogen, icu-format
@@ -1384,17 +1384,17 @@ msgstr "四級 — 含標點"
 #: lib/localize_playground_web/live/collation_live.ex:429
 #, elixir-autogen, icu-format
 msgid "Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add {$script_a} then {$script_b} to make Cyrillic sort before Latin."
-msgstr ""
+msgstr "相對地重新排序腳本群組。較早的項目先排序；未列出的保持預設位置。範例：先加入 {$script_a} 再加入 {$script_b}，使西里爾排在拉丁之前。"
 
 #: lib/localize_playground_web/live/dates_live.ex:569
 #, elixir-autogen, icu-format
 msgid "Requested skeleton"
-msgstr ""
+msgstr "要求的骨架"
 
 #: lib/localize_playground_web/live/dates_live.ex:571
 #, elixir-autogen, icu-format
 msgid "Resolved skeleton"
-msgstr ""
+msgstr "已解析的骨架"
 
 #: lib/localize_playground_web/views/collation_view.ex:402
 #, elixir-autogen, icu-format
@@ -1404,7 +1404,7 @@ msgstr "反轉二級 — 經典的法語重音規則。"
 #: lib/localize_playground_web/views/collation_view.ex:318
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level, the classic French accent rule."
-msgstr ""
+msgstr "反轉二級，經典的法語重音規則。"
 
 #: lib/localize_playground_web/views/collation_view.ex:367
 #, elixir-autogen, icu-format
@@ -1419,7 +1419,7 @@ msgstr "移位"
 #: lib/localize_playground_web/live/collation_live.ex:376
 #, elixir-autogen, icu-format
 msgid "Show sort keys"
-msgstr ""
+msgstr "顯示排序鍵"
 
 #: lib/localize_playground_web/views/collation_view.ex:394
 #, elixir-autogen, icu-format
@@ -1429,7 +1429,7 @@ msgstr "空格"
 #: lib/localize_playground_web/views/collation_view.ex:312
 #, elixir-autogen, icu-format
 msgid "Spaces and punctuation drop to the lowest level."
-msgstr ""
+msgstr "空格和標點降至最低層級。"
 
 #: lib/localize_playground_web/views/collation_view.ex:361
 #, elixir-autogen, icu-format
@@ -1439,7 +1439,7 @@ msgstr "強度"
 #: lib/localize_playground_web/live/numbers_live.ex:571
 #, elixir-autogen, icu-format
 msgid "Subtag"
-msgstr ""
+msgstr "子標籤"
 
 #: lib/localize_playground_web/views/collation_view.ex:368
 #, elixir-autogen, icu-format
@@ -1449,7 +1449,7 @@ msgstr "三級 — 含大小寫"
 #: lib/localize_playground_web/live/intervals_live.ex:11
 #, elixir-autogen, icu-format
 msgid "Time interval"
-msgstr ""
+msgstr "時間區間"
 
 #: lib/localize_playground_web/live/intervals_live.ex:166
 #, elixir-autogen, icu-format, fuzzy
