@@ -343,7 +343,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
       <.section title={gettext("Locale & collation")}>
         <div class="lp-dt-top">
-          <.field label={gettext("Locale")} for="locale" hint={gettext("Any BCP-47 locale string. Extra -u- options below will override.")}>
+          <.field label={gettext("Locale")} for="locale">
             <input
               id="locale"
               name="locale"

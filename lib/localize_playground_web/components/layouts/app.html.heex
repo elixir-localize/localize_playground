@@ -35,8 +35,8 @@
     <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>{gettext("Durations")}</a>
     <a class={"#{if @live_action == :units, do: "active"}"} href={tab_href(@current_locale, "/units")}>{gettext("Units")}</a>
     <a class={"#{if @live_action == :messages, do: "active"}"} href={tab_href(@current_locale, "/messages")}>{gettext("Messages")}</a>
-    <a class="disabled" title={gettext("Coming soon")}>{gettext("Calendars")}</a>
-    <a class="disabled" title={gettext("Coming soon")}>{gettext("Lists")}</a>
+    <a class={"#{if @live_action == :calendars, do: "active"}"} href={tab_href(@current_locale, "/calendars")}>{gettext("Calendars")}</a>
+    <a class={"#{if @live_action == :lists, do: "active"}"} href={tab_href(@current_locale, "/lists")}>{gettext("Lists")}</a>
     <a class={"#{if @live_action == :collation, do: "active"}"} href={tab_href(@current_locale, "/collation")}>{gettext("Collation")}</a>
   </nav>
 </header>

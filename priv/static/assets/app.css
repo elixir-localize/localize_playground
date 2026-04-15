@@ -840,6 +840,18 @@ input[type="text"],
   max-width: 920px;
 }
 
+/* Helper text shown above controls / tables */
+.lp-help-text { margin: 0 0 12px 0; font-size: 13px; line-height: 1.5; }
+
+.lp-radio-cards-3col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lp-checkbox-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--lp-text-dim); }
+
+/* Calendars tab — uniform column widths across every table on the tab. */
+.lp-cal-table { margin-top: 8px; table-layout: fixed; width: 100%; }
+.lp-cal-table th:nth-child(1), .lp-cal-table td:nth-child(1) { width: 120px; }
+.lp-cal-table th:nth-child(2), .lp-cal-table td:nth-child(2) { width: 160px; }
+.lp-cal-table th:nth-child(3), .lp-cal-table td:nth-child(3) { width: auto; }
+
 /* Messages (MF2) tab */
 .lp-mf2-message, .lp-mf2-bindings {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

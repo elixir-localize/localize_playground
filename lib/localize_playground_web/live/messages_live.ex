@@ -251,7 +251,7 @@ masculine * {{He invited {$count} guests.}}
       </.section>
 
       <.section title={gettext("MF2 message")}>
-        <.field label={gettext("MF2 message")} for="message" hint={gettext("MessageFormat 2 syntax. See messageformat.unicode.org for the spec.")}>
+        <.field label={gettext("MessageFormat 2 syntax")} for="message" hint={gettext("MessageFormat 2 syntax. See messageformat.unicode.org for the spec.")}>
           <textarea id="message" name="message" class="lp-mf2-message" rows="8" spellcheck="false" phx-debounce="250">{@message}</textarea>
         </.field>
       </.section>
