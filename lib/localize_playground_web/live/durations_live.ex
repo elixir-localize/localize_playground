@@ -7,14 +7,14 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   alias LocalizePlaygroundWeb.NumberView
 
   @modes [
-    %{id: :parts, label: "From parts", hint: "Years, months, days, hours, minutes, seconds"},
-    %{id: :between, label: "Between two dates", hint: "Elapsed time between two moments"},
-    %{id: :seconds, label: "From seconds", hint: "A raw duration in seconds"}
+    %{id: :parts, label: gettext_noop("From parts"), hint: gettext_noop("Years, months, days, hours, minutes, seconds")},
+    %{id: :between, label: gettext_noop("Between two dates"), hint: gettext_noop("Elapsed time between two moments")},
+    %{id: :seconds, label: gettext_noop("From seconds"), hint: gettext_noop("A raw duration in seconds")}
   ]
 
   @format_kinds [
-    %{id: :named, label: "Named units", hint: "\"2 hours, 30 minutes\" — honours style"},
-    %{id: :time, label: "Time pattern", hint: "\"02:30:00\" — numeric clock-style"}
+    %{id: :named, label: gettext_noop("Named units"), hint: gettext_noop("\"2 hours, 30 minutes\" — honours style")},
+    %{id: :time, label: gettext_noop("Time pattern"), hint: gettext_noop("\"02:30:00\" — numeric clock-style")}
   ]
 
   @parts ~w(year month day hour minute second)a
@@ -196,9 +196,9 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title="Locale">
+      <.section title={gettext("Locale")}>
         <div class="lp-dt-top">
-          <.field label="Locale" for="locale">
+          <.field label={gettext("Locale")} for="locale">
             <input id="locale" name="locale" type="text" list="dr-locales" value={@locale} phx-debounce="200" />
             <datalist id="dr-locales">
               <option :for={l <- @locale_options} value={l}></option>
@@ -207,12 +207,12 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
         </div>
       </.section>
 
-      <.section title="Input mode">
+      <.section title={gettext("Input mode")}>
         <div class="lp-radio-cards">
           <label :for={m <- @modes} class={"lp-radio-card" <> if(@mode == m.id, do: " active", else: "")}>
             <input type="radio" name="mode" value={m.id} checked={@mode == m.id} />
-            <span class="lp-radio-title">{m.label}</span>
-            <span class="lp-radio-hint">{m.hint}</span>
+            <span class="lp-radio-title">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", m.label)}</span>
+            <span class="lp-radio-hint">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", m.hint)}</span>
           </label>
         </div>
 
@@ -223,44 +223,44 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
                 <input name={"part_#{p}"} type="number" value={Map.get(@part_values, p)} phx-debounce="250" min="0" />
               </.field>
             <% :between -> %>
-              <.field label="From (ISO 8601)" for="from_datetime">
+              <.field label={gettext("From (ISO 8601)")} for="from_datetime">
                 <input id="from_datetime" name="from_datetime" type="text" value={@from_datetime} phx-debounce="250" />
               </.field>
-              <.field label="To (ISO 8601)" for="to_datetime">
+              <.field label={gettext("To (ISO 8601)")} for="to_datetime">
                 <input id="to_datetime" name="to_datetime" type="text" value={@to_datetime} phx-debounce="250" />
               </.field>
             <% :seconds -> %>
-              <.field label="Seconds" for="seconds">
+              <.field label={gettext("Seconds")} for="seconds">
                 <input id="seconds" name="seconds" type="number" value={@seconds} phx-debounce="250" min="0" />
               </.field>
           <% end %>
         </div>
       </.section>
 
-      <.section title="Formatted duration" class="lp-result-section">
+      <.section title={gettext("Formatted duration")} class="lp-result-section">
         <.call_code code={@call_code} />
         <.result_card result={@result} />
       </.section>
 
-      <.section title="Format">
+      <.section title={gettext("Format")}>
         <div class="lp-radio-cards">
           <label :for={k <- @format_kinds} class={"lp-radio-card" <> if(@format_kind == k.id, do: " active", else: "")}>
             <input type="radio" name="format_kind" value={k.id} checked={@format_kind == k.id} />
-            <span class="lp-radio-title">{k.label}</span>
-            <span class="lp-radio-hint">{k.hint}</span>
+            <span class="lp-radio-title">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", k.label)}</span>
+            <span class="lp-radio-hint">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", k.hint)}</span>
           </label>
         </div>
 
         <div class="lp-dt-format-controls">
           <%= case @format_kind do %>
             <% :named -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="style">
                   <option :for={s <- @styles} value={s} selected={@style == s}>{s}</option>
                 </select>
               </.field>
             <% :time -> %>
-              <.field label="Pattern" for="pattern" hint="e.g. hh:mm:ss, h:mm, mm:ss">
+              <.field label={gettext("Pattern")} for="pattern" hint={gettext("e.g. hh:mm:ss, h:mm, mm:ss")}>
                 <input id="pattern" name="pattern" type="text" value={@pattern} phx-debounce="250" class="lp-mono-input" />
               </.field>
           <% end %>
@@ -275,13 +275,13 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   defp call_code(assigns) do
     ~H"""
     <div class="lp-call-code" phx-hook="CopyToClipboard" id="dr-call-wrapper">
-      <pre class="lp-call-code-text" id="dr-call-text">{@code}</pre>
-      <button type="button" class="lp-copy-btn" data-copy-target="#dr-call-text" aria-label="Copy">
+      <LocalizePlaygroundWeb.HexDocs.code code={@code} id="dr-call-text" />
+      <button type="button" class="lp-copy-btn" data-copy-target="#dr-call-text" aria-label={gettext("Copy")}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="4" width="9" height="9" rx="1.5" />
           <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
         </svg>
-        <span class="lp-copy-label">Copy</span>
+        <span class="lp-copy-label">{gettext("Copy")}</span>
       </button>
     </div>
     """
@@ -296,7 +296,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
 
   defp result_card(%{result: {:error, msg}} = assigns) do
     assigns = assign(assigns, :msg, msg)
-    ~H|<div class="lp-error"><strong>Error:</strong> {@msg}</div>|
+    ~H|<div class="lp-error"><strong>{gettext("Error:")}</strong> {@msg}</div>|
   end
 
   defp result_card(assigns), do: ~H|<div class="lp-result lp-muted">—</div>|

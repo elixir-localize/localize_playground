@@ -8,10 +8,22 @@ defmodule LocalizePlaygroundWeb.Router do
     plug :put_root_layout, html: {LocalizePlaygroundWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
+    plug Localize.Plug.PutLocale,
+      from: [:query, :session, :accept_language],
+      param: "ui_locale",
+      default: Localize.default_locale(),
+      gettext: LocalizePlaygroundWeb.Gettext
+
+    plug Localize.Plug.PutSession, as: :string
   end
 
   scope "/", LocalizePlaygroundWeb do
     pipe_through :browser
+
+    post "/ui-locale", UiLocaleController, :update
+
+    get "/hexdocs/*path", HexDocsProxy, :show
 
     live "/", LocalesLive, :locales
     live "/locales", LocalesLive, :locales

@@ -11,7 +11,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
       <div class="lp-top-row">
-        <.field label="Locale" for="locale" hint="Type a CLDR locale such as en, de, zh-Hant">
+        <.field label={gettext("Locale")} for="locale" hint={gettext("Type a CLDR locale such as en, de, zh-Hant")}>
           <input
             id="locale"
             name="locale"
@@ -25,7 +25,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
           </datalist>
         </.field>
 
-        <.field :if={@style_group != :range} label="Number" for="number">
+        <.field :if={@style_group != :range} label={gettext("Number")} for="number">
           <input
             id="number"
             name="number"
@@ -36,7 +36,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
           />
         </.field>
 
-        <.field :if={@style_group == :range} label="Range start" for="number">
+        <.field :if={@style_group == :range} label={gettext("Range start")} for="number">
           <input
             id="number"
             name="number"
@@ -47,7 +47,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
           />
         </.field>
 
-        <.field :if={@style_group == :range} label="Range end" for="range_end">
+        <.field :if={@style_group == :range} label={gettext("Range end")} for="range_end">
           <input
             id="range_end"
             name="range_end"
@@ -59,12 +59,12 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
         </.field>
       </div>
 
-      <.section title="Formatted number" class="lp-result-section">
+      <.section title={gettext("Formatted number")} class="lp-result-section">
         <.call_code_card code={@call_code} />
         <.result_card result={@result} />
       </.section>
 
-      <.section title="Format family">
+      <.section title={gettext("Format family")}>
         <div class="lp-radio-cards">
           <label :for={group <- @style_groups} class={radio_card_class(group.id, @style_group)}>
             <input
@@ -73,17 +73,17 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
               value={group.id}
               checked={@style_group == group.id}
             />
-            <span class="lp-radio-title">{group.label}</span>
-            <span class="lp-radio-hint">{group.hint}</span>
+            <span class="lp-radio-title">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", group.label)}</span>
+            <span class="lp-radio-hint">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", group.hint)}</span>
           </label>
         </div>
       </.section>
 
-      <.section title="Format options">
+      <.section title={gettext("Format options")}>
         <div class="lp-sub-controls">
           <%= case @style_group do %>
             <% :decimal -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="decimal_style">
                   <option :for={{value, label} <- @decimal_styles} value={value} selected={@decimal_style == value}>
                     {label}
@@ -91,14 +91,14 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </select>
               </.field>
             <% :currency -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="currency_style">
                   <option :for={{value, label} <- @currency_styles} value={value} selected={@currency_style == value}>
                     {label}
                   </option>
                 </select>
               </.field>
-              <.field label="Currency" for="currency" hint="ISO 4217 code">
+              <.field label={gettext("Currency")} for="currency" hint={gettext("ISO 4217 code")}>
                 <input
                   id="currency"
                   name="currency"
@@ -111,7 +111,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                   <option :for={code <- @currency_options} value={code}></option>
                 </datalist>
               </.field>
-              <.field label="Currency symbol">
+              <.field label={gettext("Currency symbol")}>
                 <select name="currency_symbol">
                   <option :for={{value, label} <- @currency_symbol_options} value={value} selected={@currency_symbol == value}>
                     {label}
@@ -119,14 +119,14 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </select>
               </.field>
             <% :compact -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="compact_style">
                   <option :for={{value, label} <- @compact_styles} value={value} selected={@compact_style == value}>
                     {label}
                   </option>
                 </select>
               </.field>
-              <.field :if={currency_compact?(@compact_style)} label="Currency" for="currency">
+              <.field :if={currency_compact?(@compact_style)} label={gettext("Currency")} for="currency">
                 <input
                   id="currency"
                   name="currency"
@@ -140,7 +140,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </datalist>
               </.field>
             <% :rbnf -> %>
-              <.field label="RBNF rule" hint="Rule sets vary by locale">
+              <.field label={gettext("RBNF rule")} hint={gettext("Rule sets vary by locale")}>
                 <select name="rbnf_rule">
                   <option :if={@rbnf_rules == []} value="">(none available)</option>
                   <option :for={name <- @rbnf_rules} value={name} selected={@rbnf_rule == name}>
@@ -149,7 +149,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </select>
               </.field>
             <% :range -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="decimal_style">
                   <option :for={{value, label} <- @decimal_styles} value={value} selected={@decimal_style == value}>
                     {label}
@@ -157,7 +157,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </select>
               </.field>
             <% :boundary -> %>
-              <.field label="Boundary">
+              <.field label={gettext("Boundary")}>
                 <select name="boundary_kind">
                   <option :for={{value, label} <- @boundary_styles} value={value} selected={@boundary_kind == value}>
                     {label}
@@ -165,7 +165,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </select>
               </.field>
             <% :pattern -> %>
-              <.field label="Custom pattern" for="custom_pattern" hint="CLDR format, e.g. #,##0.00;(#,##0.00)">
+              <.field label={gettext("Custom pattern")} for="custom_pattern" hint={gettext("CLDR format, e.g. #,##0.00;(#,##0.00)")}>
                 <input
                   id="custom_pattern"
                   name="custom_pattern"
@@ -181,9 +181,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
         </div>
 
         <details class="lp-details">
-          <summary>Advanced formatting options</summary>
+          <summary>{gettext("Advanced formatting options")}</summary>
           <div class="lp-sub-controls">
-            <.field label="Min fractional digits" for="min_fractional_digits">
+            <.field label={gettext("Min fractional digits")} for="min_fractional_digits">
               <input
                 id="min_fractional_digits"
                 name="min_fractional_digits"
@@ -191,11 +191,11 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 min="0"
                 max="20"
                 value={@min_fractional_digits}
-                placeholder="auto"
+                placeholder={gettext("auto")}
                 phx-debounce="150"
               />
             </.field>
-            <.field label="Max fractional digits" for="max_fractional_digits">
+            <.field label={gettext("Max fractional digits")} for="max_fractional_digits">
               <input
                 id="max_fractional_digits"
                 name="max_fractional_digits"
@@ -203,29 +203,29 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 min="0"
                 max="20"
                 value={@max_fractional_digits}
-                placeholder="auto"
+                placeholder={gettext("auto")}
                 phx-debounce="150"
               />
             </.field>
-            <.field label="Rounding mode">
+            <.field label={gettext("Rounding mode")}>
               <select name="rounding_mode">
                 <option :for={mode <- @rounding_modes} value={mode} selected={@rounding_mode == mode}>
                   {humanize_atom(mode)}
                 </option>
               </select>
             </.field>
-            <.field label="Round nearest" for="round_nearest">
+            <.field label={gettext("Round nearest")} for="round_nearest">
               <input
                 id="round_nearest"
                 name="round_nearest"
                 type="number"
                 min="0"
                 value={@round_nearest}
-                placeholder="off"
+                placeholder={gettext("off")}
                 phx-debounce="150"
               />
             </.field>
-            <.field label="Number system" hint="Auto-set by a locale's -u-nu- subtag">
+            <.field label={gettext("Number system")} hint={gettext("Auto-set by a locale's -u-nu- subtag")}>
               <select name="number_system">
                 <option :for={{value, label} <- @number_systems} value={value} selected={@number_system == value}>
                   {label}
@@ -237,19 +237,19 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
       </.section>
     </form>
 
-    <.section title="Format pattern">
+    <.section title={gettext("Format pattern")}>
       <.pattern_card pattern={@pattern} />
     </.section>
 
-    <.section title="Pattern metadata">
+    <.section title={gettext("Pattern metadata")}>
       <.meta_card meta={@pattern_meta} />
     </.section>
 
-    <.section :if={map_size(@u_extensions) > 0} title="Locale U-extensions (applied automatically)">
+    <.section :if={map_size(@u_extensions) > 0} title={gettext("Locale U-extensions (applied automatically)")}>
       <.u_extensions_card extensions={@u_extensions} />
     </.section>
 
-    <.section title="Locale metadata">
+    <.section title={gettext("Locale metadata")}>
       <.locale_metadata_card symbols={@locale_symbols} locale={@locale} />
     </.section>
     """
@@ -266,7 +266,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   defp result_card(%{result: {:error, _}} = assigns) do
     ~H"""
     <div class="lp-error">
-      <strong>Error:</strong> {elem(@result, 1)}
+      <strong>{gettext("Error:")}</strong> {elem(@result, 1)}
     </div>
     """
   end
@@ -296,7 +296,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   defp pattern_card(%{pattern: {:error, _}} = assigns) do
     ~H"""
     <div class="lp-error">
-      <strong>Could not resolve pattern:</strong> {elem(@pattern, 1)}
+      <strong>{gettext("Could not resolve pattern:")}</strong> {elem(@pattern, 1)}
     </div>
     """
   end
@@ -336,9 +336,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
     ~H"""
     <dl class="lp-meta-table">
-      <dt>Kind</dt>
+      <dt>{gettext("Kind")}</dt>
       <dd>Rule-based number format (RBNF)</dd>
-      <dt>Rule name</dt>
+      <dt>{gettext("Rule name")}</dt>
       <dd><code>{@rule}</code></dd>
     </dl>
     """
@@ -349,10 +349,10 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
     ~H"""
     <dl class="lp-meta-table">
-      <dt>Integer digits</dt>
+      <dt>{gettext("Integer digits")}</dt>
       <dd>min: {@m.integer_digits.min} · max: {@m.integer_digits.max}</dd>
 
-      <dt>Fractional digits</dt>
+      <dt>{gettext("Fractional digits")}</dt>
       <dd>min: {@m.fractional_digits.min} · max: {@m.fractional_digits.max}</dd>
 
       <dt :if={@m.significant_digits.max > 0}>Significant digits</dt>
@@ -360,7 +360,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
         min: {@m.significant_digits.min} · max: {@m.significant_digits.max}
       </dd>
 
-      <dt>Integer grouping</dt>
+      <dt>{gettext("Integer grouping")}</dt>
       <dd>{grouping_sentence(@m.grouping.integer)}</dd>
 
       <dt :if={@m.grouping.fraction.first > 0}>Fraction grouping</dt>
@@ -368,19 +368,19 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
         {grouping_sentence(@m.grouping.fraction, :fraction)}
       </dd>
 
-      <dt>Multiplier</dt>
+      <dt>{gettext("Multiplier")}</dt>
       <dd>{multiplier_sentence(@m.multiplier)}</dd>
 
       <dt :if={@m.exponent_digits > 0}>Exponent digits</dt>
       <dd :if={@m.exponent_digits > 0}>{@m.exponent_digits}</dd>
 
-      <dt :if={@m.round_nearest != 0}>Round nearest</dt>
+      <dt :if={@m.round_nearest != 0}>{gettext("Round nearest")}</dt>
       <dd :if={@m.round_nearest != 0}>{@m.round_nearest}</dd>
 
-      <dt>Positive template</dt>
+      <dt>{gettext("Positive template")}</dt>
       <dd><pre class="lp-export">{inspect(Keyword.get(@m.format, :positive), pretty: true, width: 60, limit: :infinity)}</pre></dd>
 
-      <dt>Negative template</dt>
+      <dt>{gettext("Negative template")}</dt>
       <dd><pre class="lp-export">{inspect(Keyword.get(@m.format, :negative), pretty: true, width: 60, limit: :infinity)}</pre></dd>
     </dl>
     """
@@ -415,18 +415,18 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   defp call_code_card(assigns) do
     ~H"""
     <div class="lp-call-code" phx-hook="CopyToClipboard" id="call-code-wrapper">
-      <pre class="lp-call-code-text" id="call-code-text">{@code}</pre>
+      <LocalizePlaygroundWeb.HexDocs.code code={@code} id="call-code-text" />
       <button
         type="button"
         class="lp-copy-btn"
-        aria-label="Copy function call to clipboard"
+        aria-label={gettext("Copy function call to clipboard")}
         data-copy-target="#call-code-text"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="4" width="9" height="9" rx="1.5" />
           <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
         </svg>
-        <span class="lp-copy-label">Copy</span>
+        <span class="lp-copy-label">{gettext("Copy")}</span>
       </button>
     </div>
     """
@@ -486,20 +486,20 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
   defp locale_metadata_card(%{symbols: {system, symbols}} = assigns) do
     rows = [
-      {"Number system", :number_system, system},
-      {"Decimal separator", :decimal, symbols.decimal},
-      {"Grouping separator", :group, symbols.group},
-      {"Minus sign", :minus_sign, symbols.minus_sign},
-      {"Plus sign", :plus_sign, symbols.plus_sign},
-      {"Percent sign", :percent_sign, symbols.percent_sign},
-      {"Per-mille sign", :per_mille, symbols.per_mille},
-      {"Exponential", :exponential, symbols.exponential},
-      {"Superscripting exponent", :superscripting_exponent, symbols.superscripting_exponent},
-      {"Infinity", :infinity, symbols.infinity},
-      {"Not-a-number", :nan, symbols.nan},
-      {"Approximately sign", :approximately_sign, symbols.approximately_sign},
-      {"List separator", :list, symbols.list},
-      {"Time separator", :time_separator, symbols.time_separator}
+      {gettext("Number system"), :number_system, system},
+      {gettext("Decimal separator"), :decimal, symbols.decimal},
+      {gettext("Grouping separator"), :group, symbols.group},
+      {gettext("Minus sign"), :minus_sign, symbols.minus_sign},
+      {gettext("Plus sign"), :plus_sign, symbols.plus_sign},
+      {gettext("Percent sign"), :percent_sign, symbols.percent_sign},
+      {gettext("Per-mille sign"), :per_mille, symbols.per_mille},
+      {gettext("Exponential"), :exponential, symbols.exponential},
+      {gettext("Superscripting exponent"), :superscripting_exponent, symbols.superscripting_exponent},
+      {gettext("Infinity"), :infinity, symbols.infinity},
+      {gettext("Not-a-number"), :nan, symbols.nan},
+      {gettext("Approximately sign"), :approximately_sign, symbols.approximately_sign},
+      {gettext("List separator"), :list, symbols.list},
+      {gettext("Time separator"), :time_separator, symbols.time_separator}
     ]
 
     rows = Enum.reject(rows, fn {_label, _key, value} -> value in [nil, ""] end)
@@ -509,9 +509,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     <table class="lp-table">
       <thead>
         <tr>
-          <th>Symbol</th>
-          <th>Field</th>
-          <th>Value</th>
+          <th>{gettext("Symbol")}</th>
+          <th>{gettext("Field")}</th>
+          <th>{gettext("Value")}</th>
         </tr>
       </thead>
       <tbody>
@@ -572,9 +572,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     <table class="lp-table">
       <thead>
         <tr>
-          <th>Subtag</th>
+          <th>{gettext("Subtag")}</th>
           <th>Key</th>
-          <th>Value</th>
+          <th>{gettext("Value")}</th>
         </tr>
       </thead>
       <tbody>

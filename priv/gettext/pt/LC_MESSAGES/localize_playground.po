@@ -1,0 +1,1529 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:38
+#, elixir-autogen, icu-format
+msgid "Calendars"
+msgstr "Calendários"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:40
+#: lib/localize_playground_web/views/locale_view.ex:35
+#, elixir-autogen, icu-format
+msgid "Collation"
+msgstr "Ordenação"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:36
+#: lib/localize_playground_web/components/layouts/app.html.heex:37
+#: lib/localize_playground_web/components/layouts/app.html.heex:38
+#: lib/localize_playground_web/components/layouts/app.html.heex:39
+#, elixir-autogen, icu-format
+msgid "Coming soon"
+msgstr "Em breve"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:33
+#, elixir-autogen, icu-format
+msgid "Dates & Times"
+msgstr "Datas e horas"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:35
+#, elixir-autogen, icu-format
+msgid "Durations"
+msgstr "Durações"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:47
+#, elixir-autogen, icu-format
+msgid "Explore CLDR via {$link}."
+msgstr "Explore o CLDR através de {$link}."
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:34
+#, elixir-autogen, icu-format
+msgid "Intervals"
+msgstr "Intervalos"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:39
+#, elixir-autogen, icu-format
+msgid "Lists"
+msgstr "Listas"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:31
+#, elixir-autogen, icu-format
+msgid "Locales"
+msgstr "Localidades"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:4
+#, elixir-autogen, icu-format
+msgid "Localize"
+msgstr "Localize"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:5
+#, elixir-autogen, icu-format
+msgid "Localize Playground"
+msgstr "Localize Playground"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:37
+#, elixir-autogen, icu-format
+msgid "Messages"
+msgstr "Mensagens"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:32
+#, elixir-autogen, icu-format
+msgid "Numbers"
+msgstr "Números"
+
+#: lib/localize_playground_web/components/layouts/app.html.heex:36
+#, elixir-autogen, icu-format
+msgid "Units"
+msgstr "Unidades"
+
+#: lib/localize_playground_web/live/locales_live.ex:211
+#: lib/localize_playground_web/live/locales_live.ex:223
+#, elixir-autogen, icu-format
+msgid "(unspecified)"
+msgstr "(não especificado)"
+
+#: lib/localize_playground_web/live/locales_live.ex:215
+#, elixir-autogen, icu-format
+msgid "All scripts"
+msgstr "Todas as escritas"
+
+#: lib/localize_playground_web/live/locales_live.ex:227
+#, elixir-autogen, icu-format
+msgid "All territories"
+msgstr "Todos os territórios"
+
+#: lib/localize_playground_web/live/locales_live.ex:209
+#, elixir-autogen, icu-format
+msgid "Any ISO-15924 script"
+msgstr "Qualquer escrita ISO-15924"
+
+#: lib/localize_playground_web/live/locales_live.ex:221
+#, elixir-autogen, icu-format
+msgid "Any ISO-3166 territory"
+msgstr "Qualquer território ISO-3166"
+
+#: lib/localize_playground_web/live/locales_live.ex:235
+#, elixir-autogen, icu-format
+msgid "Canonical locale"
+msgstr "Localidade canónica"
+
+#: lib/localize_playground_web/live/locales_live.ex:263
+#, elixir-autogen, icu-format
+msgid "Collation-specific knobs that tune string sorting. These share the {$namespace} namespace with the fields above."
+msgstr "Opções específicas de ordenação que afinam a classificação de strings. Partilham o espaço de nomes {$namespace} com os campos acima."
+
+#: lib/localize_playground_web/live/locales_live.ex:251
+#, elixir-autogen, icu-format
+msgid "Each extension adds a {$segment} segment to the locale. Leave a field blank to omit it."
+msgstr "Cada extensão adiciona um segmento {$segment} à localidade. Deixe um campo em branco para o omitir."
+
+#: lib/localize_playground_web/live/locales_live.ex:212
+#: lib/localize_playground_web/live/locales_live.ex:224
+#, elixir-autogen, icu-format
+msgid "For this language"
+msgstr "Para este idioma"
+
+#: lib/localize_playground_web/live/locales_live.ex:209
+#: lib/localize_playground_web/live/locales_live.ex:221
+#, elixir-autogen, icu-format
+msgid "Known for this language"
+msgstr "Conhecidos para este idioma"
+
+#: lib/localize_playground_web/live/locales_live.ex:195
+#, elixir-autogen, icu-format
+msgid "Language"
+msgstr "Idioma"
+
+#: lib/localize_playground_web/live/locales_live.ex:193
+#, elixir-autogen, icu-format
+msgid "Language, script, territory"
+msgstr "Idioma, escrita, território"
+
+#: lib/localize_playground_web/live/locales_live.ex:209
+#, elixir-autogen, icu-format
+msgid "Script"
+msgstr "Escrita"
+
+#: lib/localize_playground_web/live/locales_live.ex:221
+#, elixir-autogen, icu-format
+msgid "Territory"
+msgstr "Território"
+
+#: lib/localize_playground_web/live/locales_live.ex:261
+#, elixir-autogen, icu-format
+msgid "Unicode -u collation extensions"
+msgstr "Extensões Unicode -u de ordenação"
+
+#: lib/localize_playground_web/live/locales_live.ex:249
+#, elixir-autogen, icu-format
+msgid "Unicode -u extensions"
+msgstr "Extensões Unicode -u"
+
+#: lib/localize_playground_web/live/locales_live.ex:237
+#, elixir-autogen, icu-format
+msgid "You entered {$raw}; it canonicalized to {$canonical}."
+msgstr "Introduziu {$raw}; foi canonicalizado para {$canonical}."
+
+#: lib/localize_playground_web/live/locales_live.ex:195
+#, elixir-autogen, icu-format
+msgid "e.g. en, zh, ar"
+msgstr "ex.: en, zh, ar"
+
+#: lib/localize_playground_web/live/numbers_live.ex:184
+#, elixir-autogen, icu-format
+msgid "Advanced formatting options"
+msgstr "Opções de formatação avançadas"
+
+#: lib/localize_playground_web/live/collation_live.ex:346
+#, elixir-autogen, icu-format
+msgid "Any BCP-47 locale string. Extra -u- options below will override."
+msgstr "Qualquer string de localidade BCP-47. As opções -u- adicionais abaixo irão substituir."
+
+#: lib/localize_playground_web/live/dates_live.ex:292
+#, elixir-autogen, icu-format
+msgid "Any BCP-47 locale. Shared with other tabs."
+msgstr "Qualquer localidade BCP-47. Partilhada com as outras abas."
+
+#: lib/localize_playground_web/live/numbers_live.ex:228
+#, elixir-autogen, icu-format
+msgid "Auto-set by a locale's -u-nu- subtag"
+msgstr "Definido automaticamente pelo subtag -u-nu- de uma localidade"
+
+#: lib/localize_playground_web/live/numbers_live.ex:160
+#, elixir-autogen, icu-format
+msgid "Boundary"
+msgstr "Limite"
+
+#: lib/localize_playground_web/live/numbers_live.ex:168
+#, elixir-autogen, icu-format
+msgid "CLDR format, e.g. #,##0.00;(#,##0.00)"
+msgstr "Formato CLDR, ex.: #,##0.00;(#,##0.00)"
+
+#: lib/localize_playground_web/live/dates_live.ex:380
+#, elixir-autogen, icu-format
+msgid "CLDR pattern; quote literals with single quotes."
+msgstr "Padrão CLDR; delimite literais com apóstrofos."
+
+#: lib/localize_playground_web/live/dates_live.ex:306
+#: lib/localize_playground_web/views/locale_view.ex:15
+#, elixir-autogen, icu-format, fuzzy
+msgid "Calendar"
+msgstr "Calendário"
+
+#: lib/localize_playground_web/live/collation_live.ex:555
+#, elixir-autogen, icu-format
+msgid "Collation error:"
+msgstr "Erro de ordenação:"
+
+#: lib/localize_playground_web/live/collation_live.ex:403
+#, elixir-autogen, icu-format
+msgid "Collation options"
+msgstr "Opções de ordenação"
+
+#: lib/localize_playground_web/live/collation_live.ex:355
+#, elixir-autogen, icu-format
+msgid "Collation variant"
+msgstr "Variante de ordenação"
+
+#: lib/localize_playground_web/live/collation_live.ex:541
+#: lib/localize_playground_web/live/dates_live.ex:407
+#: lib/localize_playground_web/live/dates_live.ex:414
+#: lib/localize_playground_web/live/durations_live.ex:279
+#: lib/localize_playground_web/live/durations_live.ex:284
+#: lib/localize_playground_web/live/intervals_live.ex:218
+#: lib/localize_playground_web/live/intervals_live.ex:223
+#: lib/localize_playground_web/live/locales_live.ex:353
+#: lib/localize_playground_web/live/numbers_live.ex:429
+#, elixir-autogen, icu-format
+msgid "Copy"
+msgstr "Copiar"
+
+#: lib/localize_playground_web/live/numbers_live.ex:422
+#, elixir-autogen, icu-format
+msgid "Copy function call to clipboard"
+msgstr "Copiar chamada de função para a área de transferência"
+
+#: lib/localize_playground_web/live/collation_live.ex:534
+#, elixir-autogen, icu-format
+msgid "Copy sort call to clipboard"
+msgstr "Copiar chamada de ordenação para a área de transferência"
+
+#: lib/localize_playground_web/live/numbers_live.ex:299
+#, elixir-autogen, icu-format
+msgid "Could not resolve pattern:"
+msgstr "Não foi possível resolver o padrão:"
+
+#: lib/localize_playground_web/live/numbers_live.ex:101
+#: lib/localize_playground_web/live/numbers_live.ex:129
+#: lib/localize_playground_web/live/page_live.ex:15
+#: lib/localize_playground_web/views/collation_view.ex:396
+#: lib/localize_playground_web/views/locale_view.ex:19
+#, elixir-autogen, icu-format
+msgid "Currency"
+msgstr "Moeda"
+
+#: lib/localize_playground_web/live/numbers_live.ex:114
+#, elixir-autogen, icu-format
+msgid "Currency symbol"
+msgstr "Símbolo da moeda"
+
+#: lib/localize_playground_web/live/dates_live.ex:24
+#: lib/localize_playground_web/live/numbers_live.ex:168
+#: lib/localize_playground_web/live/page_live.ex:21
+#, elixir-autogen, icu-format
+msgid "Custom pattern"
+msgstr "Padrão personalizado"
+
+#: lib/localize_playground_web/live/dates_live.ex:322
+#, elixir-autogen, icu-format
+msgid "Date & Time (ISO 8601)"
+msgstr "Data e hora (ISO 8601)"
+
+#: lib/localize_playground_web/live/dates_live.ex:314
+#, elixir-autogen, icu-format
+msgid "Date (YYYY-MM-DD)"
+msgstr "Data (AAAA-MM-DD)"
+
+#: lib/localize_playground_web/live/dates_live.ex:434
+#: lib/localize_playground_web/live/durations_live.ex:300
+#: lib/localize_playground_web/live/intervals_live.ex:239
+#: lib/localize_playground_web/live/numbers_live.ex:269
+#, elixir-autogen, icu-format
+msgid "Error:"
+msgstr "Erro:"
+
+#: lib/localize_playground_web/live/intervals_live.ex:184
+#, elixir-autogen, icu-format
+msgid "Family"
+msgstr "Família"
+
+#: lib/localize_playground_web/live/durations_live.ex:245
+#: lib/localize_playground_web/live/intervals_live.ex:196
+#, elixir-autogen, icu-format
+msgid "Format"
+msgstr "Formato"
+
+#: lib/localize_playground_web/live/numbers_live.ex:67
+#, elixir-autogen, icu-format
+msgid "Format family"
+msgstr "Família de formato"
+
+#: lib/localize_playground_web/live/dates_live.ex:343
+#, elixir-autogen, icu-format
+msgid "Format kind"
+msgstr "Tipo de formato"
+
+#: lib/localize_playground_web/live/numbers_live.ex:82
+#, elixir-autogen, icu-format
+msgid "Format options"
+msgstr "Opções de formato"
+
+#: lib/localize_playground_web/live/numbers_live.ex:240
+#, elixir-autogen, icu-format
+msgid "Format pattern"
+msgstr "Padrão de formato"
+
+#: lib/localize_playground_web/live/durations_live.ex:240
+#, elixir-autogen, icu-format
+msgid "Formatted duration"
+msgstr "Duração formatada"
+
+#: lib/localize_playground_web/live/intervals_live.ex:179
+#, elixir-autogen, icu-format
+msgid "Formatted interval"
+msgstr "Intervalo formatado"
+
+#: lib/localize_playground_web/live/numbers_live.ex:62
+#, elixir-autogen, icu-format
+msgid "Formatted number"
+msgstr "Número formatado"
+
+#: lib/localize_playground_web/live/dates_live.ex:328
+#, elixir-autogen, icu-format
+msgid "Formatted output"
+msgstr "Saída formatada"
+
+#: lib/localize_playground_web/live/intervals_live.ex:156
+#, elixir-autogen, icu-format
+msgid "From"
+msgstr "De"
+
+#: lib/localize_playground_web/live/durations_live.ex:226
+#: lib/localize_playground_web/live/intervals_live.ex:170
+#, elixir-autogen, icu-format
+msgid "From (ISO 8601)"
+msgstr "De (ISO 8601)"
+
+#: lib/localize_playground_web/live/numbers_live.ex:101
+#, elixir-autogen, icu-format
+msgid "ISO 4217 code"
+msgstr "Código ISO 4217"
+
+#: lib/localize_playground_web/live/durations_live.ex:210
+#, elixir-autogen, icu-format
+msgid "Input mode"
+msgstr "Modo de entrada"
+
+#: lib/localize_playground_web/live/collation_live.ex:346
+#: lib/localize_playground_web/live/dates_live.ex:292
+#: lib/localize_playground_web/live/durations_live.ex:199
+#: lib/localize_playground_web/live/durations_live.ex:201
+#: lib/localize_playground_web/live/intervals_live.ex:149
+#: lib/localize_playground_web/live/numbers_live.ex:14
+#, elixir-autogen, icu-format, fuzzy
+msgid "Locale"
+msgstr "Localidade"
+
+#: lib/localize_playground_web/live/collation_live.ex:344
+#, elixir-autogen, icu-format
+msgid "Locale & collation"
+msgstr "Localidade e ordenação"
+
+#: lib/localize_playground_web/live/intervals_live.ex:147
+#, elixir-autogen, icu-format
+msgid "Locale & range"
+msgstr "Localidade e intervalo"
+
+#: lib/localize_playground_web/live/dates_live.ex:290
+#, elixir-autogen, icu-format
+msgid "Locale & value"
+msgstr "Localidade e valor"
+
+#: lib/localize_playground_web/live/numbers_live.ex:248
+#, elixir-autogen, icu-format
+msgid "Locale U-extensions (applied automatically)"
+msgstr "Extensões U da localidade (aplicadas automaticamente)"
+
+#: lib/localize_playground_web/live/numbers_live.ex:252
+#, elixir-autogen, icu-format
+msgid "Locale metadata"
+msgstr "Metadados da localidade"
+
+#: lib/localize_playground_web/live/numbers_live.ex:198
+#, elixir-autogen, icu-format
+msgid "Max fractional digits"
+msgstr "Dígitos decimais máx."
+
+#: lib/localize_playground_web/live/numbers_live.ex:186
+#, elixir-autogen, icu-format
+msgid "Min fractional digits"
+msgstr "Dígitos decimais mín."
+
+#: lib/localize_playground_web/live/collation_live.ex:464
+#, elixir-autogen, icu-format
+msgid "Move down"
+msgstr "Mover para baixo"
+
+#: lib/localize_playground_web/live/collation_live.ex:456
+#, elixir-autogen, icu-format
+msgid "Move up"
+msgstr "Mover para cima"
+
+#: lib/localize_playground_web/live/locales_live.ex:371
+#, elixir-autogen, icu-format
+msgid "Not a valid locale yet:"
+msgstr "Ainda não é uma localidade válida:"
+
+#: lib/localize_playground_web/live/numbers_live.ex:28
+#, elixir-autogen, icu-format, fuzzy
+msgid "Number"
+msgstr "Número"
+
+#: lib/localize_playground_web/live/numbers_live.ex:228
+#: lib/localize_playground_web/live/numbers_live.ex:489
+#: lib/localize_playground_web/views/locale_view.ex:27
+#, elixir-autogen, icu-format
+msgid "Number system"
+msgstr "Sistema numérico"
+
+#: lib/localize_playground_web/live/dates_live.ex:380
+#: lib/localize_playground_web/live/durations_live.ex:263
+#, elixir-autogen, icu-format
+msgid "Pattern"
+msgstr "Padrão"
+
+#: lib/localize_playground_web/live/numbers_live.ex:244
+#, elixir-autogen, icu-format
+msgid "Pattern metadata"
+msgstr "Metadados do padrão"
+
+#: lib/localize_playground_web/live/dates_live.ex:391
+#, elixir-autogen, icu-format
+msgid "Pattern tokens"
+msgstr "Tokens do padrão"
+
+#: lib/localize_playground_web/live/dates_live.ex:360
+#: lib/localize_playground_web/live/dates_live.ex:373
+#, elixir-autogen, icu-format
+msgid "Prefer (time)"
+msgstr "Preferir (hora)"
+
+#: lib/localize_playground_web/live/collation_live.ex:388
+#, elixir-autogen, icu-format
+msgid "Quick presets"
+msgstr "Predefinições rápidas"
+
+#: lib/localize_playground_web/live/numbers_live.ex:143
+#, elixir-autogen, icu-format
+msgid "RBNF rule"
+msgstr "Regra RBNF"
+
+#: lib/localize_playground_web/live/numbers_live.ex:50
+#, elixir-autogen, icu-format
+msgid "Range end"
+msgstr "Fim do intervalo"
+
+#: lib/localize_playground_web/live/numbers_live.ex:39
+#, elixir-autogen, icu-format
+msgid "Range start"
+msgstr "Início do intervalo"
+
+#: lib/localize_playground_web/live/collation_live.ex:470
+#, elixir-autogen, icu-format
+msgid "Remove"
+msgstr "Remover"
+
+#: lib/localize_playground_web/live/collation_live.ex:420
+#, elixir-autogen, icu-format
+msgid "Reorder codes (-u-kr)"
+msgstr "Códigos de reordenação (-u-kr)"
+
+#: lib/localize_playground_web/live/numbers_live.ex:217
+#: lib/localize_playground_web/live/numbers_live.ex:377
+#, elixir-autogen, icu-format
+msgid "Round nearest"
+msgstr "Arredondar para o mais próximo"
+
+#: lib/localize_playground_web/live/numbers_live.ex:210
+#, elixir-autogen, icu-format
+msgid "Rounding mode"
+msgstr "Modo de arredondamento"
+
+#: lib/localize_playground_web/live/numbers_live.ex:143
+#, elixir-autogen, icu-format
+msgid "Rule sets vary by locale"
+msgstr "Os conjuntos de regras variam consoante a localidade"
+
+#: lib/localize_playground_web/live/durations_live.ex:233
+#, elixir-autogen, icu-format
+msgid "Seconds"
+msgstr "Segundos"
+
+#: lib/localize_playground_web/live/dates_live.ex:23
+#: lib/localize_playground_web/live/dates_live.ex:367
+#, elixir-autogen, icu-format
+msgid "Skeleton"
+msgstr "Esqueleto"
+
+#: lib/localize_playground_web/live/dates_live.ex:387
+#, elixir-autogen, icu-format
+msgid "Skeleton resolution"
+msgstr "Resolução do esqueleto"
+
+#: lib/localize_playground_web/live/collation_live.ex:365
+#, elixir-autogen, icu-format
+msgid "Sorted result"
+msgstr "Resultado ordenado"
+
+#: lib/localize_playground_web/live/dates_live.ex:355
+#: lib/localize_playground_web/live/durations_live.ex:257
+#: lib/localize_playground_web/live/intervals_live.ex:201
+#: lib/localize_playground_web/live/numbers_live.ex:86
+#: lib/localize_playground_web/live/numbers_live.ex:94
+#: lib/localize_playground_web/live/numbers_live.ex:122
+#: lib/localize_playground_web/live/numbers_live.ex:152
+#, elixir-autogen, icu-format
+msgid "Style"
+msgstr "Estilo"
+
+#: lib/localize_playground_web/live/intervals_live.ex:194
+#, elixir-autogen, icu-format
+msgid "Style & format"
+msgstr "Estilo e formato"
+
+#: lib/localize_playground_web/live/intervals_live.ex:196
+#, elixir-autogen, icu-format
+msgid "Tightness of the representation"
+msgstr "Compacidade da representação"
+
+#: lib/localize_playground_web/live/dates_live.ex:318
+#, elixir-autogen, icu-format
+msgid "Time (HH:MM:SS)"
+msgstr "Hora (HH:MM:SS)"
+
+#: lib/localize_playground_web/live/intervals_live.ex:159
+#, elixir-autogen, icu-format
+msgid "To"
+msgstr "Até"
+
+#: lib/localize_playground_web/live/durations_live.ex:229
+#: lib/localize_playground_web/live/intervals_live.ex:173
+#, elixir-autogen, icu-format
+msgid "To (ISO 8601)"
+msgstr "Até (ISO 8601)"
+
+#: lib/localize_playground_web/live/numbers_live.ex:14
+#, elixir-autogen, icu-format
+msgid "Type a CLDR locale such as en, de, zh-Hant"
+msgstr "Introduza uma localidade CLDR como en, de, zh-Hant"
+
+#: lib/localize_playground_web/live/collation_live.ex:355
+#, elixir-autogen, icu-format
+msgid "Variants available for this language."
+msgstr "Variantes disponíveis para este idioma."
+
+#: lib/localize_playground_web/live/dates_live.ex:333
+#, elixir-autogen, icu-format
+msgid "What to format"
+msgstr "O que formatar"
+
+#: lib/localize_playground_web/live/dates_live.ex:306
+#, elixir-autogen, icu-format
+msgid "Which CLDR calendar to format in."
+msgstr "Em qual calendário CLDR formatar."
+
+#: lib/localize_playground_web/live/intervals_live.ex:201
+#, elixir-autogen, icu-format
+msgid "Which components render"
+msgstr "Quais componentes apresentar"
+
+#: lib/localize_playground_web/live/collation_live.ex:478
+#, elixir-autogen, icu-format
+msgid "Word list"
+msgstr "Lista de palavras"
+
+#: lib/localize_playground_web/live/numbers_live.ex:194
+#: lib/localize_playground_web/live/numbers_live.ex:206
+#, elixir-autogen, icu-format
+msgid "auto"
+msgstr "auto"
+
+#: lib/localize_playground_web/live/durations_live.ex:263
+#, elixir-autogen, icu-format
+msgid "e.g. hh:mm:ss, h:mm, mm:ss"
+msgstr "ex.: hh:mm:ss, h:mm, mm:ss"
+
+#: lib/localize_playground_web/live/dates_live.ex:367
+#, elixir-autogen, icu-format
+msgid "e.g. yMMMd, EHm, yQQQ"
+msgstr "ex.: yMMMd, EHm, yQQQ"
+
+#: lib/localize_playground_web/live/collation_live.ex:377
+#, elixir-autogen, icu-format
+msgid "first word"
+msgstr "primeira palavra"
+
+#: lib/localize_playground_web/live/numbers_live.ex:224
+#, elixir-autogen, icu-format
+msgid "off"
+msgstr "desligado"
+
+#: lib/localize_playground_web/live/collation_live.ex:382
+#, elixir-autogen, icu-format
+msgid "second word"
+msgstr "segunda palavra"
+
+#: lib/localize_playground_web/live/durations_live.ex:17
+#, elixir-autogen, icu-format
+msgid "\"02:30:00\" — numeric clock-style"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:16
+#, elixir-autogen, icu-format
+msgid "\"2 hours, 30 minutes\" — honours style"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:18
+#, elixir-autogen, icu-format
+msgid "\"one hundred twenty-three\""
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:17
+#, elixir-autogen, icu-format
+msgid "1.2K · 1 million · $1M"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:19
+#, elixir-autogen, icu-format
+msgid "3–5 · 1.5–2.5"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:12
+#, elixir-autogen, icu-format
+msgid "A raw duration in seconds"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:20
+#, elixir-autogen, icu-format
+msgid "Approximate"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:500
+#, elixir-autogen, icu-format
+msgid "Approximately sign"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:12
+#, elixir-autogen, icu-format
+msgid "Apr 22 2024, 09:00 – Apr 25 2024, 17:00"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:10
+#, elixir-autogen, icu-format
+msgid "Apr 22–25, 2024"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:38
+#, elixir-autogen, icu-format
+msgid "Backward second-level sort"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:11
+#, elixir-autogen, icu-format
+msgid "Between two dates"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:23
+#, elixir-autogen, icu-format
+msgid "CLDR skeleton like yMMMd — locale picks the pattern"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:16
+#, elixir-autogen, icu-format
+msgid "Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:40
+#, elixir-autogen, icu-format
+msgid "Case-first sort"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:39
+#, elixir-autogen, icu-format
+msgid "Case-level sort"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:22
+#, elixir-autogen, icu-format
+msgid "Clock style: h11 / h12 / h23 / h24."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:18
+#, elixir-autogen, icu-format
+msgid "Combined, with locale join pattern"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:17
+#, elixir-autogen, icu-format
+msgid "Compact"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:17
+#, elixir-autogen, icu-format
+msgid "Currency format"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:44
+#, elixir-autogen, icu-format
+msgid "Custom script-reordering list."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:16
+#, elixir-autogen, icu-format
+msgid "Date"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:18
+#, elixir-autogen, icu-format, fuzzy
+msgid "Date & Time"
+msgstr "Datas e horas"
+
+#: lib/localize_playground_web/live/intervals_live.ex:12
+#, elixir-autogen, icu-format
+msgid "Date & time interval"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:10
+#, elixir-autogen, icu-format
+msgid "Date interval"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:14
+#, elixir-autogen, icu-format
+msgid "Decimal"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:490
+#, elixir-autogen, icu-format
+msgid "Decimal separator"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:19
+#, elixir-autogen, icu-format
+msgid "Default currency for money formatting (ISO 4217 code)."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:41
+#, elixir-autogen, icu-format
+msgid "Distinguish hiragana vs katakana — true / false."
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:11
+#, elixir-autogen, icu-format
+msgid "Elapsed time between two moments"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:20
+#, elixir-autogen, icu-format
+msgid "Emoji presentation"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:21
+#, elixir-autogen, icu-format
+msgid "Enter a CLDR format string"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:496
+#, elixir-autogen, icu-format
+msgid "Exponential"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:513
+#, elixir-autogen, icu-format
+msgid "Field"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:21
+#, elixir-autogen, icu-format
+msgid "First day of week"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:18
+#, elixir-autogen, icu-format
+msgid "Format style for currencies: :standard or :account (parentheses for negatives)."
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:355
+#, elixir-autogen, icu-format
+msgid "Fractional digits"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:10
+#, elixir-autogen, icu-format
+msgid "From parts"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:12
+#, elixir-autogen, icu-format
+msgid "From seconds"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:491
+#, elixir-autogen, icu-format
+msgid "Grouping separator"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:41
+#, elixir-autogen, icu-format
+msgid "Hiragana-quaternary"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:22
+#, elixir-autogen, icu-format
+msgid "Hour cycle"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:37
+#, elixir-autogen, icu-format
+msgid "Ignore accents"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:39
+#, elixir-autogen, icu-format
+msgid "Include case differences — true / false."
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:498
+#, elixir-autogen, icu-format
+msgid "Infinity"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:352
+#, elixir-autogen, icu-format
+msgid "Integer digits"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:363
+#, elixir-autogen, icu-format
+msgid "Integer grouping"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:16
+#, elixir-autogen, icu-format
+msgid "Just the date — no time of day"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:17
+#, elixir-autogen, icu-format
+msgid "Just the time — no date"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:339
+#, elixir-autogen, icu-format
+msgid "Kind"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:23
+#, elixir-autogen, icu-format
+msgid "Line break"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:501
+#, elixir-autogen, icu-format
+msgid "List separator"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:25
+#, elixir-autogen, icu-format
+msgid "Measurement system"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:26
+#, elixir-autogen, icu-format
+msgid "Measurement unit"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:492
+#, elixir-autogen, icu-format
+msgid "Minus sign"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:15
+#, elixir-autogen, icu-format
+msgid "Money amounts with currency symbols"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:371
+#, elixir-autogen, icu-format
+msgid "Multiplier"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:16
+#, elixir-autogen, icu-format
+msgid "Named units"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:383
+#, elixir-autogen, icu-format
+msgid "Negative template"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:42
+#, elixir-autogen, icu-format
+msgid "Normalization"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:499
+#, elixir-autogen, icu-format
+msgid "Not-a-number"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:27
+#, elixir-autogen, icu-format
+msgid "Numeral system for digits — latn / arab / thai / hans …"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:43
+#, elixir-autogen, icu-format
+msgid "Numeric sort"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:28
+#, elixir-autogen, icu-format
+msgid "Override the region for region-specific data (e.g. en-u-rg-gbzzzz)."
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:495
+#, elixir-autogen, icu-format
+msgid "Per-mille sign"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:16
+#, elixir-autogen, icu-format
+msgid "Percent"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:494
+#, elixir-autogen, icu-format
+msgid "Percent sign"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:14
+#, elixir-autogen, icu-format
+msgid "Plain numbers with locale grouping"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:493
+#, elixir-autogen, icu-format
+msgid "Plus sign"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:380
+#, elixir-autogen, icu-format
+msgid "Positive template"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:40
+#, elixir-autogen, icu-format
+msgid "Put uppercase or lowercase first — upper / lower / false."
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:19
+#, elixir-autogen, icu-format
+msgid "Range"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:24
+#, elixir-autogen, icu-format
+msgid "Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:28
+#, elixir-autogen, icu-format
+msgid "Region override"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:29
+#, elixir-autogen, icu-format
+msgid "Region subdivision identifier (shown next to its localized name)."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:44
+#, elixir-autogen, icu-format
+msgid "Reordering"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:341
+#, elixir-autogen, icu-format
+msgid "Rule name"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:16
+#, elixir-autogen, icu-format
+msgid "Scaled by 100 with a % sign"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:46
+#, elixir-autogen, icu-format
+msgid "Script below which characters are variable — punct / space / symbol / currency."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:31
+#, elixir-autogen, icu-format
+msgid "Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name)."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:38
+#, elixir-autogen, icu-format
+msgid "Sort accents right-to-left — true / false."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:45
+#, elixir-autogen, icu-format
+msgid "Sort strength"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:36
+#, elixir-autogen, icu-format
+msgid "Sort-order variant — e.g. phonebook, pinyin, stroke, traditional."
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:18
+#, elixir-autogen, icu-format
+msgid "Spellout / RBNF"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:22
+#, elixir-autogen, icu-format
+msgid "Standard style"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:37
+#, elixir-autogen, icu-format
+msgid "Strip accents while sorting — noignore / shifted."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:29
+#, elixir-autogen, icu-format
+msgid "Subdivision"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:497
+#, elixir-autogen, icu-format
+msgid "Superscripting exponent"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:30
+#, elixir-autogen, icu-format
+msgid "Suppress segmentation"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:512
+#: lib/localize_playground_web/views/collation_view.ex:395
+#, elixir-autogen, icu-format
+msgid "Symbol"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:17
+#, elixir-autogen, icu-format
+msgid "Time"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:17
+#, elixir-autogen, icu-format
+msgid "Time pattern"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:502
+#, elixir-autogen, icu-format
+msgid "Time separator"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:31
+#, elixir-autogen, icu-format
+msgid "Time zone"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:43
+#, elixir-autogen, icu-format
+msgid "Treat digit runs as numbers — true / false."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:42
+#, elixir-autogen, icu-format
+msgid "Unicode-normalize strings before sorting — true / false."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:26
+#, elixir-autogen, icu-format
+msgid "Unit of length used in unit-aware messages."
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:514
+#: lib/localize_playground_web/live/numbers_live.ex:577
+#, elixir-autogen, icu-format
+msgid "Value"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:46
+#, elixir-autogen, icu-format
+msgid "Variable top"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:21
+#, elixir-autogen, icu-format
+msgid "Which weekday starts a week — sun / mon / tue ... / sat."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:24
+#, elixir-autogen, icu-format
+msgid "Word break"
+msgstr ""
+
+#: lib/localize_playground_web/live/durations_live.ex:10
+#, elixir-autogen, icu-format
+msgid "Years, months, days, hours, minutes, seconds"
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:20
+#, elixir-autogen, icu-format
+msgid "emoji / text / default — how ambiguous glyphs render."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:45
+#, elixir-autogen, icu-format
+msgid "level1 / level2 / level3 / level4 / identical."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:23
+#, elixir-autogen, icu-format
+msgid "loose / normal / strict line-breaking style."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:25
+#, elixir-autogen, icu-format
+msgid "metric / ussystem / uksystem."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:30
+#, elixir-autogen, icu-format
+msgid "none / standard — suppress word-segmentation exceptions."
+msgstr ""
+
+#: lib/localize_playground_web/views/locale_view.ex:24
+#, elixir-autogen, icu-format
+msgid "normal / breakall / keepall / phrase word-break style."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:22
+#, elixir-autogen, icu-format
+msgid "short · medium · long · full"
+msgstr ""
+
+#: lib/localize_playground_web/live/page_live.ex:20
+#, elixir-autogen, icu-format
+msgid "~5 · 5+ · ≤5"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:365
+#: lib/localize_playground_web/views/collation_view.ex:376
+#: lib/localize_playground_web/views/collation_view.ex:384
+#: lib/localize_playground_web/views/collation_view.ex:392
+#, elixir-autogen, icu-format
+msgid "(locale default)"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:11
+#, elixir-autogen, icu-format
+msgid "09:00 – 17:00"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:363
+#: lib/localize_playground_web/live/dates_live.ex:376
+#, elixir-autogen, icu-format
+msgid "ASCII-only"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:309
+#, elixir-autogen, icu-format
+msgid "Accent-insensitive"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:372
+#, elixir-autogen, icu-format
+msgid "Alternate"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:316
+#, elixir-autogen, icu-format
+msgid "Applied at tertiary strength."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:401
+#, elixir-autogen, icu-format
+msgid "Backwards secondary (French)"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:405
+#, elixir-autogen, icu-format
+msgid "Canonicalize input before comparing. Usually only needed for unusual source data."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:380
+#, elixir-autogen, icu-format
+msgid "Case first"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:398
+#, elixir-autogen, icu-format
+msgid "Case level"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:307
+#, elixir-autogen, icu-format
+msgid "Case-insensitive"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:306
+#, elixir-autogen, icu-format
+msgid "Clear every override."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:308
+#, elixir-autogen, icu-format
+msgid "Collapses uppercase and lowercase."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:471
+#, elixir-autogen, icu-format
+msgid "Count / literal"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:306
+#, elixir-autogen, icu-format
+msgid "Default"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:459
+#, elixir-autogen, icu-format
+msgid "Derived pattern"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:314
+#, elixir-autogen, icu-format
+msgid "Digit runs compared as numbers — item2 before item10."
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:405
+#, elixir-autogen, icu-format
+msgid "Each option here is applied on top of the locale's built-in tailoring. Leave a select on its default to let the locale decide."
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:510
+#, elixir-autogen, icu-format
+msgid "Enable"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:317
+#, elixir-autogen, icu-format
+msgid "French accents"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:163
+#, elixir-autogen, icu-format
+msgid "From (HH:MM:SS)"
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:369
+#, elixir-autogen, icu-format
+msgid "Hide sort keys"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:362
+#, elixir-autogen, icu-format
+msgid "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:370
+#, elixir-autogen, icu-format
+msgid "Identical — full code-point"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:311
+#, elixir-autogen, icu-format
+msgid "Ignore punctuation"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:310
+#, elixir-autogen, icu-format
+msgid "Ignores accents and case."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:399
+#, elixir-autogen, icu-format
+msgid "Inserts a dedicated case comparison level. Lets primary strength still distinguish case."
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:107
+#, elixir-autogen, icu-format
+msgid "Invalid date in range"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:125
+#, elixir-autogen, icu-format
+msgid "Invalid date/time in range"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:116
+#, elixir-autogen, icu-format
+msgid "Invalid time in range"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:386
+#, elixir-autogen, icu-format
+msgid "Lower first"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:388
+#, elixir-autogen, icu-format
+msgid "Max variable"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:404
+#, elixir-autogen, icu-format, fuzzy
+msgid "NFD normalization"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:313
+#, elixir-autogen, icu-format
+msgid "Natural numbers"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:377
+#, elixir-autogen, icu-format
+msgid "Non-ignorable (default)"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:407
+#, elixir-autogen, icu-format
+msgid "Numeric mode"
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:483
+#, elixir-autogen, icu-format
+msgid "One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise."
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:390
+#, elixir-autogen, icu-format
+msgid "One-click combinations of the options below. They replace any current overrides."
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:375
+#, elixir-autogen, icu-format
+msgid "Pairwise compare"
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:427
+#, elixir-autogen, icu-format
+msgid "Pick a script or group…"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:366
+#, elixir-autogen, icu-format
+msgid "Primary — base letters only"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:393
+#, elixir-autogen, icu-format
+msgid "Punctuation (default)"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:369
+#, elixir-autogen, icu-format
+msgid "Quaternary — also punctuation"
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:422
+#, elixir-autogen, icu-format
+msgid "Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add {$script_a} then {$script_b} to make Cyrillic sort before Latin."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:455
+#, elixir-autogen, icu-format
+msgid "Requested skeleton"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:457
+#, elixir-autogen, icu-format
+msgid "Resolved skeleton"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:402
+#, elixir-autogen, icu-format
+msgid "Reverses the secondary level — the classic French accent rule."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:318
+#, elixir-autogen, icu-format
+msgid "Reverses the secondary level, the classic French accent rule."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:367
+#, elixir-autogen, icu-format
+msgid "Secondary — also accents"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:378
+#, elixir-autogen, icu-format
+msgid "Shifted"
+msgstr ""
+
+#: lib/localize_playground_web/live/collation_live.ex:369
+#, elixir-autogen, icu-format
+msgid "Show sort keys"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:394
+#, elixir-autogen, icu-format
+msgid "Space"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:312
+#, elixir-autogen, icu-format
+msgid "Spaces and punctuation drop to the lowest level."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:361
+#, elixir-autogen, icu-format
+msgid "Strength"
+msgstr ""
+
+#: lib/localize_playground_web/live/numbers_live.ex:575
+#, elixir-autogen, icu-format
+msgid "Subtag"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:368
+#, elixir-autogen, icu-format
+msgid "Tertiary — also case"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:11
+#, elixir-autogen, icu-format
+msgid "Time interval"
+msgstr ""
+
+#: lib/localize_playground_web/live/intervals_live.ex:166
+#, elixir-autogen, icu-format, fuzzy
+msgid "To (HH:MM:SS)"
+msgstr "Hora (HH:MM:SS)"
+
+#: lib/localize_playground_web/live/dates_live.ex:471
+#, elixir-autogen, icu-format
+msgid "Token"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:408
+#, elixir-autogen, icu-format
+msgid "Treat digit runs as numbers (so `item2` sorts before `item10`)."
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:471
+#, elixir-autogen, icu-format
+msgid "Type"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:375
+#, elixir-autogen, icu-format
+msgid "Unicode"
+msgstr ""
+
+#: lib/localize_playground_web/live/dates_live.ex:362
+#, elixir-autogen, icu-format
+msgid "Unicode (space-saving)"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:385
+#, elixir-autogen, icu-format
+msgid "Upper first"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:315
+#, elixir-autogen, icu-format
+msgid "Uppercase first"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:381
+#, elixir-autogen, icu-format
+msgid "When strength ≥ tertiary, whether uppercase or lowercase sorts first."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:373
+#, elixir-autogen, icu-format
+msgid "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:389
+#, elixir-autogen, icu-format
+msgid "Which classes of characters are treated as variable-weight when alternate = shifted."
+msgstr ""

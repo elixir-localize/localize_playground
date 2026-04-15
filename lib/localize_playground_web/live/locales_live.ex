@@ -31,8 +31,8 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     {:ok, socket}
   end
 
-  defp build_value_options(territory) do
-    context = %{territory: territory}
+  defp build_value_options(territory, ui_locale) do
+    context = %{territory: territory, ui_locale: ui_locale}
 
     LocaleView.all_u_extensions()
     |> Map.new(fn {key, _title, _desc} ->
@@ -139,8 +139,10 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         {:error, message} -> {raw, message}
       end
 
+    ui_locale = Map.get(socket.assigns, :ui_locale, "en")
+
     {standard_name, dialect_name} =
-      if error, do: {nil, nil}, else: resolve_display_names(canonical)
+      if error, do: {nil, nil}, else: resolve_display_names(canonical, ui_locale)
 
     socket
     |> assign(:scripts_for_lang, scripts_for_lang)
@@ -150,16 +152,16 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     |> assign(:current_locale, canonical)
     |> assign(:display_name_standard, standard_name)
     |> assign(:display_name_dialect, dialect_name)
-    |> assign(:u_value_options, build_value_options(nilify(territory)))
+    |> assign(:u_value_options, build_value_options(nilify(territory), Map.get(socket.assigns, :ui_locale)))
     |> assign(:error, error)
   end
 
   # Returns `{standard, dialect}` where each is either `{:ok, name}` or
   # `{:error, message}`, and `dialect` is `nil` when identical to
   # standard (no point displaying the same string twice).
-  defp resolve_display_names(canonical) do
-    standard = safe_display_name(canonical, [])
-    dialect = safe_display_name(canonical, language_display: :dialect)
+  defp resolve_display_names(canonical, ui_locale) do
+    standard = safe_display_name(canonical, locale: ui_locale)
+    dialect = safe_display_name(canonical, locale: ui_locale, language_display: :dialect)
 
     dialect_different? =
       case {standard, dialect} do
@@ -188,9 +190,9 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title="Language, script, territory">
+      <.section title={gettext("Language, script, territory")}>
         <div class="lp-lst-row">
-          <.field label="Language" for="language" hint="e.g. en, zh, ar">
+          <.field label={gettext("Language")} for="language" hint={gettext("e.g. en, zh, ar")}>
             <input
               id="language"
               name="language"
@@ -204,25 +206,25 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
             </datalist>
           </.field>
 
-          <.field label="Script" for="script" hint={if @scripts_for_lang == [], do: "Any ISO-15924 script", else: "Known for this language"}>
+          <.field label={gettext("Script")} for="script" hint={if @scripts_for_lang == [], do: gettext("Any ISO-15924 script"), else: gettext("Known for this language")}>
             <select id="script" name="script">
-              <option value="">(unspecified)</option>
-              <optgroup :if={@scripts_for_lang != []} label="For this language">
+              <option value="">{gettext("(unspecified)")}</option>
+              <optgroup :if={@scripts_for_lang != []} label={gettext("For this language")}>
                 <option :for={s <- @scripts_for_lang} value={s} selected={@script == s}>{s}</option>
               </optgroup>
-              <optgroup label="All scripts">
+              <optgroup label={gettext("All scripts")}>
                 <option :for={s <- @all_scripts} value={s} selected={@script == s}>{s}</option>
               </optgroup>
             </select>
           </.field>
 
-          <.field label="Territory" for="territory" hint={if @territories_for_lang == [], do: "Any ISO-3166 territory", else: "Known for this language"}>
+          <.field label={gettext("Territory")} for="territory" hint={if @territories_for_lang == [], do: gettext("Any ISO-3166 territory"), else: gettext("Known for this language")}>
             <select id="territory" name="territory">
-              <option value="">(unspecified)</option>
-              <optgroup :if={@territories_for_lang != []} label="For this language">
+              <option value="">{gettext("(unspecified)")}</option>
+              <optgroup :if={@territories_for_lang != []} label={gettext("For this language")}>
                 <option :for={t <- @territories_for_lang} value={t} selected={@territory == t}>{t}</option>
               </optgroup>
-              <optgroup label="All territories">
+              <optgroup label={gettext("All territories")}>
                 <option :for={t <- @all_territories} value={t} selected={@territory == t}>{t}</option>
               </optgroup>
             </select>
@@ -230,38 +232,41 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         </div>
       </.section>
 
-      <.section title="Canonical locale" class="lp-canonical-section">
+      <.section title={gettext("Canonical locale")} class="lp-canonical-section">
         <div :if={@raw_locale != @canonical_locale and !@error} class="lp-muted lp-helper lp-canon-hint">
-          You entered <code>{@raw_locale}</code>; it canonicalized to <code>{@canonical_locale}</code>.
+          {raw(gettext("You entered {$raw}; it canonicalized to {$canonical}.", raw: "<code>#{@raw_locale}</code>", canonical: "<code>#{@canonical_locale}</code>"))}
         </div>
         <.canonical_card
           canonical={@canonical_locale}
           raw={@raw_locale}
           error={@error}
+          ui_locale={@ui_locale}
           display_name_standard={@display_name_standard}
           display_name_dialect={@display_name_dialect}
         />
       </.section>
 
-      <.section title="Unicode -u extensions">
+      <.section title={gettext("Unicode -u extensions")}>
         <p class="lp-muted lp-helper">
-          Each extension adds a <code>-u-KEY-VALUE</code> segment to the locale. Leave a field blank to omit it.
+          {raw(gettext("Each extension adds a {$segment} segment to the locale. Leave a field blank to omit it.", segment: "<code>-u-KEY-VALUE</code>"))}
         </p>
         <.ext_group
           extensions={@u_extensions}
           values={@extensions}
           options={@u_value_options}
+          ui_locale={@ui_locale}
         />
       </.section>
 
-      <.section title="Unicode -u collation extensions">
+      <.section title={gettext("Unicode -u collation extensions")}>
         <p class="lp-muted lp-helper">
-          Collation-specific knobs that tune string sorting. These share the <code>-u-</code> namespace with the fields above.
+          {raw(gettext("Collation-specific knobs that tune string sorting. These share the {$namespace} namespace with the fields above.", namespace: "<code>-u-</code>"))}
         </p>
         <.ext_group
           extensions={@collation_extensions}
           values={@extensions}
           options={@u_value_options}
+          ui_locale={@ui_locale}
         />
       </.section>
     </form>
@@ -271,6 +276,7 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
   attr :extensions, :list, required: true
   attr :values, :map, required: true
   attr :options, :map, required: true
+  attr :ui_locale, :string, default: "en"
 
   defp ext_group(assigns) do
     ~H"""
@@ -278,10 +284,10 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
       <div :for={{key, title, description} <- @extensions} class="lp-ext-row">
         <div class="lp-ext-label">
           <div class="lp-ext-title">
-            <strong>{title}</strong>
+            <strong>{LocaleView.localized_title(key, @ui_locale, Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", title))}</strong>
             <code>-u-{key}</code>
           </div>
-          <span class="lp-ext-desc">{description}</span>
+          <span class="lp-ext-desc">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", description)}</span>
         </div>
         <div class="lp-ext-control">
           <.ext_input
@@ -327,6 +333,7 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
   attr :error, :any, required: true
   attr :display_name_standard, :any, default: nil
   attr :display_name_dialect, :any, default: nil
+  attr :ui_locale, :string, default: "en"
 
   defp canonical_card(assigns) do
     ~H"""
@@ -343,7 +350,7 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
             <rect x="4" y="4" width="9" height="9" rx="1.5" />
             <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
           </svg>
-          <span class="lp-copy-label">Copy</span>
+          <span class="lp-copy-label">{gettext("Copy")}</span>
         </button>
       </div>
 
@@ -351,17 +358,17 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         :if={@display_name_standard}
         canonical={@canonical}
         result={@display_name_standard}
-        options={[]}
+        options={[locale: @ui_locale]}
       />
       <.display_name_row
         :if={@display_name_dialect}
         canonical={@canonical}
         result={@display_name_dialect}
-        options={[language_display: :dialect]}
+        options={[locale: @ui_locale, language_display: :dialect]}
       />
 
       <div :if={@error} class="lp-error">
-        <strong>Not a valid locale yet:</strong> {@error}
+        <strong>{gettext("Not a valid locale yet:")}</strong> {@error}
       </div>
     </div>
     """

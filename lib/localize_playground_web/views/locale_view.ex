@@ -5,39 +5,45 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   locale string assembly.
   """
 
+  use Gettext, backend: LocalizePlaygroundWeb.Gettext
+
+  # Each title / description is wrapped in `gettext_noop/1` so the msgid
+  # is extracted by `mix gettext.extract`. The template calls
+  # `gettext/1` at render time with the stored string for the actual
+  # runtime translation.
   @u_extensions [
-    {:ca, "Calendar",
-     "Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew."},
-    {:cf, "Currency format",
-     "Format style for currencies: :standard or :account (parentheses for negatives)."},
-    {:cu, "Currency", "Default currency for money formatting (ISO 4217 code)."},
-    {:em, "Emoji presentation", "emoji / text / default — how ambiguous glyphs render."},
-    {:fw, "First day of week", "Which weekday starts a week — sun / mon / tue ... / sat."},
-    {:hc, "Hour cycle", "Clock style: h11 / h12 / h23 / h24."},
-    {:lb, "Line break", "loose / normal / strict line-breaking style."},
-    {:lw, "Word break", "normal / breakall / keepall / phrase word-break style."},
-    {:ms, "Measurement system", "metric / ussystem / uksystem."},
-    {:mu, "Measurement unit", "Unit of length used in unit-aware messages."},
-    {:nu, "Number system", "Numeral system for digits — latn / arab / thai / hans …"},
-    {:rg, "Region override", "Override the region for region-specific data (e.g. en-u-rg-gbzzzz)."},
-    {:sd, "Subdivision", "Region subdivision identifier (shown next to its localized name)."},
-    {:ss, "Suppress segmentation", "none / standard — suppress word-segmentation exceptions."},
-    {:tz, "Time zone", "Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name)."}
+    {:ca, gettext_noop("Calendar"),
+     gettext_noop("Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew.")},
+    {:cf, gettext_noop("Currency format"),
+     gettext_noop("Format style for currencies: :standard or :account (parentheses for negatives).")},
+    {:cu, gettext_noop("Currency"), gettext_noop("Default currency for money formatting (ISO 4217 code).")},
+    {:em, gettext_noop("Emoji presentation"), gettext_noop("emoji / text / default — how ambiguous glyphs render.")},
+    {:fw, gettext_noop("First day of week"), gettext_noop("Which weekday starts a week — sun / mon / tue ... / sat.")},
+    {:hc, gettext_noop("Hour cycle"), gettext_noop("Clock style: h11 / h12 / h23 / h24.")},
+    {:lb, gettext_noop("Line break"), gettext_noop("loose / normal / strict line-breaking style.")},
+    {:lw, gettext_noop("Word break"), gettext_noop("normal / breakall / keepall / phrase word-break style.")},
+    {:ms, gettext_noop("Measurement system"), gettext_noop("metric / ussystem / uksystem.")},
+    {:mu, gettext_noop("Measurement unit"), gettext_noop("Unit of length used in unit-aware messages.")},
+    {:nu, gettext_noop("Number system"), gettext_noop("Numeral system for digits — latn / arab / thai / hans …")},
+    {:rg, gettext_noop("Region override"), gettext_noop("Override the region for region-specific data (e.g. en-u-rg-gbzzzz).")},
+    {:sd, gettext_noop("Subdivision"), gettext_noop("Region subdivision identifier (shown next to its localized name).")},
+    {:ss, gettext_noop("Suppress segmentation"), gettext_noop("none / standard — suppress word-segmentation exceptions.")},
+    {:tz, gettext_noop("Time zone"), gettext_noop("Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name).")}
   ]
 
   @collation_extensions [
-    {:co, "Collation",
-     "Sort-order variant — e.g. phonebook, pinyin, stroke, traditional."},
-    {:ka, "Ignore accents", "Strip accents while sorting — noignore / shifted."},
-    {:kb, "Backward second-level sort", "Sort accents right-to-left — true / false."},
-    {:kc, "Case-level sort", "Include case differences — true / false."},
-    {:kf, "Case-first sort", "Put uppercase or lowercase first — upper / lower / false."},
-    {:kh, "Hiragana-quaternary", "Distinguish hiragana vs katakana — true / false."},
-    {:kk, "Normalization", "Unicode-normalize strings before sorting — true / false."},
-    {:kn, "Numeric sort", "Treat digit runs as numbers — true / false."},
-    {:kr, "Reordering", "Custom script-reordering list."},
-    {:ks, "Sort strength", "level1 / level2 / level3 / level4 / identical."},
-    {:kv, "Variable top", "Script below which characters are variable — punct / space / symbol / currency."}
+    {:co, gettext_noop("Collation"),
+     gettext_noop("Sort-order variant — e.g. phonebook, pinyin, stroke, traditional.")},
+    {:ka, gettext_noop("Ignore accents"), gettext_noop("Strip accents while sorting — noignore / shifted.")},
+    {:kb, gettext_noop("Backward second-level sort"), gettext_noop("Sort accents right-to-left — true / false.")},
+    {:kc, gettext_noop("Case-level sort"), gettext_noop("Include case differences — true / false.")},
+    {:kf, gettext_noop("Case-first sort"), gettext_noop("Put uppercase or lowercase first — upper / lower / false.")},
+    {:kh, gettext_noop("Hiragana-quaternary"), gettext_noop("Distinguish hiragana vs katakana — true / false.")},
+    {:kk, gettext_noop("Normalization"), gettext_noop("Unicode-normalize strings before sorting — true / false.")},
+    {:kn, gettext_noop("Numeric sort"), gettext_noop("Treat digit runs as numbers — true / false.")},
+    {:kr, gettext_noop("Reordering"), gettext_noop("Custom script-reordering list.")},
+    {:ks, gettext_noop("Sort strength"), gettext_noop("level1 / level2 / level3 / level4 / identical.")},
+    {:kv, gettext_noop("Variable top"), gettext_noop("Script below which characters are variable — punct / space / symbol / currency.")}
   ]
 
   @doc """
@@ -61,6 +67,51 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   @spec all_u_extensions() :: [{atom(), String.t(), String.t()}]
   def all_u_extensions, do: @u_extensions ++ @collation_extensions
 
+  # Maps our U-extension atoms to the CLDR `locale_display_names[:keys]`
+  # atoms that carry the localized key label. Matches
+  # `Localize.Locale.LocaleDisplay.U.@field_to_display_key`.
+  @field_to_cldr_key %{
+    ca: :calendar,
+    co: :collation,
+    cu: :currency,
+    nu: :numbers,
+    tz: :timezone,
+    ks: :col_strength,
+    ka: :col_alternate,
+    kb: :col_backwards,
+    kc: :col_case_level,
+    kf: :col_case_first,
+    kh: :col_normalization,
+    kk: :col_normalization,
+    kn: :col_numeric,
+    kr: :col_reorder
+  }
+
+  @doc """
+  Returns the CLDR-localized key title for a U-extension when one
+  exists for the given UI locale; otherwise returns the fallback
+  English title compiled into `@u_extensions` / `@collation_extensions`.
+  """
+  @spec localized_title(atom(), String.t() | atom(), String.t()) :: String.t()
+  def localized_title(key, ui_locale, fallback_title) do
+    with cldr_key when not is_nil(cldr_key) <- Map.get(@field_to_cldr_key, key),
+         keys when is_map(keys) <- load_keys(ui_locale),
+         name when is_binary(name) <- Map.get(keys, cldr_key) do
+      name
+    else
+      _ -> fallback_title
+    end
+  end
+
+  defp load_keys(locale) do
+    case Localize.Locale.get(locale, [:locale_display_names]) do
+      {:ok, %{keys: keys}} -> keys
+      _ -> nil
+    end
+  rescue
+    _ -> nil
+  end
+
   @doc """
   Returns a list of valid `{value, label}` pairs for a given U-extension
   key. For most keys `value == label`; for `:tz` the label pairs the short
@@ -71,13 +122,13 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   def u_extension_values(key, context \\ %{})
   def u_extension_values(:tz, _context), do: timezone_options()
   def u_extension_values(:sd, context), do: subdivision_options(Map.get(context, :territory))
-  def u_extension_values(:nu, _context), do: number_system_options()
+  def u_extension_values(:nu, context), do: number_system_options(Map.get(context, :ui_locale))
   def u_extension_values(:ca, _context), do: calendar_options()
-  def u_extension_values(:fw, _context), do: first_day_options()
+  def u_extension_values(:fw, context), do: first_day_options(Map.get(context, :ui_locale))
   def u_extension_values(:cu, _context), do: currency_options()
-  def u_extension_values(:hc, _context), do: hour_cycle_options()
+  def u_extension_values(:hc, context), do: hour_cycle_options(Map.get(context, :ui_locale))
   def u_extension_values(:rg, _context), do: region_override_options()
-  def u_extension_values(:cf, _context), do: currency_format_options()
+  def u_extension_values(:cf, context), do: currency_format_options(Map.get(context, :ui_locale))
 
   # Keys whose display labels read more naturally when capitalized.
   @capitalized_label_keys [:ms, :mu, :lb, :em, :lw, :ss]
@@ -435,20 +486,25 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     "wcho" => "Wancho"
   }
 
-  defp number_system_options do
+  defp number_system_options(ui_locale) do
+    types = types_for(ui_locale)
     data = Localize.SupplementalData.validity(:u)
 
     (Map.get(data, "nu") || %{})
     |> Map.keys()
-    |> Enum.map(fn code -> {code, number_system_label(code)} end)
-    |> Enum.sort_by(fn {_code, label} -> label end)
+    |> Enum.map(fn code -> {code, number_system_label(code, types)} end)
+    |> Enum.sort_by(fn {_code, label} -> String.downcase(label) end)
   end
 
-  defp number_system_label(code) do
-    case Map.get(@number_system_names, code) do
-      nil -> code
-      name -> "#{name} (#{code})"
-    end
+  defp number_system_label(code, types) do
+    # Prefer CLDR's locale-translated name; fall back to the English
+    # hardcoded map, then the raw code.
+    name =
+      (types && Map.get(Map.get(types, :numbers, %{}), safe_atom(code))) ||
+        Map.get(@number_system_names, code) ||
+        code
+
+    "#{name} (#{code})"
   end
 
   defp calendar_options do
@@ -499,14 +555,18 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     "account" => "Accounting"
   }
 
-  defp currency_format_options do
+  defp currency_format_options(ui_locale) do
+    types = types_for(ui_locale)
     data = Localize.SupplementalData.validity(:u)
     cf_map = Map.get(data, "cf") || %{}
 
     cf_map
     |> Map.keys()
     |> Enum.map(fn code ->
-      name = Map.get(@currency_format_names, code, code)
+      name =
+        (types && Map.get(Map.get(types, :cf, %{}), safe_atom(code))) ||
+          Map.get(@currency_format_names, code) || code
+
       {code, "#{name} (#{code})"}
     end)
     |> Enum.sort_by(fn {_code, label} -> label end)
@@ -528,14 +588,18 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     |> Enum.sort_by(fn {_v, label} -> String.downcase(label) end)
   end
 
-  defp hour_cycle_options do
+  defp hour_cycle_options(ui_locale) do
+    types = types_for(ui_locale)
     data = Localize.SupplementalData.validity(:u)
     hc_map = Map.get(data, "hc") || %{}
 
     hc_map
     |> Map.keys()
     |> Enum.map(fn code ->
-      name = Map.get(@hour_cycle_names, code, code)
+      name =
+        (types && Map.get(Map.get(types, :hc, %{}), safe_atom(code))) ||
+          Map.get(@hour_cycle_names, code) || code
+
       {code, "#{name} (#{code})"}
     end)
     |> Enum.sort_by(fn {code, _} -> code end)
@@ -558,18 +622,64 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     end
   end
 
-  defp first_day_options do
+  @day_name_numeric %{"mon" => 1, "tue" => 2, "wed" => 3, "thu" => 4, "fri" => 5, "sat" => 6, "sun" => 7}
+
+  defp first_day_options(ui_locale) do
     data = Localize.SupplementalData.validity(:u)
     fw_map = Map.get(data, "fw") || %{}
+    cldr_days = localized_weekday_names(ui_locale)
 
     fw_map
     |> Map.keys()
     |> Enum.map(fn code ->
-      name = Map.get(@day_names, code, code)
+      name =
+        Map.get(cldr_days, code) || Map.get(@day_names, code) || code
+
       {code, "#{name} (#{code})"}
     end)
     |> Enum.sort_by(fn {code, _} -> Map.get(@day_order, code, 99) end)
   end
+
+  # CLDR's calendar data exposes wide-form weekday names per locale
+  # via `Localize.Calendar.display_name(:day, N, locale: ui_locale)`.
+  # N is the ISO day number (1 = Monday … 7 = Sunday).
+  defp localized_weekday_names(nil), do: %{}
+
+  defp localized_weekday_names(ui_locale) do
+    Enum.reduce(@day_name_numeric, %{}, fn {code, iso_day}, acc ->
+      case Localize.Calendar.display_name(:day, iso_day, locale: ui_locale) do
+        {:ok, name} -> Map.put(acc, code, String.capitalize(name))
+        _ -> acc
+      end
+    end)
+  rescue
+    _ -> %{}
+  end
+
+  # Pulls the `locale_display_names.types` map for the given UI locale,
+  # or `nil` when loading fails. Callers use this to look up CLDR-
+  # translated names for number systems, hour cycles, currency formats,
+  # calendars, and so on.
+  defp types_for(nil), do: nil
+
+  defp types_for(ui_locale) do
+    case Localize.Locale.get(ui_locale, [:locale_display_names]) do
+      {:ok, %{types: types}} -> types
+      _ -> nil
+    end
+  rescue
+    _ -> nil
+  end
+
+  # Safe String.to_existing_atom for BCP-47 codes we might not have
+  # seen yet. Returns nil instead of raising.
+  defp safe_atom(string) when is_binary(string) do
+    String.to_existing_atom(string)
+  rescue
+    ArgumentError -> nil
+  end
+
+  defp safe_atom(_), do: nil
 
   defp lookup_calendar_name(name) when is_binary(name) do
     atom =

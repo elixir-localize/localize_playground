@@ -16,6 +16,8 @@ defmodule LocalizePlaygroundWeb do
   def live_view do
     quote do
       use Phoenix.LiveView, layout: {LocalizePlaygroundWeb.Layouts, :app}
+      on_mount {LocalizePlaygroundWeb.UiLocaleHook, :default}
+
       unquote(html_helpers())
     end
   end
@@ -38,6 +40,7 @@ defmodule LocalizePlaygroundWeb do
     quote do
       import Phoenix.HTML
       import LocalizePlaygroundWeb.CoreComponents
+      use Gettext, backend: LocalizePlaygroundWeb.Gettext
       alias Phoenix.LiveView.JS
     end
   end

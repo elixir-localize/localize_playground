@@ -7,15 +7,18 @@ defmodule LocalizePlaygroundWeb.PageLive do
 
   alias LocalizePlaygroundWeb.NumberView
 
+  # Each label/hint is wrapped in `gettext_noop/1` so that `mix
+  # gettext.extract` picks the msgid up. At render time the template
+  # calls `gettext/1` with the stored string to do the runtime lookup.
   @style_groups [
-    %{id: :decimal, label: "Decimal", hint: "Plain numbers with locale grouping"},
-    %{id: :currency, label: "Currency", hint: "Money amounts with currency symbols"},
-    %{id: :percent, label: "Percent", hint: "Scaled by 100 with a % sign"},
-    %{id: :compact, label: "Compact", hint: "1.2K · 1 million · $1M"},
-    %{id: :rbnf, label: "Spellout / RBNF", hint: "\"one hundred twenty-three\""},
-    %{id: :range, label: "Range", hint: "3–5 · 1.5–2.5"},
-    %{id: :boundary, label: "Approximate", hint: "~5 · 5+ · ≤5"},
-    %{id: :pattern, label: "Custom pattern", hint: "Enter a CLDR format string"}
+    %{id: :decimal, label: gettext_noop("Decimal"), hint: gettext_noop("Plain numbers with locale grouping")},
+    %{id: :currency, label: gettext_noop("Currency"), hint: gettext_noop("Money amounts with currency symbols")},
+    %{id: :percent, label: gettext_noop("Percent"), hint: gettext_noop("Scaled by 100 with a % sign")},
+    %{id: :compact, label: gettext_noop("Compact"), hint: gettext_noop("1.2K · 1 million · $1M")},
+    %{id: :rbnf, label: gettext_noop("Spellout / RBNF"), hint: gettext_noop("\"one hundred twenty-three\"")},
+    %{id: :range, label: gettext_noop("Range"), hint: gettext_noop("3–5 · 1.5–2.5")},
+    %{id: :boundary, label: gettext_noop("Approximate"), hint: gettext_noop("~5 · 5+ · ≤5")},
+    %{id: :pattern, label: gettext_noop("Custom pattern"), hint: gettext_noop("Enter a CLDR format string")}
   ]
 
   @currency_symbol_options [

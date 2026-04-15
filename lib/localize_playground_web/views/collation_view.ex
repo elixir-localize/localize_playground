@@ -4,6 +4,8 @@ defmodule LocalizePlaygroundWeb.CollationView do
   collation variant lookup, and sort invocation.
   """
 
+  use Gettext, backend: LocalizePlaygroundWeb.Gettext
+
   # A small, carefully-chosen set of words per locale. Each list aims
   # to exercise cases that sorting rules actually move around: mixed
   # case, accented variants paired with their ASCII forms, and any
@@ -297,20 +299,23 @@ defmodule LocalizePlaygroundWeb.CollationView do
   # One-click combinations that set multiple collation options. Each
   # entry is `{id, label, description, option_map}` — the option_map
   # is merged into the current options when applied.
+  # Labels and descriptions wrapped in `gettext_noop/1` so the msgids
+  # are extracted by `mix gettext.extract`. The `presets/0` accessor
+  # below translates them at runtime via `Gettext.dgettext/3`.
   @presets [
-    {:default, "Default", "Clear every override.", %{}},
-    {:case_insensitive, "Case-insensitive", "Collapses uppercase and lowercase.",
-     %{strength: "secondary"}},
-    {:accent_insensitive, "Accent-insensitive", "Ignores accents and case.",
-     %{strength: "primary"}},
-    {:punctuation_insensitive, "Ignore punctuation",
-     "Spaces and punctuation drop to the lowest level.", %{alternate: "shifted"}},
-    {:natural_numbers, "Natural numbers",
-     "Digit runs compared as numbers — item2 before item10.", %{numeric: true}},
-    {:uppercase_first, "Uppercase first", "Applied at tertiary strength.",
-     %{case_first: "upper"}},
-    {:french_accents, "French accents",
-     "Reverses the secondary level, the classic French accent rule.",
+    {:default, gettext_noop("Default"), gettext_noop("Clear every override."), %{}},
+    {:case_insensitive, gettext_noop("Case-insensitive"),
+     gettext_noop("Collapses uppercase and lowercase."), %{strength: "secondary"}},
+    {:accent_insensitive, gettext_noop("Accent-insensitive"),
+     gettext_noop("Ignores accents and case."), %{strength: "primary"}},
+    {:punctuation_insensitive, gettext_noop("Ignore punctuation"),
+     gettext_noop("Spaces and punctuation drop to the lowest level."), %{alternate: "shifted"}},
+    {:natural_numbers, gettext_noop("Natural numbers"),
+     gettext_noop("Digit runs compared as numbers — item2 before item10."), %{numeric: true}},
+    {:uppercase_first, gettext_noop("Uppercase first"),
+     gettext_noop("Applied at tertiary strength."), %{case_first: "upper"}},
+    {:french_accents, gettext_noop("French accents"),
+     gettext_noop("Reverses the secondary level, the classic French accent rule."),
      %{backwards: true}}
   ]
 
@@ -349,55 +354,58 @@ defmodule LocalizePlaygroundWeb.CollationView do
   for checkboxes).
   """
   def option_specs do
+    # All user-visible strings are wrapped in `gettext_noop/1` so
+    # extraction picks them up. Callers (`CollationLive`) translate
+    # via `Gettext.dgettext/3` at render.
     [
-      {:strength, "Strength",
-       "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents).",
+      {:strength, gettext_noop("Strength"),
+       gettext_noop("How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."),
        :select,
        [
-         {"", "(locale default)"},
-         {"primary", "Primary — base letters only"},
-         {"secondary", "Secondary — also accents"},
-         {"tertiary", "Tertiary — also case"},
-         {"quaternary", "Quaternary — also punctuation"},
-         {"identical", "Identical — full code-point"}
+         {"", gettext_noop("(locale default)")},
+         {"primary", gettext_noop("Primary — base letters only")},
+         {"secondary", gettext_noop("Secondary — also accents")},
+         {"tertiary", gettext_noop("Tertiary — also case")},
+         {"quaternary", gettext_noop("Quaternary — also punctuation")},
+         {"identical", gettext_noop("Identical — full code-point")}
        ]},
-      {:alternate, "Alternate",
-       "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level.",
+      {:alternate, gettext_noop("Alternate"),
+       gettext_noop("Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."),
        :select,
        [
-         {"", "(locale default)"},
-         {"non_ignorable", "Non-ignorable (default)"},
-         {"shifted", "Shifted"}
+         {"", gettext_noop("(locale default)")},
+         {"non_ignorable", gettext_noop("Non-ignorable (default)")},
+         {"shifted", gettext_noop("Shifted")}
        ]},
-      {:case_first, "Case first",
-       "When strength ≥ tertiary, whether uppercase or lowercase sorts first.",
+      {:case_first, gettext_noop("Case first"),
+       gettext_noop("When strength ≥ tertiary, whether uppercase or lowercase sorts first."),
        :select,
        [
-         {"", "(locale default)"},
-         {"upper", "Upper first"},
-         {"lower", "Lower first"}
+         {"", gettext_noop("(locale default)")},
+         {"upper", gettext_noop("Upper first")},
+         {"lower", gettext_noop("Lower first")}
        ]},
-      {:max_variable, "Max variable",
-       "Which classes of characters are treated as variable-weight when alternate = shifted.",
+      {:max_variable, gettext_noop("Max variable"),
+       gettext_noop("Which classes of characters are treated as variable-weight when alternate = shifted."),
        :select,
        [
-         {"", "(locale default)"},
-         {"punct", "Punctuation (default)"},
-         {"space", "Space"},
-         {"symbol", "Symbol"},
-         {"currency", "Currency"}
+         {"", gettext_noop("(locale default)")},
+         {"punct", gettext_noop("Punctuation (default)")},
+         {"space", gettext_noop("Space")},
+         {"symbol", gettext_noop("Symbol")},
+         {"currency", gettext_noop("Currency")}
        ]},
-      {:case_level, "Case level",
-       "Inserts a dedicated case comparison level. Lets primary strength still distinguish case.",
+      {:case_level, gettext_noop("Case level"),
+       gettext_noop("Inserts a dedicated case comparison level. Lets primary strength still distinguish case."),
        :checkbox, nil},
-      {:backwards, "Backwards secondary (French)",
-       "Reverses the secondary level — the classic French accent rule.",
+      {:backwards, gettext_noop("Backwards secondary (French)"),
+       gettext_noop("Reverses the secondary level — the classic French accent rule."),
        :checkbox, nil},
-      {:normalization, "NFD normalization",
-       "Canonicalize input before comparing. Usually only needed for unusual source data.",
+      {:normalization, gettext_noop("NFD normalization"),
+       gettext_noop("Canonicalize input before comparing. Usually only needed for unusual source data."),
        :checkbox, nil},
-      {:numeric, "Numeric mode",
-       "Treat digit runs as numbers (so `item2` sorts before `item10`).",
+      {:numeric, gettext_noop("Numeric mode"),
+       gettext_noop("Treat digit runs as numbers (so `item2` sorts before `item10`)."),
        :checkbox, nil}
     ]
   end

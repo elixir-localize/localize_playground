@@ -341,9 +341,9 @@ defmodule LocalizePlaygroundWeb.CollationLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title="Locale & collation">
+      <.section title={gettext("Locale & collation")}>
         <div class="lp-coll-header">
-          <.field label="Locale" for="locale" hint="Any BCP-47 locale string. Extra -u- options below will override.">
+          <.field label={gettext("Locale")} for="locale" hint={gettext("Any BCP-47 locale string. Extra -u- options below will override.")}>
             <input
               id="locale"
               name="locale"
@@ -352,7 +352,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
               phx-debounce="200"
             />
           </.field>
-          <.field label="Collation variant" for="collation" hint="Variants available for this language.">
+          <.field label={gettext("Collation variant")} for="collation" hint={gettext("Variants available for this language.")}>
             <select id="collation" name="collation">
               <option :for={variant <- @collations} value={variant} selected={@collation == variant}>
                 {humanize(variant)}
@@ -362,32 +362,32 @@ defmodule LocalizePlaygroundWeb.CollationLive do
         </div>
       </.section>
 
-      <.section title="Sorted result" class="lp-result-section">
+      <.section title={gettext("Sorted result")} class="lp-result-section">
         <.call_code_card opts_text={@call_opts} />
         <div class="lp-result-toolbar">
           <button type="button" phx-click="toggle_keys" class={"lp-chip #{if @show_keys, do: "on"}"}>
-            {if @show_keys, do: "Hide sort keys", else: "Show sort keys"}
+            {if @show_keys, do: gettext("Hide sort keys"), else: gettext("Show sort keys")}
           </button>
         </div>
         <.sorted_card sorted={@sorted} diff={@diff} keys={@sort_keys} error={@error} />
 
         <div class="lp-compare-widget">
-          <div class="lp-compare-label">Pairwise compare</div>
+          <div class="lp-compare-label">{gettext("Pairwise compare")}</div>
           <div class="lp-compare-row">
-            <input type="text" name="compare_a" value={@compare_a} placeholder="first word"
+            <input type="text" name="compare_a" value={@compare_a} placeholder={gettext("first word")}
               phx-debounce="200" />
             <span class="lp-compare-verdict lp-compare-verdict-box">
               <.compare_verdict result={@compare_result} />
             </span>
-            <input type="text" name="compare_b" value={@compare_b} placeholder="second word"
+            <input type="text" name="compare_b" value={@compare_b} placeholder={gettext("second word")}
               phx-debounce="200" />
           </div>
         </div>
       </.section>
 
-      <.section title="Quick presets">
+      <.section title={gettext("Quick presets")}>
         <p class="lp-muted lp-helper">
-          One-click combinations of the options below. They replace any current overrides.
+          {gettext("One-click combinations of the options below. They replace any current overrides.")}
         </p>
         <div class="lp-preset-chips">
           <button :for={{id, label, desc, _opts} <- @presets}
@@ -395,20 +395,20 @@ defmodule LocalizePlaygroundWeb.CollationLive do
             class="lp-preset-chip"
             phx-click="apply_preset"
             phx-value-preset={id}
-            title={desc}
-          >{label}</button>
+            title={Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", desc)}
+          >{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", label)}</button>
         </div>
       </.section>
 
-      <.section title="Collation options">
+      <.section title={gettext("Collation options")}>
         <p class="lp-muted lp-helper">
-          Each option here is applied on top of the locale's built-in tailoring. Leave a select on its default to let the locale decide.
+          {gettext("Each option here is applied on top of the locale's built-in tailoring. Leave a select on its default to let the locale decide.")}
         </p>
         <div class="lp-coll-options">
           <div :for={{key, title, description, kind, choices} <- @option_specs} class="lp-coll-option">
             <div class="lp-coll-option-label">
-              <strong>{title}</strong>
-              <span class="lp-coll-option-desc">{description}</span>
+              <strong>{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", title)}</strong>
+              <span class="lp-coll-option-desc">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", description)}</span>
             </div>
             <div class="lp-coll-option-control">
               <.opt_input key={key} kind={kind} choices={choices} value={Map.get(@options, key)} />
@@ -417,14 +417,14 @@ defmodule LocalizePlaygroundWeb.CollationLive do
         </div>
       </.section>
 
-      <.section title="Reorder codes (-u-kr)">
+      <.section title={gettext("Reorder codes (-u-kr)")}>
         <p class="lp-muted lp-helper">
-          Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add <code>Cyrl</code> then <code>Latn</code> to make Cyrillic sort before Latin.
+          {raw(gettext("Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add {$script_a} then {$script_b} to make Cyrillic sort before Latin.", script_a: "<code>Cyrl</code>", script_b: "<code>Latn</code>"))}
         </p>
 
         <div class="lp-reorder-picker">
           <select name="reorder_selection">
-            <option value="">Pick a script or group…</option>
+            <option value="">{gettext("Pick a script or group…")}</option>
             <option
               :for={{value, label} <- @reorder_choices}
               value={value}
@@ -453,7 +453,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
                 phx-value-code={code}
                 phx-value-direction="up"
                 disabled={index == 0}
-                aria-label="Move up"
+                aria-label={gettext("Move up")}
               >▲</button>
               <button
                 type="button"
@@ -461,13 +461,13 @@ defmodule LocalizePlaygroundWeb.CollationLive do
                 phx-value-code={code}
                 phx-value-direction="down"
                 disabled={index == length(@reorder_codes) - 1}
-                aria-label="Move down"
+                aria-label={gettext("Move down")}
               >▼</button>
               <button
                 type="button"
                 phx-click="reorder_remove"
                 phx-value-code={code}
-                aria-label="Remove"
+                aria-label={gettext("Remove")}
                 class="lp-reorder-remove"
               >✕</button>
             </div>
@@ -475,12 +475,12 @@ defmodule LocalizePlaygroundWeb.CollationLive do
         </ol>
       </.section>
 
-      <.section title="Word list">
+      <.section title={gettext("Word list")}>
         <p :if={caption = CollationView.seed_caption(@language)} class="lp-seed-caption">
           💡 {caption}
         </p>
         <p class="lp-muted lp-helper">
-          One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise.
+          {gettext("One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise.")}
         </p>
         <textarea
           id="word-list"
@@ -507,7 +507,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     ~H"""
     <label class="lp-checkbox">
       <input type="checkbox" name={"opt_#{@key}"} value="true" checked={@value == true} />
-      <span>Enable</span>
+      <span>{gettext("Enable")}</span>
     </label>
     """
   end
@@ -516,7 +516,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     ~H"""
     <select name={"opt_#{@key}"}>
       <option :for={{value, label} <- @choices} value={value} selected={@value == value}>
-        {label}
+        {Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", label)}
       </option>
     </select>
     """
@@ -531,14 +531,14 @@ defmodule LocalizePlaygroundWeb.CollationLive do
       <button
         type="button"
         class="lp-copy-btn"
-        aria-label="Copy sort call to clipboard"
+        aria-label={gettext("Copy sort call to clipboard")}
         data-copy-target="#coll-call-text"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="4" width="9" height="9" rx="1.5" />
           <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
         </svg>
-        <span class="lp-copy-label">Copy</span>
+        <span class="lp-copy-label">{gettext("Copy")}</span>
       </button>
     </div>
     """
@@ -552,7 +552,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
   defp sorted_card(%{error: message} = assigns) when is_binary(message) do
     ~H"""
     <div class="lp-error">
-      <strong>Collation error:</strong> {@error}
+      <strong>{gettext("Collation error:")}</strong> {@error}
     </div>
     """
   end

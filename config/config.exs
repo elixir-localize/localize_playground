@@ -12,6 +12,8 @@ config :localize_playground, LocalizePlaygroundWeb.Endpoint,
 
 config :phoenix, :json_library, Jason
 
+config :gettext, :plural_forms, LocalizePlaygroundWeb.GettextPlural
+
 config :esbuild,
   version: "0.23.0",
   default: [

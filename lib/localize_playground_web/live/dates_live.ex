@@ -13,15 +13,15 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   alias LocalizePlaygroundWeb.NumberView
 
   @families [
-    %{id: :date, label: "Date", hint: "Just the date — no time of day"},
-    %{id: :time, label: "Time", hint: "Just the time — no date"},
-    %{id: :datetime, label: "Date & Time", hint: "Combined, with locale join pattern"}
+    %{id: :date, label: gettext_noop("Date"), hint: gettext_noop("Just the date — no time of day")},
+    %{id: :time, label: gettext_noop("Time"), hint: gettext_noop("Just the time — no date")},
+    %{id: :datetime, label: gettext_noop("Date & Time"), hint: gettext_noop("Combined, with locale join pattern")}
   ]
 
   @format_kinds [
-    %{id: :style, label: "Standard style", hint: "short · medium · long · full"},
-    %{id: :skeleton, label: "Skeleton", hint: "CLDR skeleton like yMMMd — locale picks the pattern"},
-    %{id: :pattern, label: "Custom pattern", hint: "Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm"}
+    %{id: :style, label: gettext_noop("Standard style"), hint: gettext_noop("short · medium · long · full")},
+    %{id: :skeleton, label: gettext_noop("Skeleton"), hint: gettext_noop("CLDR skeleton like yMMMd — locale picks the pattern")},
+    %{id: :pattern, label: gettext_noop("Custom pattern"), hint: gettext_noop("Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm")}
   ]
 
   @impl true
@@ -287,9 +287,9 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title="Locale & value">
+      <.section title={gettext("Locale & value")}>
         <div class="lp-dt-top">
-          <.field label="Locale" for="locale" hint="Any BCP-47 locale. Shared with other tabs.">
+          <.field label={gettext("Locale")} for="locale" hint={gettext("Any BCP-47 locale. Shared with other tabs.")}>
             <input
               id="locale"
               name="locale"
@@ -303,7 +303,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
             </datalist>
           </.field>
 
-          <.field label="Calendar" hint="Which CLDR calendar to format in.">
+          <.field label={gettext("Calendar")} hint={gettext("Which CLDR calendar to format in.")}>
             <select name="calendar">
               <option :for={{value, label} <- @calendar_options} value={value} selected={@calendar == value}>
                 {label}
@@ -311,84 +311,84 @@ defmodule LocalizePlaygroundWeb.DatesLive do
             </select>
           </.field>
 
-          <.field :if={@family == :date} label="Date (YYYY-MM-DD)" for="date_text">
+          <.field :if={@family == :date} label={gettext("Date (YYYY-MM-DD)")} for="date_text">
             <input id="date_text" name="date_text" type="text" value={@date_text} phx-debounce="250" />
           </.field>
 
-          <.field :if={@family == :time} label="Time (HH:MM:SS)" for="time_text">
+          <.field :if={@family == :time} label={gettext("Time (HH:MM:SS)")} for="time_text">
             <input id="time_text" name="time_text" type="text" value={@time_text} phx-debounce="250" />
           </.field>
 
-          <.field :if={@family == :datetime} label="Date & Time (ISO 8601)" for="datetime_text">
+          <.field :if={@family == :datetime} label={gettext("Date & Time (ISO 8601)")} for="datetime_text">
             <input id="datetime_text" name="datetime_text" type="text" value={@datetime_text} phx-debounce="250" />
           </.field>
         </div>
       </.section>
 
-      <.section title="Formatted output" class="lp-result-section">
+      <.section title={gettext("Formatted output")} class="lp-result-section">
         <.call_code code={@call_code} />
         <.result_card result={@result} />
       </.section>
 
-      <.section title="What to format">
+      <.section title={gettext("What to format")}>
         <div class="lp-radio-cards">
           <label :for={f <- @families} class={"lp-radio-card" <> if(@family == f.id, do: " active", else: "")}>
             <input type="radio" name="family" value={f.id} checked={@family == f.id} />
-            <span class="lp-radio-title">{f.label}</span>
-            <span class="lp-radio-hint">{f.hint}</span>
+            <span class="lp-radio-title">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", f.label)}</span>
+            <span class="lp-radio-hint">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", f.hint)}</span>
           </label>
         </div>
       </.section>
 
-      <.section title="Format kind">
+      <.section title={gettext("Format kind")}>
         <div class="lp-radio-cards">
           <label :for={k <- @format_kinds} class={"lp-radio-card" <> if(@format_kind == k.id, do: " active", else: "")}>
             <input type="radio" name="format_kind" value={k.id} checked={@format_kind == k.id} />
-            <span class="lp-radio-title">{k.label}</span>
-            <span class="lp-radio-hint">{k.hint}</span>
+            <span class="lp-radio-title">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", k.label)}</span>
+            <span class="lp-radio-hint">{Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", k.hint)}</span>
           </label>
         </div>
 
         <div class="lp-dt-format-controls">
           <%= case @format_kind do %>
             <% :style -> %>
-              <.field label="Style">
+              <.field label={gettext("Style")}>
                 <select name="style">
                   <option :for={s <- @standard_styles} value={s} selected={@style == s}>{s}</option>
                 </select>
               </.field>
-              <.field label="Prefer (time)">
+              <.field label={gettext("Prefer (time)")}>
                 <select name="prefer">
-                  <option value="unicode" selected={@prefer == :unicode}>Unicode (space-saving)</option>
-                  <option value="ascii" selected={@prefer == :ascii}>ASCII-only</option>
+                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode (space-saving)")}</option>
+                  <option value="ascii" selected={@prefer == :ascii}>{gettext("ASCII-only")}</option>
                 </select>
               </.field>
             <% :skeleton -> %>
-              <.field label="Skeleton" for="skeleton" hint="e.g. yMMMd, EHm, yQQQ">
+              <.field label={gettext("Skeleton")} for="skeleton" hint={gettext("e.g. yMMMd, EHm, yQQQ")}>
                 <input id="skeleton" name="skeleton" type="text" list="skeletons" value={@skeleton} phx-debounce="200" />
                 <datalist id="skeletons">
                   <option :for={s <- @skeletons} value={s}></option>
                 </datalist>
               </.field>
-              <.field label="Prefer (time)">
+              <.field label={gettext("Prefer (time)")}>
                 <select name="prefer">
-                  <option value="unicode" selected={@prefer == :unicode}>Unicode</option>
-                  <option value="ascii" selected={@prefer == :ascii}>ASCII-only</option>
+                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode")}</option>
+                  <option value="ascii" selected={@prefer == :ascii}>{gettext("ASCII-only")}</option>
                 </select>
               </.field>
             <% :pattern -> %>
-              <.field label="Pattern" for="pattern" hint="CLDR pattern; quote literals with single quotes.">
+              <.field label={gettext("Pattern")} for="pattern" hint={gettext("CLDR pattern; quote literals with single quotes.")}>
                 <input id="pattern" name="pattern" type="text" value={@pattern} phx-debounce="200" class="lp-mono-input" />
               </.field>
           <% end %>
         </div>
       </.section>
 
-      <.section :if={@skeleton_info} title="Skeleton resolution">
+      <.section :if={@skeleton_info} title={gettext("Skeleton resolution")}>
         <.skeleton_info info={@skeleton_info} />
       </.section>
 
-      <.section :if={@pattern_tokens} title="Pattern tokens">
+      <.section :if={@pattern_tokens} title={gettext("Pattern tokens")}>
         <.pattern_tokens tokens={@pattern_tokens} />
       </.section>
     </form>
@@ -400,18 +400,18 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   defp call_code(assigns) do
     ~H"""
     <div class="lp-call-code" phx-hook="CopyToClipboard" id="dt-call-wrapper">
-      <pre class="lp-call-code-text" id="dt-call-text">{@code}</pre>
+      <LocalizePlaygroundWeb.HexDocs.code code={@code} id="dt-call-text" />
       <button
         type="button"
         class="lp-copy-btn"
-        aria-label="Copy"
+        aria-label={gettext("Copy")}
         data-copy-target="#dt-call-text"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="4" width="9" height="9" rx="1.5" />
           <path d="M10.5 4V2.5A1.5 1.5 0 0 0 9 1H3.5A1.5 1.5 0 0 0 2 2.5V8a1.5 1.5 0 0 0 1.5 1.5H4" />
         </svg>
-        <span class="lp-copy-label">Copy</span>
+        <span class="lp-copy-label">{gettext("Copy")}</span>
       </button>
     </div>
     """
@@ -431,7 +431,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     assigns = assign(assigns, :text, message)
 
     ~H"""
-    <div class="lp-error"><strong>Error:</strong> {@text}</div>
+    <div class="lp-error"><strong>{gettext("Error:")}</strong> {@text}</div>
     """
   end
 
@@ -452,11 +452,11 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   defp skeleton_info(assigns) do
     ~H"""
     <dl class="lp-meta-table">
-      <dt>Requested skeleton</dt>
+      <dt>{gettext("Requested skeleton")}</dt>
       <dd><code>{inspect(@info.requested)}</code></dd>
-      <dt>Resolved skeleton</dt>
+      <dt>{gettext("Resolved skeleton")}</dt>
       <dd><code>{inspect(@info.resolved)}</code></dd>
-      <dt>Derived pattern</dt>
+      <dt>{gettext("Derived pattern")}</dt>
       <dd><code>{inspect(@info.pattern)}</code></dd>
     </dl>
     """
@@ -468,7 +468,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     ~H"""
     <table class="lp-table">
       <thead>
-        <tr><th>Token</th><th>Type</th><th>Count / literal</th></tr>
+        <tr><th>{gettext("Token")}</th><th>{gettext("Type")}</th><th>{gettext("Count / literal")}</th></tr>
       </thead>
       <tbody>
         <tr :for={{{type, rest}, i} <- Enum.with_index(@tokens)}>

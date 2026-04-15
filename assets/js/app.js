@@ -49,6 +49,57 @@ Hooks.PersistText = {
   }
 }
 
+// Slide-out HexDocs panel. Intercepts clicks on `<a data-hexdocs>`
+// anchors anywhere in the document, opens the panel with an iframe
+// pointing at the link's href, and responds to Escape / backdrop /
+// close-button clicks. A single instance lives in the root layout.
+Hooks.HexDocsPanel = {
+  mounted() {
+    const panel = this.el
+    const iframe = panel.querySelector("[data-hexdocs-frame]")
+    const external = panel.querySelector("[data-hexdocs-external]")
+
+    const open = (url, externalUrl) => {
+      iframe.src = url
+      external.href = externalUrl || url
+      panel.classList.add("open")
+      panel.setAttribute("aria-hidden", "false")
+      document.body.style.overflow = "hidden"
+    }
+
+    const close = () => {
+      panel.classList.remove("open")
+      panel.setAttribute("aria-hidden", "true")
+      document.body.style.overflow = ""
+      // Clear iframe to stop any running media/scripts.
+      setTimeout(() => { if (!panel.classList.contains("open")) iframe.src = "about:blank" }, 300)
+    }
+
+    // Global delegated listener for every hexdocs link.
+    this._linkHandler = (ev) => {
+      const link = ev.target.closest("a[data-hexdocs]")
+      if (!link) return
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1) return
+      ev.preventDefault()
+      open(link.href, link.getAttribute("data-hexdocs-external-url") || link.href)
+    }
+    document.addEventListener("click", this._linkHandler)
+
+    this._closeHandler = (ev) => {
+      if (ev.target.closest("[data-hexdocs-close]")) close()
+    }
+    panel.addEventListener("click", this._closeHandler)
+
+    this._escHandler = (ev) => { if (ev.key === "Escape") close() }
+    document.addEventListener("keydown", this._escHandler)
+  },
+
+  destroyed() {
+    document.removeEventListener("click", this._linkHandler)
+    document.removeEventListener("keydown", this._escHandler)
+  }
+}
+
 Hooks.CopyToClipboard = {
   mounted() {
     const button = this.el.querySelector("[data-copy-target]")

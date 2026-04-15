@@ -1,24 +1,50 @@
 <header class="lp-header">
-  <a class="lp-brand" href="/">
-    <img class="lp-logo" src="/assets/logo.png" alt="Localize" />
-    <h1>Localize Playground</h1>
-  </a>
+  <div class="lp-header-top">
+    <a class="lp-brand" href="/">
+      <img class="lp-logo" src="/assets/logo.png" alt={gettext("Localize")} />
+      <h1>{gettext("Localize Playground")}</h1>
+    </a>
+
+    <details :if={assigns[:ui_locale]} class="lp-ui-locale-picker">
+      <summary class="lp-ui-locale-current">
+        <span :if={assigns[:ui_locale_flag]} class="lp-ui-locale-flag">{assigns[:ui_locale_flag]}</span>
+        <span class="lp-ui-locale-label">{assigns[:ui_locale_label] || assigns[:ui_locale]}</span>
+        <span class="lp-ui-locale-caret">▾</span>
+      </summary>
+      <ul class="lp-ui-locale-menu">
+        <li :for={{id, label, flag} <- (assigns[:ui_locale_options] || [])} class={"lp-ui-locale-item" <> if(assigns[:ui_locale] == id, do: " active", else: "")}>
+          <form method="post" action="/ui-locale" class="lp-ui-locale-form">
+            <input type="hidden" name="_csrf_token" value={Phoenix.Controller.get_csrf_token()} />
+            <input type="hidden" name="locale" value={id} />
+            <input type="hidden" name="return_to" value={assigns[:current_path] || "/"} />
+            <button type="submit">
+              <span :if={flag} class="lp-ui-locale-flag">{flag}</span>
+              <span>{label}</span>
+              <code class="lp-ui-locale-id">{id}</code>
+            </button>
+          </form>
+        </li>
+      </ul>
+    </details>
+  </div>
   <nav class="lp-tabs">
-    <a class={"#{if @live_action == :locales, do: "active"}"} href={tab_href(@current_locale, "/locales")}>Locales</a>
-    <a class={"#{if @live_action == :numbers, do: "active"}"} href={tab_href(@current_locale, "/numbers")}>Numbers</a>
-    <a class={"#{if @live_action == :dates, do: "active"}"} href={tab_href(@current_locale, "/dates")}>Dates &amp; Times</a>
-    <a class={"#{if @live_action == :intervals, do: "active"}"} href={tab_href(@current_locale, "/intervals")}>Intervals</a>
-    <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>Durations</a>
-    <a class="disabled" title="Coming soon">Units</a>
-    <a class="disabled" title="Coming soon">Messages</a>
-    <a class="disabled" title="Coming soon">Calendars</a>
-    <a class="disabled" title="Coming soon">Lists</a>
-    <a class={"#{if @live_action == :collation, do: "active"}"} href={tab_href(@current_locale, "/collation")}>Collation</a>
+    <a class={"#{if @live_action == :locales, do: "active"}"} href={tab_href(@current_locale, "/locales")}>{gettext("Locales")}</a>
+    <a class={"#{if @live_action == :numbers, do: "active"}"} href={tab_href(@current_locale, "/numbers")}>{gettext("Numbers")}</a>
+    <a class={"#{if @live_action == :dates, do: "active"}"} href={tab_href(@current_locale, "/dates")}>{gettext("Dates & Times")}</a>
+    <a class={"#{if @live_action == :intervals, do: "active"}"} href={tab_href(@current_locale, "/intervals")}>{gettext("Intervals")}</a>
+    <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>{gettext("Durations")}</a>
+    <a class="disabled" title={gettext("Coming soon")}>{gettext("Units")}</a>
+    <a class="disabled" title={gettext("Coming soon")}>{gettext("Messages")}</a>
+    <a class="disabled" title={gettext("Coming soon")}>{gettext("Calendars")}</a>
+    <a class="disabled" title={gettext("Coming soon")}>{gettext("Lists")}</a>
+    <a class={"#{if @live_action == :collation, do: "active"}"} href={tab_href(@current_locale, "/collation")}>{gettext("Collation")}</a>
   </nav>
 </header>
 <main class="lp-main">
   {@inner_content}
 </main>
 <footer class="lp-footer">
-  Explore CLDR via <a href="https://github.com/elixir-localize/localize">Localize</a>.
+  {raw(gettext("Explore CLDR via {$link}.", link: ~S|<a href="https://github.com/elixir-localize/localize">Localize</a>|))}
 </footer>
+<LocalizePlaygroundWeb.HexDocs.panel />
+
