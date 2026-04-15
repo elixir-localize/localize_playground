@@ -206,6 +206,19 @@ main.lp-main { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
   margin-bottom: 24px;
 }
 
+.lp-unit-builder {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(140px, 1fr) minmax(160px, 1fr) minmax(160px, 1fr) minmax(200px, 1.2fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.lp-unit-builder.no-number {
+  grid-template-columns: minmax(140px, 1fr) minmax(160px, 1fr) minmax(160px, 1fr) minmax(200px, 1.2fr);
+}
+
+.lp-unit-summary { margin-bottom: 16px; }
+
 .lp-field {
   display: flex;
   flex-direction: column;

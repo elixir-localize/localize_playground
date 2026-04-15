@@ -31,6 +31,7 @@ defmodule LocalizePlaygroundWeb.Router do
     live "/dates", DatesLive, :dates
     live "/intervals", IntervalsLive, :intervals
     live "/durations", DurationsLive, :durations
+    live "/units", UnitsLive, :units
     live "/collation", CollationLive, :collation
   end
 end

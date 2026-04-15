@@ -33,7 +33,7 @@
     <a class={"#{if @live_action == :dates, do: "active"}"} href={tab_href(@current_locale, "/dates")}>{gettext("Dates & Times")}</a>
     <a class={"#{if @live_action == :intervals, do: "active"}"} href={tab_href(@current_locale, "/intervals")}>{gettext("Intervals")}</a>
     <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>{gettext("Durations")}</a>
-    <a class="disabled" title={gettext("Coming soon")}>{gettext("Units")}</a>
+    <a class={"#{if @live_action == :units, do: "active"}"} href={tab_href(@current_locale, "/units")}>{gettext("Units")}</a>
     <a class="disabled" title={gettext("Coming soon")}>{gettext("Messages")}</a>
     <a class="disabled" title={gettext("Coming soon")}>{gettext("Calendars")}</a>
     <a class="disabled" title={gettext("Coming soon")}>{gettext("Lists")}</a>

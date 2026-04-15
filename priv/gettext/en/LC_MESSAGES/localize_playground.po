@@ -381,7 +381,7 @@ msgstr "Input mode"
 #: lib/localize_playground_web/live/numbers_live.ex:14
 #, elixir-autogen, icu-format, fuzzy
 msgid "Locale"
-msgstr "Locales"
+msgstr "Locale"
 
 #: lib/localize_playground_web/live/collation_live.ex:344
 #, elixir-autogen, icu-format
@@ -436,7 +436,7 @@ msgstr "Not a valid locale yet:"
 #: lib/localize_playground_web/live/numbers_live.ex:28
 #, elixir-autogen, icu-format, fuzzy
 msgid "Number"
-msgstr "Numbers"
+msgstr "Number"
 
 #: lib/localize_playground_web/live/numbers_live.ex:228
 #: lib/localize_playground_web/live/numbers_live.ex:489
