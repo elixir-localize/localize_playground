@@ -14,6 +14,10 @@ config :phoenix, :json_library, Jason
 
 config :gettext, :plural_forms, LocalizePlaygroundWeb.GettextPlural
 
+# Use the `tz` library as the Elixir time zone database so DateTimes can be
+# shifted between IANA zones (e.g., DateTime.shift_zone(dt, "Asia/Tokyo")).
+config :elixir, :time_zone_database, Tz.TimeZoneDatabase
+
 config :esbuild,
   version: "0.23.0",
   default: [

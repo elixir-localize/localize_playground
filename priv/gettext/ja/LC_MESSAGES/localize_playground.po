@@ -22,7 +22,6 @@ msgstr "暦"
 msgid "Collation"
 msgstr "照合順序"
 
-#: lib/localize_playground_web/components/layouts/app.html.heex:36
 #: lib/localize_playground_web/components/layouts/app.html.heex:37
 #: lib/localize_playground_web/components/layouts/app.html.heex:38
 #: lib/localize_playground_web/components/layouts/app.html.heex:39
@@ -243,6 +242,8 @@ msgstr "照合バリアント"
 #: lib/localize_playground_web/live/intervals_live.ex:223
 #: lib/localize_playground_web/live/locales_live.ex:353
 #: lib/localize_playground_web/live/numbers_live.ex:429
+#: lib/localize_playground_web/live/units_live.ex:477
+#: lib/localize_playground_web/live/units_live.ex:482
 #, elixir-autogen, icu-format
 msgid "Copy"
 msgstr "コピー"
@@ -297,6 +298,7 @@ msgstr "日付 (YYYY-MM-DD)"
 #: lib/localize_playground_web/live/durations_live.ex:300
 #: lib/localize_playground_web/live/intervals_live.ex:239
 #: lib/localize_playground_web/live/numbers_live.ex:269
+#: lib/localize_playground_web/live/units_live.ex:503
 #, elixir-autogen, icu-format
 msgid "Error:"
 msgstr "エラー:"
@@ -348,6 +350,7 @@ msgid "Formatted number"
 msgstr "書式化された数値"
 
 #: lib/localize_playground_web/live/dates_live.ex:328
+#: lib/localize_playground_web/live/units_live.ex:361
 #, elixir-autogen, icu-format
 msgid "Formatted output"
 msgstr "書式化された出力"
@@ -379,6 +382,8 @@ msgstr "入力モード"
 #: lib/localize_playground_web/live/durations_live.ex:201
 #: lib/localize_playground_web/live/intervals_live.ex:149
 #: lib/localize_playground_web/live/numbers_live.ex:14
+#: lib/localize_playground_web/live/units_live.ex:314
+#: lib/localize_playground_web/live/units_live.ex:316
 #, elixir-autogen, icu-format, fuzzy
 msgid "Locale"
 msgstr "ロケール"
@@ -434,6 +439,7 @@ msgid "Not a valid locale yet:"
 msgstr "まだ有効なロケールではありません:"
 
 #: lib/localize_playground_web/live/numbers_live.ex:28
+#: lib/localize_playground_web/live/units_live.ex:327
 #, elixir-autogen, icu-format, fuzzy
 msgid "Number"
 msgstr "数値"
@@ -892,6 +898,7 @@ msgstr "改行"
 msgid "List separator"
 msgstr "リスト区切り"
 
+#: lib/localize_playground_web/live/units_live.ex:431
 #: lib/localize_playground_web/views/locale_view.ex:25
 #, elixir-autogen, icu-format
 msgid "Measurement system"
@@ -1191,131 +1198,163 @@ msgstr ""
 #, elixir-autogen, icu-format
 msgid "(locale default)"
 msgstr "(ロケールのデフォルト)"
+
 #: lib/localize_playground_web/live/intervals_live.ex:11
 #, elixir-autogen, icu-format
 msgid "09:00 – 17:00"
 msgstr "09:00 – 17:00"
+
 #: lib/localize_playground_web/live/dates_live.ex:363
 #: lib/localize_playground_web/live/dates_live.ex:376
 #, elixir-autogen, icu-format
 msgid "ASCII-only"
 msgstr "ASCII のみ"
+
 #: lib/localize_playground_web/views/collation_view.ex:309
 #, elixir-autogen, icu-format
 msgid "Accent-insensitive"
 msgstr "アクセント無視"
+
 #: lib/localize_playground_web/views/collation_view.ex:372
 #, elixir-autogen, icu-format
 msgid "Alternate"
 msgstr "代替"
+
 #: lib/localize_playground_web/views/collation_view.ex:316
 #, elixir-autogen, icu-format
 msgid "Applied at tertiary strength."
 msgstr "第三強度で適用。"
+
 #: lib/localize_playground_web/views/collation_view.ex:401
 #, elixir-autogen, icu-format
 msgid "Backwards secondary (French)"
 msgstr "逆方向の第二レベル (フランス語)"
+
 #: lib/localize_playground_web/views/collation_view.ex:405
 #, elixir-autogen, icu-format
 msgid "Canonicalize input before comparing. Usually only needed for unusual source data."
 msgstr "比較前に入力を正規化。通常は特殊なデータの場合のみ必要。"
+
 #: lib/localize_playground_web/views/collation_view.ex:380
 #, elixir-autogen, icu-format
 msgid "Case first"
 msgstr "大文字小文字を先頭"
+
 #: lib/localize_playground_web/views/collation_view.ex:398
 #, elixir-autogen, icu-format
 msgid "Case level"
 msgstr "大文字小文字レベル"
+
 #: lib/localize_playground_web/views/collation_view.ex:307
 #, elixir-autogen, icu-format
 msgid "Case-insensitive"
 msgstr "大文字小文字を区別しない"
+
 #: lib/localize_playground_web/views/collation_view.ex:306
 #, elixir-autogen, icu-format
 msgid "Clear every override."
 msgstr "すべての上書きを解除。"
+
 #: lib/localize_playground_web/views/collation_view.ex:308
 #, elixir-autogen, icu-format
 msgid "Collapses uppercase and lowercase."
 msgstr "大文字と小文字を同じと扱う。"
+
 #: lib/localize_playground_web/live/dates_live.ex:471
 #, elixir-autogen, icu-format
 msgid "Count / literal"
 msgstr "数 / リテラル"
+
 #: lib/localize_playground_web/views/collation_view.ex:306
 #, elixir-autogen, icu-format
 msgid "Default"
 msgstr "デフォルト"
+
 #: lib/localize_playground_web/live/dates_live.ex:459
 #, elixir-autogen, icu-format
 msgid "Derived pattern"
 msgstr "派生パターン"
+
 #: lib/localize_playground_web/views/collation_view.ex:314
 #, elixir-autogen, icu-format
 msgid "Digit runs compared as numbers — item2 before item10."
 msgstr "数字列を数値として比較 — item2 が item10 より前。"
+
 #: lib/localize_playground_web/live/collation_live.ex:405
 #, elixir-autogen, icu-format
 msgid "Each option here is applied on top of the locale's built-in tailoring. Leave a select on its default to let the locale decide."
 msgstr "ここでの各オプションはロケール組み込みの調整の上に適用されます。デフォルトのままにすると、ロケールに委ねられます。"
+
 #: lib/localize_playground_web/live/collation_live.ex:510
 #, elixir-autogen, icu-format
 msgid "Enable"
 msgstr "有効"
+
 #: lib/localize_playground_web/views/collation_view.ex:317
 #, elixir-autogen, icu-format
 msgid "French accents"
 msgstr "フランス語のアクセント"
+
 #: lib/localize_playground_web/live/intervals_live.ex:163
 #, elixir-autogen, icu-format
 msgid "From (HH:MM:SS)"
 msgstr "開始 (HH:MM:SS)"
+
 #: lib/localize_playground_web/live/collation_live.ex:369
 #, elixir-autogen, icu-format
 msgid "Hide sort keys"
 msgstr "ソートキーを隠す"
+
 #: lib/localize_playground_web/views/collation_view.ex:362
 #, elixir-autogen, icu-format
 msgid "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."
 msgstr "比較の細かさ。強度が高いほど、より多くの違い(大文字小文字、アクセント)を区別します。"
+
 #: lib/localize_playground_web/views/collation_view.ex:370
 #, elixir-autogen, icu-format
 msgid "Identical — full code-point"
 msgstr "同一 — 完全なコードポイント"
+
 #: lib/localize_playground_web/views/collation_view.ex:311
 #, elixir-autogen, icu-format
 msgid "Ignore punctuation"
 msgstr "句読点を無視"
+
 #: lib/localize_playground_web/views/collation_view.ex:310
 #, elixir-autogen, icu-format
 msgid "Ignores accents and case."
 msgstr "アクセントと大文字小文字を無視します。"
+
 #: lib/localize_playground_web/views/collation_view.ex:399
 #, elixir-autogen, icu-format
 msgid "Inserts a dedicated case comparison level. Lets primary strength still distinguish case."
 msgstr "専用の大文字小文字比較レベルを挿入します。プライマリ強度でも大文字小文字の区別を可能にします。"
+
 #: lib/localize_playground_web/live/intervals_live.ex:107
 #, elixir-autogen, icu-format
 msgid "Invalid date in range"
 msgstr "範囲内の日付が無効"
+
 #: lib/localize_playground_web/live/intervals_live.ex:125
 #, elixir-autogen, icu-format
 msgid "Invalid date/time in range"
 msgstr "範囲内の日時が無効"
+
 #: lib/localize_playground_web/live/intervals_live.ex:116
 #, elixir-autogen, icu-format
 msgid "Invalid time in range"
 msgstr "範囲内の時刻が無効"
+
 #: lib/localize_playground_web/views/collation_view.ex:386
 #, elixir-autogen, icu-format
 msgid "Lower first"
 msgstr "小文字を先頭"
+
 #: lib/localize_playground_web/views/collation_view.ex:388
 #, elixir-autogen, icu-format
 msgid "Max variable"
 msgstr "最大可変"
+
 #: lib/localize_playground_web/views/collation_view.ex:404
 #, elixir-autogen, icu-format, fuzzy
 msgid "NFD normalization"
@@ -1325,98 +1364,122 @@ msgstr "正規化"
 #, elixir-autogen, icu-format
 msgid "Natural numbers"
 msgstr "自然数"
+
 #: lib/localize_playground_web/views/collation_view.ex:377
 #, elixir-autogen, icu-format
 msgid "Non-ignorable (default)"
 msgstr "無視不可 (デフォルト)"
+
 #: lib/localize_playground_web/views/collation_view.ex:407
 #, elixir-autogen, icu-format
 msgid "Numeric mode"
 msgstr "数値モード"
+
 #: lib/localize_playground_web/live/collation_live.ex:483
 #, elixir-autogen, icu-format
 msgid "One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise."
 msgstr "1 行に 1 単語。言語を変更すると新しいシードリストに置き換わります。それ以外の場合、編集は保持されます。"
+
 #: lib/localize_playground_web/live/collation_live.ex:390
 #, elixir-autogen, icu-format
 msgid "One-click combinations of the options below. They replace any current overrides."
 msgstr "下記オプションのワンクリック組み合わせ。現在の上書きを置き換えます。"
+
 #: lib/localize_playground_web/live/collation_live.ex:375
 #, elixir-autogen, icu-format
 msgid "Pairwise compare"
 msgstr "ペア比較"
+
 #: lib/localize_playground_web/live/collation_live.ex:427
 #, elixir-autogen, icu-format
 msgid "Pick a script or group…"
 msgstr "文字体系またはグループを選択…"
+
 #: lib/localize_playground_web/views/collation_view.ex:366
 #, elixir-autogen, icu-format
 msgid "Primary — base letters only"
 msgstr "プライマリ — 基本文字のみ"
+
 #: lib/localize_playground_web/views/collation_view.ex:393
 #, elixir-autogen, icu-format
 msgid "Punctuation (default)"
 msgstr "句読点 (デフォルト)"
+
 #: lib/localize_playground_web/views/collation_view.ex:369
 #, elixir-autogen, icu-format
 msgid "Quaternary — also punctuation"
 msgstr "第四 — 句読点も"
+
 #: lib/localize_playground_web/live/collation_live.ex:422
 #, elixir-autogen, icu-format
 msgid "Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add {$script_a} then {$script_b} to make Cyrillic sort before Latin."
 msgstr "文字体系のグループを相対的に並べ替え。先のエントリが先にソートされます。リストにないものはデフォルト位置を保持します。例: キリル文字をラテン文字より前にソートするには {$script_a} を追加し、次に {$script_b} を追加します。"
+
 #: lib/localize_playground_web/live/dates_live.ex:455
 #, elixir-autogen, icu-format
 msgid "Requested skeleton"
 msgstr "要求されたスケルトン"
+
 #: lib/localize_playground_web/live/dates_live.ex:457
 #, elixir-autogen, icu-format
 msgid "Resolved skeleton"
 msgstr "解決されたスケルトン"
+
 #: lib/localize_playground_web/views/collation_view.ex:402
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level — the classic French accent rule."
 msgstr "第二レベルを反転 — 古典的なフランス語のアクセント規則。"
+
 #: lib/localize_playground_web/views/collation_view.ex:318
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level, the classic French accent rule."
 msgstr "第二レベルを反転する、古典的なフランス語のアクセント規則。"
+
 #: lib/localize_playground_web/views/collation_view.ex:367
 #, elixir-autogen, icu-format
 msgid "Secondary — also accents"
 msgstr "第二 — アクセントも"
+
 #: lib/localize_playground_web/views/collation_view.ex:378
 #, elixir-autogen, icu-format
 msgid "Shifted"
 msgstr "シフト"
+
 #: lib/localize_playground_web/live/collation_live.ex:369
 #, elixir-autogen, icu-format
 msgid "Show sort keys"
 msgstr "ソートキーを表示"
+
 #: lib/localize_playground_web/views/collation_view.ex:394
 #, elixir-autogen, icu-format
 msgid "Space"
 msgstr "スペース"
+
 #: lib/localize_playground_web/views/collation_view.ex:312
 #, elixir-autogen, icu-format
 msgid "Spaces and punctuation drop to the lowest level."
 msgstr "スペースと句読点は最下レベルに落ちる。"
+
 #: lib/localize_playground_web/views/collation_view.ex:361
 #, elixir-autogen, icu-format
 msgid "Strength"
 msgstr "強度"
+
 #: lib/localize_playground_web/live/numbers_live.ex:575
 #, elixir-autogen, icu-format
 msgid "Subtag"
 msgstr "サブタグ"
+
 #: lib/localize_playground_web/views/collation_view.ex:368
 #, elixir-autogen, icu-format
 msgid "Tertiary — also case"
 msgstr "第三 — 大文字小文字も"
+
 #: lib/localize_playground_web/live/intervals_live.ex:11
 #, elixir-autogen, icu-format
 msgid "Time interval"
 msgstr "時間間隔"
+
 #: lib/localize_playground_web/live/intervals_live.ex:166
 #, elixir-autogen, icu-format, fuzzy
 msgid "To (HH:MM:SS)"
@@ -1426,39 +1489,270 @@ msgstr "時刻 (HH:MM:SS)"
 #, elixir-autogen, icu-format
 msgid "Token"
 msgstr "トークン"
+
 #: lib/localize_playground_web/views/collation_view.ex:408
 #, elixir-autogen, icu-format
 msgid "Treat digit runs as numbers (so `item2` sorts before `item10`)."
 msgstr "数字列を数値として扱う (`item2` が `item10` より前にソートされる)。"
+
 #: lib/localize_playground_web/live/dates_live.ex:471
 #, elixir-autogen, icu-format
 msgid "Type"
 msgstr "タイプ"
+
 #: lib/localize_playground_web/live/dates_live.ex:375
 #, elixir-autogen, icu-format
 msgid "Unicode"
 msgstr "Unicode"
+
 #: lib/localize_playground_web/live/dates_live.ex:362
 #, elixir-autogen, icu-format
 msgid "Unicode (space-saving)"
 msgstr "Unicode (省スペース)"
+
 #: lib/localize_playground_web/views/collation_view.ex:385
 #, elixir-autogen, icu-format
 msgid "Upper first"
 msgstr "大文字を先頭"
+
 #: lib/localize_playground_web/views/collation_view.ex:315
 #, elixir-autogen, icu-format
 msgid "Uppercase first"
 msgstr "大文字を先頭"
+
 #: lib/localize_playground_web/views/collation_view.ex:381
 #, elixir-autogen, icu-format
 msgid "When strength ≥ tertiary, whether uppercase or lowercase sorts first."
 msgstr "強度が第三以上の場合、大文字または小文字のどちらを先にソートするか。"
+
 #: lib/localize_playground_web/views/collation_view.ex:373
 #, elixir-autogen, icu-format
 msgid "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."
 msgstr "句読点と空白に重みがあるかどうか。`Shifted` は最終レベルに押し出します。"
+
 #: lib/localize_playground_web/views/collation_view.ex:389
 #, elixir-autogen, icu-format
 msgid "Which classes of characters are treated as variable-weight when alternate = shifted."
 msgstr "alternate = shifted のとき、どの文字クラスが可変重みとして扱われるか。"
+
+#: lib/localize_playground_web/live/units_live.ex:12
+#: lib/localize_playground_web/live/units_live.ex:36
+#, elixir-autogen, icu-format
+msgid "(none)"
+msgstr "(なし)"
+
+#: lib/localize_playground_web/live/units_live.ex:347
+#: lib/localize_playground_web/live/units_live.ex:377
+#: lib/localize_playground_web/live/units_live.ex:408
+#, elixir-autogen, icu-format
+msgid "Category"
+msgstr "カテゴリ"
+
+#: lib/localize_playground_web/live/units_live.ex:390
+#, elixir-autogen, icu-format
+msgid "Conversion"
+msgstr "変換"
+
+#: lib/localize_playground_web/live/units_live.ex:367
+#, elixir-autogen, icu-format
+msgid "Display name"
+msgstr "表示名"
+
+#: lib/localize_playground_web/live/units_live.ex:445
+#, elixir-autogen, icu-format
+msgid "Locale {$locale} → measurement system {$system}."
+msgstr "ロケール {$locale} → 計量システム {$system}。"
+
+#: lib/localize_playground_web/live/units_live.ex:48
+#, elixir-autogen, icu-format
+msgid "Metric (SI)"
+msgstr "メートル法 (SI)"
+
+#: lib/localize_playground_web/live/units_live.ex:331
+#: lib/localize_playground_web/live/units_live.ex:392
+#, elixir-autogen, icu-format
+msgid "Power"
+msgstr "べき乗"
+
+#: lib/localize_playground_web/live/units_live.ex:430
+#, elixir-autogen, icu-format
+msgid "Preferred unit for measurement system"
+msgstr "計量システムの推奨単位"
+
+#: lib/localize_playground_web/live/units_live.ex:443
+#, elixir-autogen, icu-format
+msgid "Preferred unit for the locale's territory"
+msgstr "ロケールの地域の推奨単位"
+
+#: lib/localize_playground_web/live/units_live.ex:339
+#: lib/localize_playground_web/live/units_live.ex:400
+#, elixir-autogen, icu-format
+msgid "Prefix"
+msgstr "接頭辞"
+
+#: lib/localize_playground_web/live/units_live.ex:422
+#, elixir-autogen, icu-format
+msgid "Target unit"
+msgstr "ターゲット単位"
+
+#: lib/localize_playground_web/live/units_live.ex:50
+#, elixir-autogen, icu-format
+msgid "UK imperial"
+msgstr "英国式"
+
+#: lib/localize_playground_web/live/units_live.ex:49
+#, elixir-autogen, icu-format
+msgid "US customary"
+msgstr "米国慣用"
+
+#: lib/localize_playground_web/live/units_live.ex:325
+#: lib/localize_playground_web/live/units_live.ex:353
+#: lib/localize_playground_web/live/units_live.ex:414
+#, elixir-autogen, icu-format, fuzzy
+msgid "Unit"
+msgstr "単位"
+
+#: lib/localize_playground_web/live/units_live.ex:365
+#, elixir-autogen, icu-format
+msgid "Unit name"
+msgstr "単位名"
+
+#: lib/localize_playground_web/live/units_live.ex:15
+#, elixir-autogen, icu-format
+msgid "atto (10⁻¹⁸)"
+msgstr "atto (10⁻¹⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:21
+#, elixir-autogen, icu-format
+msgid "centi (10⁻²)"
+msgstr "centi (10⁻²)"
+
+#: lib/localize_playground_web/live/units_live.ex:38
+#, elixir-autogen, icu-format
+msgid "cubic (x³)"
+msgstr "cubic (x³)"
+
+#: lib/localize_playground_web/live/units_live.ex:22
+#, elixir-autogen, icu-format
+msgid "deci (10⁻¹)"
+msgstr "deci (10⁻¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:23
+#, elixir-autogen, icu-format
+msgid "deka (10¹)"
+msgstr "deka (10¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:30
+#, elixir-autogen, icu-format
+msgid "exa (10¹⁸)"
+msgstr "exa (10¹⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:16
+#, elixir-autogen, icu-format
+msgid "femto (10⁻¹⁵)"
+msgstr "femto (10⁻¹⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:27
+#, elixir-autogen, icu-format
+msgid "giga (10⁹)"
+msgstr "giga (10⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:24
+#, elixir-autogen, icu-format
+msgid "hecto (10²)"
+msgstr "hecto (10²)"
+
+#: lib/localize_playground_web/live/units_live.ex:25
+#, elixir-autogen, icu-format
+msgid "kilo (10³)"
+msgstr "kilo (10³)"
+
+#: lib/localize_playground_web/live/units_live.ex:26
+#, elixir-autogen, icu-format
+msgid "mega (10⁶)"
+msgstr "mega (10⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:19
+#, elixir-autogen, icu-format
+msgid "micro (10⁻⁶)"
+msgstr "micro (10⁻⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:20
+#, elixir-autogen, icu-format
+msgid "milli (10⁻³)"
+msgstr "milli (10⁻³)"
+
+#: lib/localize_playground_web/live/units_live.ex:18
+#, elixir-autogen, icu-format
+msgid "nano (10⁻⁹)"
+msgstr "nano (10⁻⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:29
+#, elixir-autogen, icu-format
+msgid "peta (10¹⁵)"
+msgstr "peta (10¹⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:17
+#, elixir-autogen, icu-format
+msgid "pico (10⁻¹²)"
+msgstr "pico (10⁻¹²)"
+
+#: lib/localize_playground_web/live/units_live.ex:39
+#, elixir-autogen, icu-format
+msgid "pow4 (x⁴)"
+msgstr "pow4 (x⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:40
+#, elixir-autogen, icu-format
+msgid "pow5 (x⁵)"
+msgstr "pow5 (x⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:41
+#, elixir-autogen, icu-format
+msgid "pow6 (x⁶)"
+msgstr "pow6 (x⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:42
+#, elixir-autogen, icu-format
+msgid "pow7 (x⁷)"
+msgstr "pow7 (x⁷)"
+
+#: lib/localize_playground_web/live/units_live.ex:43
+#, elixir-autogen, icu-format
+msgid "pow8 (x⁸)"
+msgstr "pow8 (x⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:44
+#, elixir-autogen, icu-format
+msgid "pow9 (x⁹)"
+msgstr "pow9 (x⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:37
+#, elixir-autogen, icu-format
+msgid "square (x²)"
+msgstr "square (x²)"
+
+#: lib/localize_playground_web/live/units_live.ex:28
+#, elixir-autogen, icu-format
+msgid "tera (10¹²)"
+msgstr "tera (10¹²)"
+
+#: lib/localize_playground_web/live/units_live.ex:13
+#, elixir-autogen, icu-format
+msgid "yocto (10⁻²⁴)"
+msgstr "yocto (10⁻²⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:32
+#, elixir-autogen, icu-format
+msgid "yotta (10²⁴)"
+msgstr "yotta (10²⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:14
+#, elixir-autogen, icu-format
+msgid "zepto (10⁻²¹)"
+msgstr "zepto (10⁻²¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:31
+#, elixir-autogen, icu-format
+msgid "zetta (10²¹)"
+msgstr "zetta (10²¹)"

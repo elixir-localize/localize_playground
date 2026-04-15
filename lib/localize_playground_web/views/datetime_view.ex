@@ -164,6 +164,13 @@ defmodule LocalizePlaygroundWeb.DateTimeView do
     end)
   end
 
+  def format_datetime(%DateTime{} = datetime, options) do
+    safe(fn ->
+      clean = Keyword.delete(options, :convert_to)
+      Localize.DateTime.to_string(datetime, clean)
+    end)
+  end
+
   def format_interval(from, to, options) do
     safe(fn -> Localize.Interval.to_string(from, to, options) end)
   end

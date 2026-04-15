@@ -22,7 +22,6 @@ msgstr "Calendars"
 msgid "Collation"
 msgstr "Collation"
 
-#: lib/localize_playground_web/components/layouts/app.html.heex:36
 #: lib/localize_playground_web/components/layouts/app.html.heex:37
 #: lib/localize_playground_web/components/layouts/app.html.heex:38
 #: lib/localize_playground_web/components/layouts/app.html.heex:39
@@ -243,6 +242,8 @@ msgstr "Collation variant"
 #: lib/localize_playground_web/live/intervals_live.ex:223
 #: lib/localize_playground_web/live/locales_live.ex:353
 #: lib/localize_playground_web/live/numbers_live.ex:429
+#: lib/localize_playground_web/live/units_live.ex:477
+#: lib/localize_playground_web/live/units_live.ex:482
 #, elixir-autogen, icu-format
 msgid "Copy"
 msgstr "Copy"
@@ -297,6 +298,7 @@ msgstr "Date (YYYY-MM-DD)"
 #: lib/localize_playground_web/live/durations_live.ex:300
 #: lib/localize_playground_web/live/intervals_live.ex:239
 #: lib/localize_playground_web/live/numbers_live.ex:269
+#: lib/localize_playground_web/live/units_live.ex:503
 #, elixir-autogen, icu-format
 msgid "Error:"
 msgstr "Error:"
@@ -348,6 +350,7 @@ msgid "Formatted number"
 msgstr "Formatted number"
 
 #: lib/localize_playground_web/live/dates_live.ex:328
+#: lib/localize_playground_web/live/units_live.ex:361
 #, elixir-autogen, icu-format
 msgid "Formatted output"
 msgstr "Formatted output"
@@ -379,6 +382,8 @@ msgstr "Input mode"
 #: lib/localize_playground_web/live/durations_live.ex:201
 #: lib/localize_playground_web/live/intervals_live.ex:149
 #: lib/localize_playground_web/live/numbers_live.ex:14
+#: lib/localize_playground_web/live/units_live.ex:314
+#: lib/localize_playground_web/live/units_live.ex:316
 #, elixir-autogen, icu-format, fuzzy
 msgid "Locale"
 msgstr "Locale"
@@ -434,6 +439,7 @@ msgid "Not a valid locale yet:"
 msgstr "Not a valid locale yet:"
 
 #: lib/localize_playground_web/live/numbers_live.ex:28
+#: lib/localize_playground_web/live/units_live.ex:327
 #, elixir-autogen, icu-format, fuzzy
 msgid "Number"
 msgstr "Number"
@@ -892,10 +898,11 @@ msgstr ""
 msgid "List separator"
 msgstr ""
 
+#: lib/localize_playground_web/live/units_live.ex:431
 #: lib/localize_playground_web/views/locale_view.ex:25
 #, elixir-autogen, icu-format
 msgid "Measurement system"
-msgstr ""
+msgstr "Measurement system"
 
 #: lib/localize_playground_web/views/locale_view.ex:26
 #, elixir-autogen, icu-format
@@ -1527,3 +1534,225 @@ msgstr ""
 #, elixir-autogen, icu-format
 msgid "Which classes of characters are treated as variable-weight when alternate = shifted."
 msgstr ""
+
+#: lib/localize_playground_web/live/units_live.ex:12
+#: lib/localize_playground_web/live/units_live.ex:36
+#, elixir-autogen, icu-format
+msgid "(none)"
+msgstr "(none)"
+
+#: lib/localize_playground_web/live/units_live.ex:347
+#: lib/localize_playground_web/live/units_live.ex:377
+#: lib/localize_playground_web/live/units_live.ex:408
+#, elixir-autogen, icu-format
+msgid "Category"
+msgstr "Category"
+
+#: lib/localize_playground_web/live/units_live.ex:390
+#, elixir-autogen, icu-format
+msgid "Conversion"
+msgstr "Conversion"
+
+#: lib/localize_playground_web/live/units_live.ex:367
+#, elixir-autogen, icu-format
+msgid "Display name"
+msgstr "Display name"
+
+#: lib/localize_playground_web/live/units_live.ex:445
+#, elixir-autogen, icu-format
+msgid "Locale {$locale} → measurement system {$system}."
+msgstr "Locale {$locale} → measurement system {$system}."
+
+#: lib/localize_playground_web/live/units_live.ex:48
+#, elixir-autogen, icu-format
+msgid "Metric (SI)"
+msgstr "Metric (SI)"
+
+#: lib/localize_playground_web/live/units_live.ex:331
+#: lib/localize_playground_web/live/units_live.ex:392
+#, elixir-autogen, icu-format
+msgid "Power"
+msgstr "Power"
+
+#: lib/localize_playground_web/live/units_live.ex:430
+#, elixir-autogen, icu-format
+msgid "Preferred unit for measurement system"
+msgstr "Preferred unit for measurement system"
+
+#: lib/localize_playground_web/live/units_live.ex:443
+#, elixir-autogen, icu-format
+msgid "Preferred unit for the locale's territory"
+msgstr "Preferred unit for the locale's territory"
+
+#: lib/localize_playground_web/live/units_live.ex:339
+#: lib/localize_playground_web/live/units_live.ex:400
+#, elixir-autogen, icu-format
+msgid "Prefix"
+msgstr "Prefix"
+
+#: lib/localize_playground_web/live/units_live.ex:422
+#, elixir-autogen, icu-format
+msgid "Target unit"
+msgstr "Target unit"
+
+#: lib/localize_playground_web/live/units_live.ex:50
+#, elixir-autogen, icu-format
+msgid "UK imperial"
+msgstr "UK imperial"
+
+#: lib/localize_playground_web/live/units_live.ex:49
+#, elixir-autogen, icu-format
+msgid "US customary"
+msgstr "US customary"
+
+#: lib/localize_playground_web/live/units_live.ex:325
+#: lib/localize_playground_web/live/units_live.ex:353
+#: lib/localize_playground_web/live/units_live.ex:414
+#, elixir-autogen, icu-format, fuzzy
+msgid "Unit"
+msgstr "Units"
+
+#: lib/localize_playground_web/live/units_live.ex:365
+#, elixir-autogen, icu-format
+msgid "Unit name"
+msgstr "Unit name"
+
+#: lib/localize_playground_web/live/units_live.ex:15
+#, elixir-autogen, icu-format
+msgid "atto (10⁻¹⁸)"
+msgstr "atto (10⁻¹⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:21
+#, elixir-autogen, icu-format
+msgid "centi (10⁻²)"
+msgstr "centi (10⁻²)"
+
+#: lib/localize_playground_web/live/units_live.ex:38
+#, elixir-autogen, icu-format
+msgid "cubic (x³)"
+msgstr "cubic (x³)"
+
+#: lib/localize_playground_web/live/units_live.ex:22
+#, elixir-autogen, icu-format
+msgid "deci (10⁻¹)"
+msgstr "deci (10⁻¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:23
+#, elixir-autogen, icu-format
+msgid "deka (10¹)"
+msgstr "deka (10¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:30
+#, elixir-autogen, icu-format
+msgid "exa (10¹⁸)"
+msgstr "exa (10¹⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:16
+#, elixir-autogen, icu-format
+msgid "femto (10⁻¹⁵)"
+msgstr "femto (10⁻¹⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:27
+#, elixir-autogen, icu-format
+msgid "giga (10⁹)"
+msgstr "giga (10⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:24
+#, elixir-autogen, icu-format
+msgid "hecto (10²)"
+msgstr "hecto (10²)"
+
+#: lib/localize_playground_web/live/units_live.ex:25
+#, elixir-autogen, icu-format
+msgid "kilo (10³)"
+msgstr "kilo (10³)"
+
+#: lib/localize_playground_web/live/units_live.ex:26
+#, elixir-autogen, icu-format
+msgid "mega (10⁶)"
+msgstr "mega (10⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:19
+#, elixir-autogen, icu-format
+msgid "micro (10⁻⁶)"
+msgstr "micro (10⁻⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:20
+#, elixir-autogen, icu-format
+msgid "milli (10⁻³)"
+msgstr "milli (10⁻³)"
+
+#: lib/localize_playground_web/live/units_live.ex:18
+#, elixir-autogen, icu-format
+msgid "nano (10⁻⁹)"
+msgstr "nano (10⁻⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:29
+#, elixir-autogen, icu-format
+msgid "peta (10¹⁵)"
+msgstr "peta (10¹⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:17
+#, elixir-autogen, icu-format
+msgid "pico (10⁻¹²)"
+msgstr "pico (10⁻¹²)"
+
+#: lib/localize_playground_web/live/units_live.ex:39
+#, elixir-autogen, icu-format
+msgid "pow4 (x⁴)"
+msgstr "pow4 (x⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:40
+#, elixir-autogen, icu-format
+msgid "pow5 (x⁵)"
+msgstr "pow5 (x⁵)"
+
+#: lib/localize_playground_web/live/units_live.ex:41
+#, elixir-autogen, icu-format
+msgid "pow6 (x⁶)"
+msgstr "pow6 (x⁶)"
+
+#: lib/localize_playground_web/live/units_live.ex:42
+#, elixir-autogen, icu-format
+msgid "pow7 (x⁷)"
+msgstr "pow7 (x⁷)"
+
+#: lib/localize_playground_web/live/units_live.ex:43
+#, elixir-autogen, icu-format
+msgid "pow8 (x⁸)"
+msgstr "pow8 (x⁸)"
+
+#: lib/localize_playground_web/live/units_live.ex:44
+#, elixir-autogen, icu-format
+msgid "pow9 (x⁹)"
+msgstr "pow9 (x⁹)"
+
+#: lib/localize_playground_web/live/units_live.ex:37
+#, elixir-autogen, icu-format
+msgid "square (x²)"
+msgstr "square (x²)"
+
+#: lib/localize_playground_web/live/units_live.ex:28
+#, elixir-autogen, icu-format
+msgid "tera (10¹²)"
+msgstr "tera (10¹²)"
+
+#: lib/localize_playground_web/live/units_live.ex:13
+#, elixir-autogen, icu-format
+msgid "yocto (10⁻²⁴)"
+msgstr "yocto (10⁻²⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:32
+#, elixir-autogen, icu-format
+msgid "yotta (10²⁴)"
+msgstr "yotta (10²⁴)"
+
+#: lib/localize_playground_web/live/units_live.ex:14
+#, elixir-autogen, icu-format
+msgid "zepto (10⁻²¹)"
+msgstr "zepto (10⁻²¹)"
+
+#: lib/localize_playground_web/live/units_live.ex:31
+#, elixir-autogen, icu-format
+msgid "zetta (10²¹)"
+msgstr "zetta (10²¹)"

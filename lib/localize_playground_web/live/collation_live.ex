@@ -342,7 +342,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
       <.section title={gettext("Locale & collation")}>
-        <div class="lp-coll-header">
+        <div class="lp-dt-top">
           <.field label={gettext("Locale")} for="locale" hint={gettext("Any BCP-47 locale string. Extra -u- options below will override.")}>
             <input
               id="locale"
@@ -352,6 +352,8 @@ defmodule LocalizePlaygroundWeb.CollationLive do
               phx-debounce="200"
             />
           </.field>
+        </div>
+        <div class="lp-coll-header">
           <.field label={gettext("Collation variant")} for="collation" hint={gettext("Variants available for this language.")}>
             <select id="collation" name="collation">
               <option :for={variant <- @collations} value={variant} selected={@collation == variant}>

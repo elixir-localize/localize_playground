@@ -19,9 +19,49 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   ]
 
   @format_kinds [
-    %{id: :style, label: gettext_noop("Standard style"), hint: gettext_noop("short · medium · long · full")},
-    %{id: :skeleton, label: gettext_noop("Skeleton"), hint: gettext_noop("CLDR skeleton like yMMMd — locale picks the pattern")},
+    %{id: :style, label: gettext_noop("Standard format"), hint: gettext_noop("short · medium · long · full")},
+    %{id: :skeleton, label: gettext_noop("Locale skeletons"), hint: gettext_noop("CLDR skeleton like yMMMd — locale picks the pattern")},
     %{id: :pattern, label: gettext_noop("Custom pattern"), hint: gettext_noop("Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm")}
+  ]
+
+  @hour_cycles [
+    {:auto, gettext_noop("Locale default")},
+    {:h12, gettext_noop("12-hour (h12) — 1–12")},
+    {:h23, gettext_noop("24-hour (h23) — 0–23")},
+    {:h11, gettext_noop("12-hour (h11) — 0–11")},
+    {:h24, gettext_noop("24-hour (h24) — 1–24")}
+  ]
+
+  # Common IANA timezones presented in the zone select for the datetime
+  # family. The empty first option means "no shift" — keep whatever zone
+  # the parsed DateTime already has.
+  @common_timezones [
+    "",
+    "Etc/UTC",
+    "America/Los_Angeles",
+    "America/Denver",
+    "America/Chicago",
+    "America/New_York",
+    "America/Sao_Paulo",
+    "America/Mexico_City",
+    "Europe/London",
+    "Europe/Paris",
+    "Europe/Berlin",
+    "Europe/Madrid",
+    "Europe/Moscow",
+    "Africa/Cairo",
+    "Africa/Johannesburg",
+    "Asia/Jerusalem",
+    "Asia/Dubai",
+    "Asia/Kolkata",
+    "Asia/Bangkok",
+    "Asia/Singapore",
+    "Asia/Hong_Kong",
+    "Asia/Shanghai",
+    "Asia/Tokyo",
+    "Asia/Seoul",
+    "Australia/Sydney",
+    "Pacific/Auckland"
   ]
 
   @impl true
@@ -49,9 +89,13 @@ defmodule LocalizePlaygroundWeb.DatesLive do
       |> assign(:pattern, "yyyy-MM-dd HH:mm")
       |> assign(:calendar, :gregorian)
       |> assign(:prefer, :unicode)
-      |> assign(:date_text, "2024-06-15")
-      |> assign(:time_text, "14:30:00")
-      |> assign(:datetime_text, "2024-06-15T14:30:00")
+      |> assign(:hour_cycle, :auto)
+      |> assign(:hour_cycles, @hour_cycles)
+      |> assign(:common_timezones, @common_timezones)
+      |> assign(:timezone, "")
+      |> assign(:date_text, Date.to_iso8601(Date.utc_today()))
+      |> assign(:time_text, Time.utc_now() |> Time.truncate(:second) |> Time.to_iso8601())
+      |> assign(:datetime_text, DateTime.utc_now() |> DateTime.truncate(:second) |> DateTime.to_iso8601())
       |> assign(:skeletons, DateTimeView.available_skeletons(locale))
       |> compute()
 
@@ -71,14 +115,16 @@ defmodule LocalizePlaygroundWeb.DatesLive do
         "pattern",
         "date_text",
         "time_text",
-        "datetime_text"
+        "datetime_text",
+        "timezone"
       ])
       |> apply_atom_params(params, [
         "family",
         "format_kind",
         "style",
         "calendar",
-        "prefer"
+        "prefer",
+        "hour_cycle"
       ])
 
     socket =
@@ -130,11 +176,12 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     {options, format_display} = build_options(socket.assigns, locale)
 
     {input, parse_error} = parse_input(socket.assigns)
+    {input, parse_error} = maybe_shift_zone(input, socket.assigns, parse_error)
 
-    {result, skeleton_info, pattern_tokens} =
+    {result, skeleton_info} =
       cond do
         parse_error ->
-          {{:error, parse_error}, nil, nil}
+          {{:error, parse_error}, nil}
 
         input ->
           result = do_format(socket.assigns.family, input, options)
@@ -154,31 +201,21 @@ defmodule LocalizePlaygroundWeb.DatesLive do
               nil
             end
 
-          pattern_tokens =
-            if socket.assigns.format_kind == :pattern do
-              case DateTimeView.tokenize_pattern(socket.assigns.pattern) do
-                {:ok, tokens} -> tokens
-                _ -> nil
-              end
-            else
-              nil
-            end
-
-          {result, skeleton_info, pattern_tokens}
+          {result, skeleton_info}
 
         true ->
-          {{:error, "Enter a value"}, nil, nil}
+          {{:error, "Enter a value"}, nil}
       end
 
     socket
     |> assign(:result, result)
     |> assign(:skeleton_info, skeleton_info)
-    |> assign(:pattern_tokens, pattern_tokens)
     |> assign(:call_code, build_call_code(socket.assigns, input, format_display))
   end
 
   defp build_options(assigns, locale) do
-    base = [locale: locale, prefer: assigns.prefer]
+    effective_locale = apply_hour_cycle(locale, assigns.hour_cycle, assigns.family)
+    base = [locale: effective_locale, prefer: assigns.prefer]
 
     format_kv =
       case assigns.format_kind do
@@ -202,6 +239,30 @@ defmodule LocalizePlaygroundWeb.DatesLive do
 
     {base ++ format_kv ++ convert, format_display}
   end
+
+  # Append a `-u-hc-<cycle>` extension to the locale string when the user
+  # explicitly picks a cycle. Time/DateTime families only — the :date
+  # family has no hour so the setting is a no-op.
+  defp apply_hour_cycle(locale, :auto, _family), do: locale
+  defp apply_hour_cycle(locale, _cycle, :date), do: locale
+
+  defp apply_hour_cycle(locale, cycle, _family)
+       when cycle in [:h12, :h23, :h11, :h24] do
+    locale_str = to_string(locale)
+
+    cond do
+      String.contains?(locale_str, "-u-") ->
+        # Replace or append the hc subtag. Simplest: strip existing -hc-XX
+        # and then append.
+        stripped = Regex.replace(~r/-hc-[a-z0-9]+/, locale_str, "")
+        stripped <> "-hc-#{cycle}"
+
+      true ->
+        locale_str <> "-u-hc-#{cycle}"
+    end
+  end
+
+  defp apply_hour_cycle(locale, _cycle, _family), do: locale
 
   defp skeleton_atom(value) when is_binary(value) do
     try do
@@ -228,23 +289,57 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   end
 
   defp parse_input(%{family: :datetime, datetime_text: text}) do
-    case NaiveDateTime.from_iso8601(text) do
-      {:ok, dt} ->
+    # Try as a zoned DateTime first (handles trailing Z or ±HH:MM offsets).
+    # Fall back to NaiveDateTime when there's no offset.
+    case DateTime.from_iso8601(text) do
+      {:ok, dt, _offset} ->
         {dt, nil}
 
       {:error, _} ->
-        # Accept "2024-06-15T14:30" shortened form (no seconds)
-        case NaiveDateTime.from_iso8601(text <> ":00") do
-          {:ok, dt} -> {dt, nil}
-          _ -> {nil, "Invalid date/time: #{inspect(text)}"}
+        case NaiveDateTime.from_iso8601(text) do
+          {:ok, dt} ->
+            {dt, nil}
+
+          {:error, _} ->
+            case NaiveDateTime.from_iso8601(text <> ":00") do
+              {:ok, dt} -> {dt, nil}
+              _ -> {nil, "Invalid date/time: #{inspect(text)}"}
+            end
         end
     end
   end
+
+  # When the user selects a timezone on the datetime family, shift the parsed
+  # DateTime into that zone. NaiveDateTime inputs are treated as UTC so that
+  # the shift produces a sensible result.
+  defp maybe_shift_zone(input, _assigns, error) when error != nil, do: {input, error}
+  defp maybe_shift_zone(input, %{family: :datetime, timezone: tz}, _error) when tz in [nil, ""], do: {input, nil}
+
+  defp maybe_shift_zone(%DateTime{} = dt, %{family: :datetime, timezone: tz}, _error) do
+    case DateTime.shift_zone(dt, tz) do
+      {:ok, shifted} -> {shifted, nil}
+      {:error, reason} -> {dt, "Cannot shift to #{tz}: #{inspect(reason)}"}
+    end
+  end
+
+  defp maybe_shift_zone(%NaiveDateTime{} = ndt, %{family: :datetime, timezone: tz}, _error) do
+    with {:ok, as_utc} <- DateTime.from_naive(ndt, "Etc/UTC"),
+         {:ok, shifted} <- DateTime.shift_zone(as_utc, tz) do
+      {shifted, nil}
+    else
+      {:error, reason} -> {ndt, "Cannot shift to #{tz}: #{inspect(reason)}"}
+    end
+  end
+
+  defp maybe_shift_zone(input, _assigns, _error), do: {input, nil}
 
   defp do_format(:date, %Date{} = d, options), do: DateTimeView.format_date(d, options)
   defp do_format(:time, %Time{} = t, options), do: DateTimeView.format_time(t, Keyword.delete(options, :convert_to))
 
   defp do_format(:datetime, %NaiveDateTime{} = dt, options),
+    do: DateTimeView.format_datetime(dt, options)
+
+  defp do_format(:datetime, %DateTime{} = dt, options),
     do: DateTimeView.format_datetime(dt, options)
 
   defp do_format(_, _, _), do: {:error, "Wrong input type for the selected family"}
@@ -319,8 +414,26 @@ defmodule LocalizePlaygroundWeb.DatesLive do
             <input id="time_text" name="time_text" type="text" value={@time_text} phx-debounce="250" />
           </.field>
 
-          <.field :if={@family == :datetime} label={gettext("Date & Time (ISO 8601)")} for="datetime_text">
+          <.field :if={@family == :datetime} label={gettext("Date & Time (ISO 8601)")} for="datetime_text" hint={gettext("Add a trailing Z or ±HH:MM offset to format as a DateTime with time zone.")}>
             <input id="datetime_text" name="datetime_text" type="text" value={@datetime_text} phx-debounce="250" />
+          </.field>
+
+          <.field :if={@family == :datetime} label={gettext("Shift to time zone")} for="timezone" hint={gettext("Picks an IANA zone and calls DateTime.shift_zone/2.")}>
+            <select id="timezone" name="timezone">
+              <option :for={tz <- @common_timezones} value={tz} selected={@timezone == tz}>
+                {if tz == "", do: gettext("(none)"), else: tz}
+              </option>
+            </select>
+          </.field>
+        </div>
+
+        <div :if={@family in [:time, :datetime]} class="lp-dt-secondary-row">
+          <.field label={gettext("Hour cycle")}>
+            <select name="hour_cycle">
+              <option :for={{value, label} <- @hour_cycles} value={value} selected={@hour_cycle == value}>
+                {Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", label)}
+              </option>
+            </select>
           </.field>
         </div>
       </.section>
@@ -352,27 +465,26 @@ defmodule LocalizePlaygroundWeb.DatesLive do
         <div class="lp-dt-format-controls">
           <%= case @format_kind do %>
             <% :style -> %>
-              <.field label={gettext("Style")}>
+              <.field label={gettext("Format")}>
                 <select name="style">
-                  <option :for={s <- @standard_styles} value={s} selected={@style == s}>{s}</option>
+                  <option :for={s <- @standard_styles} value={s} selected={@style == s}>{String.capitalize(to_string(s))}</option>
                 </select>
               </.field>
-              <.field label={gettext("Prefer (time)")}>
+              <.field label={gettext("Prefer")}>
                 <select name="prefer">
-                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode (space-saving)")}</option>
+                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode (recommended)")}</option>
                   <option value="ascii" selected={@prefer == :ascii}>{gettext("ASCII-only")}</option>
                 </select>
               </.field>
             <% :skeleton -> %>
-              <.field label={gettext("Skeleton")} for="skeleton" hint={gettext("e.g. yMMMd, EHm, yQQQ")}>
-                <input id="skeleton" name="skeleton" type="text" list="skeletons" value={@skeleton} phx-debounce="200" />
-                <datalist id="skeletons">
-                  <option :for={s <- @skeletons} value={s}></option>
-                </datalist>
+              <.field label={gettext("Skeleton")} for="skeleton" hint={gettext("All CLDR skeletons for date, time, and datetime.")}>
+                <select id="skeleton" name="skeleton">
+                  <option :for={s <- @skeletons} value={s} selected={to_string(@skeleton) == to_string(s)}>{s}</option>
+                </select>
               </.field>
-              <.field label={gettext("Prefer (time)")}>
+              <.field label={gettext("Prefer")}>
                 <select name="prefer">
-                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode")}</option>
+                  <option value="unicode" selected={@prefer == :unicode}>{gettext("Unicode (recommended)")}</option>
                   <option value="ascii" selected={@prefer == :ascii}>{gettext("ASCII-only")}</option>
                 </select>
               </.field>
@@ -380,6 +492,11 @@ defmodule LocalizePlaygroundWeb.DatesLive do
               <.field label={gettext("Pattern")} for="pattern" hint={gettext("CLDR pattern; quote literals with single quotes.")}>
                 <input id="pattern" name="pattern" type="text" value={@pattern} phx-debounce="200" class="lp-mono-input" />
               </.field>
+              <div class="lp-pattern-help">
+                <button type="button" class="lp-pattern-help-btn" data-pattern-open>
+                  {gettext("📖 Open pattern reference panel")}
+                </button>
+              </div>
           <% end %>
         </div>
       </.section>
@@ -388,9 +505,6 @@ defmodule LocalizePlaygroundWeb.DatesLive do
         <.skeleton_info info={@skeleton_info} />
       </.section>
 
-      <.section :if={@pattern_tokens} title={gettext("Pattern tokens")}>
-        <.pattern_tokens tokens={@pattern_tokens} />
-      </.section>
     </form>
     """
   end
@@ -462,22 +576,4 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     """
   end
 
-  attr :tokens, :list, required: true
-
-  defp pattern_tokens(assigns) do
-    ~H"""
-    <table class="lp-table">
-      <thead>
-        <tr><th>{gettext("Token")}</th><th>{gettext("Type")}</th><th>{gettext("Count / literal")}</th></tr>
-      </thead>
-      <tbody>
-        <tr :for={{{type, rest}, i} <- Enum.with_index(@tokens)}>
-          <td>{i + 1}</td>
-          <td><code>{type}</code></td>
-          <td><code>{inspect(rest)}</code></td>
-        </tr>
-      </tbody>
-    </table>
-    """
-  end
 end

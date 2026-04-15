@@ -66,7 +66,9 @@ defmodule LocalizePlaygroundWeb.PageLive do
     {:currency, "Currency"},
     {:accounting, "Accounting"},
     {:currency_no_symbol, "Currency (no symbol)"},
-    {:accounting_no_symbol, "Accounting (no symbol)"}
+    {:accounting_no_symbol, "Accounting (no symbol)"},
+    {:currency_long, "Currency name (123 US dollars)"},
+    {:currency_long_with_symbol, "Currency name with symbol"}
   ]
 
   @compact_styles [

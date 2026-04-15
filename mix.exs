@@ -28,6 +28,7 @@ defmodule LocalizePlayground.MixProject do
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 1.0"},
+      {:tz, "~> 0.28"},
       {:bandit, "~> 1.5"},
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.4"},

@@ -230,6 +230,9 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
     |> assign(:target_unit_name, target_name)
     |> assign(:source_result, source_result)
     |> assign(:source_call_code, source_call_code)
+    |> assign(:unit_name_code, build_unit_name_code(source_name))
+    |> assign(:display_name_code, build_display_name_code(source_name, locale))
+    |> assign(:category_code, build_category_code(source_name))
     |> assign(:conversion_result, conversion_result)
     |> assign(:conversion_call_code, conversion_code)
     |> assign(:preferred_result, preferred_result)
@@ -259,6 +262,21 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
 
   defp build_new_code(value, unit_name) do
     "Localize.Unit.new(#{inspect(value)}, #{inspect(unit_name)})"
+  end
+
+  defp build_unit_name_code(unit_name) do
+    "{:ok, unit} = Localize.Unit.new(value, #{inspect(unit_name)})\nunit.name"
+  end
+
+  defp build_display_name_code(unit_name, locale) do
+    locale_opt =
+      if to_string(locale) == "en", do: "", else: ", locale: #{inspect(to_string(locale))}"
+
+    "Localize.Unit.display_name(#{inspect(unit_name)}#{locale_opt})"
+  end
+
+  defp build_category_code(unit_name) do
+    "Localize.Unit.unit_category(#{inspect(unit_name)})"
   end
 
   defp build_convert_code(source_name, target_name, locale) do
@@ -338,18 +356,35 @@ Localize.Unit.to_string(converted#{locale_opt})|
             </select>
           </.field>
         </div>
+      </.section>
 
+      <.section title={gettext("Formatted output")} class="lp-result-section">
+        <.result_card result={source_formatted(@source_result)} />
+        <.call_code code={@source_call_code} id="u-source-call" />
         <dl class="lp-meta-table lp-unit-summary">
           <dt>{gettext("Unit name")}</dt>
-          <dd><code>{@source_unit_name}</code></dd>
+          <dd class="lp-iex-value"><code>{@source_unit_name}</code></dd>
           <dt>{gettext("Display name")}</dt>
-          <dd>{source_display_name(@source_result)}</dd>
+          <dd>
+            <div class="lp-iex-session">
+              <div class="lp-iex-line">
+                <span class="lp-iex-prompt">iex&gt;</span>
+                <LocalizePlaygroundWeb.HexDocs.code class="lp-iex-code" code={@display_name_code} />
+              </div>
+              <div class="lp-iex-result">{inspect_result(@source_result, :display_name)}</div>
+            </div>
+          </dd>
           <dt>{gettext("Category")}</dt>
-          <dd>{source_category(@source_result)}</dd>
+          <dd>
+            <div class="lp-iex-session">
+              <div class="lp-iex-line">
+                <span class="lp-iex-prompt">iex&gt;</span>
+                <LocalizePlaygroundWeb.HexDocs.code class="lp-iex-code" code={@category_code} />
+              </div>
+              <div class="lp-iex-result">{inspect_result(@source_result, :category)}</div>
+            </div>
+          </dd>
         </dl>
-
-        <.call_code code={@source_call_code} id="u-source-call" />
-        <.result_card result={source_formatted(@source_result)} />
       </.section>
 
       <.section title={gettext("Conversion")}>
@@ -422,6 +457,11 @@ Localize.Unit.to_string(converted#{locale_opt})|
 
   defp source_category({:ok, %{category: cat}}), do: cat
   defp source_category(_), do: "—"
+
+  defp inspect_result({:ok, %{display_name: name}}, :display_name), do: inspect({:ok, name})
+  defp inspect_result({:ok, %{category: cat}}, :category), do: inspect({:ok, cat})
+  defp inspect_result({:error, message}, _), do: "{:error, " <> inspect(message) <> "}"
+  defp inspect_result(_, _), do: ""
 
   defp source_formatted({:ok, %{formatted: string}}), do: {:ok, string}
   defp source_formatted({:error, _} = error), do: error

@@ -100,6 +100,42 @@ Hooks.HexDocsPanel = {
   }
 }
 
+// Slide-out panel that displays a curated list of CLDR date/time format
+// pattern codes. Opened by any element carrying `data-pattern-open` (the
+// trigger button under the Custom pattern section on Dates & Times).
+Hooks.PatternReferencePanel = {
+  mounted() {
+    const panel = this.el
+    const open = () => {
+      panel.classList.add("open")
+      panel.setAttribute("aria-hidden", "false")
+      document.body.style.overflow = "hidden"
+    }
+    const close = () => {
+      panel.classList.remove("open")
+      panel.setAttribute("aria-hidden", "true")
+      document.body.style.overflow = ""
+    }
+
+    this._openHandler = (ev) => {
+      if (ev.target.closest("[data-pattern-open]")) { ev.preventDefault(); open() }
+    }
+    document.addEventListener("click", this._openHandler)
+
+    this._closeHandler = (ev) => {
+      if (ev.target.closest("[data-pattern-close]")) close()
+    }
+    panel.addEventListener("click", this._closeHandler)
+
+    this._escHandler = (ev) => { if (ev.key === "Escape") close() }
+    document.addEventListener("keydown", this._escHandler)
+  },
+  destroyed() {
+    document.removeEventListener("click", this._openHandler)
+    document.removeEventListener("keydown", this._escHandler)
+  }
+}
+
 Hooks.CopyToClipboard = {
   mounted() {
     const button = this.el.querySelector("[data-copy-target]")

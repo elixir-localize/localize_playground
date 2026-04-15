@@ -10,7 +10,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <div class="lp-top-row">
+      <div class="lp-dt-top">
         <.field label={gettext("Locale")} for="locale" hint={gettext("Type a CLDR locale such as en, de, zh-Hant")}>
           <input
             id="locale"
@@ -24,7 +24,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
             <option :for={locale <- @locale_options} value={locale}></option>
           </datalist>
         </.field>
+      </div>
 
+      <div class="lp-top-row">
         <.field :if={@style_group != :range} label={gettext("Number")} for="number">
           <input
             id="number"
@@ -180,8 +182,8 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
           <% end %>
         </div>
 
-        <details class="lp-details">
-          <summary>{gettext("Advanced formatting options")}</summary>
+        <div class="lp-advanced-options">
+          <h3 class="lp-advanced-options-title">{gettext("Advanced formatting options")}</h3>
           <div class="lp-sub-controls">
             <.field label={gettext("Min fractional digits")} for="min_fractional_digits">
               <input
@@ -233,7 +235,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
               </select>
             </.field>
           </div>
-        </details>
+        </div>
       </.section>
     </form>
 
@@ -376,12 +378,6 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
       <dt :if={@m.round_nearest != 0}>{gettext("Round nearest")}</dt>
       <dd :if={@m.round_nearest != 0}>{@m.round_nearest}</dd>
-
-      <dt>{gettext("Positive template")}</dt>
-      <dd><pre class="lp-export">{inspect(Keyword.get(@m.format, :positive), pretty: true, width: 60, limit: :infinity)}</pre></dd>
-
-      <dt>{gettext("Negative template")}</dt>
-      <dd><pre class="lp-export">{inspect(Keyword.get(@m.format, :negative), pretty: true, width: 60, limit: :infinity)}</pre></dd>
     </dl>
     """
   end
