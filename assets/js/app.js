@@ -136,6 +136,27 @@ Hooks.PatternReferencePanel = {
   }
 }
 
+Hooks.MF2ReferencePanel = {
+  mounted() {
+    const panel = this.el
+    const open = () => { panel.classList.add("open"); panel.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden" }
+    const close = () => { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); document.body.style.overflow = "" }
+
+    this._openHandler = (ev) => { if (ev.target.closest("[data-mf2-open]")) { ev.preventDefault(); open() } }
+    document.addEventListener("click", this._openHandler)
+
+    this._closeHandler = (ev) => { if (ev.target.closest("[data-mf2-close]")) close() }
+    panel.addEventListener("click", this._closeHandler)
+
+    this._escHandler = (ev) => { if (ev.key === "Escape") close() }
+    document.addEventListener("keydown", this._escHandler)
+  },
+  destroyed() {
+    document.removeEventListener("click", this._openHandler)
+    document.removeEventListener("keydown", this._escHandler)
+  }
+}
+
 Hooks.CopyToClipboard = {
   mounted() {
     const button = this.el.querySelector("[data-copy-target]")

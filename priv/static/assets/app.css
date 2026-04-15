@@ -522,6 +522,7 @@ input[type="text"],
 }
 .lp-pattern-table col.lp-col-pattern { width: 100px; }
 .lp-pattern-table col.lp-col-example { width: 180px; }
+.lp-pattern-table col.lp-col-mf2-pattern { width: 240px; }
 .lp-pattern-table td { word-break: break-word; }
 .lp-pattern-table th,
 .lp-pattern-table td {
@@ -838,6 +839,57 @@ input[type="text"],
   gap: 12px;
   max-width: 920px;
 }
+
+/* Messages (MF2) tab */
+.lp-mf2-message, .lp-mf2-bindings {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  background: var(--lp-bg);
+  color: var(--lp-text);
+  border: 1px solid var(--lp-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+.lp-mf2-message:focus, .lp-mf2-bindings:focus {
+  outline: none;
+  border-color: var(--lp-accent);
+}
+.lp-mf2-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 12px 0 16px;
+  flex-wrap: wrap;
+}
+.lp-mf2-toolbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.lp-mf2-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lp-mf2-help-btn { flex-shrink: 0; }
+.lp-mf2-example-btn {
+  background: transparent;
+  border: 1px solid var(--lp-border);
+  color: var(--lp-text);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+.lp-mf2-example-btn:hover { background: var(--lp-border); }
 
 .lp-dt-secondary-row {
   display: grid;

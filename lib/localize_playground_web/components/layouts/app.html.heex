@@ -34,7 +34,7 @@
     <a class={"#{if @live_action == :intervals, do: "active"}"} href={tab_href(@current_locale, "/intervals")}>{gettext("Intervals")}</a>
     <a class={"#{if @live_action == :durations, do: "active"}"} href={tab_href(@current_locale, "/durations")}>{gettext("Durations")}</a>
     <a class={"#{if @live_action == :units, do: "active"}"} href={tab_href(@current_locale, "/units")}>{gettext("Units")}</a>
-    <a class="disabled" title={gettext("Coming soon")}>{gettext("Messages")}</a>
+    <a class={"#{if @live_action == :messages, do: "active"}"} href={tab_href(@current_locale, "/messages")}>{gettext("Messages")}</a>
     <a class="disabled" title={gettext("Coming soon")}>{gettext("Calendars")}</a>
     <a class="disabled" title={gettext("Coming soon")}>{gettext("Lists")}</a>
     <a class={"#{if @live_action == :collation, do: "active"}"} href={tab_href(@current_locale, "/collation")}>{gettext("Collation")}</a>
@@ -48,4 +48,5 @@
 </footer>
 <LocalizePlaygroundWeb.HexDocs.panel />
 <LocalizePlaygroundWeb.PatternReference.panel />
+<LocalizePlaygroundWeb.MF2Reference.panel />
 
