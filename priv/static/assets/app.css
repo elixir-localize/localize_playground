@@ -174,6 +174,8 @@ main.lp-main { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
   font-size: 12px;
   text-align: center;
 }
+.lp-footer a { color: var(--lp-accent); }
+.lp-footer-sep { color: var(--lp-text-faint); margin: 0 8px; }
 
 .lp-error {
   background: color-mix(in srgb, var(--lp-fail) 15%, transparent);
@@ -219,16 +221,6 @@ main.lp-main { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
 
 .lp-unit-summary { margin-bottom: 16px; }
 .lp-unit-summary dd { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.lp-unit-summary .lp-meta-value { font-weight: 500; }
-.lp-meta-code {
-  margin: 0;
-  padding: 2px 8px;
-  font-size: 12px;
-  background: var(--lp-code-bg, rgba(127,127,127,0.08));
-  border-radius: 4px;
-  color: var(--lp-text-faint);
-  white-space: pre;
-}
 .lp-iex-session {
   background: var(--lp-code-bg, rgba(127,127,127,0.08));
   border-radius: 6px;
@@ -336,31 +328,6 @@ input[type="text"],
 }
 .lp-radio-title { font-weight: 600; font-size: 13px; }
 .lp-radio-hint { font-size: 11px; color: var(--lp-text-dim); }
-
-.lp-details {
-  margin-top: 16px;
-  padding: 12px 14px;
-  border: 1px solid var(--lp-border);
-  border-radius: 10px;
-  background: var(--lp-surface);
-}
-.lp-details summary {
-  cursor: pointer;
-  font-size: 12px;
-  color: var(--lp-text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-  list-style: none;
-}
-.lp-details summary::-webkit-details-marker { display: none; }
-.lp-details summary::before {
-  content: "▸ ";
-  display: inline-block;
-  color: var(--lp-text-faint);
-}
-.lp-details[open] summary::before { content: "▾ "; }
-.lp-details[open] .lp-sub-controls { margin-top: 12px; }
 
 .lp-advanced-options {
   margin-top: 16px;
@@ -760,24 +727,6 @@ input[type="text"],
   font-size: 12px;
 }
 
-.lp-canonical-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.lp-primary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background: var(--lp-accent);
-  color: #0b1220;
-  font-weight: 600;
-  font-size: 13px;
-}
-.lp-primary-btn:hover { text-decoration: none; background: var(--lp-accent-strong); color: #0b1220; }
-
 @media (max-width: 700px) {
   .lp-ext-row { grid-template-columns: 1fr; }
 }
@@ -877,13 +826,6 @@ input[type="text"],
   gap: 16px;
   margin: 12px 0 16px;
   flex-wrap: wrap;
-}
-.lp-mf2-toolbar-left {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1 1 auto;
-  min-width: 0;
 }
 .lp-mf2-examples {
   display: flex;

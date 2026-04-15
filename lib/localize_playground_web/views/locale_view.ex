@@ -531,6 +531,20 @@ defmodule LocalizePlaygroundWeb.LocaleView do
 
   defp lookup_calendar_name(nil), do: nil
 
+  defp lookup_calendar_name(name) when is_binary(name) do
+    atom =
+      try do
+        String.to_existing_atom(name)
+      rescue
+        ArgumentError -> nil
+      end
+
+    case atom && Localize.Calendar.display_name(:calendar, atom) do
+      {:ok, display} -> display
+      _ -> nil
+    end
+  end
+
   @day_names %{
     "sun" => "Sunday",
     "mon" => "Monday",
@@ -680,18 +694,4 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   end
 
   defp safe_atom(_), do: nil
-
-  defp lookup_calendar_name(name) when is_binary(name) do
-    atom =
-      try do
-        String.to_existing_atom(name)
-      rescue
-        ArgumentError -> nil
-      end
-
-    case atom && Localize.Calendar.display_name(:calendar, atom) do
-      {:ok, display} -> display
-      _ -> nil
-    end
-  end
 end

@@ -452,12 +452,6 @@ Localize.Unit.to_string(converted#{locale_opt})|
     """
   end
 
-  defp source_display_name({:ok, %{display_name: name}}), do: name
-  defp source_display_name(_), do: "—"
-
-  defp source_category({:ok, %{category: cat}}), do: cat
-  defp source_category(_), do: "—"
-
   defp inspect_result({:ok, %{display_name: name}}, :display_name), do: inspect({:ok, name})
   defp inspect_result({:ok, %{category: cat}}, :category), do: inspect({:ok, cat})
   defp inspect_result({:error, message}, _), do: "{:error, " <> inspect(message) <> "}"

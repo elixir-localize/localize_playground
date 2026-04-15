@@ -1,0 +1,7 @@
+#!/bin/sh
+# Starts the release's application, using PHX_SERVER=true so Phoenix
+# boots the HTTP endpoint. Use this as the container CMD or the entry
+# point for a process supervisor (systemd, runit, etc.).
+
+cd -P -- "$(dirname -- "$0")/.."
+PHX_SERVER=true exec ./bin/localize_playground start

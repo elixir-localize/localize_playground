@@ -103,8 +103,13 @@ defmodule LocalizePlaygroundWeb.CollationLive do
       end
 
     reorder_selection = Map.get(params, "reorder_selection", socket.assigns.reorder_selection)
-    compare_a = Map.get(params, "compare_a", socket.assigns.compare_a)
-    compare_b = Map.get(params, "compare_b", socket.assigns.compare_b)
+
+    # When the formatting locale changes, re-seed the pairwise compare
+    # words from the new language's example list. Otherwise honour any
+    # values the user has typed.
+    language_changed? = language != socket.assigns.language
+    compare_a = if language_changed?, do: nil, else: Map.get(params, "compare_a", socket.assigns.compare_a)
+    compare_b = if language_changed?, do: nil, else: Map.get(params, "compare_b", socket.assigns.compare_b)
 
     socket =
       socket

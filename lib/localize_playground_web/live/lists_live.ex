@@ -27,11 +27,11 @@ defmodule LocalizePlaygroundWeb.ListsLive do
   ]
 
   @examples [
-    %{name: "Three colours", items: "red\ngreen\nblue", style: :standard},
-    %{name: "Two choices", items: "tea\ncoffee", style: :or},
-    %{name: "Weekdays", items: "Monday\nTuesday\nWednesday\nThursday\nFriday", style: :standard},
-    %{name: "Mixed types", items: "1\n2.5\nthree", style: :standard},
-    %{name: "Many items", items: "apple\nbanana\ncherry\ndate\nelderberry\nfig", style: :or}
+    %{name: gettext_noop("Three colours"), items: "red\ngreen\nblue", style: :standard},
+    %{name: gettext_noop("Two choices"), items: "tea\ncoffee", style: :or},
+    %{name: gettext_noop("Weekdays"), items: "Monday\nTuesday\nWednesday\nThursday\nFriday", style: :standard},
+    %{name: gettext_noop("Mixed types"), items: "1\n2.5\nthree", style: :standard},
+    %{name: gettext_noop("Many items"), items: "apple\nbanana\ncherry\ndate\nelderberry\nfig", style: :or}
   ]
 
   @impl true
@@ -228,7 +228,7 @@ defmodule LocalizePlaygroundWeb.ListsLive do
               phx-click="load_example"
               phx-value-index={index}
             >
-              {example.name}
+              {Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", example.name)}
             </button>
           </div>
         </div>

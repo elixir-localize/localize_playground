@@ -1,0 +1,15 @@
+_build
+deps
+assets/node_modules
+*.iml
+.git
+.gitignore
+.elixir_ls
+.vscode
+.idea
+.claude
+doc
+cover
+.fetch
+*.log
+tmp
