@@ -53,12 +53,8 @@ tailoring-sensitive word pairs.
 
 ## Collation tab — other pending work
 
-* **`-u-kr` reorder codes** — editor UI for custom script reorder
-  sequences (e.g. sort Cyrillic before Latin). Still not implemented.
-* **Chinese (`zh`) tailoring** — all variants (`pinyin`, `stroke`,
-  `zhuyin`, `unihan`) currently produce identical codepoint-order
-  output. Needs investigation: is the Localize Han tailoring table
-  loaded? Would benefit from a test against ICU reference output.
+*(Both of the items previously listed here — the `-u-kr` reorder-code
+editor and Han tailoring — are now working as of Localize 0.12.)*
 
 ## Other tabs
 

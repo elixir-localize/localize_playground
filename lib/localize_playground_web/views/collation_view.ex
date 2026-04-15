@@ -209,6 +209,139 @@ defmodule LocalizePlaygroundWeb.CollationView do
   end
 
   @doc """
+  Returns the hex representation of each word's CLDR sort key under
+  the given options, useful for explaining why the order came out
+  the way it did.
+  """
+  @spec sort_keys([String.t()], keyword()) :: [{String.t(), String.t()}]
+  def sort_keys(words, options) do
+    Enum.map(words, fn word ->
+      key =
+        try do
+          Localize.Collation.sort_key(word, options)
+        rescue
+          _ -> <<>>
+        end
+
+      {word, format_key(key)}
+    end)
+  end
+
+  defp format_key(binary) when is_binary(binary) do
+    binary
+    |> :binary.bin_to_list()
+    |> Enum.map_join(" ", &:io_lib.format("~2.16.0B", [&1]) |> IO.iodata_to_binary())
+  end
+
+  @doc """
+  Compares two strings under the given options. Returns
+  `:lt | :eq | :gt` or `{:error, message}`.
+  """
+  @spec compare(String.t(), String.t(), keyword()) :: :lt | :eq | :gt | {:error, String.t()}
+  def compare(a, b, options) do
+    Localize.Collation.compare(a, b, options)
+  rescue
+    exception -> {:error, Exception.message(exception)}
+  end
+
+  # Per-language captions for the seed word list. Each string is a
+  # one-line hint that tells the user what to watch for when they
+  # change the collation variant or options.
+  @seed_captions %{
+    "en" => "Standard English mixes case and accented forms — try strength = primary to collapse them.",
+    "fr" => "Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left.",
+    "de" => "Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller.",
+    "it" => "Primary strength ignores the accents on città, perché, così.",
+    "es" => "Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l.",
+    "cs" => "Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h.",
+    "sk" => "Like Czech, ch is one letter; note ľ and ô in their tailored slots.",
+    "pl" => "ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them.",
+    "sl" => "Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms.",
+    "hr" => "Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l.",
+    "ru" => "Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+.",
+    "uk" => "ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have.",
+    "bg" => "No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering.",
+    "sr" => "Serbian Cyrillic order: ђ after д, љ after л, њ after н.",
+    "mk" => "Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours.",
+    "zh" => "Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely.",
+    "ja" => "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block.",
+    "ko" => "Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ.",
+    "da" => "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you.",
+    "sv" => "Swedish: ä / ö / å all come after z, in that specific order.",
+    "is" => "Icelandic has ð (after d), þ (after z), æ (after y), ö (after z).",
+    "hu" => "Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters.",
+    "fi" => "Finnish ä and ö sort after z, like Swedish.",
+    "tr" => "Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed.",
+    "vi" => "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order.",
+    "lt" => "ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions.",
+    "lv" => "Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots.",
+    "ar" => "Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength.",
+    "he" => "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms.",
+    "el" => "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary.",
+    "th" => "Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…",
+    "hi" => "Devanagari vowel + consonant order; vowel signs collate with their independent forms."
+  }
+
+  @doc """
+  Returns a short human-readable hint explaining what the seed word
+  list demonstrates for the given language, or `nil` if no caption
+  is defined.
+  """
+  @spec seed_caption(String.t()) :: String.t() | nil
+  def seed_caption(language) when is_binary(language) do
+    Map.get(@seed_captions, String.downcase(language))
+  end
+
+  def seed_caption(_), do: nil
+
+  # One-click combinations that set multiple collation options. Each
+  # entry is `{id, label, description, option_map}` — the option_map
+  # is merged into the current options when applied.
+  @presets [
+    {:default, "Default", "Clear every override.", %{}},
+    {:case_insensitive, "Case-insensitive", "Collapses uppercase and lowercase.",
+     %{strength: "secondary"}},
+    {:accent_insensitive, "Accent-insensitive", "Ignores accents and case.",
+     %{strength: "primary"}},
+    {:punctuation_insensitive, "Ignore punctuation",
+     "Spaces and punctuation drop to the lowest level.", %{alternate: "shifted"}},
+    {:natural_numbers, "Natural numbers",
+     "Digit runs compared as numbers — item2 before item10.", %{numeric: true}},
+    {:uppercase_first, "Uppercase first", "Applied at tertiary strength.",
+     %{case_first: "upper"}},
+    {:french_accents, "French accents",
+     "Reverses the secondary level, the classic French accent rule.",
+     %{backwards: true}}
+  ]
+
+  @doc """
+  Returns the preset definitions used by the UI.
+  """
+  @spec presets() :: [{atom(), String.t(), String.t(), map()}]
+  def presets, do: @presets
+
+  @doc """
+  Returns the option map for a named preset, or `nil` if unknown.
+  """
+  @spec preset_options(atom()) :: map() | nil
+  def preset_options(id) do
+    Enum.find_value(@presets, fn {name, _, _, opts} -> name == id && opts end) || nil
+  end
+
+  @doc """
+  Returns a fresh "all defaults" options map for the given option specs.
+  """
+  @spec default_options([tuple()]) :: map()
+  def default_options(option_specs) do
+    for {key, _title, _desc, kind, _choices} <- option_specs, into: %{} do
+      case kind do
+        :checkbox -> {key, false}
+        :select -> {key, ""}
+      end
+    end
+  end
+
+  @doc """
   Options relevant to collation, in a display order that matches the
   mental model of "strength → case → accents → punctuation → numbers".
   Each entry is `{key, title, description, kind, choices}` where `kind`

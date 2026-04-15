@@ -4,6 +4,51 @@ import {LiveSocket} from "phoenix_live_view"
 
 const Hooks = {}
 
+// Persist a textarea's content in localStorage keyed by data-storage-key.
+// On mount, if we have a stored value, push it up to the LiveView so the
+// server state matches. Save on every input.
+Hooks.PersistText = {
+  mounted() {
+    const key = this.el.getAttribute("data-storage-key")
+    if (!key) return
+
+    this._key = key
+
+    try {
+      const saved = localStorage.getItem(key)
+      if (saved !== null && saved !== this.el.value) {
+        this.el.value = saved
+        this.pushEvent("persist_text", {value: saved})
+      }
+    } catch (e) { /* storage disabled */ }
+
+    this._onInput = () => {
+      try { localStorage.setItem(key, this.el.value) } catch (e) {}
+    }
+    this.el.addEventListener("input", this._onInput)
+  },
+
+  updated() {
+    const key = this.el.getAttribute("data-storage-key")
+    // If language changed, the storage key changes too. Load that
+    // language's saved version (if any) and push it up.
+    if (key && key !== this._key) {
+      this._key = key
+      try {
+        const saved = localStorage.getItem(key)
+        if (saved !== null && saved !== this.el.value) {
+          this.el.value = saved
+          this.pushEvent("persist_text", {value: saved})
+        }
+      } catch (e) {}
+    }
+  },
+
+  destroyed() {
+    if (this._onInput) this.el.removeEventListener("input", this._onInput)
+  }
+}
+
 Hooks.CopyToClipboard = {
   mounted() {
     const button = this.el.querySelector("[data-copy-target]")

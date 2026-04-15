@@ -21,7 +21,7 @@ defmodule LocalizePlayground.MixProject do
 
   defp deps do
     [
-      {:localize, path: "../localize"},
+      {:localize, "~> 0.12"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 1.0"},
