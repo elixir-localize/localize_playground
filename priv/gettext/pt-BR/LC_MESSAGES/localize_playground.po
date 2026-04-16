@@ -176,11 +176,6 @@ msgstr "ex.: en, zh, ar"
 msgid "Advanced formatting options"
 msgstr "Opções de formatação avançadas"
 
-#: lib/localize_playground_web/live/dates_live.ex:387
-#, elixir-autogen, icu-format
-msgid "Any BCP-47 locale. Shared with other tabs."
-msgstr "Qualquer localidade BCP-47. Partilhada com as outras abas."
-
 #: lib/localize_playground_web/live/numbers_live.ex:230
 #, elixir-autogen, icu-format
 msgid "Auto-set by a locale's -u-nu- subtag"
@@ -262,7 +257,7 @@ msgstr "Não foi possível resolver o padrão:"
 #: lib/localize_playground_web/live/numbers_live.ex:103
 #: lib/localize_playground_web/live/numbers_live.ex:131
 #: lib/localize_playground_web/live/page_live.ex:15
-#: lib/localize_playground_web/views/collation_view.ex:396
+#: lib/localize_playground_web/views/collation_view.ex:400
 #: lib/localize_playground_web/views/locale_view.ex:19
 #, elixir-autogen, icu-format
 msgid "Currency"
@@ -568,11 +563,6 @@ msgstr "Até"
 #, elixir-autogen, icu-format
 msgid "To (ISO 8601)"
 msgstr "Até (ISO 8601)"
-
-#: lib/localize_playground_web/live/numbers_live.ex:14
-#, elixir-autogen, icu-format
-msgid "Type a CLDR locale such as en, de, zh-Hant"
-msgstr "Introduza uma localidade CLDR como en, de, zh-Hant"
 
 #: lib/localize_playground_web/live/collation_live.ex:362
 #, elixir-autogen, icu-format
@@ -1060,7 +1050,7 @@ msgid "Suppress segmentation"
 msgstr ""
 
 #: lib/localize_playground_web/live/numbers_live.ex:508
-#: lib/localize_playground_web/views/collation_view.ex:395
+#: lib/localize_playground_web/views/collation_view.ex:399
 #, elixir-autogen, icu-format
 msgid "Symbol"
 msgstr "Símbolo"
@@ -1167,10 +1157,10 @@ msgstr "short · medium · long · full"
 msgid "~5 · 5+ · ≤5"
 msgstr "~5 · 5+ · ≤5"
 
-#: lib/localize_playground_web/views/collation_view.ex:365
-#: lib/localize_playground_web/views/collation_view.ex:376
-#: lib/localize_playground_web/views/collation_view.ex:384
-#: lib/localize_playground_web/views/collation_view.ex:392
+#: lib/localize_playground_web/views/collation_view.ex:369
+#: lib/localize_playground_web/views/collation_view.ex:380
+#: lib/localize_playground_web/views/collation_view.ex:388
+#: lib/localize_playground_web/views/collation_view.ex:396
 #, elixir-autogen, icu-format
 msgid "(locale default)"
 msgstr "(padrão da localidade)"
@@ -1186,57 +1176,57 @@ msgstr ""
 msgid "ASCII-only"
 msgstr "Apenas ASCII"
 
-#: lib/localize_playground_web/views/collation_view.ex:309
+#: lib/localize_playground_web/views/collation_view.ex:313
 #, elixir-autogen, icu-format
 msgid "Accent-insensitive"
 msgstr "Não diferencia acentos"
 
-#: lib/localize_playground_web/views/collation_view.ex:372
+#: lib/localize_playground_web/views/collation_view.ex:376
 #, elixir-autogen, icu-format
 msgid "Alternate"
 msgstr "Alternar"
 
-#: lib/localize_playground_web/views/collation_view.ex:316
+#: lib/localize_playground_web/views/collation_view.ex:320
 #, elixir-autogen, icu-format
 msgid "Applied at tertiary strength."
 msgstr "Aplicado na intensidade terciária."
 
-#: lib/localize_playground_web/views/collation_view.ex:401
+#: lib/localize_playground_web/views/collation_view.ex:405
 #, elixir-autogen, icu-format
 msgid "Backwards secondary (French)"
 msgstr "Secundário inverso (francês)"
 
-#: lib/localize_playground_web/views/collation_view.ex:405
+#: lib/localize_playground_web/views/collation_view.ex:409
 #, elixir-autogen, icu-format
 msgid "Canonicalize input before comparing. Usually only needed for unusual source data."
 msgstr "Canonicaliza a entrada antes de comparar. Normalmente só é necessário para dados de origem incomuns."
 
-#: lib/localize_playground_web/views/collation_view.ex:380
+#: lib/localize_playground_web/views/collation_view.ex:384
 #, elixir-autogen, icu-format
 msgid "Case first"
 msgstr "Maiúsculas/minúsculas primeiro"
 
-#: lib/localize_playground_web/views/collation_view.ex:398
+#: lib/localize_playground_web/views/collation_view.ex:402
 #, elixir-autogen, icu-format
 msgid "Case level"
 msgstr "Nível de maiúsculas"
 
-#: lib/localize_playground_web/views/collation_view.ex:307
+#: lib/localize_playground_web/views/collation_view.ex:311
 #, elixir-autogen, icu-format
 msgid "Case-insensitive"
 msgstr "Não diferencia maiúsculas/minúsculas"
 
-#: lib/localize_playground_web/views/collation_view.ex:306
+#: lib/localize_playground_web/views/collation_view.ex:310
 #, elixir-autogen, icu-format
 msgid "Clear every override."
 msgstr "Limpar todas as substituições."
 
-#: lib/localize_playground_web/views/collation_view.ex:308
+#: lib/localize_playground_web/views/collation_view.ex:312
 #, elixir-autogen, icu-format
 msgid "Collapses uppercase and lowercase."
 msgstr "Une maiúsculas e minúsculas."
 
-#: lib/localize_playground_web/views/collation_view.ex:306
+#: lib/localize_playground_web/views/collation_view.ex:310
 #, elixir-autogen, icu-format
 msgid "Default"
 msgstr "Padrão"
@@ -1246,7 +1236,7 @@ msgstr "Padrão"
 msgid "Derived pattern"
 msgstr "Padrão derivado"
 
-#: lib/localize_playground_web/views/collation_view.ex:314
+#: lib/localize_playground_web/views/collation_view.ex:318
 #, elixir-autogen, icu-format
 msgid "Digit runs compared as numbers — item2 before item10."
 msgstr "Sequências de dígitos comparadas como números — item2 antes de item10."
@@ -1261,7 +1251,7 @@ msgstr "Cada opção aqui é aplicada sobre a personalização integrada da loca
 msgid "Enable"
 msgstr "Ativar"
 
-#: lib/localize_playground_web/views/collation_view.ex:317
+#: lib/localize_playground_web/views/collation_view.ex:321
 #, elixir-autogen, icu-format
 msgid "French accents"
 msgstr "Acentos franceses"
@@ -1276,27 +1266,27 @@ msgstr ""
 msgid "Hide sort keys"
 msgstr "Ocultar chaves de ordenação"
 
-#: lib/localize_playground_web/views/collation_view.ex:362
+#: lib/localize_playground_web/views/collation_view.ex:366
 #, elixir-autogen, icu-format
 msgid "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."
 msgstr "Quão detalhada é a comparação. Maior intensidade distingue mais diferenças (maiúsculas/minúsculas, acentos)."
 
-#: lib/localize_playground_web/views/collation_view.ex:370
+#: lib/localize_playground_web/views/collation_view.ex:374
 #, elixir-autogen, icu-format
 msgid "Identical — full code-point"
 msgstr "Idêntica — ponto de código completo"
 
-#: lib/localize_playground_web/views/collation_view.ex:311
+#: lib/localize_playground_web/views/collation_view.ex:315
 #, elixir-autogen, icu-format
 msgid "Ignore punctuation"
 msgstr "Ignorar pontuação"
 
-#: lib/localize_playground_web/views/collation_view.ex:310
+#: lib/localize_playground_web/views/collation_view.ex:314
 #, elixir-autogen, icu-format
 msgid "Ignores accents and case."
 msgstr "Ignora acentos e maiúsculas/minúsculas."
 
-#: lib/localize_playground_web/views/collation_view.ex:399
+#: lib/localize_playground_web/views/collation_view.ex:403
 #, elixir-autogen, icu-format
 msgid "Inserts a dedicated case comparison level. Lets primary strength still distinguish case."
 msgstr "Insere um nível dedicado para comparação de maiúsculas/minúsculas. Permite que a intensidade primária ainda as distinga."
@@ -1316,32 +1306,32 @@ msgstr "Data/hora inválida no intervalo"
 msgid "Invalid time in range"
 msgstr "Hora inválida no intervalo"
 
-#: lib/localize_playground_web/views/collation_view.ex:386
+#: lib/localize_playground_web/views/collation_view.ex:390
 #, elixir-autogen, icu-format
 msgid "Lower first"
 msgstr "Minúsculas primeiro"
 
-#: lib/localize_playground_web/views/collation_view.ex:388
+#: lib/localize_playground_web/views/collation_view.ex:392
 #, elixir-autogen, icu-format
 msgid "Max variable"
 msgstr "Máx. variável"
 
-#: lib/localize_playground_web/views/collation_view.ex:404
+#: lib/localize_playground_web/views/collation_view.ex:408
 #, elixir-autogen, icu-format, fuzzy
 msgid "NFD normalization"
 msgstr "Normalização NFD"
 
-#: lib/localize_playground_web/views/collation_view.ex:313
+#: lib/localize_playground_web/views/collation_view.ex:317
 #, elixir-autogen, icu-format
 msgid "Natural numbers"
 msgstr "Números naturais"
 
-#: lib/localize_playground_web/views/collation_view.ex:377
+#: lib/localize_playground_web/views/collation_view.ex:381
 #, elixir-autogen, icu-format
 msgid "Non-ignorable (default)"
 msgstr "Não ignorável (padrão)"
 
-#: lib/localize_playground_web/views/collation_view.ex:407
+#: lib/localize_playground_web/views/collation_view.ex:411
 #, elixir-autogen, icu-format
 msgid "Numeric mode"
 msgstr "Modo numérico"
@@ -1366,17 +1356,17 @@ msgstr "Comparação em pares"
 msgid "Pick a script or group…"
 msgstr "Escolha um script ou grupo…"
 
-#: lib/localize_playground_web/views/collation_view.ex:366
+#: lib/localize_playground_web/views/collation_view.ex:370
 #, elixir-autogen, icu-format
 msgid "Primary — base letters only"
 msgstr "Primária — apenas letras base"
 
-#: lib/localize_playground_web/views/collation_view.ex:393
+#: lib/localize_playground_web/views/collation_view.ex:397
 #, elixir-autogen, icu-format
 msgid "Punctuation (default)"
 msgstr "Pontuação (padrão)"
 
-#: lib/localize_playground_web/views/collation_view.ex:369
+#: lib/localize_playground_web/views/collation_view.ex:373
 #, elixir-autogen, icu-format
 msgid "Quaternary — also punctuation"
 msgstr "Quaternária — também pontuação"
@@ -1396,22 +1386,22 @@ msgstr "Esqueleto solicitado"
 msgid "Resolved skeleton"
 msgstr "Esqueleto resolvido"
 
-#: lib/localize_playground_web/views/collation_view.ex:402
+#: lib/localize_playground_web/views/collation_view.ex:406
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level — the classic French accent rule."
 msgstr "Inverte o nível secundário — a clássica regra francesa de acentos."
 
-#: lib/localize_playground_web/views/collation_view.ex:318
+#: lib/localize_playground_web/views/collation_view.ex:322
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level, the classic French accent rule."
 msgstr "Inverte o nível secundário, a clássica regra francesa de acentos."
 
-#: lib/localize_playground_web/views/collation_view.ex:367
+#: lib/localize_playground_web/views/collation_view.ex:371
 #, elixir-autogen, icu-format
 msgid "Secondary — also accents"
 msgstr "Secundária — também acentos"
 
-#: lib/localize_playground_web/views/collation_view.ex:378
+#: lib/localize_playground_web/views/collation_view.ex:382
 #, elixir-autogen, icu-format
 msgid "Shifted"
 msgstr "Deslocado"
@@ -1421,17 +1411,17 @@ msgstr "Deslocado"
 msgid "Show sort keys"
 msgstr "Mostrar chaves de ordenação"
 
-#: lib/localize_playground_web/views/collation_view.ex:394
+#: lib/localize_playground_web/views/collation_view.ex:398
 #, elixir-autogen, icu-format
 msgid "Space"
 msgstr "Espaço"
 
-#: lib/localize_playground_web/views/collation_view.ex:312
+#: lib/localize_playground_web/views/collation_view.ex:316
 #, elixir-autogen, icu-format
 msgid "Spaces and punctuation drop to the lowest level."
 msgstr "Espaços e pontuação caem para o nível mais baixo."
 
-#: lib/localize_playground_web/views/collation_view.ex:361
+#: lib/localize_playground_web/views/collation_view.ex:365
 #, elixir-autogen, icu-format
 msgid "Strength"
 msgstr "Intensidade"
@@ -1441,7 +1431,7 @@ msgstr "Intensidade"
 msgid "Subtag"
 msgstr "Subtag"
 
-#: lib/localize_playground_web/views/collation_view.ex:368
+#: lib/localize_playground_web/views/collation_view.ex:372
 #, elixir-autogen, icu-format
 msgid "Tertiary — also case"
 msgstr "Terciária — também maiúsculas/minúsculas"
@@ -1456,32 +1446,32 @@ msgstr "Intervalo de tempo"
 msgid "To (HH:MM:SS)"
 msgstr "Hora (HH:MM:SS)"
 
-#: lib/localize_playground_web/views/collation_view.ex:408
+#: lib/localize_playground_web/views/collation_view.ex:412
 #, elixir-autogen, icu-format
 msgid "Treat digit runs as numbers (so `item2` sorts before `item10`)."
 msgstr "Trata sequências de dígitos como números (para que `item2` ordene antes de `item10`)."
 
-#: lib/localize_playground_web/views/collation_view.ex:385
+#: lib/localize_playground_web/views/collation_view.ex:389
 #, elixir-autogen, icu-format
 msgid "Upper first"
 msgstr "Maiúsculas primeiro"
 
-#: lib/localize_playground_web/views/collation_view.ex:315
+#: lib/localize_playground_web/views/collation_view.ex:319
 #, elixir-autogen, icu-format
 msgid "Uppercase first"
 msgstr "Maiúsculas primeiro"
 
-#: lib/localize_playground_web/views/collation_view.ex:381
+#: lib/localize_playground_web/views/collation_view.ex:385
 #, elixir-autogen, icu-format
 msgid "When strength ≥ tertiary, whether uppercase or lowercase sorts first."
 msgstr "Quando a intensidade ≥ terciária, se maiúsculas ou minúsculas ordenam primeiro."
 
-#: lib/localize_playground_web/views/collation_view.ex:373
+#: lib/localize_playground_web/views/collation_view.ex:377
 #, elixir-autogen, icu-format
 msgid "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."
 msgstr "Se pontuação e espaços em branco têm peso. `Deslocado` os move para o último nível."
 
-#: lib/localize_playground_web/views/collation_view.ex:389
+#: lib/localize_playground_web/views/collation_view.ex:393
 #, elixir-autogen, icu-format
 msgid "Which classes of characters are treated as variable-weight when alternate = shifted."
 msgstr "Quais classes de caracteres são tratadas como peso variável quando alternate = shifted."
@@ -2182,3 +2172,163 @@ msgstr "Duas opções"
 #, elixir-autogen, icu-format
 msgid "Provide feedback"
 msgstr "Enviar feedback"
+
+#: lib/localize_playground_web/views/collation_view.ex:281
+#, elixir-autogen, icu-format
+msgid "Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:285
+#, elixir-autogen, icu-format
+msgid "Devanagari vowel + consonant order; vowel signs collate with their independent forms."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:275
+#, elixir-autogen, icu-format
+msgid "Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:263
+#, elixir-autogen, icu-format
+msgid "Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:277
+#, elixir-autogen, icu-format
+msgid "Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed."
+msgstr "İ / i com ponto vs I / ı sem ponto — são letras diferentes em turco, nunca fundidas."
+
+#: lib/localize_playground_web/views/collation_view.ex:276
+#, elixir-autogen, icu-format
+msgid "Finnish ä and ö sort after z, like Swedish."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:283
+#, elixir-autogen, icu-format
+msgid "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:271
+#, elixir-autogen, icu-format
+msgid "Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."
+msgstr "O hangul ordena por jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."
+
+#: lib/localize_playground_web/views/collation_view.ex:282
+#, elixir-autogen, icu-format
+msgid "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:274
+#, elixir-autogen, icu-format
+msgid "Icelandic has ð (after d), þ (after z), æ (after y), ö (after z)."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:270
+#, elixir-autogen, icu-format
+msgid "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."
+msgstr "Os kana ordenam primeiro em gojūon e os kanji seguem — mude para Unihan para reordenar o bloco kanji."
+
+#: lib/localize_playground_web/views/collation_view.ex:280
+#, elixir-autogen, icu-format
+msgid "Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:260
+#, elixir-autogen, icu-format
+msgid "Like Czech, ch is one letter; note ľ and ô in their tailored slots."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:268
+#, elixir-autogen, icu-format
+msgid "Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:266
+#, elixir-autogen, icu-format
+msgid "No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:259
+#, elixir-autogen, icu-format
+msgid "Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:257
+#, elixir-autogen, icu-format
+msgid "Primary strength ignores the accents on città, perché, così."
+msgstr "A intensidade primária ignora os acentos em città, perché, così."
+
+#: lib/localize_playground_web/views/collation_view.ex:267
+#, elixir-autogen, icu-format
+msgid "Serbian Cyrillic order: ђ after д, љ after л, њ after н."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:262
+#, elixir-autogen, icu-format
+msgid "Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:254
+#, elixir-autogen, icu-format
+msgid "Standard English mixes case and accented forms — try strength = primary to collapse them."
+msgstr "O inglês padrão mistura maiúsculas/minúsculas e formas acentuadas — tente intensidade = primary para uni-las."
+
+#: lib/localize_playground_web/views/collation_view.ex:264
+#, elixir-autogen, icu-format
+msgid "Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:273
+#, elixir-autogen, icu-format
+msgid "Swedish: ä / ö / å all come after z, in that specific order."
+msgstr "Sueco: ä / ö / å vêm depois de z, nessa ordem específica."
+
+#: lib/localize_playground_web/views/collation_view.ex:269
+#, elixir-autogen, icu-format
+msgid "Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely."
+msgstr "Alterne entre Pinyin / Stroke / Zhuyin para ver os mesmos caracteres reordenarem-se por completo."
+
+#: lib/localize_playground_web/views/collation_view.ex:256
+#, elixir-autogen, icu-format
+msgid "Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller."
+msgstr "Alterne entre Standard e Phonebook — Phonebook trata ü como ue, logo Müller fica entre Mueller e Muller."
+
+#: lib/localize_playground_web/views/collation_view.ex:258
+#, elixir-autogen, icu-format
+msgid "Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l."
+msgstr "Alterne entre Standard e Traditional — Traditional trata ch e ll como letras próprias, após c e l."
+
+#: lib/localize_playground_web/views/collation_view.ex:284
+#, elixir-autogen, icu-format
+msgid "Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…"
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:255
+#, elixir-autogen, icu-format
+msgid "Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left."
+msgstr "Ative Secundário-inverso (francês) para ver côté / coté trocarem porque a ordem dos acentos lê-se da direita para a esquerda."
+
+#: lib/localize_playground_web/views/collation_view.ex:278
+#, elixir-autogen, icu-format
+msgid "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:272
+#, elixir-autogen, icu-format
+msgid "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."
+msgstr "Em dinamarquês, æ / ø / å ordenam depois de z — o oposto da ordem de codepoints."
+
+#: lib/localize_playground_web/views/collation_view.ex:261
+#, elixir-autogen, icu-format
+msgid "ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:279
+#, elixir-autogen, icu-format
+msgid "ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions."
+msgstr ""
+
+#: lib/localize_playground_web/views/collation_view.ex:265
+#, elixir-autogen, icu-format
+msgid "ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have."
+msgstr ""

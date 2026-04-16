@@ -248,40 +248,41 @@ defmodule LocalizePlaygroundWeb.CollationView do
 
   # Per-language captions for the seed word list. Each string is a
   # one-line hint that tells the user what to watch for when they
-  # change the collation variant or options.
+  # change the collation variant or options. Wrapped in `gettext_noop`
+  # so extraction sees them; translated at runtime in `seed_caption/1`.
   @seed_captions %{
-    "en" => "Standard English mixes case and accented forms — try strength = primary to collapse them.",
-    "fr" => "Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left.",
-    "de" => "Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller.",
-    "it" => "Primary strength ignores the accents on città, perché, così.",
-    "es" => "Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l.",
-    "cs" => "Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h.",
-    "sk" => "Like Czech, ch is one letter; note ľ and ô in their tailored slots.",
-    "pl" => "ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them.",
-    "sl" => "Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms.",
-    "hr" => "Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l.",
-    "ru" => "Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+.",
-    "uk" => "ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have.",
-    "bg" => "No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering.",
-    "sr" => "Serbian Cyrillic order: ђ after д, љ after л, њ after н.",
-    "mk" => "Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours.",
-    "zh" => "Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely.",
-    "ja" => "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block.",
-    "ko" => "Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ.",
-    "da" => "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you.",
-    "sv" => "Swedish: ä / ö / å all come after z, in that specific order.",
-    "is" => "Icelandic has ð (after d), þ (after z), æ (after y), ö (after z).",
-    "hu" => "Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters.",
-    "fi" => "Finnish ä and ö sort after z, like Swedish.",
-    "tr" => "Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed.",
-    "vi" => "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order.",
-    "lt" => "ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions.",
-    "lv" => "Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots.",
-    "ar" => "Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength.",
-    "he" => "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms.",
-    "el" => "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary.",
-    "th" => "Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…",
-    "hi" => "Devanagari vowel + consonant order; vowel signs collate with their independent forms."
+    "en" => gettext_noop("Standard English mixes case and accented forms — try strength = primary to collapse them."),
+    "fr" => gettext_noop("Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left."),
+    "de" => gettext_noop("Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller."),
+    "it" => gettext_noop("Primary strength ignores the accents on città, perché, così."),
+    "es" => gettext_noop("Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l."),
+    "cs" => gettext_noop("Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h."),
+    "sk" => gettext_noop("Like Czech, ch is one letter; note ľ and ô in their tailored slots."),
+    "pl" => gettext_noop("ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them."),
+    "sl" => gettext_noop("Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms."),
+    "hr" => gettext_noop("Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l."),
+    "ru" => gettext_noop("Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+."),
+    "uk" => gettext_noop("ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have."),
+    "bg" => gettext_noop("No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering."),
+    "sr" => gettext_noop("Serbian Cyrillic order: ђ after д, љ after л, њ after н."),
+    "mk" => gettext_noop("Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours."),
+    "zh" => gettext_noop("Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely."),
+    "ja" => gettext_noop("Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."),
+    "ko" => gettext_noop("Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."),
+    "da" => gettext_noop("æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."),
+    "sv" => gettext_noop("Swedish: ä / ö / å all come after z, in that specific order."),
+    "is" => gettext_noop("Icelandic has ð (after d), þ (after z), æ (after y), ö (after z)."),
+    "hu" => gettext_noop("Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters."),
+    "fi" => gettext_noop("Finnish ä and ö sort after z, like Swedish."),
+    "tr" => gettext_noop("Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed."),
+    "vi" => gettext_noop("Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."),
+    "lt" => gettext_noop("ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions."),
+    "lv" => gettext_noop("Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots."),
+    "ar" => gettext_noop("Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength."),
+    "he" => gettext_noop("Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."),
+    "el" => gettext_noop("Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."),
+    "th" => gettext_noop("Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…"),
+    "hi" => gettext_noop("Devanagari vowel + consonant order; vowel signs collate with their independent forms.")
   }
 
   @doc """
@@ -291,7 +292,10 @@ defmodule LocalizePlaygroundWeb.CollationView do
   """
   @spec seed_caption(String.t()) :: String.t() | nil
   def seed_caption(language) when is_binary(language) do
-    Map.get(@seed_captions, String.downcase(language))
+    case Map.get(@seed_captions, String.downcase(language)) do
+      nil -> nil
+      msgid -> Gettext.dgettext(LocalizePlaygroundWeb.Gettext, "localize_playground", msgid)
+    end
   end
 
   def seed_caption(_), do: nil
