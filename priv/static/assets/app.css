@@ -537,6 +537,28 @@ input[type="text"],
 }
 .lp-pattern-example { color: var(--lp-text-dim); }
 
+/* ── Makeup syntax highlighting (Monokai adapted for dark UI) ─── */
+.highlight { color: #f8f8f2; background: transparent; }
+.highlight .n { color: #f8f8f2; }  /* name */
+.highlight .nc { color: #a6e22e; } /* module/class */
+.highlight .nf { color: #a6e22e; } /* function */
+.highlight .na { color: #a6e22e; } /* attribute */
+.highlight .k, .highlight .kc, .highlight .kd,
+.highlight .kn, .highlight .kp, .highlight .kr { color: #66d9ef; } /* keywords */
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sa,
+.highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd,
+.highlight .se, .highlight .sh, .highlight .si, .highlight .sr,
+.highlight .ss, .highlight .sx { color: #e6db74; } /* strings/atoms */
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .mb,
+.highlight .mh, .highlight .mo, .highlight .il { color: #ae81ff; } /* numbers */
+.highlight .o, .highlight .ow { color: #f92672; } /* operators */
+.highlight .p { color: #f8f8f2; } /* punctuation */
+.highlight .c, .highlight .c1, .highlight .cm,
+.highlight .cs, .highlight .cp { color: #75715e; } /* comments */
+.highlight .no { color: #66d9ef; } /* constants */
+.highlight .bp { color: #f8f8f2; } /* builtins */
+.highlight .w { }                  /* whitespace — no style needed */
+
 /* Call code card */
 .lp-call-code {
   position: relative;

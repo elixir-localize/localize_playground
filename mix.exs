@@ -35,6 +35,8 @@ defmodule LocalizePlayground.MixProject do
       {:tz, "~> 0.28"},
       {:bandit, "~> 1.5"},
       {:gettext, "~> 1.0"},
+      {:makeup, "~> 1.2"},
+      {:makeup_elixir, "~> 1.0"},
       {:jason, "~> 1.4"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:phoenix_live_reload, "~> 1.5", only: :dev}

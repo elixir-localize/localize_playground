@@ -9,6 +9,7 @@ defmodule LocalizePlaygroundWeb.HexDocs do
   """
 
   use Phoenix.Component
+  import Phoenix.HTML, only: [raw: 1]
 
   # The slide-out panel itself — rendered once per page layout.
   attr :id, :string, default: "hexdocs-panel"
@@ -34,34 +35,39 @@ defmodule LocalizePlaygroundWeb.HexDocs do
   attr :id, :string, default: nil
 
   def code(assigns) do
-    parts = parse(assigns.code)
-    assigns = assign(assigns, :parts, parts)
+    highlighted = highlight_and_link(assigns.code)
+    assigns = assign(assigns, :highlighted, highlighted)
 
     ~H"""
-    <pre class={@class} id={@id}><%= for part <- @parts do %><.segment part={part} /><% end %></pre>
+    <pre class={[@class, "highlight"]} id={@id}>{raw(@highlighted)}</pre>
     """
   end
 
-  attr :part, :any, required: true
-
-  defp segment(%{part: {:text, text}} = assigns) do
-    assigns = assign(assigns, :text, text)
-    ~H|<%= @text %>|
+  # Runs Makeup syntax highlighting on the code, then post-processes
+  # the HTML to wrap `Localize.*` module.function references in
+  # clickable HexDocs links.
+  defp highlight_and_link(code) do
+    code
+    |> Makeup.highlight_inner_html(lexer: Makeup.Lexers.ElixirLexer)
+    |> linkify_localize_refs()
   end
 
-  defp segment(%{part: {:fun, module_path, func, arity, text}} = assigns) do
-    proxied = hexdocs_url(module_path, func, arity)
-    external = external_hexdocs_url(module_path, func, arity)
+  # Finds Makeup-highlighted `Localize.X.Y` module spans followed by
+  # `.func` and wraps the whole sequence in an <a data-hexdocs> link.
+  #
+  # Makeup emits: <span class="nc">Localize.Unit</span><span class="o">.</span><span class="n">new</span>
+  # We wrap that as: <a class="lp-hexdocs-link" data-hexdocs ...>..original spans..</a>
+  defp linkify_localize_refs(html) do
+    regex =
+      ~r/(<span class="nc">(Localize(?:\.[A-Z][A-Za-z0-9_]*)+)<\/span><span class="o">\.<\/span><span class="n">([a-z_][A-Za-z0-9_?!]*)<\/span>)/
 
-    assigns =
-      assigns
-      |> assign(:url, proxied)
-      |> assign(:external_url, external)
-      |> assign(:text, text)
+    Regex.replace(regex, html, fn _full, inner, module_path, func ->
+      arity = 0
+      proxied = hexdocs_url(module_path, func, arity)
+      external = external_hexdocs_url(module_path, func, arity)
 
-    ~H"""
-    <a href={@url} data-hexdocs-external-url={@external_url} class="lp-hexdocs-link" data-hexdocs target="_blank" rel="noopener">{@text}</a>
-    """
+      ~s|<a href="#{proxied}" data-hexdocs-external-url="#{external}" class="lp-hexdocs-link" data-hexdocs target="_blank" rel="noopener">#{inner}</a>|
+    end)
   end
 
   @doc """
