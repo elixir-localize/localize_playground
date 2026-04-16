@@ -1,13 +1,18 @@
-# fly.toml app configuration file generated for localize-playground on 2026-04-16T10:05:06+02:00
+# fly.toml — Fly.io deployment configuration for Localize Playground.
 #
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# Deploy with:
+#   fly deploy
+#   fly secrets set SECRET_KEY_BASE=$(mix phx.gen.secret)
 
 app = 'localize-playground'
 primary_region = 'iad'
 kill_signal = 'SIGTERM'
 
 [build]
+  # Large builder for CLDR data + gettext compilation across 25 locales.
+  # The split_module_by: [:locale] option in gettext.ex helps, but CLDR
+  # data compilation in the localize dep is still memory-hungry.
+  vm_size = 'performance-4x'
 
 [env]
   PHX_HOST = 'localize-playground.fly.dev'
@@ -25,8 +30,9 @@ kill_signal = 'SIGTERM'
     hard_limit = 1000
     soft_limit = 1000
 
+# Runtime VM — the app is read-heavy (no DB, no background jobs) so a
+# small shared-cpu machine with enough RAM for CLDR data is fine.
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 1024

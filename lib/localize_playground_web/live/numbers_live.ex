@@ -9,57 +9,58 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
   def render(assigns) do
     ~H"""
-    <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <div class="lp-dt-top">
-        <.field label={gettext("Locale")} for="locale">
-          <input
-            id="locale"
-            name="locale"
-            type="text"
-            list="locales"
-            value={@locale}
-            phx-debounce="150"
-          />
-          <datalist id="locales">
-            <option :for={locale <- @locale_options} value={locale}></option>
-          </datalist>
-        </.field>
-      </div>
+    <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off"
+      phx-hook="SyncStyleGroup" id="numbers-form" data-style-group={@style_group}>
+      <.section title={gettext("Locale and number")}>
+        <div class="lp-dt-top">
+          <.field label={gettext("Locale")} for="locale">
+            <input
+              id="locale"
+              name="locale"
+              type="text"
+              list="locales"
+              value={@locale}
+              phx-debounce="150"
+            />
+            <datalist id="locales">
+              <option :for={locale <- @locale_options} value={locale}></option>
+            </datalist>
+          </.field>
 
-      <div class="lp-top-row">
-        <.field :if={@style_group != :range} label={gettext("Number")} for="number">
-          <input
-            id="number"
-            name="number"
-            type="text"
-            value={@number}
-            inputmode="decimal"
-            phx-debounce="150"
-          />
-        </.field>
+          <.field :if={@style_group != :range} label={gettext("Number")} for="number">
+            <input
+              id="number"
+              name="number"
+              type="text"
+              value={@number}
+              inputmode="decimal"
+              phx-debounce="150"
+            />
+          </.field>
 
-        <.field :if={@style_group == :range} label={gettext("Range start")} for="number">
-          <input
-            id="number"
-            name="number"
-            type="text"
-            value={@number}
-            inputmode="decimal"
-            phx-debounce="150"
-          />
-        </.field>
+          <.field :if={@style_group == :range} label={gettext("Range start")} for="number">
+            <input
+              id="number"
+              name="number"
+              type="text"
+              value={@number}
+              inputmode="decimal"
+              phx-debounce="150"
+            />
+          </.field>
 
-        <.field :if={@style_group == :range} label={gettext("Range end")} for="range_end">
-          <input
-            id="range_end"
-            name="range_end"
-            type="text"
-            value={@range_end}
-            inputmode="decimal"
-            phx-debounce="150"
-          />
-        </.field>
-      </div>
+          <.field :if={@style_group == :range} label={gettext("Range end")} for="range_end">
+            <input
+              id="range_end"
+              name="range_end"
+              type="text"
+              value={@range_end}
+              inputmode="decimal"
+              phx-debounce="150"
+            />
+          </.field>
+        </div>
+      </.section>
 
       <.section title={gettext("Formatted number")} class="lp-result-section">
         <.call_code_card code={@call_code} />

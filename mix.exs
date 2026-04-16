@@ -27,7 +27,7 @@ defmodule LocalizePlayground.MixProject do
   defp deps do
     [
       {:localize, "~> 0.14"},
-      {:localize_web, "~> 0.2"},
+      {:localize_web, "~> 0.4"},
       {:calendrical, "~> 0.2"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},

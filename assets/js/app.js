@@ -136,6 +136,23 @@ Hooks.PatternReferencePanel = {
   }
 }
 
+// Keeps the URL query string in sync with data-style-group so the
+// Referer header carries the selection across a UI locale change
+// (which does a full POST → redirect → mount cycle).
+Hooks.SyncStyleGroup = {
+  mounted() { this._sync() },
+  updated() { this._sync() },
+  _sync() {
+    const group = this.el.getAttribute("data-style-group")
+    if (!group) return
+    const url = new URL(window.location)
+    if (url.searchParams.get("style_group") !== group) {
+      url.searchParams.set("style_group", group)
+      history.replaceState(history.state, "", url)
+    }
+  }
+}
+
 Hooks.MF2ReferencePanel = {
   mounted() {
     const panel = this.el

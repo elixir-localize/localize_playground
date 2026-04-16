@@ -170,7 +170,7 @@ defmodule LocalizePlaygroundWeb.ListsLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title={gettext("Locale")}>
+      <.section title={gettext("List")}>
         <div class="lp-dt-top">
           <.field label={gettext("Locale")} for="locale">
             <input id="locale" name="locale" type="text" list="list-locales" value={@locale} phx-debounce="200" />

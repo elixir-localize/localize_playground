@@ -357,8 +357,6 @@ defmodule LocalizePlaygroundWeb.CollationLive do
               phx-debounce="200"
             />
           </.field>
-        </div>
-        <div class="lp-coll-header">
           <.field label={gettext("Collation variant")} for="collation" hint={gettext("Variants available for this language.")}>
             <select id="collation" name="collation">
               <option :for={variant <- @collations} value={variant} selected={@collation == variant}>

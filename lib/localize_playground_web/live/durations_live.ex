@@ -220,7 +220,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title={gettext("Locale")}>
+      <.section title={gettext("Duration")}>
         <div class="lp-dt-top">
           <.field label={gettext("Locale")} for="locale">
             <input id="locale" name="locale" type="text" list="dr-locales" value={@locale} phx-debounce="200" />

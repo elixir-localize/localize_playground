@@ -311,7 +311,7 @@ Localize.Unit.to_string(converted#{locale_opt})|
   def render(assigns) do
     ~H"""
     <form phx-change="update" phx-submit="update" class="lp-form" autocomplete="off">
-      <.section title={gettext("Locale")}>
+      <.section title={gettext("Unit")}>
         <div class="lp-dt-top">
           <.field label={gettext("Locale")} for="locale">
             <input id="locale" name="locale" type="text" list="u-locales" value={@locale} phx-debounce="200" />

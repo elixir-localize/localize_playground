@@ -107,6 +107,7 @@ defmodule LocalizePlaygroundWeb.PageLive do
       |> assign(:locale_options, NumberView.locale_options())
       |> assign(:currency_options, NumberView.currency_options())
       |> assign_defaults()
+      |> restore_from_params(params)
       |> assign(:locale, initial_locale)
       |> maybe_apply_u_extensions(true)
       |> refresh_rbnf_rules_if_needed()
@@ -136,6 +137,28 @@ defmodule LocalizePlaygroundWeb.PageLive do
     |> assign(:number_system, :default)
     |> assign(:u_extensions, %{})
     |> assign(:rbnf_rules, NumberView.rbnf_rules("en"))
+  end
+
+  # Restore UI state from URL query params so selections survive
+  # the full-page reload triggered by a UI locale change.
+  defp restore_from_params(socket, params) do
+    socket
+    |> maybe_restore_atom(params, "style_group", :style_group, Enum.map(@style_groups, & &1.id))
+  end
+
+  defp maybe_restore_atom(socket, params, key, assign_key, valid) do
+    case Map.get(params, key) do
+      nil ->
+        socket
+
+      value ->
+        try do
+          atom = String.to_existing_atom(value)
+          if atom in valid, do: assign(socket, assign_key, atom), else: socket
+        rescue
+          ArgumentError -> socket
+        end
+    end
   end
 
   @impl true

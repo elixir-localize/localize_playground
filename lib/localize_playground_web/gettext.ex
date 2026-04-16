@@ -17,7 +17,9 @@ defmodule LocalizePlaygroundWeb.Gettext do
     otp_app: :localize_playground,
     default_domain: "localize_playground",
     interpolation: Localize.Gettext.Interpolation,
-    plural_forms: LocalizePlaygroundWeb.GettextPlural
+    plural_forms: LocalizePlaygroundWeb.GettextPlural,
+    split_module_by: [:locale],
+    split_module_compilation: :parallel
 end
 
 # NOTE: We never call Gettext's `ngettext/3` in this app — pluralization
