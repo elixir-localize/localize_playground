@@ -694,7 +694,7 @@ input[type="text"],
   color: var(--lp-text-dim);
   line-height: 1.4;
 }
-.lp-ext-control select, .lp-ext-control input { width: 100%; }
+.lp-ext-control select, .lp-ext-control input:not([type="checkbox"]) { width: 100%; }
 
 /* Canonical locale card */
 .lp-canonical-section h2 { color: var(--lp-accent); }

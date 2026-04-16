@@ -334,7 +334,7 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         value="true"
         checked={@checked}
       />
-      <span>{gettext("Enable")}</span>
+      <span>{gettext("Enable?")}</span>
     </label>
     """
   end
