@@ -236,6 +236,9 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
         <div :if={@raw_locale != @canonical_locale and !@error} class="lp-muted lp-helper lp-canon-hint">
           {raw(gettext("You entered {$raw}; it canonicalized to {$canonical}.", raw: "<code>#{@raw_locale}</code>", canonical: "<code>#{@canonical_locale}</code>"))}
         </div>
+        <div :if={@raw_locale == @canonical_locale and !@error} class="lp-muted lp-helper lp-canon-hint">
+          {raw(gettext("Your locale is already canonical: {$locale}.", locale: "<code>#{@canonical_locale}</code>"))}
+        </div>
         <.canonical_card
           canonical={@canonical_locale}
           raw={@raw_locale}
@@ -301,6 +304,8 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     """
   end
 
+  @boolean_ext_keys [:kb, :kc, :kh, :kk, :kn]
+
   attr :key, :atom, required: true
   attr :value, :string, required: true
   attr :options, :list, required: true
@@ -314,6 +319,23 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
       placeholder="(default)"
       phx-debounce="200"
     />
+    """
+  end
+
+  defp ext_input(%{key: key} = assigns) when key in @boolean_ext_keys do
+    assigns = assign(assigns, :checked, assigns.value == "true")
+
+    ~H"""
+    <label class="lp-checkbox-row">
+      <input type="hidden" name={"ext_#{@key}"} value="" />
+      <input
+        type="checkbox"
+        name={"ext_#{@key}"}
+        value="true"
+        checked={@checked}
+      />
+      <span>{gettext("Enable")}</span>
+    </label>
     """
   end
 
@@ -382,7 +404,7 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     assigns = assign(assigns, :code, build_display_name_code(assigns.canonical, assigns.options))
     ~H"""
     <div class="lp-display-name">
-      <code class="lp-display-name-code">{@code}</code>
+      <LocalizePlaygroundWeb.HexDocs.code class="lp-display-name-code" code={@code} />
       <div class={"lp-display-name-value" <> display_name_error_class(@result)}>
         {display_name_text(@result)}
       </div>

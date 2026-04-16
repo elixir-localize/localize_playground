@@ -387,7 +387,7 @@ Localize.Unit.to_string(converted#{locale_opt})|
         </dl>
       </.section>
 
-      <.section title={gettext("Conversion")}>
+      <.section title={gettext("Convert to")}>
         <div class="lp-unit-builder no-number">
           <.field label={gettext("Power")} for="target_power">
             <select id="target_power" name="target_power">
@@ -427,7 +427,7 @@ Localize.Unit.to_string(converted#{locale_opt})|
         <.result_card result={@conversion_result} />
       </.section>
 
-      <.section title={gettext("Preferred unit for measurement system")}>
+      <.section title={gettext("Convert to preferred unit for measurement system")}>
         <.field label={gettext("Measurement system")} for="system">
           <select id="system" name="system">
             <option :for={{id, label} <- @systems} value={id} selected={@system == id}>
@@ -440,7 +440,7 @@ Localize.Unit.to_string(converted#{locale_opt})|
         <.result_card result={@preferred_result} />
       </.section>
 
-      <.section title={gettext("Preferred unit for the locale's territory")}>
+      <.section title={gettext("Convert to preferred unit for the locale's territory")}>
         <p class="lp-muted">
           {raw(gettext("Locale {$locale} → measurement system {$system}.", locale: "<code>#{@locale}</code>", system: "<code>#{@territory_system}</code>"))}
         </p>

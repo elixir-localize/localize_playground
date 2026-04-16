@@ -26,13 +26,6 @@ ENV MIX_ENV=prod
 
 RUN mix local.hex --force && mix local.rebar --force
 
-# NOTE: the playground depends on sibling path projects (:localize,
-# :localize_web, :calendrical). Either vendor them into the build
-# context or switch to hex-published versions before building.
-COPY ../localize /deps/localize
-COPY ../localize_web /deps/localize_web
-COPY ../calendrical /deps/calendrical
-
 COPY mix.exs mix.lock ./
 COPY config config
 

@@ -251,7 +251,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
       <.u_extensions_card extensions={@u_extensions} />
     </.section>
 
-    <.section title={gettext("Locale metadata")}>
+    <.section title={gettext("Format metadata")}>
       <.locale_metadata_card symbols={@locale_symbols} locale={@locale} />
     </.section>
     """

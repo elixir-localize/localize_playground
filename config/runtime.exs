@@ -24,3 +24,5 @@ if config_env() == :prod do
     secret_key_base: secret_key_base,
     server: true
 end
+
+config :localize, :allow_runtime_locale_download, true

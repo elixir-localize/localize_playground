@@ -32,18 +32,20 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   ]
 
   @collation_extensions [
+    # Select/text fields first
     {:co, gettext_noop("Collation"),
      gettext_noop("Sort-order variant — e.g. phonebook, pinyin, stroke, traditional.")},
     {:ka, gettext_noop("Ignore accents"), gettext_noop("Strip accents while sorting — noignore / shifted.")},
-    {:kb, gettext_noop("Backward second-level sort"), gettext_noop("Sort accents right-to-left — true / false.")},
-    {:kc, gettext_noop("Case-level sort"), gettext_noop("Include case differences — true / false.")},
     {:kf, gettext_noop("Case-first sort"), gettext_noop("Put uppercase or lowercase first — upper / lower / false.")},
-    {:kh, gettext_noop("Hiragana-quaternary"), gettext_noop("Distinguish hiragana vs katakana — true / false.")},
-    {:kk, gettext_noop("Normalization"), gettext_noop("Unicode-normalize strings before sorting — true / false.")},
-    {:kn, gettext_noop("Numeric sort"), gettext_noop("Treat digit runs as numbers — true / false.")},
     {:kr, gettext_noop("Reordering"), gettext_noop("Custom script-reordering list.")},
     {:ks, gettext_noop("Sort strength"), gettext_noop("level1 / level2 / level3 / level4 / identical.")},
-    {:kv, gettext_noop("Variable top"), gettext_noop("Script below which characters are variable — punct / space / symbol / currency.")}
+    {:kv, gettext_noop("Variable top"), gettext_noop("Script below which characters are variable — punct / space / symbol / currency.")},
+    # Boolean (checkbox) fields together at the bottom
+    {:kb, gettext_noop("Backward second-level sort"), gettext_noop("Sort accents right-to-left — true / false.")},
+    {:kc, gettext_noop("Case-level sort"), gettext_noop("Include case differences — true / false.")},
+    {:kh, gettext_noop("Hiragana-quaternary"), gettext_noop("Distinguish hiragana vs katakana — true / false.")},
+    {:kk, gettext_noop("Normalization"), gettext_noop("Unicode-normalize strings before sorting — true / false.")},
+    {:kn, gettext_noop("Numeric sort"), gettext_noop("Treat digit runs as numbers — true / false.")}
   ]
 
   @doc """

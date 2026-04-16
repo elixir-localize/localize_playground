@@ -178,18 +178,42 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   defp build_call_code(_assigns, nil), do: "# fill in the duration"
 
   defp build_call_code(assigns, duration) do
-    base =
-      case assigns.format_kind do
-        :named ->
-          opts = [locale: inspect(assigns.locale), style: inspect(assigns.style)]
-          kv = opts |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{v}" end)
-          "Localize.Duration.to_string(#{inspect(duration)}, #{kv})"
+    duration_literal = format_duration_literal(duration)
 
-        :time ->
-          "Localize.Duration.to_time_string(#{inspect(duration)}, format: #{inspect(assigns.pattern)})"
-      end
+    case assigns.format_kind do
+      :named ->
+        opts = [locale: inspect(assigns.locale), style: inspect(assigns.style)]
+        kv = opts |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{v}" end)
 
-    base
+        "duration = #{duration_literal}\nLocalize.Duration.to_string(duration, #{kv})"
+
+      :time ->
+        "duration = #{duration_literal}\nLocalize.Duration.to_time_string(duration, format: #{inspect(assigns.pattern)})"
+    end
+  end
+
+  # Renders the duration as an Elixir %Duration{} struct literal,
+  # omitting zero-valued fields for clarity.
+  defp format_duration_literal(%Localize.Duration{} = d) do
+    fields =
+      [
+        {:year, d.year},
+        {:month, d.month},
+        {:day, d.day},
+        {:hour, d.hour},
+        {:minute, d.minute},
+        {:second, d.second}
+      ]
+      |> Enum.reject(fn {_k, v} -> v == 0 end)
+
+    case fields do
+      [] ->
+        "%Duration{second: 0}"
+
+      parts ->
+        kv = parts |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{v}" end)
+        "%Duration{#{kv}}"
+    end
   end
 
   @impl true

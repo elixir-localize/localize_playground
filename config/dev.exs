@@ -22,3 +22,5 @@ config :logger, :console,
 
 config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
+
+config :localize, :allow_runtime_locale_download, true

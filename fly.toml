@@ -1,0 +1,32 @@
+# fly.toml — Fly.io deployment configuration for Localize Playground.
+#
+# Deploy with:
+#   fly launch          (first time — creates the app + sets secrets)
+#   fly deploy          (subsequent deploys)
+#   fly secrets set SECRET_KEY_BASE=$(mix phx.gen.secret)
+
+app = "localize-playground"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PHX_HOST = "localize-playground.fly.dev"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 1000
+    soft_limit = 1000
+
+[[vm]]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1
