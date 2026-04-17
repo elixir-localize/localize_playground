@@ -863,6 +863,51 @@ input[type="text"],
   outline: none;
   border-color: var(--lp-accent);
 }
+
+/* MF2 editor — syntax-highlighted <pre> layered behind a transparent
+   textarea. The textarea captures input; the <pre> shows the colours. */
+.lp-mf2-editor { position: relative; }
+.lp-mf2-editor .lp-mf2-message {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--lp-text);
+}
+.lp-mf2-editor .lp-mf2-highlight {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid transparent; /* match textarea border width */
+  border-radius: var(--lp-radius-sm);
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: hidden;
+  background: var(--lp-bg);
+}
+.lp-mf2-editor .lp-mf2-highlight code { white-space: pre-wrap; }
+.lp-mf2-editor .lp-mf2-message::selection { background: rgba(96, 165, 250, 0.35); color: transparent; }
+
+/* MF2 Monokai token colours (ported from localize's mf2_theme_css). */
+.mf2-text { color: #f8f8f2; }
+.mf2-punctuation { color: #f8f8f2; }
+.mf2-name_variable { color: #f8f8f2; }
+.mf2-name_function { color: #a6e22e; }
+.mf2-name_builtin { color: #f92672; }
+.mf2-name_tag { color: #f92672; }
+.mf2-name_attribute { color: #a6e22e; }
+.mf2-name_label { color: #a6e22e; }
+.mf2-string { color: #e6db74; }
+.mf2-number_integer { color: #ae81ff; }
+.mf2-number_float { color: #ae81ff; }
+.mf2-escape { color: #ae81ff; }
+.mf2-keyword_constant { color: #66d9ef; }
 .lp-mf2-toolbar {
   display: flex;
   align-items: flex-end;

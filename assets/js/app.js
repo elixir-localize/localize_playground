@@ -153,6 +153,27 @@ Hooks.SyncStyleGroup = {
   }
 }
 
+// Keeps the highlighted <pre> scroll-synced with the textarea above it.
+// The textarea itself is transparent so the highlighted pre shows through.
+Hooks.MF2Editor = {
+  mounted() {
+    this._textarea = this.el.querySelector("textarea")
+    this._pre = this.el.querySelector("pre")
+    if (!this._textarea || !this._pre) return
+
+    this._onScroll = () => {
+      this._pre.scrollTop = this._textarea.scrollTop
+      this._pre.scrollLeft = this._textarea.scrollLeft
+    }
+    this._textarea.addEventListener("scroll", this._onScroll)
+  },
+  destroyed() {
+    if (this._textarea && this._onScroll) {
+      this._textarea.removeEventListener("scroll", this._onScroll)
+    }
+  }
+}
+
 Hooks.MF2ReferencePanel = {
   mounted() {
     const panel = this.el

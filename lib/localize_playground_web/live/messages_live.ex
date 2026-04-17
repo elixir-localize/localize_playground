@@ -156,6 +156,20 @@ masculine * {{He invited {$count} guests.}}
     |> assign(:result, result)
     |> assign(:parse_info, parse_info)
     |> assign(:call_code, build_call_code(a))
+    |> assign(:message_html, highlight_message(a.message))
+  end
+
+  # Runs the message through Localize.Message.to_html for per-token span
+  # wrappers. Falls back to the original message (HTML-escaped) on parse
+  # errors so the user still sees their text while typing.
+  defp highlight_message(message) do
+    case Localize.Message.to_html(message, trim: false) do
+      {:ok, html} ->
+        html
+
+      {:error, _} ->
+        Phoenix.HTML.html_escape(message) |> Phoenix.HTML.safe_to_string()
+    end
   end
 
   # Parse the bindings textarea as Elixir source. Accepts any expression
@@ -252,7 +266,10 @@ masculine * {{He invited {$count} guests.}}
 
       <.section title={gettext("MF2 message")}>
         <.field label={gettext("MessageFormat 2 syntax")} for="message" hint={gettext("MessageFormat 2 syntax. See messageformat.unicode.org for the spec.")}>
-          <textarea id="message" name="message" class="lp-mf2-message" rows="8" spellcheck="false" phx-debounce="250">{@message}</textarea>
+          <div class="lp-mf2-editor" phx-hook="MF2Editor" id="mf2-editor">
+            <pre class="lp-mf2-highlight mf2-highlight" aria-hidden="true"><code>{raw(@message_html)}</code></pre>
+            <textarea id="message" name="message" class="lp-mf2-message" rows="8" spellcheck="false" phx-debounce="250">{@message}</textarea>
+          </div>
         </.field>
       </.section>
 

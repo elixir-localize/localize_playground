@@ -1,7 +1,7 @@
 defmodule LocalizePlaygroundWeb do
   @moduledoc false
 
-  def static_paths, do: ~w(assets favicon.ico robots.txt)
+  def static_paths, do: ~w(assets favicon.ico favicon-16.png favicon-32.png apple-touch-icon.png robots.txt)
 
   def router do
     quote do
