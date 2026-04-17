@@ -28,6 +28,7 @@ defmodule LocalizePlayground.MixProject do
     [
       {:localize, "~> 0.15"},
       {:localize_web, "~> 0.4"},
+      {:localize_mf2_treesitter, path: "../localize_mf2_treesitter"},
       {:calendrical, "~> 0.2"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},

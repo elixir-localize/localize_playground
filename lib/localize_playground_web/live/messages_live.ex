@@ -8,6 +8,7 @@ defmodule LocalizePlaygroundWeb.MessagesLive do
 
   use LocalizePlaygroundWeb, :live_view
 
+  alias LocalizePlaygroundWeb.Mf2Highlighter
   alias LocalizePlaygroundWeb.NumberView
 
   @default_message ~S|.local $count = {$count :number}
@@ -150,26 +151,16 @@ masculine * {{He invited {$count} guests.}}
           {{:error, error}, nil}
       end
 
+    {message_html, diagnostics} = Mf2Highlighter.highlight(a.message)
+
     socket
     |> assign(:bindings, bindings)
     |> assign(:binding_error, binding_error)
     |> assign(:result, result)
     |> assign(:parse_info, parse_info)
     |> assign(:call_code, build_call_code(a))
-    |> assign(:message_html, highlight_message(a.message))
-  end
-
-  # Runs the message through Localize.Message.to_html for per-token span
-  # wrappers. Falls back to the original message (HTML-escaped) on parse
-  # errors so the user still sees their text while typing.
-  defp highlight_message(message) do
-    case Localize.Message.to_html(message, trim: false) do
-      {:ok, html} ->
-        html
-
-      {:error, _} ->
-        Phoenix.HTML.html_escape(message) |> Phoenix.HTML.safe_to_string()
-    end
+    |> assign(:message_html, message_html)
+    |> assign(:diagnostics, diagnostics)
   end
 
   # Parse the bindings textarea as Elixir source. Accepts any expression
@@ -270,6 +261,7 @@ masculine * {{He invited {$count} guests.}}
             <pre class="lp-mf2-highlight mf2-highlight" aria-hidden="true"><code>{raw(@message_html)}</code></pre>
             <textarea id="message" name="message" class="lp-mf2-message" rows="8" spellcheck="false" phx-debounce="250">{@message}</textarea>
           </div>
+          <.diagnostics_list diagnostics={@diagnostics} />
         </.field>
       </.section>
 
@@ -314,4 +306,26 @@ masculine * {{He invited {$count} guests.}}
   end
 
   defp result_card(assigns), do: ~H|<div class="lp-result lp-muted">—</div>|
+
+  attr :diagnostics, :list, required: true
+
+  defp diagnostics_list(%{diagnostics: []} = assigns) do
+    ~H|<div class="lp-mf2-diagnostics lp-mf2-diagnostics-clean">{gettext("No parse errors.")}</div>|
+  end
+
+  defp diagnostics_list(assigns) do
+    ~H"""
+    <ul class="lp-mf2-diagnostics lp-mf2-diagnostics-errors">
+      <li :for={d <- @diagnostics} class={"lp-mf2-diagnostic lp-mf2-diagnostic-#{d.kind}"}>
+        <span class="lp-mf2-diagnostic-loc">
+          {format_point(d.start_point)}
+        </span>
+        <span class="lp-mf2-diagnostic-kind">{to_string(d.kind)}:</span>
+        <span class="lp-mf2-diagnostic-message">{d.message}</span>
+      </li>
+    </ul>
+    """
+  end
+
+  defp format_point({row, column}), do: "#{row + 1}:#{column + 1}"
 end

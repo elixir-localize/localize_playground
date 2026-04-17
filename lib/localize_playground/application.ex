@@ -5,6 +5,8 @@ defmodule LocalizePlayground.Application do
 
   @impl true
   def start(_type, _args) do
+    LocalizePlaygroundWeb.Mf2Highlighter.init()
+
     children = [
       {Phoenix.PubSub, name: LocalizePlayground.PubSub},
       LocalizePlaygroundWeb.Endpoint

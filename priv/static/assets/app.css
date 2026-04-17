@@ -894,7 +894,16 @@ input[type="text"],
 .lp-mf2-editor .lp-mf2-highlight code { white-space: pre-wrap; }
 .lp-mf2-editor .lp-mf2-message::selection { background: rgba(96, 165, 250, 0.35); color: transparent; }
 
-/* MF2 Monokai token colours (ported from localize's mf2_theme_css). */
+/* MF2 Monokai token colours.
+ *
+ * Two class namespaces live here. The legacy `mf2-name_variable` /
+ * `mf2-number_integer` set came from the Pygments output of the
+ * NimbleParsec `Localize.Message.to_html`. The current tree-sitter-
+ * backed highlighter (Mf2Highlighter) emits names that match the
+ * grammar's highlights.scm capture taxonomy — `mf2-variable`,
+ * `mf2-keyword-conditional`, etc. Both are kept so either renderer
+ * produces correct output against this stylesheet.
+ */
 .mf2-text { color: #f8f8f2; }
 .mf2-punctuation { color: #f8f8f2; }
 .mf2-name_variable { color: #f8f8f2; }
@@ -908,6 +917,47 @@ input[type="text"],
 .mf2-number_float { color: #ae81ff; }
 .mf2-escape { color: #ae81ff; }
 .mf2-keyword_constant { color: #66d9ef; }
+
+/* tree-sitter capture-name classes (Mf2Highlighter) */
+.mf2-variable { color: #f8f8f2; }
+.mf2-variable-builtin { color: #f8f8f2; }
+.mf2-function { color: #a6e22e; }
+.mf2-tag { color: #f92672; }
+.mf2-attribute { color: #a6e22e; }
+.mf2-property { color: #a6e22e; }
+.mf2-number { color: #ae81ff; }
+.mf2-string-escape { color: #ae81ff; }
+.mf2-keyword { color: #66d9ef; }
+.mf2-keyword-import { color: #f92672; }
+.mf2-keyword-conditional { color: #f92672; }
+.mf2-constant-builtin { color: #66d9ef; }
+.mf2-punctuation-bracket { color: #f8f8f2; }
+.mf2-punctuation-special { color: #f92672; }
+.mf2-operator { color: #f92672; }
+
+/* Diagnostics list — surfaced below the MF2 editor. */
+.lp-mf2-diagnostics {
+  margin-top: var(--lp-space-sm);
+  padding: var(--lp-space-sm) var(--lp-space-md);
+  border-radius: var(--lp-radius-sm);
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  list-style: none;
+}
+.lp-mf2-diagnostics-clean {
+  color: var(--lp-text-faint);
+  background: color-mix(in srgb, var(--lp-text-faint) 8%, transparent);
+}
+.lp-mf2-diagnostics-errors {
+  color: #fecaca;
+  background: color-mix(in srgb, var(--lp-fail) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lp-fail) 40%, transparent);
+}
+.lp-mf2-diagnostic { display: flex; gap: var(--lp-space-sm); }
+.lp-mf2-diagnostic-loc { color: var(--lp-accent); min-width: 4ch; }
+.lp-mf2-diagnostic-kind { text-transform: uppercase; font-size: 10px; align-self: center; opacity: 0.7; }
+.lp-mf2-diagnostic-message { flex: 1; }
 .lp-mf2-toolbar {
   display: flex;
   align-items: flex-end;
