@@ -8,32 +8,44 @@ defmodule LocalizePlaygroundWeb.Endpoint do
     same_site: "Lax"
   ]
 
-  socket "/live", Phoenix.LiveView.Socket,
+  socket("/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
     longpoll: [connect_info: [session: @session_options]]
+  )
 
-  plug Plug.Static,
+  plug(Plug.Static,
     at: "/",
     from: :localize_playground,
     gzip: false,
     only: LocalizePlaygroundWeb.static_paths()
+  )
+
+  # Serve the MF2 editor's WASM + hook assets. `mf2_editor` is the
+  # base URL expected by `Mf2WasmEditor.script_tags/1`.
+  plug(Plug.Static,
+    at: "/mf2_editor",
+    from: {:mf2_wasm_editor, "priv/static"},
+    gzip: false,
+    only: Mf2WasmEditor.static_paths()
+  )
 
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
-    plug Phoenix.CodeReloader
+    socket("/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket)
+    plug(Phoenix.LiveReloader)
+    plug(Phoenix.CodeReloader)
   end
 
-  plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug(Plug.RequestId)
+  plug(Plug.Telemetry, event_prefix: [:phoenix, :endpoint])
 
-  plug Plug.Parsers,
+  plug(Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
+  )
 
-  plug Plug.MethodOverride
-  plug Plug.Head
-  plug Plug.Session, @session_options
-  plug LocalizePlaygroundWeb.Router
+  plug(Plug.MethodOverride)
+  plug(Plug.Head)
+  plug(Plug.Session, @session_options)
+  plug(LocalizePlaygroundWeb.Router)
 end

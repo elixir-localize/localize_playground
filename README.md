@@ -19,6 +19,18 @@ Then open <http://localhost:5001>.
 
 During development, `mix phx.server` runs an esbuild watcher that rebuilds `priv/static/assets/app.js` when `assets/js/app.js` changes.
 
+### Local ecosystem checkouts
+
+The playground depends on `localize_mf2_treesitter` and `mf2_wasm_editor`, both published on hex. If you have sibling checkouts of those packages and want mix to use them directly (for live iteration against grammar or hook changes), export `LOCALIZE_PATH_DEPS=1` before running mix commands:
+
+```bash
+export LOCALIZE_PATH_DEPS=1
+mix deps.get
+iex -S mix phx.server
+```
+
+Without the env var, mix pulls the hex versions pinned in `mix.exs`. The Docker build (`fly deploy`) never sets `LOCALIZE_PATH_DEPS`, so production always uses hex.
+
 ## Architecture
 
 * Phoenix 1.7 + LiveView 1.0 + Bandit

@@ -153,26 +153,13 @@ Hooks.SyncStyleGroup = {
   }
 }
 
-// Keeps the highlighted <pre> scroll-synced with the textarea above it.
-// The textarea itself is transparent so the highlighted pre shows through.
-Hooks.MF2Editor = {
-  mounted() {
-    this._textarea = this.el.querySelector("textarea")
-    this._pre = this.el.querySelector("pre")
-    if (!this._textarea || !this._pre) return
-
-    this._onScroll = () => {
-      this._pre.scrollTop = this._textarea.scrollTop
-      this._pre.scrollLeft = this._textarea.scrollLeft
-    }
-    this._textarea.addEventListener("scroll", this._onScroll)
-  },
-  destroyed() {
-    if (this._textarea && this._onScroll) {
-      this._textarea.removeEventListener("scroll", this._onScroll)
-    }
-  }
-}
+// The MF2Editor hook now lives in the `mf2_wasm_editor` package
+// (served from /mf2_editor/mf2_editor.js and loaded via the
+// `<script>` tags emitted by Mf2WasmEditor.script_tags/1). It
+// owns the textarea value and the highlighted <pre>, runs the
+// tree-sitter-mf2 grammar in WASM, and applies syntax highlights
+// plus diagnostic squiggles on every keystroke with no server round
+// trip. We merge its Hooks namespace into ours further down.
 
 Hooks.MF2ReferencePanel = {
   mounted() {
@@ -236,8 +223,15 @@ const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   ?.getAttribute("content")
 
+// Merge in the MF2 editor hook from the vendored package. That
+// script loads separately via a <script> tag in the root layout and
+// registers onto `window.Mf2WasmEditor.Hooks`. Because both
+// scripts use `defer`, their order of evaluation matches markup
+// order, so `window.Mf2WasmEditor` is defined by the time we run.
+const AllHooks = Object.assign({}, Hooks, window.Mf2WasmEditor?.Hooks || {})
+
 const liveSocket = new LiveSocket("/live", Socket, {
-  hooks: Hooks,
+  hooks: AllHooks,
   params: {_csrf_token: csrfToken}
 })
 

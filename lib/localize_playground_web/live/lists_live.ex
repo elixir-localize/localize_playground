@@ -15,23 +15,37 @@ defmodule LocalizePlaygroundWeb.ListsLive do
   # :or for alternatives ("A, B, or C"), :unit for measurement units
   # ("1 ft 3 in"), each with short and narrow widths.
   @styles [
-    {:standard, gettext_noop("standard"), gettext_noop("\"A, B, and C\" — default conjunctive list (long width).")},
-    {:standard_short, gettext_noop("standard_short"), gettext_noop("Shorter punctuation and conjunction form of standard.")},
-    {:standard_narrow, gettext_noop("standard_narrow"), gettext_noop("Narrowest conjunctive form — may omit conjunction altogether.")},
+    {:standard, gettext_noop("standard"),
+     gettext_noop("\"A, B, and C\" — default conjunctive list (long width).")},
+    {:standard_short, gettext_noop("standard_short"),
+     gettext_noop("Shorter punctuation and conjunction form of standard.")},
+    {:standard_narrow, gettext_noop("standard_narrow"),
+     gettext_noop("Narrowest conjunctive form — may omit conjunction altogether.")},
     {:or, gettext_noop("or"), gettext_noop("\"A, B, or C\" — default disjunctive list.")},
     {:or_short, gettext_noop("or_short"), gettext_noop("Shorter disjunctive form.")},
     {:or_narrow, gettext_noop("or_narrow"), gettext_noop("Narrowest disjunctive form.")},
-    {:unit, gettext_noop("unit"), gettext_noop("\"1 foot, 3 inches\" — for combining measurement unit values.")},
-    {:unit_short, gettext_noop("unit_short"), gettext_noop("\"1 ft, 3 in\" — shorter unit combination.")},
-    {:unit_narrow, gettext_noop("unit_narrow"), gettext_noop("\"1ft 3in\" — narrowest unit combination.")}
+    {:unit, gettext_noop("unit"),
+     gettext_noop("\"1 foot, 3 inches\" — for combining measurement unit values.")},
+    {:unit_short, gettext_noop("unit_short"),
+     gettext_noop("\"1 ft, 3 in\" — shorter unit combination.")},
+    {:unit_narrow, gettext_noop("unit_narrow"),
+     gettext_noop("\"1ft 3in\" — narrowest unit combination.")}
   ]
 
   @examples [
     %{name: gettext_noop("Three colours"), items: "red\ngreen\nblue", style: :standard},
     %{name: gettext_noop("Two choices"), items: "tea\ncoffee", style: :or},
-    %{name: gettext_noop("Weekdays"), items: "Monday\nTuesday\nWednesday\nThursday\nFriday", style: :standard},
+    %{
+      name: gettext_noop("Weekdays"),
+      items: "Monday\nTuesday\nWednesday\nThursday\nFriday",
+      style: :standard
+    },
     %{name: gettext_noop("Mixed types"), items: "1\n2.5\nthree", style: :standard},
-    %{name: gettext_noop("Many items"), items: "apple\nbanana\ncherry\ndate\nelderberry\nfig", style: :or}
+    %{
+      name: gettext_noop("Many items"),
+      items: "apple\nbanana\ncherry\ndate\nelderberry\nfig",
+      style: :or
+    }
   ]
 
   @impl true
@@ -66,7 +80,13 @@ defmodule LocalizePlaygroundWeb.ListsLive do
       |> maybe_assign(params, "items_text", :items_text)
       |> apply_style(params)
       |> assign(:treat_middle_as_end, params["treat_middle_as_end"] == "true")
-      |> assign(:current_locale, if(params["locale"] in [nil, ""], do: socket.assigns.current_locale, else: params["locale"]))
+      |> assign(
+        :current_locale,
+        if(params["locale"] in [nil, ""],
+          do: socket.assigns.current_locale,
+          else: params["locale"]
+        )
+      )
       |> compute()
 
     {:noreply, socket}
@@ -237,8 +257,8 @@ defmodule LocalizePlaygroundWeb.ListsLive do
     """
   end
 
-  attr :code, :string, required: true
-  attr :id, :string, required: true
+  attr(:code, :string, required: true)
+  attr(:id, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -255,7 +275,7 @@ defmodule LocalizePlaygroundWeb.ListsLive do
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, string}} = assigns) do
     assigns = assign(assigns, :text, string)
@@ -269,7 +289,7 @@ defmodule LocalizePlaygroundWeb.ListsLive do
 
   defp result_card(assigns), do: ~H|<div class="lp-result lp-muted">—</div>|
 
-  attr :pattern, :any, required: true
+  attr(:pattern, :any, required: true)
 
   defp pattern_card(assigns) do
     ~H"""

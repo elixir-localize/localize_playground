@@ -13,15 +13,35 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   alias LocalizePlaygroundWeb.NumberView
 
   @families [
-    %{id: :date, label: gettext_noop("Date"), hint: gettext_noop("Just the date — no time of day")},
+    %{
+      id: :date,
+      label: gettext_noop("Date"),
+      hint: gettext_noop("Just the date — no time of day")
+    },
     %{id: :time, label: gettext_noop("Time"), hint: gettext_noop("Just the time — no date")},
-    %{id: :datetime, label: gettext_noop("Date & Time"), hint: gettext_noop("Combined, with locale join pattern")}
+    %{
+      id: :datetime,
+      label: gettext_noop("Date & Time"),
+      hint: gettext_noop("Combined, with locale join pattern")
+    }
   ]
 
   @format_kinds [
-    %{id: :style, label: gettext_noop("Standard format"), hint: gettext_noop("short · medium · long · full")},
-    %{id: :skeleton, label: gettext_noop("Locale skeletons"), hint: gettext_noop("CLDR skeleton like yMMMd — locale picks the pattern")},
-    %{id: :pattern, label: gettext_noop("Custom pattern"), hint: gettext_noop("Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm")}
+    %{
+      id: :style,
+      label: gettext_noop("Standard format"),
+      hint: gettext_noop("short · medium · long · full")
+    },
+    %{
+      id: :skeleton,
+      label: gettext_noop("Locale skeletons"),
+      hint: gettext_noop("CLDR skeleton like yMMMd — locale picks the pattern")
+    },
+    %{
+      id: :pattern,
+      label: gettext_noop("Custom pattern"),
+      hint: gettext_noop("Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm")
+    }
   ]
 
   @hour_cycles [
@@ -95,7 +115,10 @@ defmodule LocalizePlaygroundWeb.DatesLive do
       |> assign(:timezone, "")
       |> assign(:date_text, Date.to_iso8601(Date.utc_today()))
       |> assign(:time_text, Time.utc_now() |> Time.truncate(:second) |> Time.to_iso8601())
-      |> assign(:datetime_text, DateTime.utc_now() |> DateTime.truncate(:second) |> DateTime.to_iso8601())
+      |> assign(
+        :datetime_text,
+        DateTime.utc_now() |> DateTime.truncate(:second) |> DateTime.to_iso8601()
+      )
       |> assign(:skeletons, DateTimeView.available_skeletons(locale))
       |> compute()
 
@@ -140,7 +163,10 @@ defmodule LocalizePlaygroundWeb.DatesLive do
 
     socket =
       socket
-      |> assign(:current_locale, if(socket.assigns.locale == "", do: "en", else: socket.assigns.locale))
+      |> assign(
+        :current_locale,
+        if(socket.assigns.locale == "", do: "en", else: socket.assigns.locale)
+      )
       |> compute()
 
     {:noreply, socket}
@@ -313,7 +339,9 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   # DateTime into that zone. NaiveDateTime inputs are treated as UTC so that
   # the shift produces a sensible result.
   defp maybe_shift_zone(input, _assigns, error) when error != nil, do: {input, error}
-  defp maybe_shift_zone(input, %{family: :datetime, timezone: tz}, _error) when tz in [nil, ""], do: {input, nil}
+
+  defp maybe_shift_zone(input, %{family: :datetime, timezone: tz}, _error) when tz in [nil, ""],
+    do: {input, nil}
 
   defp maybe_shift_zone(%DateTime{} = dt, %{family: :datetime, timezone: tz}, _error) do
     case DateTime.shift_zone(dt, tz) do
@@ -334,7 +362,9 @@ defmodule LocalizePlaygroundWeb.DatesLive do
   defp maybe_shift_zone(input, _assigns, _error), do: {input, nil}
 
   defp do_format(:date, %Date{} = d, options), do: DateTimeView.format_date(d, options)
-  defp do_format(:time, %Time{} = t, options), do: DateTimeView.format_time(t, Keyword.delete(options, :convert_to))
+
+  defp do_format(:time, %Time{} = t, options),
+    do: DateTimeView.format_time(t, Keyword.delete(options, :convert_to))
 
   defp do_format(:datetime, %NaiveDateTime{} = dt, options),
     do: DateTimeView.format_datetime(dt, options)
@@ -509,7 +539,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     """
   end
 
-  attr :code, :string, required: true
+  attr(:code, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -531,7 +561,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, string}} = assigns) do
     assigns = assign(assigns, :text, string)
@@ -555,7 +585,7 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     """
   end
 
-  attr :info, :map, required: true
+  attr(:info, :map, required: true)
 
   defp skeleton_info(%{info: %{error: _}} = assigns) do
     ~H"""
@@ -575,5 +605,4 @@ defmodule LocalizePlaygroundWeb.DatesLive do
     </dl>
     """
   end
-
 end

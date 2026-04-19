@@ -54,7 +54,13 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
       socket
       |> maybe_assign(params, "locale", :locale)
       |> apply_atoms(params, ["calendar", "style", "context"])
-      |> assign(:current_locale, if(params["locale"] in [nil, ""], do: socket.assigns.current_locale, else: params["locale"]))
+      |> assign(
+        :current_locale,
+        if(params["locale"] in [nil, ""],
+          do: socket.assigns.current_locale,
+          else: params["locale"]
+        )
+      )
       |> refresh()
 
     {:noreply, socket}
@@ -132,7 +138,20 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
   end
 
   defp fetch_day_periods(locale, style, context, calendar) do
-    periods = [:am, :pm, :noon, :midnight, :morning1, :morning2, :afternoon1, :afternoon2, :evening1, :evening2, :night1, :night2]
+    periods = [
+      :am,
+      :pm,
+      :noon,
+      :midnight,
+      :morning1,
+      :morning2,
+      :afternoon1,
+      :afternoon2,
+      :evening1,
+      :evening2,
+      :night1,
+      :night2
+    ]
 
     Enum.flat_map(periods, fn p ->
       options = [locale: locale, style: style, context: context, calendar: calendar]
@@ -145,7 +164,20 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
   end
 
   defp fetch_date_time_fields(locale, style, _context, calendar) do
-    fields = [:era, :year, :quarter, :month, :week, :weekday, :day, :day_period, :hour, :minute, :second, :zone]
+    fields = [
+      :era,
+      :year,
+      :quarter,
+      :month,
+      :week,
+      :weekday,
+      :day,
+      :day_period,
+      :hour,
+      :minute,
+      :second,
+      :zone
+    ]
 
     Enum.flat_map(fields, fn field ->
       options = [locale: locale, style: style, calendar: calendar]
@@ -192,7 +224,10 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
   end
 
   defp maybe_add(opts, _key, value, value), do: opts
-  defp maybe_add(opts, key, value, _default) when is_atom(value), do: opts ++ [{key, inspect(value)}]
+
+  defp maybe_add(opts, key, value, _default) when is_atom(value),
+    do: opts ++ [{key, inspect(value)}]
+
   defp maybe_add(opts, key, value, _default), do: opts ++ [{key, inspect(value)}]
 
   defp safe_first_day(territory) do
@@ -307,8 +342,8 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
     """
   end
 
-  attr :code, :string, required: true
-  attr :id, :string, required: true
+  attr(:code, :string, required: true)
+  attr(:id, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -335,8 +370,8 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
   defp day_label(7), do: "Sun (7)"
   defp day_label(n), do: to_string(n)
 
-  attr :rows, :list, required: true
-  attr :label, :string, required: true
+  attr(:rows, :list, required: true)
+  attr(:label, :string, required: true)
 
   defp name_table(assigns) do
     ~H"""

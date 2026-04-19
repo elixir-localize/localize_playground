@@ -152,7 +152,10 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     |> assign(:current_locale, canonical)
     |> assign(:display_name_standard, standard_name)
     |> assign(:display_name_dialect, dialect_name)
-    |> assign(:u_value_options, build_value_options(nilify(territory), Map.get(socket.assigns, :ui_locale)))
+    |> assign(
+      :u_value_options,
+      build_value_options(nilify(territory), Map.get(socket.assigns, :ui_locale))
+    )
     |> assign(:error, error)
   end
 
@@ -276,10 +279,10 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     """
   end
 
-  attr :extensions, :list, required: true
-  attr :values, :map, required: true
-  attr :options, :map, required: true
-  attr :ui_locale, :string, default: "en"
+  attr(:extensions, :list, required: true)
+  attr(:values, :map, required: true)
+  attr(:options, :map, required: true)
+  attr(:ui_locale, :string, default: "en")
 
   defp ext_group(assigns) do
     ~H"""
@@ -306,9 +309,9 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
 
   @boolean_ext_keys [:kb, :kc, :kh, :kk, :kn]
 
-  attr :key, :atom, required: true
-  attr :value, :string, required: true
-  attr :options, :list, required: true
+  attr(:key, :atom, required: true)
+  attr(:value, :string, required: true)
+  attr(:options, :list, required: true)
 
   defp ext_input(%{options: []} = assigns) do
     ~H"""
@@ -350,12 +353,12 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     """
   end
 
-  attr :canonical, :string, required: true
-  attr :raw, :string, required: true
-  attr :error, :any, required: true
-  attr :display_name_standard, :any, default: nil
-  attr :display_name_dialect, :any, default: nil
-  attr :ui_locale, :string, default: "en"
+  attr(:canonical, :string, required: true)
+  attr(:raw, :string, required: true)
+  attr(:error, :any, required: true)
+  attr(:display_name_standard, :any, default: nil)
+  attr(:display_name_dialect, :any, default: nil)
+  attr(:ui_locale, :string, default: "en")
 
   defp canonical_card(assigns) do
     ~H"""
@@ -396,12 +399,13 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     """
   end
 
-  attr :canonical, :string, required: true
-  attr :result, :any, required: true
-  attr :options, :list, default: []
+  attr(:canonical, :string, required: true)
+  attr(:result, :any, required: true)
+  attr(:options, :list, default: [])
 
   defp display_name_row(assigns) do
     assigns = assign(assigns, :code, build_display_name_code(assigns.canonical, assigns.options))
+
     ~H"""
     <div class="lp-display-name">
       <LocalizePlaygroundWeb.HexDocs.code class="lp-display-name-code" code={@code} />

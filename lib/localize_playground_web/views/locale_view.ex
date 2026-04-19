@@ -13,39 +13,67 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   # runtime translation.
   @u_extensions [
     {:ca, gettext_noop("Calendar"),
-     gettext_noop("Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew.")},
+     gettext_noop(
+       "Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew."
+     )},
     {:cf, gettext_noop("Currency format"),
-     gettext_noop("Format style for currencies: :standard or :account (parentheses for negatives).")},
-    {:cu, gettext_noop("Currency"), gettext_noop("Default currency for money formatting (ISO 4217 code).")},
-    {:em, gettext_noop("Emoji presentation"), gettext_noop("emoji / text / default — how ambiguous glyphs render.")},
-    {:fw, gettext_noop("First day of week"), gettext_noop("Which weekday starts a week — sun / mon / tue ... / sat.")},
+     gettext_noop(
+       "Format style for currencies: :standard or :account (parentheses for negatives)."
+     )},
+    {:cu, gettext_noop("Currency"),
+     gettext_noop("Default currency for money formatting (ISO 4217 code).")},
+    {:em, gettext_noop("Emoji presentation"),
+     gettext_noop("emoji / text / default — how ambiguous glyphs render.")},
+    {:fw, gettext_noop("First day of week"),
+     gettext_noop("Which weekday starts a week — sun / mon / tue ... / sat.")},
     {:hc, gettext_noop("Hour cycle"), gettext_noop("Clock style: h11 / h12 / h23 / h24.")},
-    {:lb, gettext_noop("Line break"), gettext_noop("loose / normal / strict line-breaking style.")},
-    {:lw, gettext_noop("Word break"), gettext_noop("normal / breakall / keepall / phrase word-break style.")},
+    {:lb, gettext_noop("Line break"),
+     gettext_noop("loose / normal / strict line-breaking style.")},
+    {:lw, gettext_noop("Word break"),
+     gettext_noop("normal / breakall / keepall / phrase word-break style.")},
     {:ms, gettext_noop("Measurement system"), gettext_noop("metric / ussystem / uksystem.")},
-    {:mu, gettext_noop("Measurement unit"), gettext_noop("Unit of length used in unit-aware messages.")},
-    {:nu, gettext_noop("Number system"), gettext_noop("Numeral system for digits — latn / arab / thai / hans …")},
-    {:rg, gettext_noop("Region override"), gettext_noop("Override the region for region-specific data (e.g. en-u-rg-gbzzzz).")},
-    {:sd, gettext_noop("Subdivision"), gettext_noop("Region subdivision identifier (shown next to its localized name).")},
-    {:ss, gettext_noop("Suppress segmentation"), gettext_noop("none / standard — suppress word-segmentation exceptions.")},
-    {:tz, gettext_noop("Time zone"), gettext_noop("Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name).")}
+    {:mu, gettext_noop("Measurement unit"),
+     gettext_noop("Unit of length used in unit-aware messages.")},
+    {:nu, gettext_noop("Number system"),
+     gettext_noop("Numeral system for digits — latn / arab / thai / hans …")},
+    {:rg, gettext_noop("Region override"),
+     gettext_noop("Override the region for region-specific data (e.g. en-u-rg-gbzzzz).")},
+    {:sd, gettext_noop("Subdivision"),
+     gettext_noop("Region subdivision identifier (shown next to its localized name).")},
+    {:ss, gettext_noop("Suppress segmentation"),
+     gettext_noop("none / standard — suppress word-segmentation exceptions.")},
+    {:tz, gettext_noop("Time zone"),
+     gettext_noop(
+       "Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name)."
+     )}
   ]
 
   @collation_extensions [
     # Select/text fields first
     {:co, gettext_noop("Collation"),
      gettext_noop("Sort-order variant — e.g. phonebook, pinyin, stroke, traditional.")},
-    {:ka, gettext_noop("Ignore accents"), gettext_noop("Strip accents while sorting — noignore / shifted.")},
-    {:kf, gettext_noop("Case-first sort"), gettext_noop("Put uppercase or lowercase first — upper / lower / false.")},
+    {:ka, gettext_noop("Ignore accents"),
+     gettext_noop("Strip accents while sorting — noignore / shifted.")},
+    {:kf, gettext_noop("Case-first sort"),
+     gettext_noop("Put uppercase or lowercase first — upper / lower / false.")},
     {:kr, gettext_noop("Reordering"), gettext_noop("Custom script-reordering list.")},
-    {:ks, gettext_noop("Sort strength"), gettext_noop("level1 / level2 / level3 / level4 / identical.")},
-    {:kv, gettext_noop("Variable top"), gettext_noop("Script below which characters are variable — punct / space / symbol / currency.")},
+    {:ks, gettext_noop("Sort strength"),
+     gettext_noop("level1 / level2 / level3 / level4 / identical.")},
+    {:kv, gettext_noop("Variable top"),
+     gettext_noop(
+       "Script below which characters are variable — punct / space / symbol / currency."
+     )},
     # Boolean (checkbox) fields together at the bottom
-    {:kb, gettext_noop("Backward second-level sort"), gettext_noop("Sort accents right-to-left — true / false.")},
-    {:kc, gettext_noop("Case-level sort"), gettext_noop("Include case differences — true / false.")},
-    {:kh, gettext_noop("Hiragana-quaternary"), gettext_noop("Distinguish hiragana vs katakana — true / false.")},
-    {:kk, gettext_noop("Normalization"), gettext_noop("Unicode-normalize strings before sorting — true / false.")},
-    {:kn, gettext_noop("Numeric sort"), gettext_noop("Treat digit runs as numbers — true / false.")}
+    {:kb, gettext_noop("Backward second-level sort"),
+     gettext_noop("Sort accents right-to-left — true / false.")},
+    {:kc, gettext_noop("Case-level sort"),
+     gettext_noop("Include case differences — true / false.")},
+    {:kh, gettext_noop("Hiragana-quaternary"),
+     gettext_noop("Distinguish hiragana vs katakana — true / false.")},
+    {:kk, gettext_noop("Normalization"),
+     gettext_noop("Unicode-normalize strings before sorting — true / false.")},
+    {:kn, gettext_noop("Numeric sort"),
+     gettext_noop("Treat digit runs as numbers — true / false.")}
   ]
 
   @doc """
@@ -592,6 +620,7 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     Localize.Territory.individual_territories()
     |> Enum.map(fn atom ->
       code = atom |> Atom.to_string() |> String.downcase()
+
       name =
         case Localize.Territory.display_name(atom) do
           {:ok, display} -> display
@@ -638,7 +667,15 @@ defmodule LocalizePlaygroundWeb.LocaleView do
     end
   end
 
-  @day_name_numeric %{"mon" => 1, "tue" => 2, "wed" => 3, "thu" => 4, "fri" => 5, "sat" => 6, "sun" => 7}
+  @day_name_numeric %{
+    "mon" => 1,
+    "tue" => 2,
+    "wed" => 3,
+    "thu" => 4,
+    "fri" => 5,
+    "sat" => 6,
+    "sun" => 7
+  }
 
   defp first_day_options(ui_locale) do
     data = Localize.SupplementalData.validity(:u)

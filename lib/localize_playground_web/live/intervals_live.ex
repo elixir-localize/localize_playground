@@ -9,7 +9,11 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
   @families [
     %{id: :date, label: gettext_noop("Date interval"), hint: gettext_noop("Apr 22–25, 2024")},
     %{id: :time, label: gettext_noop("Time interval"), hint: gettext_noop("09:00 – 17:00")},
-    %{id: :datetime, label: gettext_noop("Date & time interval"), hint: gettext_noop("Apr 22 2024, 09:00 – Apr 25 2024, 17:00")}
+    %{
+      id: :datetime,
+      label: gettext_noop("Date & time interval"),
+      hint: gettext_noop("Apr 22 2024, 09:00 – Apr 25 2024, 17:00")
+    }
   ]
 
   @impl true
@@ -47,9 +51,23 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
   def handle_event("update", params, socket) do
     socket =
       socket
-      |> apply_strings(params, ["locale", "from_date", "to_date", "from_time", "to_time", "from_datetime", "to_datetime"])
+      |> apply_strings(params, [
+        "locale",
+        "from_date",
+        "to_date",
+        "from_time",
+        "to_time",
+        "from_datetime",
+        "to_datetime"
+      ])
       |> apply_atoms(params, ["family", "format", "style"])
-      |> assign(:current_locale, if(params["locale"] in [nil, ""], do: socket.assigns.current_locale, else: params["locale"]))
+      |> assign(
+        :current_locale,
+        if(params["locale"] in [nil, ""],
+          do: socket.assigns.current_locale,
+          else: params["locale"]
+        )
+      )
       |> compute()
 
     {:noreply, socket}
@@ -86,7 +104,11 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
   defp compute(socket) do
     {from, to, parse_error} = parse_inputs(socket.assigns)
 
-    options = [locale: socket.assigns.locale, format: socket.assigns.format, style: socket.assigns.style]
+    options = [
+      locale: socket.assigns.locale,
+      format: socket.assigns.format,
+      style: socket.assigns.style
+    ]
 
     result =
       cond do
@@ -209,7 +231,7 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
     """
   end
 
-  attr :code, :string, required: true
+  attr(:code, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -226,7 +248,7 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, string}} = assigns) do
     assigns = assign(assigns, :text, string)

@@ -8,9 +8,9 @@ defmodule LocalizePlaygroundWeb.CoreComponents do
   @doc """
   A titled content section.
   """
-  attr :title, :string, required: true
-  attr :class, :string, default: nil
-  slot :inner_block, required: true
+  attr(:title, :string, required: true)
+  attr(:class, :string, default: nil)
+  slot(:inner_block, required: true)
 
   def section(assigns) do
     ~H"""
@@ -24,10 +24,10 @@ defmodule LocalizePlaygroundWeb.CoreComponents do
   @doc """
   A labelled form control stacked vertically.
   """
-  attr :label, :string, required: true
-  attr :for, :string, default: nil
-  attr :hint, :string, default: nil
-  slot :inner_block, required: true
+  attr(:label, :string, required: true)
+  attr(:for, :string, default: nil)
+  attr(:hint, :string, default: nil)
+  slot(:inner_block, required: true)
 
   def field(assigns) do
     ~H"""

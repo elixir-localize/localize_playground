@@ -108,8 +108,12 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     # words from the new language's example list. Otherwise honour any
     # values the user has typed.
     language_changed? = language != socket.assigns.language
-    compare_a = if language_changed?, do: nil, else: Map.get(params, "compare_a", socket.assigns.compare_a)
-    compare_b = if language_changed?, do: nil, else: Map.get(params, "compare_b", socket.assigns.compare_b)
+
+    compare_a =
+      if language_changed?, do: nil, else: Map.get(params, "compare_a", socket.assigns.compare_a)
+
+    compare_b =
+      if language_changed?, do: nil, else: Map.get(params, "compare_b", socket.assigns.compare_b)
 
     socket =
       socket
@@ -245,7 +249,9 @@ defmodule LocalizePlaygroundWeb.CollationLive do
 
     # Baseline: the user's locale with no extra knobs. Used to show
     # which words moved relative to the locale's default behaviour.
-    baseline_options = [locale: if(socket.assigns.locale == "", do: "en", else: socket.assigns.locale)]
+    baseline_options = [
+      locale: if(socket.assigns.locale == "", do: "en", else: socket.assigns.locale)
+    ]
 
     {result, error} =
       case CollationView.sort(words, full_options) do
@@ -503,10 +509,10 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     """
   end
 
-  attr :key, :atom, required: true
-  attr :kind, :atom, required: true
-  attr :choices, :any, required: true
-  attr :value, :any, required: true
+  attr(:key, :atom, required: true)
+  attr(:kind, :atom, required: true)
+  attr(:choices, :any, required: true)
+  attr(:value, :any, required: true)
 
   defp opt_input(%{kind: :checkbox} = assigns) do
     ~H"""
@@ -527,7 +533,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     """
   end
 
-  attr :opts_text, :string, required: true
+  attr(:opts_text, :string, required: true)
 
   defp call_code_card(assigns) do
     ~H"""
@@ -549,10 +555,10 @@ defmodule LocalizePlaygroundWeb.CollationLive do
     """
   end
 
-  attr :sorted, :list, required: true
-  attr :diff, :list, default: []
-  attr :keys, :map, default: %{}
-  attr :error, :any, required: true
+  attr(:sorted, :list, required: true)
+  attr(:diff, :list, default: [])
+  attr(:keys, :map, default: %{})
+  attr(:error, :any, required: true)
 
   defp sorted_card(%{error: message} = assigns) when is_binary(message) do
     ~H"""
@@ -582,7 +588,7 @@ defmodule LocalizePlaygroundWeb.CollationLive do
   defp delta_label(d) when d < 0, do: "▲ #{-d}"
   defp delta_label(d), do: "▼ #{d}"
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp compare_verdict(%{result: :lt} = assigns),
     do: ~H|<span class="lp-verdict lp-verdict-lt">&lt;</span>|

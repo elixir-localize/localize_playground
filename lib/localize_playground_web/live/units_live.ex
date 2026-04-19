@@ -90,10 +90,22 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
     socket =
       socket
       |> apply_strings(params, ["locale", "number"])
-      |> apply_atoms(params, ["source_power", "source_prefix", "target_power", "target_prefix", "system"])
+      |> apply_atoms(params, [
+        "source_power",
+        "source_prefix",
+        "target_power",
+        "target_prefix",
+        "system"
+      ])
       |> apply_category_and_unit(params, :source)
       |> apply_category_and_unit(params, :target)
-      |> assign(:current_locale, if(params["locale"] in [nil, ""], do: socket.assigns.current_locale, else: params["locale"]))
+      |> assign(
+        :current_locale,
+        if(params["locale"] in [nil, ""],
+          do: socket.assigns.current_locale,
+          else: params["locale"]
+        )
+      )
       |> compute()
 
     {:noreply, socket}
@@ -461,8 +473,8 @@ Localize.Unit.to_string(converted#{locale_opt})|
   defp source_formatted({:error, _} = error), do: error
   defp source_formatted(_), do: nil
 
-  attr :code, :string, required: true
-  attr :id, :string, required: true
+  attr(:code, :string, required: true)
+  attr(:id, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -479,7 +491,7 @@ Localize.Unit.to_string(converted#{locale_opt})|
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, string}} = assigns) when is_binary(string) do
     assigns = assign(assigns, :text, string)

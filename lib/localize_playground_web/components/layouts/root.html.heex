@@ -11,6 +11,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link phx-track-static rel="stylesheet" href="/assets/app.css" />
+    <%!-- MF2 editor scripts must appear BEFORE app.js so that by
+          the time app.js's `defer` callback runs and constructs the
+          LiveSocket, `window.Mf2WasmEditor.Hooks` is populated.
+          All three scripts use `defer`, which executes in document
+          order after parsing — so ordering here is what wires the
+          hook into LiveSocket. --%>
+    {raw(Mf2WasmEditor.script_tags())}
     <script defer phx-track-static type="text/javascript" src="/assets/app.js">
     </script>
   </head>

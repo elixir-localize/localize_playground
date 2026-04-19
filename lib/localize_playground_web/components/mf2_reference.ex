@@ -13,15 +13,19 @@ defmodule LocalizePlaygroundWeb.MF2Reference do
       title: "Simple vs complex messages",
       rows: [
         {"Hello, world!", "Simple message — plain text is a valid message.", "Hello, world!"},
-        {"{{Hello, {$name}!}}", "Quoted pattern — required when the message has declarations, matchers, or starts with { or .", "Hello, Aoife!"},
-        {".local $x = {1} {{Value: {$x}}}", "Complex message — declarations followed by a quoted pattern.", "Value: 1"}
+        {"{{Hello, {$name}!}}",
+         "Quoted pattern — required when the message has declarations, matchers, or starts with { or .",
+         "Hello, Aoife!"},
+        {".local $x = {1} {{Value: {$x}}}",
+         "Complex message — declarations followed by a quoted pattern.", "Value: 1"}
       ]
     },
     %{
       title: "Placeholders",
       rows: [
         {"{$name}", "Variable reference — binds to the bindings map/keyword.", "Aoife"},
-        {"{|literal text|}", "Literal — explicit quoted value. Rare in practice.", "literal text"},
+        {"{|literal text|}", "Literal — explicit quoted value. Rare in practice.",
+         "literal text"},
         {"{42}", "Number literal.", "42"},
         {"{$x :number}", "Annotated variable — applies a function to the value.", "3"},
         {"{$x :number minimumFractionDigits=2}", "Annotated with options.", "3.00"}
@@ -31,9 +35,13 @@ defmodule LocalizePlaygroundWeb.MF2Reference do
       title: "Built-in functions",
       rows: [
         {":string", "Selects/formats a string value (default for strings).", ""},
-        {":number", "Formats a number. Options: minimumFractionDigits, maximumFractionDigits, minimumIntegerDigits, useGrouping, signDisplay, notation.", "1,234.50"},
+        {":number",
+         "Formats a number. Options: minimumFractionDigits, maximumFractionDigits, minimumIntegerDigits, useGrouping, signDisplay, notation.",
+         "1,234.50"},
         {":integer", "Formats an integer.", "1,234"},
-        {":currency", "Formats as currency. Options: currency=ISO, currencyDisplay=code|symbol|name|narrowSymbol.", "$1,234.56"},
+        {":currency",
+         "Formats as currency. Options: currency=ISO, currencyDisplay=code|symbol|name|narrowSymbol.",
+         "$1,234.56"},
         {":date", "Formats a date. Options: dateStyle=short|medium|long|full.", "Apr 15, 2026"},
         {":time", "Formats a time. Options: timeStyle=short|medium|long|full.", "3:04 PM"},
         {":datetime", "Formats a date and time.", "Apr 15, 2026, 3:04 PM"}
@@ -53,13 +61,15 @@ defmodule LocalizePlaygroundWeb.MF2Reference do
         {"0 {{No items.}}", "Literal variant — matched when $count == 0.", "No items."},
         {"one {{1 item}}", "Plural keyword variant (:number selector).", "1 item"},
         {"* {{N items.}}", "Default/wildcard variant. Required.", "N items."},
-        {".match $a $b\nhi hi {{both hi}}\n* * {{anything}}", "Multi-selector — one row per combination. Wildcards * act as catch-alls.", ""}
+        {".match $a $b\nhi hi {{both hi}}\n* * {{anything}}",
+         "Multi-selector — one row per combination. Wildcards * act as catch-alls.", ""}
       ]
     },
     %{
       title: "Markup",
       rows: [
-        {"{#link}Click here{/link}", "Open / close markup — the formatter can emit structured output (HTML, etc.).", ""},
+        {"{#link}Click here{/link}",
+         "Open / close markup — the formatter can emit structured output (HTML, etc.).", ""},
         {"{#img src=|photo.jpg| /}", "Self-closing markup with options.", ""}
       ]
     },
@@ -75,10 +85,14 @@ defmodule LocalizePlaygroundWeb.MF2Reference do
     %{
       title: "Common patterns",
       rows: [
-        {".match {$count :number}\none {{1 unread}}\n* {{{$count} unread}}", "Plural message using CLDR plural categories.", "3 unread"},
-        {".match {$gender :string}\nfeminine {{She}}\nmasculine {{He}}\n* {{They}}", "Gender/string selection.", "They"},
-        {"{{Total: {$amount :currency currency=USD}}}", "Currency formatting with options.", "Total: $1,234.56"},
-        {"{{Today is {$d :date dateStyle=full}}}", "Long date.", "Today is Wednesday, April 15, 2026"}
+        {".match {$count :number}\none {{1 unread}}\n* {{{$count} unread}}",
+         "Plural message using CLDR plural categories.", "3 unread"},
+        {".match {$gender :string}\nfeminine {{She}}\nmasculine {{He}}\n* {{They}}",
+         "Gender/string selection.", "They"},
+        {"{{Total: {$amount :currency currency=USD}}}", "Currency formatting with options.",
+         "Total: $1,234.56"},
+        {"{{Today is {$d :date dateStyle=full}}}", "Long date.",
+         "Today is Wednesday, April 15, 2026"}
       ]
     }
   ]

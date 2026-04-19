@@ -41,7 +41,12 @@ defmodule LocalizePlaygroundWeb.HexDocsProxy do
   end
 
   defp fetch_and_forward(conn, url) do
-    case :httpc.request(:get, {String.to_charlist(url), [{~c"user-agent", ~c"localize-playground-proxy"}]}, [], body_format: :binary) do
+    case :httpc.request(
+           :get,
+           {String.to_charlist(url), [{~c"user-agent", ~c"localize-playground-proxy"}]},
+           [],
+           body_format: :binary
+         ) do
       {:ok, {{_, status, _}, headers, body}} when status in 200..299 ->
         content_type = find_header(headers, ~c"content-type") || "text/html; charset=utf-8"
         body = maybe_rewrite(body, content_type)

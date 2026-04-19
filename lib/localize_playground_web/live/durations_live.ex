@@ -7,14 +7,34 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   alias LocalizePlaygroundWeb.NumberView
 
   @modes [
-    %{id: :parts, label: gettext_noop("From parts"), hint: gettext_noop("Years, months, days, hours, minutes, seconds")},
-    %{id: :between, label: gettext_noop("Between two dates"), hint: gettext_noop("Elapsed time between two moments")},
-    %{id: :seconds, label: gettext_noop("From seconds"), hint: gettext_noop("A raw duration in seconds")}
+    %{
+      id: :parts,
+      label: gettext_noop("From parts"),
+      hint: gettext_noop("Years, months, days, hours, minutes, seconds")
+    },
+    %{
+      id: :between,
+      label: gettext_noop("Between two dates"),
+      hint: gettext_noop("Elapsed time between two moments")
+    },
+    %{
+      id: :seconds,
+      label: gettext_noop("From seconds"),
+      hint: gettext_noop("A raw duration in seconds")
+    }
   ]
 
   @format_kinds [
-    %{id: :named, label: gettext_noop("Named units"), hint: gettext_noop("\"2 hours, 30 minutes\" — honours style")},
-    %{id: :time, label: gettext_noop("Time pattern"), hint: gettext_noop("\"02:30:00\" — numeric clock-style")}
+    %{
+      id: :named,
+      label: gettext_noop("Named units"),
+      hint: gettext_noop("\"2 hours, 30 minutes\" — honours style")
+    },
+    %{
+      id: :time,
+      label: gettext_noop("Time pattern"),
+      hint: gettext_noop("\"02:30:00\" — numeric clock-style")
+    }
   ]
 
   @parts ~w(year month day hour minute second)a
@@ -63,7 +83,13 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
       |> apply_strings(params, ["locale", "from_datetime", "to_datetime", "seconds", "pattern"])
       |> apply_atoms(params, ["mode", "format_kind", "style"])
       |> apply_parts(params)
-      |> assign(:current_locale, if(params["locale"] in [nil, ""], do: socket.assigns.current_locale, else: params["locale"]))
+      |> assign(
+        :current_locale,
+        if(params["locale"] in [nil, ""],
+          do: socket.assigns.current_locale,
+          else: params["locale"]
+        )
+      )
       |> compute()
 
     {:noreply, socket}
@@ -81,8 +107,12 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
   defp apply_atoms(socket, params, keys) do
     Enum.reduce(keys, socket, fn key, acc ->
       case Map.get(params, key) do
-        nil -> acc
-        "" -> acc
+        nil ->
+          acc
+
+        "" ->
+          acc
+
         value ->
           try do
             assign(acc, String.to_atom(key), String.to_existing_atom(value))
@@ -114,7 +144,10 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
           {:error, parse_error}
 
         socket.assigns.format_kind == :named ->
-          DateTimeView.format_duration(duration, locale: socket.assigns.locale, style: socket.assigns.style)
+          DateTimeView.format_duration(duration,
+            locale: socket.assigns.locale,
+            style: socket.assigns.style
+          )
 
         socket.assigns.format_kind == :time ->
           DateTimeView.format_duration_time(duration, socket.assigns.pattern)
@@ -294,7 +327,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
     """
   end
 
-  attr :code, :string, required: true
+  attr(:code, :string, required: true)
 
   defp call_code(assigns) do
     ~H"""
@@ -311,7 +344,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, string}} = assigns) do
     assigns = assign(assigns, :text, string)

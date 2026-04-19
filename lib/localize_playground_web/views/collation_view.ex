@@ -121,7 +121,8 @@ defmodule LocalizePlaygroundWeb.CollationView do
     "hy" => ~w(աշակերտ բարի գիտություն դաս եղբայր զգեստ էական թագավոր ժամանակ ինչ լույս),
 
     # ---------- Georgian ----------
-    "ka" => ~w(აბანო ბავშვი გაზაფხული დედა ვერცხლი ზაფხული თავი კატა მთა სახლი ჭადარი ჯანმრთელობა),
+    "ka" =>
+      ~w(აბანო ბავშვი გაზაფხული დედა ვერცხლი ზაფხული თავი კატა მთა სახლი ჭადარი ჯანმრთელობა),
 
     # ---------- Arabic-script ----------
     "ar" => ~w(أب أم بيت تفاحة ثلج جمل حليب خبز دار ربيع زرافة سمك شمس قمر مفتاح),
@@ -232,7 +233,7 @@ defmodule LocalizePlaygroundWeb.CollationView do
   defp format_key(binary) when is_binary(binary) do
     binary
     |> :binary.bin_to_list()
-    |> Enum.map_join(" ", &:io_lib.format("~2.16.0B", [&1]) |> IO.iodata_to_binary())
+    |> Enum.map_join(" ", &(:io_lib.format("~2.16.0B", [&1]) |> IO.iodata_to_binary()))
   end
 
   @doc """
@@ -251,38 +252,104 @@ defmodule LocalizePlaygroundWeb.CollationView do
   # change the collation variant or options. Wrapped in `gettext_noop`
   # so extraction sees them; translated at runtime in `seed_caption/1`.
   @seed_captions %{
-    "en" => gettext_noop("Standard English mixes case and accented forms — try strength = primary to collapse them."),
-    "fr" => gettext_noop("Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left."),
-    "de" => gettext_noop("Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller."),
+    "en" =>
+      gettext_noop(
+        "Standard English mixes case and accented forms — try strength = primary to collapse them."
+      ),
+    "fr" =>
+      gettext_noop(
+        "Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left."
+      ),
+    "de" =>
+      gettext_noop(
+        "Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller."
+      ),
     "it" => gettext_noop("Primary strength ignores the accents on città, perché, così."),
-    "es" => gettext_noop("Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l."),
-    "cs" => gettext_noop("Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h."),
+    "es" =>
+      gettext_noop(
+        "Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l."
+      ),
+    "cs" =>
+      gettext_noop(
+        "Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h."
+      ),
     "sk" => gettext_noop("Like Czech, ch is one letter; note ľ and ô in their tailored slots."),
-    "pl" => gettext_noop("ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them."),
-    "sl" => gettext_noop("Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms."),
-    "hr" => gettext_noop("Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l."),
-    "ru" => gettext_noop("Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+."),
-    "uk" => gettext_noop("ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have."),
-    "bg" => gettext_noop("No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering."),
+    "pl" =>
+      gettext_noop(
+        "ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them."
+      ),
+    "sl" =>
+      gettext_noop(
+        "Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms."
+      ),
+    "hr" =>
+      gettext_noop(
+        "Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l."
+      ),
+    "ru" =>
+      gettext_noop(
+        "Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+."
+      ),
+    "uk" =>
+      gettext_noop(
+        "ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have."
+      ),
+    "bg" =>
+      gettext_noop(
+        "No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering."
+      ),
     "sr" => gettext_noop("Serbian Cyrillic order: ђ after д, љ after л, њ after н."),
-    "mk" => gettext_noop("Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours."),
-    "zh" => gettext_noop("Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely."),
-    "ja" => gettext_noop("Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."),
+    "mk" =>
+      gettext_noop(
+        "Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours."
+      ),
+    "zh" =>
+      gettext_noop(
+        "Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely."
+      ),
+    "ja" =>
+      gettext_noop(
+        "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."
+      ),
     "ko" => gettext_noop("Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."),
-    "da" => gettext_noop("æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."),
+    "da" =>
+      gettext_noop(
+        "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."
+      ),
     "sv" => gettext_noop("Swedish: ä / ö / å all come after z, in that specific order."),
     "is" => gettext_noop("Icelandic has ð (after d), þ (after z), æ (after y), ö (after z)."),
-    "hu" => gettext_noop("Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters."),
+    "hu" =>
+      gettext_noop(
+        "Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters."
+      ),
     "fi" => gettext_noop("Finnish ä and ö sort after z, like Swedish."),
-    "tr" => gettext_noop("Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed."),
-    "vi" => gettext_noop("Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."),
+    "tr" =>
+      gettext_noop(
+        "Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed."
+      ),
+    "vi" =>
+      gettext_noop(
+        "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."
+      ),
     "lt" => gettext_noop("ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions."),
     "lv" => gettext_noop("Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots."),
-    "ar" => gettext_noop("Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength."),
-    "he" => gettext_noop("Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."),
-    "el" => gettext_noop("Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."),
+    "ar" =>
+      gettext_noop(
+        "Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength."
+      ),
+    "he" =>
+      gettext_noop(
+        "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."
+      ),
+    "el" =>
+      gettext_noop(
+        "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."
+      ),
     "th" => gettext_noop("Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…"),
-    "hi" => gettext_noop("Devanagari vowel + consonant order; vowel signs collate with their independent forms.")
+    "hi" =>
+      gettext_noop(
+        "Devanagari vowel + consonant order; vowel signs collate with their independent forms."
+      )
   }
 
   @doc """
@@ -363,8 +430,9 @@ defmodule LocalizePlaygroundWeb.CollationView do
     # via `Gettext.dgettext/3` at render.
     [
       {:strength, gettext_noop("Strength"),
-       gettext_noop("How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."),
-       :select,
+       gettext_noop(
+         "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."
+       ), :select,
        [
          {"", gettext_noop("(locale default)")},
          {"primary", gettext_noop("Primary — base letters only")},
@@ -374,8 +442,9 @@ defmodule LocalizePlaygroundWeb.CollationView do
          {"identical", gettext_noop("Identical — full code-point")}
        ]},
       {:alternate, gettext_noop("Alternate"),
-       gettext_noop("Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."),
-       :select,
+       gettext_noop(
+         "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."
+       ), :select,
        [
          {"", gettext_noop("(locale default)")},
          {"non_ignorable", gettext_noop("Non-ignorable (default)")},
@@ -390,8 +459,9 @@ defmodule LocalizePlaygroundWeb.CollationView do
          {"lower", gettext_noop("Lower first")}
        ]},
       {:max_variable, gettext_noop("Max variable"),
-       gettext_noop("Which classes of characters are treated as variable-weight when alternate = shifted."),
-       :select,
+       gettext_noop(
+         "Which classes of characters are treated as variable-weight when alternate = shifted."
+       ), :select,
        [
          {"", gettext_noop("(locale default)")},
          {"punct", gettext_noop("Punctuation (default)")},
@@ -400,17 +470,19 @@ defmodule LocalizePlaygroundWeb.CollationView do
          {"currency", gettext_noop("Currency")}
        ]},
       {:case_level, gettext_noop("Case level"),
-       gettext_noop("Inserts a dedicated case comparison level. Lets primary strength still distinguish case."),
-       :checkbox, nil},
+       gettext_noop(
+         "Inserts a dedicated case comparison level. Lets primary strength still distinguish case."
+       ), :checkbox, nil},
       {:backwards, gettext_noop("Backwards secondary (French)"),
-       gettext_noop("Reverses the secondary level — the classic French accent rule."),
-       :checkbox, nil},
+       gettext_noop("Reverses the secondary level — the classic French accent rule."), :checkbox,
+       nil},
       {:normalization, gettext_noop("NFD normalization"),
-       gettext_noop("Canonicalize input before comparing. Usually only needed for unusual source data."),
-       :checkbox, nil},
+       gettext_noop(
+         "Canonicalize input before comparing. Usually only needed for unusual source data."
+       ), :checkbox, nil},
       {:numeric, gettext_noop("Numeric mode"),
-       gettext_noop("Treat digit runs as numbers (so `item2` sorts before `item10`)."),
-       :checkbox, nil}
+       gettext_noop("Treat digit runs as numbers (so `item2` sorts before `item10`)."), :checkbox,
+       nil}
     ]
   end
 
@@ -446,15 +518,15 @@ defmodule LocalizePlaygroundWeb.CollationView do
   # (`:phonebook`, `:traditional`) but the BCP-47 `-u-co-` subtag
   # requires the canonical 3-8-char code (`phonebk`, `trad`). Build a
   # reverse map once from the validity data: alias_long → canonical.
-  @co_name_to_code (Localize.SupplementalData.validity(:u)
-                    |> Map.get("co", %{})
-                    |> Enum.reduce(%{}, fn
-                      {canonical, alias_name}, acc when is_binary(alias_name) ->
-                        Map.put(acc, alias_name, canonical)
+  @co_name_to_code Localize.SupplementalData.validity(:u)
+                   |> Map.get("co", %{})
+                   |> Enum.reduce(%{}, fn
+                     {canonical, alias_name}, acc when is_binary(alias_name) ->
+                       Map.put(acc, alias_name, canonical)
 
-                      {canonical, _}, acc ->
-                        Map.put(acc, canonical, canonical)
-                    end))
+                     {canonical, _}, acc ->
+                       Map.put(acc, canonical, canonical)
+                   end)
 
   defp collation_code(:standard), do: "standard"
 

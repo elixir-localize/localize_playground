@@ -258,7 +258,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     """
   end
 
-  attr :result, :any, required: true
+  attr(:result, :any, required: true)
 
   defp result_card(%{result: {:ok, _}} = assigns) do
     ~H"""
@@ -280,7 +280,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     """
   end
 
-  attr :pattern, :any, required: true
+  attr(:pattern, :any, required: true)
 
   defp pattern_card(%{pattern: nil} = assigns) do
     ~H"""
@@ -326,7 +326,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     """
   end
 
-  attr :meta, :any, required: true
+  attr(:meta, :any, required: true)
 
   defp meta_card(%{meta: nil} = assigns) do
     ~H"""
@@ -407,7 +407,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
 
   def humanize_atom(other), do: to_string(other)
 
-  attr :code, :string, required: true
+  attr(:code, :string, required: true)
 
   defp call_code_card(assigns) do
     ~H"""
@@ -472,8 +472,8 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   defp number_word(9), do: "nine"
   defp number_word(n), do: Integer.to_string(n)
 
-  attr :symbols, :any, required: true
-  attr :locale, :string, required: true
+  attr(:symbols, :any, required: true)
+  attr(:locale, :string, required: true)
 
   defp locale_metadata_card(%{symbols: nil} = assigns) do
     ~H"""
@@ -491,7 +491,8 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
       {gettext("Percent sign"), :percent_sign, symbols.percent_sign},
       {gettext("Per-mille sign"), :per_mille, symbols.per_mille},
       {gettext("Exponential"), :exponential, symbols.exponential},
-      {gettext("Superscripting exponent"), :superscripting_exponent, symbols.superscripting_exponent},
+      {gettext("Superscripting exponent"), :superscripting_exponent,
+       symbols.superscripting_exponent},
       {gettext("Infinity"), :infinity, symbols.infinity},
       {gettext("Not-a-number"), :nan, symbols.nan},
       {gettext("Approximately sign"), :approximately_sign, symbols.approximately_sign},
@@ -535,7 +536,9 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
   end
 
   defp render_symbol(value) when is_binary(value) do
-    Phoenix.HTML.raw("<code>#{Phoenix.HTML.html_escape(value) |> Phoenix.HTML.safe_to_string()}</code>")
+    Phoenix.HTML.raw(
+      "<code>#{Phoenix.HTML.html_escape(value) |> Phoenix.HTML.safe_to_string()}</code>"
+    )
   end
 
   defp render_symbol(value), do: inspect(value)
@@ -552,7 +555,7 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
     va: "Variant (-u-va)"
   }
 
-  attr :extensions, :map, required: true
+  attr(:extensions, :map, required: true)
 
   defp u_extensions_card(assigns) do
     rows =

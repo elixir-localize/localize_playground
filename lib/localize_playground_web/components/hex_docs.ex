@@ -12,7 +12,7 @@ defmodule LocalizePlaygroundWeb.HexDocs do
   import Phoenix.HTML, only: [raw: 1]
 
   # The slide-out panel itself — rendered once per page layout.
-  attr :id, :string, default: "hexdocs-panel"
+  attr(:id, :string, default: "hexdocs-panel")
 
   def panel(assigns) do
     ~H"""
@@ -30,9 +30,9 @@ defmodule LocalizePlaygroundWeb.HexDocs do
   end
 
   # Render a call-code fragment with function identifiers linkified.
-  attr :code, :string, required: true
-  attr :class, :string, default: "lp-call-code-text"
-  attr :id, :string, default: nil
+  attr(:code, :string, required: true)
+  attr(:class, :string, default: "lp-call-code-text")
+  attr(:id, :string, default: nil)
 
   def code(assigns) do
     highlighted = highlight_and_link(assigns.code)
@@ -76,7 +76,9 @@ defmodule LocalizePlaygroundWeb.HexDocs do
 
   Only `Localize.*` module chains are linkified.
   """
-  @spec parse(String.t()) :: [{:text, String.t()} | {:fun, String.t(), String.t(), non_neg_integer(), String.t()}]
+  @spec parse(String.t()) :: [
+          {:text, String.t()} | {:fun, String.t(), String.t(), non_neg_integer(), String.t()}
+        ]
   def parse(code) when is_binary(code) do
     regex = ~r/Localize(?:\.[A-Z][A-Za-z0-9_]*)+\.[a-z_][A-Za-z0-9_?!]*/
 

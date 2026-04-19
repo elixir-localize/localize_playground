@@ -1,7 +1,7 @@
 defmodule LocalizePlaygroundWeb.Layouts do
   use LocalizePlaygroundWeb, :html
 
-  embed_templates "layouts/*"
+  embed_templates("layouts/*")
 
   def tab_href(nil, path), do: path
   def tab_href("", path), do: path

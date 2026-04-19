@@ -24,11 +24,31 @@ defmodule LocalizePlayground.MixProject do
     ]
   end
 
+  # Ecosystem packages can be pulled from hex (for fly.io deploy) or
+  # from sibling paths (for local dev iteration). Toggle via the
+  # LOCALIZE_PATH_DEPS env var — when set to a truthy value, mix uses
+  # path deps; otherwise hex deps. Docker builds ignore the env var
+  # and always use hex.
+  @path_deps System.get_env("LOCALIZE_PATH_DEPS") in ~w(1 true yes)
+
+  defp ecosystem_deps do
+    if @path_deps do
+      [
+        {:localize, path: "../localize", override: true},
+        {:mf2_wasm_editor, path: "../mf2_wasm_editor"}
+      ]
+    else
+      [
+        {:localize, "~> 0.18"},
+        {:mf2_wasm_editor, "~> 0.1"}
+      ]
+    end
+  end
+
   defp deps do
     [
-      {:localize, "~> 0.15"},
-      {:localize_web, "~> 0.4"},
-      {:localize_mf2_treesitter, path: "../localize_mf2_treesitter"},
+      {:localize_web, "~> 0.4"}
+    ] ++ ecosystem_deps() ++ [
       {:calendrical, "~> 0.2"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},

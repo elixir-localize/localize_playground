@@ -11,14 +11,34 @@ defmodule LocalizePlaygroundWeb.PageLive do
   # gettext.extract` picks the msgid up. At render time the template
   # calls `gettext/1` with the stored string to do the runtime lookup.
   @style_groups [
-    %{id: :decimal, label: gettext_noop("Decimal"), hint: gettext_noop("Plain numbers with locale grouping")},
-    %{id: :currency, label: gettext_noop("Currency"), hint: gettext_noop("Money amounts with currency symbols")},
-    %{id: :percent, label: gettext_noop("Percent"), hint: gettext_noop("Scaled by 100 with a % sign")},
+    %{
+      id: :decimal,
+      label: gettext_noop("Decimal"),
+      hint: gettext_noop("Plain numbers with locale grouping")
+    },
+    %{
+      id: :currency,
+      label: gettext_noop("Currency"),
+      hint: gettext_noop("Money amounts with currency symbols")
+    },
+    %{
+      id: :percent,
+      label: gettext_noop("Percent"),
+      hint: gettext_noop("Scaled by 100 with a % sign")
+    },
     %{id: :compact, label: gettext_noop("Compact"), hint: gettext_noop("1.2K · 1 million · $1M")},
-    %{id: :rbnf, label: gettext_noop("Spellout / RBNF"), hint: gettext_noop("\"one hundred twenty-three\"")},
+    %{
+      id: :rbnf,
+      label: gettext_noop("Spellout / RBNF"),
+      hint: gettext_noop("\"one hundred twenty-three\"")
+    },
     %{id: :range, label: gettext_noop("Range"), hint: gettext_noop("3–5 · 1.5–2.5")},
     %{id: :boundary, label: gettext_noop("Approximate"), hint: gettext_noop("~5 · 5+ · ≤5")},
-    %{id: :pattern, label: gettext_noop("Custom pattern"), hint: gettext_noop("Enter a CLDR format string")}
+    %{
+      id: :pattern,
+      label: gettext_noop("Custom pattern"),
+      hint: gettext_noop("Enter a CLDR format string")
+    }
   ]
 
   @currency_symbol_options [
@@ -329,7 +349,10 @@ defmodule LocalizePlaygroundWeb.PageLive do
     |> assign(:result, result)
     |> assign(:pattern, pattern)
     |> assign(:pattern_meta, meta)
-    |> assign(:locale_symbols, NumberView.locale_symbols(locale, non_default(assigns.number_system)))
+    |> assign(
+      :locale_symbols,
+      NumberView.locale_symbols(locale, non_default(assigns.number_system))
+    )
     |> assign(:call_code, build_call_code(assigns, number_result, options))
     |> assign(:current_locale, to_string(assigns.locale))
     |> assign(:options_for_display, sanitize_options_for_display(options, style_atom))
@@ -366,7 +389,10 @@ defmodule LocalizePlaygroundWeb.PageLive do
 
       :rbnf ->
         rule = inspect(assigns.rbnf_rule)
-        locale_opts = if to_string(assigns.locale) == "en", do: [], else: [locale: to_string(assigns.locale)]
+
+        locale_opts =
+          if to_string(assigns.locale) == "en", do: [], else: [locale: to_string(assigns.locale)]
+
         "Localize.Number.Rbnf.to_string(#{number_arg}, #{rule}#{trailing_kw(locale_opts)})"
 
       _ ->
@@ -396,7 +422,6 @@ defmodule LocalizePlaygroundWeb.PageLive do
        |> Enum.map(fn {k, v} -> "#{k}: #{inspect(v)}" end)
        |> Enum.join(", "))
   end
-
 
   defp build_options(assigns, locale) do
     base = [locale: locale]
