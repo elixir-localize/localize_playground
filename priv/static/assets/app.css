@@ -755,9 +755,16 @@ input[type="text"],
   gap: 2px;
 }
 .lp-display-name-code {
+  /* Match .lp-call-code-text so the Locales code example reads
+   * at the same size as the Numbers / Dates / etc. tabs. The
+   * per-token colours come from `.highlight .*` rules above;
+   * this block just governs size + family + wrapping. */
+  margin: 0;
   font-family: ui-monospace, monospace;
-  font-size: 11px;
-  color: var(--lp-text-dim);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--lp-text);
+  white-space: pre-wrap;
   word-break: break-word;
 }
 .lp-display-name-value {
@@ -817,13 +824,40 @@ input[type="text"],
   accent-color: var(--lp-accent);
 }
 
-.lp-words-link {
-  color: var(--lp-accent);
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
+/* In-page anchor applied by HexDocs.code via its `anchors` attr.
+ * Used on the Collation tab to link the symbolic `words` variable
+ * in the call example to the word-list section further down.
+ *
+ * The link wraps a Makeup token span, so we override the span's
+ * colour + add a solid underline + chevron glyph to make it
+ * unambiguously a link rather than just another syntax token. */
+.lp-anchor-ref {
   cursor: pointer;
+  text-decoration: none;
 }
-.lp-words-link:hover { text-decoration-style: solid; }
+.lp-anchor-ref > .n {
+  color: var(--lp-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.lp-anchor-ref::after {
+  /* Small "jump to" chevron after the token text. Font size matches
+   * the surrounding code so it doesn't break line height. */
+  content: " ↓";
+  color: var(--lp-accent);
+  font-size: 0.85em;
+  letter-spacing: -0.02em;
+}
+.lp-anchor-ref:hover > .n,
+.lp-anchor-ref:focus-visible > .n {
+  text-decoration-thickness: 2px;
+}
+.lp-anchor-ref:focus-visible {
+  outline: 2px solid var(--lp-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
 /* Dates & Times tab */
 .lp-dt-top {
