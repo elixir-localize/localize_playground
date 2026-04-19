@@ -24,6 +24,19 @@ defmodule LocalizePlayground.MixProject do
     ]
   end
 
+  # MF2_EDITOR_INTEGRATION: dependency declaration
+  #
+  # `mf2_wasm_editor` is the browser-side MF2 highlighter + LiveView
+  # hook. It's a standard hex dep. The toggle below lets us iterate
+  # against a sibling checkout (`LOCALIZE_PATH_DEPS=1`) during
+  # development; hex mode is what Docker and fly.io use.
+  #
+  # This is one of six integration points in the playground — grep
+  # for MF2_EDITOR_INTEGRATION to find them all. See README § "MF2
+  # editor integration" for the full map.
+  #
+  # Guide: https://hexdocs.pm/mf2_wasm_editor/mf2_wasm_editor.html
+  #
   # Ecosystem packages can be pulled from hex (for fly.io deploy) or
   # from sibling paths (for local dev iteration). Toggle via the
   # LOCALIZE_PATH_DEPS env var — when set to a truthy value, mix uses

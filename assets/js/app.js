@@ -153,13 +153,20 @@ Hooks.SyncStyleGroup = {
   }
 }
 
-// The MF2Editor hook now lives in the `mf2_wasm_editor` package
-// (served from /mf2_editor/mf2_editor.js and loaded via the
-// `<script>` tags emitted by Mf2WasmEditor.script_tags/1). It
-// owns the textarea value and the highlighted <pre>, runs the
-// tree-sitter-mf2 grammar in WASM, and applies syntax highlights
-// plus diagnostic squiggles on every keystroke with no server round
-// trip. We merge its Hooks namespace into ours further down.
+// MF2_EDITOR_INTEGRATION: hook lives in a sibling module
+//
+// The MF2Editor hook doesn't live in this file — it's in the
+// `mf2_wasm_editor` package, served at /mf2_editor/mf2_editor.js
+// and loaded via the `<script type="module">` tag emitted by
+// Mf2WasmEditor.script_tags/1 (see root.html.heex). That module
+// owns the textarea value + the highlighted <pre>, runs the
+// tree-sitter-mf2 grammar in WASM, and applies syntax highlighting
+// plus diagnostic squiggles on every keystroke — no server round
+// trip.
+//
+// We don't call the hook directly here. Instead we merge its
+// Hooks namespace into our own just before constructing the
+// LiveSocket — search for the next MF2_EDITOR_INTEGRATION marker.
 
 Hooks.MF2ReferencePanel = {
   mounted() {
@@ -223,11 +230,17 @@ const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   ?.getAttribute("content")
 
-// Merge in the MF2 editor hook from the vendored package. That
-// script loads separately via a <script> tag in the root layout and
-// registers onto `window.Mf2WasmEditor.Hooks`. Because both
-// scripts use `defer`, their order of evaluation matches markup
-// order, so `window.Mf2WasmEditor` is defined by the time we run.
+// MF2_EDITOR_INTEGRATION: merge the hook into LiveSocket
+//
+// /mf2_editor/mf2_editor.js is an ES module that evaluates before
+// this file (both deferred; the MF2 script tag is earlier in the
+// root layout). Its side-effect registers MF2Editor onto
+// `window.Mf2WasmEditor.Hooks`. We merge that namespace into our
+// own Hooks object so LiveView sees `MF2Editor` alongside the
+// playground's own hooks. Optional-chaining (`?.`) guards against
+// the module failing to load — the rest of the app still starts.
+//
+// Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#3-merge-the-hook-into-your-livesocket
 const AllHooks = Object.assign({}, Hooks, window.Mf2WasmEditor?.Hooks || {})
 
 const liveSocket = new LiveSocket("/live", Socket, {

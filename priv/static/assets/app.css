@@ -968,8 +968,30 @@ input[type="text"],
   vertical-align: baseline;
 }
 
-/* MF2 editor — syntax-highlighted <pre> layered behind a transparent
-   textarea. The textarea captures input; the <pre> shows the colours. */
+/* MF2_EDITOR_INTEGRATION: editor overlay CSS
+ *
+ * The visible editor is a transparent <textarea> layered ON TOP of
+ * a `.mf2-highlight` <pre>. The textarea captures keyboard input
+ * and the caret; the <pre> shows the highlighted text. The rules
+ * below pin the two elements' font metrics to exactly match, so
+ * glyph positions line up per-character — any drift appears as a
+ * widening gap between text and caret along the line.
+ *
+ * Critical invariants:
+ *   * textarea has `color: transparent` + `caret-color: <visible>`
+ *     (caret shows, text doesn't).
+ *   * <pre> is `position: absolute; inset: 0` inside the wrapper
+ *     and `pointer-events: none` so clicks reach the textarea.
+ *   * Font shorthand and every metric property (letter-spacing,
+ *     kerning, ligatures, feature-settings, optical-sizing) are
+ *     pinned identically on both. Default differences between
+ *     <textarea> and text elements accumulate sub-pixel drift.
+ *
+ * The PER-TOKEN colours (`.mf2-variable` etc.) come from the
+ * theme stylesheet linked in `root.html.heex`, not from here.
+ *
+ * Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#the-textarea-is-transparent-the-pre-shows-colour
+ */
 .lp-mf2-editor { position: relative; }
 .lp-mf2-editor .lp-mf2-message {
   position: relative;
@@ -1014,46 +1036,23 @@ input[type="text"],
 }
 .lp-mf2-editor .lp-mf2-message::selection { background: rgba(96, 165, 250, 0.35); color: transparent; }
 
-/* MF2 Monokai token colours.
+/* MF2_EDITOR_INTEGRATION: token colour rules (note: not here)
  *
- * Two class namespaces live here. The legacy `mf2-name_variable` /
- * `mf2-number_integer` set came from the Pygments output of the
- * NimbleParsec `Localize.Message.to_html`. The current tree-sitter-
- * backed highlighter (Mf2Highlighter) emits names that match the
- * grammar's highlights.scm capture taxonomy — `mf2-variable`,
- * `mf2-keyword-conditional`, etc. Both are kept so either renderer
- * produces correct output against this stylesheet.
+ * Token colours — the `.mf2-variable`, `.mf2-punctuation-bracket`,
+ * `.mf2-string-escape`, etc. classes the hook paints — are
+ * provided by the `monokai.css` theme linked from `root.html.heex`.
+ * That file is shipped by `mf2_wasm_editor` at
+ * `priv/themes/monokai.css` and served by the second Plug.Static
+ * declaration in `endpoint.ex`. Swap to any of the 29 other themes
+ * by changing the one `<link>` in the layout.
+ *
+ * Do NOT re-add per-class colour rules here — they'd override the
+ * theme without warning. The only MF2 token class we style below
+ * is `.mf2-bracket-match`, which is a transient highlight painted
+ * by the hook, not a theme-able token.
+ *
+ * Guide: https://hexdocs.pm/mf2_wasm_editor/features.html#themes
  */
-.mf2-text { color: #f8f8f2; }
-.mf2-punctuation { color: #f8f8f2; }
-.mf2-name_variable { color: #f8f8f2; }
-.mf2-name_function { color: #a6e22e; }
-.mf2-name_builtin { color: #f92672; }
-.mf2-name_tag { color: #f92672; }
-.mf2-name_attribute { color: #a6e22e; }
-.mf2-name_label { color: #a6e22e; }
-.mf2-string { color: #e6db74; }
-.mf2-number_integer { color: #ae81ff; }
-.mf2-number_float { color: #ae81ff; }
-.mf2-escape { color: #ae81ff; }
-.mf2-keyword_constant { color: #66d9ef; }
-
-/* tree-sitter capture-name classes (Mf2Highlighter) */
-.mf2-variable { color: #f8f8f2; }
-.mf2-variable-builtin { color: #f8f8f2; }
-.mf2-function { color: #a6e22e; }
-.mf2-tag { color: #f92672; }
-.mf2-attribute { color: #a6e22e; }
-.mf2-property { color: #a6e22e; }
-.mf2-number { color: #ae81ff; }
-.mf2-string-escape { color: #ae81ff; }
-.mf2-keyword { color: #66d9ef; }
-.mf2-keyword-import { color: #f92672; }
-.mf2-keyword-conditional { color: #f92672; }
-.mf2-constant-builtin { color: #66d9ef; }
-.mf2-punctuation-bracket { color: #f8f8f2; }
-.mf2-punctuation-special { color: #f92672; }
-.mf2-operator { color: #f92672; }
 
 /* Bracket-match highlight — transient background tint on the two
  * bracket tokens adjacent to the caret. Applied by the client hook,

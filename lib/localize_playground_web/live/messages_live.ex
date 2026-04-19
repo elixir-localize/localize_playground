@@ -125,9 +125,19 @@ masculine * {{He invited {$count} guests.}}
           |> assign(:message, example.message)
           |> assign(:bindings_text, example.bindings)
           |> compute()
-          # The message textarea is `phx-update="ignore"` so LiveView
-          # won't replace its value on its own. Push an event instead
-          # so the MF2Editor hook can set `.value` directly.
+          # MF2_EDITOR_INTEGRATION: hard-replace the textarea value
+          #
+          # The message textarea carries `phx-update="ignore"` so
+          # LiveView never replaces its value during diff patches —
+          # that's what lets the hook own the caret and highlight
+          # without LiveView fighting it. But when we want the
+          # *server* to force a new value (e.g. loading an example
+          # from the sidebar), we need to tell the hook explicitly.
+          # `mf2:set_message` is the hook's "hard replace" event:
+          # the hook immediately overwrites `textarea.value`, moves
+          # the caret to the end, and re-highlights.
+          #
+          # Guide: https://hexdocs.pm/mf2_wasm_editor/features.html#server-round-trip-events
           |> push_event("mf2:set_message", %{value: example.message})
 
         {:noreply, socket}
@@ -174,17 +184,25 @@ masculine * {{He invited {$count} guests.}}
     |> assign(:result, result)
     |> assign(:call_code, build_call_code(a))
     |> assign_new(:message_html, fn ->
-      # Server-render the highlight *once* at mount. Subsequent keystrokes
-      # are handled entirely in the browser by the MF2Editor hook — the
-      # <pre> carries `phx-update="ignore"` so LiveView never overwrites
-      # the client's work. This initial render avoids a flash of unstyled
-      # text while the WASM runtime boots.
+      # MF2_EDITOR_INTEGRATION: server-render the initial paint
       #
-      # Localize.Message.to_html/2 emits the same tree-sitter capture
-      # class names (.mf2-variable, .mf2-punctuation-bracket, …) that
-      # the WASM editor paints with, so the theme stylesheet covers
-      # both cleanly. The initial @message is always a known-good
-      # canonical message, so the ParseError branch is defensive only.
+      # The MF2Editor hook needs ~50–200ms on mount to fetch and
+      # compile the WASM grammar runtime. Until that finishes, the
+      # hook's `update()` is a no-op, and the <pre> shows whatever
+      # the server pre-rendered. `Localize.Message.to_html/2`
+      # (from the `localize` hex package) emits the same tree-sitter
+      # capture class names (`.mf2-variable`, `.mf2-punctuation-bracket`,
+      # `.mf2-string-escape`, …) that the hook paints with — so the
+      # `monokai.css` theme styles both cleanly, and there's no
+      # flash of unstyled text.
+      #
+      # The <pre> carries `phx-update="ignore"` so LiveView never
+      # overwrites the hook's paint on later round-trips.
+      #
+      # The `{:error, _}` branch is defensive — the initial @message
+      # is always a known-good canonical example.
+      #
+      # Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#first-keystroke-after-mount
       case Localize.Message.to_html(a.message) do
         {:ok, html} -> html
         {:error, _} -> Phoenix.HTML.html_escape(a.message) |> Phoenix.HTML.safe_to_string()
@@ -192,14 +210,23 @@ masculine * {{He invited {$count} guests.}}
     end)
   end
 
+  # MF2_EDITOR_INTEGRATION: format-on-blur via mf2:canonical
+  #
   # When the user's message parses cleanly, send its canonical form
-  # back so the editor can snap to it on blur. The client hook holds
-  # the value as a "pending" apply while the textarea has focus and
-  # applies it when focus leaves, so typing is never interrupted.
+  # back so the editor can snap to it on blur. The hook holds the
+  # value as a "pending" apply while the textarea has focus and
+  # installs it on the next blur, so typing is never interrupted.
   #
   # Only fire when the canonical form actually differs from the
   # current input — otherwise we'd wake the hook on every keystroke
-  # to no effect.
+  # to no effect. `mf2:canonical` is the hook's "soft replace"
+  # event, paired with the "hard replace" `mf2:set_message`
+  # used by the example-loader above.
+  #
+  # Drop this function if you don't want format-on-blur — the
+  # editor works fine without it.
+  #
+  # Guide: https://hexdocs.pm/mf2_wasm_editor/features.html#server-round-trip-events
   defp maybe_push_canonical(socket, _message, false), do: socket
 
   defp maybe_push_canonical(socket, message, true) do
@@ -240,13 +267,23 @@ masculine * {{He invited {$count} guests.}}
   defp format_error(%{__exception__: true} = exception), do: Exception.message(exception)
   defp format_error(other), do: inspect(other)
 
+  # MF2_EDITOR_INTEGRATION: gate the formatter on client-side validity
+  #
   # True if the message fails to parse. Used to gate the formatter so
   # we don't display transient parse errors on every keystroke mid-edit.
   #
-  # This is a NimbleParsec parse (abort on first error) — good enough
-  # for a yes/no "is this parseable?" check. For richer diagnostics
-  # the client-side tree-sitter parse in the MF2Editor hook is the
-  # authoritative source; see the `mf2-diagnostics` CustomEvent.
+  # This is a NimbleParsec parse (abort on first error) from the
+  # `localize` package — good enough for a yes/no "is this parseable?"
+  # check on every `phx-change`. The authoritative diagnostics the
+  # user SEES come from the client-side tree-sitter parse in the
+  # hook itself; they surface as wavy squiggles + tooltips on the
+  # <pre> overlay without any server involvement.
+  #
+  # If you want server-side *access* to the client's diagnostics
+  # (e.g. for a server-rendered diagnostic panel), forward the
+  # `mf2-diagnostics` CustomEvent instead — see the guide.
+  #
+  # Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#receiving-diagnostics-server-side
   defp mf2_has_parse_errors?(message) do
     case Localize.Message.Parser.parse(message) do
       {:ok, _ast} -> false
@@ -312,6 +349,34 @@ masculine * {{He invited {$count} guests.}}
         <p class="lp-field-hint">
           {gettext("MessageFormat 2 syntax — see messageformat.unicode.org for the spec. Bindings are Elixir source; use a map or keyword list.")}
         </p>
+        <%!-- MF2_EDITOR_INTEGRATION: the hook element
+
+              This is where the MF2Editor hook actually binds in the
+              page. The layout is exactly what the hook expects:
+
+                <div phx-hook="MF2Editor" id="…">
+                  <pre phx-update="ignore"><code></code></pre>
+                  <textarea phx-update="ignore">…</textarea>
+                </div>
+
+              Three hard requirements, any of which will break the
+              editor silently:
+
+                * `phx-hook="MF2Editor"` on the outer div wires it
+                  to the hook registered by mf2_editor.js.
+                * `phx-update="ignore"` on BOTH the <pre> and the
+                  <textarea>. Without it, LiveView overwrites the
+                  hook's paint on every server round-trip (flicker
+                  on the <pre>, caret-jump on the <textarea>).
+                * Stable `id` on the hook element and the <pre>.
+                  LiveView requires them with `phx-update="ignore"`.
+
+              The initial `<code>` content is the server-side paint
+              from `Localize.Message.to_html/2` (see `compute/1` and
+              its `@message_html` assign). The hook takes over on
+              mount and repaints on every keystroke.
+
+              Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#4-drop-the-editor-markup-into-a-template --%>
         <div class="lp-mf2-workspace">
           <div class="lp-mf2-workspace-left">
             <div
@@ -349,9 +414,18 @@ masculine * {{He invited {$count} guests.}}
     """
   end
 
-  # Keyboard-shortcut reference card shown next to the MF2 editor.
-  # Mirrors the bindings documented in `mf2_wasm_editor`'s README so
-  # devs and translators have a quick lookup without leaving the page.
+  # MF2_EDITOR_INTEGRATION: keyboard-shortcut reference card
+  #
+  # Displayed to the right of the editor. Mirrors the bindings
+  # documented in `mf2_wasm_editor`'s features guide, so devs and
+  # translators have a quick lookup without context-switching.
+  # Pure presentation — no behaviour wires into the hook here.
+  #
+  # Drop this function (and its `<.mf2_shortcuts />` call in the
+  # template) if you don't want the reference card. The editor
+  # works identically without it.
+  #
+  # Guide: https://hexdocs.pm/mf2_wasm_editor/features.html#editing-features-and-keyboard-bindings
   defp mf2_shortcuts(assigns) do
     ~H"""
     <aside class="lp-mf2-shortcuts" aria-label={gettext("MF2 editor keyboard shortcuts")}>

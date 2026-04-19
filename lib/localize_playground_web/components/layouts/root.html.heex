@@ -11,12 +11,39 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link phx-track-static rel="stylesheet" href="/assets/app.css" />
-    <%!-- MF2 editor scripts must appear BEFORE app.js so that by
-          the time app.js's `defer` callback runs and constructs the
-          LiveSocket, `window.Mf2WasmEditor.Hooks` is populated.
-          All three scripts use `defer`, which executes in document
-          order after parsing — so ordering here is what wires the
-          hook into LiveSocket. --%>
+    <%!-- MF2_EDITOR_INTEGRATION: token theme stylesheet
+
+          `mf2_wasm_editor` ships 30 Pygments-ported themes under
+          its `priv/themes/`. We pick `monokai` (dark) and link it
+          here. The theme styles `.mf2-highlight` + every
+          `.mf2-<capture>` span the hook paints (`.mf2-variable`,
+          `.mf2-punctuation-bracket`, `.mf2-string-escape`, …).
+
+          Swap `monokai.css` for any of the other 29 names to try
+          a different palette. The endpoint only serves the
+          whitelisted files — see endpoint.ex.
+
+          Guide: https://hexdocs.pm/mf2_wasm_editor/features.html#themes --%>
+    <link rel="stylesheet" href="/mf2_editor/themes/monokai.css" />
+    <%!-- MF2_EDITOR_INTEGRATION: script tag
+
+          `Mf2WasmEditor.script_tags/1` emits a single
+          `<script type="module" src="/mf2_editor/mf2_editor.js">`
+          tag that loads the LiveView hook. The hook is an ES module
+          that imports the web-tree-sitter runtime from a sibling
+          file, so there's no separate loader script.
+
+          **Order matters**: the MF2 tag must come BEFORE app.js.
+          ES modules are deferred by default and evaluate in
+          document order, matching the explicit `defer` on app.js.
+          app.js constructs the LiveSocket and reads
+          `window.Mf2WasmEditor.Hooks` at that moment; this
+          script must have evaluated first to populate it.
+          Put them the wrong way round and the hook silently
+          never mounts — the editor accepts keystrokes but never
+          paints.
+
+          Guide: https://hexdocs.pm/mf2_wasm_editor/wiring.html#2-emit-the-script-tags-in-the-root-layout --%>
     {raw(Mf2WasmEditor.script_tags())}
     <script defer phx-track-static type="text/javascript" src="/assets/app.js">
     </script>
