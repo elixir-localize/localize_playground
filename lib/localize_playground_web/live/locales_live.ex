@@ -416,12 +416,16 @@ defmodule LocalizePlaygroundWeb.LocalesLive do
     """
   end
 
+  # `Localize.Locale.display_name/2` delegates to
+  # `Localize.Locale.LocaleDisplay.display_name/2`; showing the
+  # shorter, friendlier top-level path is what callers would
+  # actually write.
   defp build_display_name_code(canonical, []),
-    do: "Localize.Locale.LocaleDisplay.display_name(#{inspect(canonical)})"
+    do: "Localize.Locale.display_name(#{inspect(canonical)})"
 
   defp build_display_name_code(canonical, options) do
     kv = options |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{inspect(v)}" end)
-    "Localize.Locale.LocaleDisplay.display_name(#{inspect(canonical)}, #{kv})"
+    "Localize.Locale.display_name(#{inspect(canonical)}, #{kv})"
   end
 
   defp display_name_text({:ok, name}), do: name

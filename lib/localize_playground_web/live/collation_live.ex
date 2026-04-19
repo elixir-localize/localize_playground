@@ -536,9 +536,22 @@ defmodule LocalizePlaygroundWeb.CollationLive do
   attr(:opts_text, :string, required: true)
 
   defp call_code_card(assigns) do
+    code =
+      if assigns.opts_text == "" do
+        "Localize.Collation.sort(words)"
+      else
+        "Localize.Collation.sort(words, #{assigns.opts_text})"
+      end
+
+    assigns = assign(assigns, :code, code)
+
     ~H"""
     <div class="lp-call-code" phx-hook="CopyToClipboard" id="coll-call-wrapper">
-      <pre class="lp-call-code-text" id="coll-call-text"><span>Localize.Collation.sort(</span><a href="#word-list" class="lp-words-link">words</a><span :if={@opts_text != ""}>, {@opts_text}</span><span>)</span></pre>
+      <LocalizePlaygroundWeb.HexDocs.code
+        code={@code}
+        id="coll-call-text"
+        anchors={%{"words" => "#word-list"}}
+      />
       <button
         type="button"
         class="lp-copy-btn"

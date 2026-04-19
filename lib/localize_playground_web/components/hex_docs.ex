@@ -30,12 +30,23 @@ defmodule LocalizePlaygroundWeb.HexDocs do
   end
 
   # Render a call-code fragment with function identifiers linkified.
+  #
+  # `anchors` optionally maps identifier text → on-page href.
+  # Any occurrence of a matching `<span class="n">name</span>` in
+  # the Makeup output is wrapped in `<a href="...">…</a>`. Used by
+  # the Collation tab to link the symbolic `words` variable in the
+  # call example to the word-list section further down the page.
   attr(:code, :string, required: true)
   attr(:class, :string, default: "lp-call-code-text")
   attr(:id, :string, default: nil)
+  attr(:anchors, :map, default: %{})
 
   def code(assigns) do
-    highlighted = highlight_and_link(assigns.code)
+    highlighted =
+      assigns.code
+      |> highlight_and_link()
+      |> apply_anchors(assigns.anchors)
+
     assigns = assign(assigns, :highlighted, highlighted)
 
     ~H"""
@@ -50,6 +61,22 @@ defmodule LocalizePlaygroundWeb.HexDocs do
     code
     |> Makeup.highlight_inner_html(lexer: Makeup.Lexers.ElixirLexer)
     |> linkify_localize_refs()
+  end
+
+  # For each `{name, href}` entry, replace `<span class="n">name</span>`
+  # with `<a href="{href}" class="lp-anchor-ref"><span class="n">name</span></a>`.
+  # Leaves the Makeup span in place so the link inherits token styling.
+  defp apply_anchors(html, anchors) when map_size(anchors) == 0, do: html
+
+  defp apply_anchors(html, anchors) do
+    Enum.reduce(anchors, html, fn {name, href}, acc ->
+      pattern = ~r|<span class="n">#{Regex.escape(name)}</span>|
+
+      replacement =
+        ~s|<a href="#{href}" class="lp-anchor-ref"><span class="n">#{name}</span></a>|
+
+      Regex.replace(pattern, acc, replacement)
+    end)
   end
 
   # Finds Makeup-highlighted `Localize.X.Y` module spans followed by
