@@ -239,27 +239,14 @@ masculine * {{He invited {$count} guests.}}
     end
   end
 
-  # Parse the bindings textarea as Elixir source. Accepts any expression
-  # that evaluates to a map or keyword list. Evaluation is restricted to
-  # a small env — this is a developer playground, so we accept the risk
-  # of arbitrary eval but catch any raised errors.
+  # Parse the bindings textarea as Elixir source. Delegates to
+  # `LocalizePlaygroundWeb.BindingsParser.parse/1`, which does a
+  # literal-only AST walk before evaluating — safe against arbitrary
+  # code execution from hostile input.
   defp parse_bindings(text) when is_binary(text) do
-    trimmed = String.trim(text)
-
-    if trimmed == "" do
-      {%{}, nil}
-    else
-      try do
-        {value, _} = Code.eval_string(trimmed, [], __ENV__)
-
-        cond do
-          is_map(value) -> {value, nil}
-          Keyword.keyword?(value) -> {value, nil}
-          true -> {%{}, "Bindings must evaluate to a map or keyword list, got: #{inspect(value)}"}
-        end
-      rescue
-        error -> {%{}, "Could not parse bindings: #{Exception.message(error)}"}
-      end
+    case LocalizePlaygroundWeb.BindingsParser.parse(text) do
+      {:ok, value} -> {value, nil}
+      {:error, message} -> {%{}, message}
     end
   end
 
