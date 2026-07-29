@@ -61,7 +61,9 @@ masculine * {{He invited {$count} guests.}}
     %{
       name: "Date formatting",
       message: ~S|{{Scheduled for {$when :datetime dateStyle=full timeStyle=short}}}|,
-      bindings: ~S|%{when: DateTime.utc_now()}|
+      # A literal sigil, not `DateTime.utc_now()` — `BindingsParser`
+      # accepts only literals, so a function call is rejected outright.
+      bindings: ~S|%{when: ~U[2026-07-29 22:30:00Z]}|
     },
     %{
       name: "Nested variables",
@@ -70,6 +72,25 @@ masculine * {{He invited {$count} guests.}}
       bindings: ~S|%{name: "Aoife"}|
     }
   ]
+
+  @doc """
+  Returns the default message and every example preset as a uniform list
+  of `%{name:, message:, bindings:}` maps.
+
+  Exposed for the test suite: these presets are static module data that
+  nothing else formats, so an invalid one would otherwise surface only as
+  a runtime error in the browser.
+  """
+  @spec presets() :: [%{name: String.t(), message: String.t(), bindings: String.t()}]
+  def presets do
+    default = %{
+      name: "Default",
+      message: @default_message,
+      bindings: @default_bindings
+    }
+
+    [default | @examples]
+  end
 
   @impl true
   def mount(params, _session, socket) do
