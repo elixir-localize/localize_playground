@@ -24,45 +24,11 @@ defmodule LocalizePlayground.MixProject do
     ]
   end
 
-  # MF2_EDITOR_INTEGRATION: dependency declaration
-  #
-  # `mf2_wasm_editor` is the browser-side MF2 highlighter + LiveView
-  # hook. It's a standard hex dep. The toggle below lets us iterate
-  # against a sibling checkout (`LOCALIZE_PATH_DEPS=1`) during
-  # development; hex mode is what Docker and fly.io use.
-  #
-  # This is one of six integration points in the playground — grep
-  # for MF2_EDITOR_INTEGRATION to find them all. See README § "MF2
-  # editor integration" for the full map.
-  #
-  # Guide: https://hexdocs.pm/mf2_wasm_editor/mf2_wasm_editor.html
-  #
-  # Ecosystem packages can be pulled from hex (for fly.io deploy) or
-  # from sibling paths (for local dev iteration). Toggle via the
-  # LOCALIZE_PATH_DEPS env var — when set to a truthy value, mix uses
-  # path deps; otherwise hex deps. Docker builds ignore the env var
-  # and always use hex.
-  @path_deps System.get_env("LOCALIZE_PATH_DEPS") in ~w(1 true yes)
-
-  defp ecosystem_deps do
-    if @path_deps do
-      [
-        {:localize, path: "../localize", override: true},
-        {:mf2_wasm_editor, path: "../mf2_wasm_editor"}
-      ]
-    else
-      [
-        {:localize, "~> 0.18"},
-        {:mf2_wasm_editor, "~> 0.1"}
-      ]
-    end
-  end
-
   defp deps do
     [
-      {:localize_web, "~> 0.4"}
-    ] ++ ecosystem_deps() ++ [
-      {:calendrical, "~> 0.2"},
+      {:localize_web, "~> 1.0-rc"},
+      {:calendrical, "~> 1.0-rc"},
+      {:mf2_wasm_editor, "~> 0.2"},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 1.0"},
