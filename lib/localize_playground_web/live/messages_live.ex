@@ -10,7 +10,7 @@ defmodule LocalizePlaygroundWeb.MessagesLive do
 
   alias LocalizePlaygroundWeb.NumberView
 
-  @default_message ~S|.local $count = {$count :number}
+  @default_message ~S|.input {$count :number}
 .match $count
 0 {{You have no unread messages.}}
 1 {{You have one unread message.}}
@@ -21,7 +21,7 @@ defmodule LocalizePlaygroundWeb.MessagesLive do
   @examples [
     %{
       name: "Plural match",
-      message: ~S|.local $count = {$count :number}
+      message: ~S|.input {$count :number}
 .match $count
 0 {{You have no unread messages.}}
 1 {{You have one unread message.}}
