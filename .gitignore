@@ -26,3 +26,5 @@ localize_playground-*.tar
 /priv/static/assets/app.js
 /priv/static/assets/app.js.map
 /assets/node_modules/
+
+.DS_Store
