@@ -59,8 +59,7 @@ defmodule LocalizePlaygroundWeb.Endpoint do
     at: "/mf2_editor/themes",
     from: {:mf2_wasm_editor, "priv/themes"},
     gzip: true,
-    only:
-      ~w(abap.css algol.css algol_nu.css arduino.css autumn.css borland.css
+    only: ~w(abap.css algol.css algol_nu.css arduino.css autumn.css borland.css
          bw.css colorful.css default.css emacs.css friendly.css fruity.css
          igor.css lovelace.css manni.css monokai.css murphy.css native.css
          paraiso_dark.css paraiso_light.css pastie.css perldoc.css

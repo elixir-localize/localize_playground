@@ -112,12 +112,20 @@ defmodule LocalizePlaygroundWeb.BindingsParser do
 
   defp check_literal(ast) do
     case ast do
-      atom when is_atom(atom) -> :ok
-      num when is_number(num) -> :ok
-      bin when is_binary(bin) -> :ok
+      atom when is_atom(atom) ->
+        :ok
+
+      num when is_number(num) ->
+        :ok
+
+      bin when is_binary(bin) ->
+        :ok
+
       # `-N` for negative-number literals. The parser emits
       # `{:-, _, [num]}`; unwrap and re-check the inner number.
-      {:-, _, [inner]} -> check_literal(inner)
+      {:-, _, [inner]} ->
+        check_literal(inner)
+
       # Whitelisted date/datetime sigils. The body must be a
       # non-interpolating string (`{:<<>>, _, [binary]}` with
       # exactly one binary element) and the modifier list must be
@@ -127,14 +135,23 @@ defmodule LocalizePlaygroundWeb.BindingsParser do
       when sigil in @allowed_sigils and is_binary(content) ->
         :ok
 
-      list when is_list(list) -> check_list(list)
+      list when is_list(list) ->
+        check_list(list)
+
       # Two-tuple (keyword pair).
-      {a, b} -> with :ok <- check_literal(a), do: check_literal(b)
+      {a, b} ->
+        with :ok <- check_literal(a), do: check_literal(b)
+
       # Tuple literal of size > 2, encoded as `{:{}, meta, elems}`.
-      {:{}, _, elems} -> check_list(elems)
+      {:{}, _, elems} ->
+        check_list(elems)
+
       # Map literal: `{:%{}, meta, [{k, v}, …]}`.
-      {:%{}, _, pairs} -> check_list(pairs)
-      other -> {:error, {:unsafe, describe_rejected(other)}}
+      {:%{}, _, pairs} ->
+        check_list(pairs)
+
+      other ->
+        {:error, {:unsafe, describe_rejected(other)}}
     end
   end
 
@@ -169,7 +186,8 @@ defmodule LocalizePlaygroundWeb.BindingsParser do
     "~#{letter} sigil (only ~D, ~U, ~N are allowed)"
   end
 
-  defp describe_rejected({name, _, [_body, mods]}) when name in [:sigil_D, :sigil_U, :sigil_N] and mods != [] do
+  defp describe_rejected({name, _, [_body, mods]})
+       when name in [:sigil_D, :sigil_U, :sigil_N] and mods != [] do
     letter = name |> Atom.to_string() |> String.trim_leading("sigil_")
     "~#{letter} sigil with modifiers (modifiers aren't allowed)"
   end
