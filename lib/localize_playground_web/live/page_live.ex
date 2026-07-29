@@ -57,6 +57,33 @@ defmodule LocalizePlaygroundWeb.PageLive do
     :floor
   ]
 
+  # ECMA-402 parity options. Each maps onto the Intl.NumberFormat option
+  # named in the label so the tab doubles as a translation table for
+  # anyone porting JavaScript formatting code.
+  @sign_displays [
+    {:auto, "auto — sign only when negative"},
+    {:always, "always — sign on every value"},
+    {:except_zero, "except_zero — sign unless zero"},
+    {:negative, "negative — sign on negatives but not -0"},
+    {:never, "never — no sign"}
+  ]
+
+  @trailing_zero_displays [
+    {:auto, "auto — keep the fraction padding"},
+    {:strip_if_integer, "strip_if_integer — drop it when whole"}
+  ]
+
+  @rounding_priorities [
+    {:auto, "auto — significant digits win"},
+    {:more_precision, "more_precision — whichever gives more"},
+    {:less_precision, "less_precision — whichever gives fewer"}
+  ]
+
+  @exponent_styles [
+    {:e, "e — 1.234E3"},
+    {:superscript, "superscript — 1.234 × 10³"}
+  ]
+
   @number_systems [
     {:default, "Default for locale"},
     {:native, "Native"},
@@ -119,6 +146,10 @@ defmodule LocalizePlaygroundWeb.PageLive do
       |> assign(:style_groups, @style_groups)
       |> assign(:currency_symbol_options, @currency_symbol_options)
       |> assign(:rounding_modes, @rounding_modes)
+      |> assign(:sign_displays, @sign_displays)
+      |> assign(:trailing_zero_displays, @trailing_zero_displays)
+      |> assign(:rounding_priorities, @rounding_priorities)
+      |> assign(:exponent_styles, @exponent_styles)
       |> assign(:decimal_styles, @decimal_styles)
       |> assign(:currency_styles, @currency_styles)
       |> assign(:compact_styles, @compact_styles)
@@ -154,6 +185,14 @@ defmodule LocalizePlaygroundWeb.PageLive do
     |> assign(:max_fractional_digits, "")
     |> assign(:rounding_mode, :half_even)
     |> assign(:round_nearest, "")
+    |> assign(:minimum_integer_digits, "")
+    |> assign(:maximum_integer_digits, "")
+    |> assign(:minimum_significant_digits, "")
+    |> assign(:maximum_significant_digits, "")
+    |> assign(:sign_display, :auto)
+    |> assign(:trailing_zero_display, :auto)
+    |> assign(:rounding_priority, :auto)
+    |> assign(:exponent_style, :e)
     |> assign(:number_system, :default)
     |> assign(:u_extensions, %{})
     |> assign(:rbnf_rules, NumberView.rbnf_rules("en"))
@@ -230,7 +269,11 @@ defmodule LocalizePlaygroundWeb.PageLive do
       "custom_pattern",
       "min_fractional_digits",
       "max_fractional_digits",
-      "round_nearest"
+      "round_nearest",
+      "minimum_integer_digits",
+      "maximum_integer_digits",
+      "minimum_significant_digits",
+      "maximum_significant_digits"
     ]
 
     atom_keys = [
@@ -241,7 +284,11 @@ defmodule LocalizePlaygroundWeb.PageLive do
       {"boundary_kind", &atomize/1},
       {"currency_symbol", &atomize/1},
       {"rounding_mode", &atomize/1},
-      {"number_system", &atomize/1}
+      {"number_system", &atomize/1},
+      {"sign_display", &atomize/1},
+      {"trailing_zero_display", &atomize/1},
+      {"rounding_priority", &atomize/1},
+      {"exponent_style", &atomize/1}
     ]
 
     socket =
@@ -412,6 +459,10 @@ defmodule LocalizePlaygroundWeb.PageLive do
   defp default_option?(:rounding_mode, :half_even), do: true
   defp default_option?(:currency_symbol, :standard), do: true
   defp default_option?(:number_system, :default), do: true
+  defp default_option?(:sign_display, :auto), do: true
+  defp default_option?(:trailing_zero_display, :auto), do: true
+  defp default_option?(:rounding_priority, :auto), do: true
+  defp default_option?(:exponent_style, :e), do: true
   defp default_option?(_, _), do: false
 
   defp trailing_kw([]), do: ""
@@ -442,6 +493,20 @@ defmodule LocalizePlaygroundWeb.PageLive do
       |> maybe_add(:round_nearest, parse_nonneg_int(assigns.round_nearest))
       |> maybe_add(:rounding_mode, assigns.rounding_mode)
       |> maybe_add(:number_system, non_default(assigns.number_system))
+      |> maybe_add(:minimum_integer_digits, parse_nonneg_int(assigns.minimum_integer_digits))
+      |> maybe_add(:maximum_integer_digits, parse_nonneg_int(assigns.maximum_integer_digits))
+      |> maybe_add(
+        :minimum_significant_digits,
+        parse_nonneg_int(assigns.minimum_significant_digits)
+      )
+      |> maybe_add(
+        :maximum_significant_digits,
+        parse_nonneg_int(assigns.maximum_significant_digits)
+      )
+      |> maybe_add(:sign_display, assigns.sign_display)
+      |> maybe_add(:trailing_zero_display, assigns.trailing_zero_display)
+      |> maybe_add(:rounding_priority, assigns.rounding_priority)
+      |> maybe_add(:exponent_style, assigns.exponent_style)
 
     options = base ++ style_base ++ currency_opts ++ numeric_opts
     {style_atom, options, pattern_style_for(assigns, style_atom)}

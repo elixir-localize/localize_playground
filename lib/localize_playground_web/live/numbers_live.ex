@@ -235,6 +235,101 @@ defmodule LocalizePlaygroundWeb.NumbersLive do
                 </option>
               </select>
             </.field>
+            <.field
+              label={gettext("Min integer digits")}
+              for="minimum_integer_digits"
+              hint={gettext("Intl minimumIntegerDigits — zero-pads the integer part")}
+            >
+              <input
+                id="minimum_integer_digits"
+                name="minimum_integer_digits"
+                type="number"
+                min="1"
+                max="21"
+                value={@minimum_integer_digits}
+                placeholder={gettext("auto")}
+                phx-debounce="150"
+              />
+            </.field>
+            <.field label={gettext("Max integer digits")} for="maximum_integer_digits">
+              <input
+                id="maximum_integer_digits"
+                name="maximum_integer_digits"
+                type="number"
+                min="1"
+                max="21"
+                value={@maximum_integer_digits}
+                placeholder={gettext("auto")}
+                phx-debounce="150"
+              />
+            </.field>
+            <.field
+              label={gettext("Min significant digits")}
+              for="minimum_significant_digits"
+              hint={gettext("Intl minimumSignificantDigits — overrides fractional digits")}
+            >
+              <input
+                id="minimum_significant_digits"
+                name="minimum_significant_digits"
+                type="number"
+                min="1"
+                max="21"
+                value={@minimum_significant_digits}
+                placeholder={gettext("auto")}
+                phx-debounce="150"
+              />
+            </.field>
+            <.field label={gettext("Max significant digits")} for="maximum_significant_digits">
+              <input
+                id="maximum_significant_digits"
+                name="maximum_significant_digits"
+                type="number"
+                min="1"
+                max="21"
+                value={@maximum_significant_digits}
+                placeholder={gettext("auto")}
+                phx-debounce="150"
+              />
+            </.field>
+            <.field label={gettext("Sign display")} hint={gettext("Intl signDisplay")}>
+              <select name="sign_display">
+                <option :for={{value, label} <- @sign_displays} value={value} selected={@sign_display == value}>
+                  {label}
+                </option>
+              </select>
+            </.field>
+            <.field label={gettext("Trailing zero display")} hint={gettext("Intl trailingZeroDisplay")}>
+              <select name="trailing_zero_display">
+                <option
+                  :for={{value, label} <- @trailing_zero_displays}
+                  value={value}
+                  selected={@trailing_zero_display == value}
+                >
+                  {label}
+                </option>
+              </select>
+            </.field>
+            <.field
+              label={gettext("Rounding priority")}
+              hint={gettext("Intl roundingPriority — only when both fraction and significant bounds are set")}
+            >
+              <select name="rounding_priority">
+                <option
+                  :for={{value, label} <- @rounding_priorities}
+                  value={value}
+                  selected={@rounding_priority == value}
+                >
+                  {label}
+                </option>
+              </select>
+            </.field>
+            <.field label={gettext("Exponent style")} hint={gettext("Scientific formats only")}>
+              <select name="exponent_style">
+                <option :for={{value, label} <- @exponent_styles} value={value} selected={@exponent_style == value}>
+                  {label}
+                </option>
+              </select>
+            </.field>
           </div>
         </div>
       </.section>
