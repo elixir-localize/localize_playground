@@ -32,9 +32,9 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
       |> assign(:current_locale, locale)
       |> assign(:family, :date)
       |> assign(:format, :medium)
-      |> assign(:style, :date)
+      |> assign(:fields, :date)
       |> assign(:formats, DateTimeView.interval_formats())
-      |> assign(:styles, DateTimeView.interval_styles())
+      |> assign(:field_options, DateTimeView.interval_fields())
       |> assign(:from_date, "2024-04-22")
       |> assign(:to_date, "2024-04-25")
       |> assign(:from_time, "09:00:00")
@@ -60,7 +60,7 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
         "from_datetime",
         "to_datetime"
       ])
-      |> apply_atoms(params, ["family", "format", "style"])
+      |> apply_atoms(params, ["family", "format", "fields"])
       |> assign(
         :current_locale,
         if(params["locale"] in [nil, ""],
@@ -107,7 +107,7 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
     options = [
       locale: socket.assigns.locale,
       format: socket.assigns.format,
-      style: socket.assigns.style
+      fields: socket.assigns.fields
     ]
 
     result =
@@ -155,7 +155,7 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
     opts = [
       {:locale, inspect(assigns.locale)},
       {:format, inspect(assigns.format)},
-      {:style, inspect(assigns.style)}
+      {:fields, inspect(assigns.fields)}
     ]
 
     opts_str = opts |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{v}" end)
@@ -220,9 +220,9 @@ defmodule LocalizePlaygroundWeb.IntervalsLive do
               <option :for={f <- @formats} value={f} selected={@format == f}>{f}</option>
             </select>
           </.field>
-          <.field label={gettext("Style")} hint={gettext("Which components render")}>
-            <select name="style">
-              <option :for={s <- @styles} value={s} selected={@style == s}>{s}</option>
+          <.field label={gettext("Fields")} hint={gettext("Which date fields appear")}>
+            <select name="fields">
+              <option :for={f <- @field_options} value={f} selected={@fields == f}>{f}</option>
             </select>
           </.field>
         </div>

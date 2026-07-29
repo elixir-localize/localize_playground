@@ -8,6 +8,12 @@ defmodule LocalizePlaygroundWeb.UnitView do
 
   alias Localize.Unit
 
+  # The CLDR display widths. `Localize.Unit.to_string/2` takes this as
+  # `:format` because it renders a value; `display_name/2` takes the
+  # same widths as `:style` because it names a thing. Both are driven
+  # from the one picker so the pair can be compared side by side.
+  @unit_formats [:long, :short, :narrow]
+
   # A curated set of SI prefixes we expose as dropdown entries.
   # Arranged smallest → largest. Each entry is `{atom_id, cldr_name}`
   # where cldr_name is the prefix fragment in CLDR unit syntax.
@@ -56,6 +62,11 @@ defmodule LocalizePlaygroundWeb.UnitView do
   Returns the list of power option ids.
   """
   def powers, do: @powers
+
+  @doc """
+  Returns the CLDR display widths — `:long`, `:short`, `:narrow`.
+  """
+  def unit_formats, do: @unit_formats
 
   @doc """
   Returns a map of `category_string => [sorted unit names]` for
@@ -120,12 +131,12 @@ defmodule LocalizePlaygroundWeb.UnitView do
   Returns `{:ok, %{unit: unit, formatted: string, display_name: string, category: string}}`
   or `{:error, message}`.
   """
-  @spec build_and_format(number() | Decimal.t(), String.t(), atom() | String.t()) ::
+  @spec build_and_format(number() | Decimal.t(), String.t(), atom() | String.t(), atom()) ::
           {:ok, map()} | {:error, String.t()}
-  def build_and_format(value, unit_name, locale) when is_binary(unit_name) do
+  def build_and_format(value, unit_name, locale, format \\ :long) when is_binary(unit_name) do
     with {:ok, unit} <- Unit.new(value, unit_name),
-         {:ok, formatted} <- Unit.to_string(unit, locale: locale),
-         {:ok, display} <- Unit.display_name(unit_name, locale: locale),
+         {:ok, formatted} <- Unit.to_string(unit, locale: locale, format: format),
+         {:ok, display} <- Unit.display_name(unit_name, locale: locale, style: format),
          {:ok, category} <- Unit.unit_category(unit_name) do
       {:ok, %{unit: unit, formatted: formatted, display_name: display, category: category}}
     else
@@ -145,11 +156,11 @@ defmodule LocalizePlaygroundWeb.UnitView do
 
   Returns `{:ok, %{unit: converted, formatted: string}}` or `{:error, message}`.
   """
-  @spec convert(Unit.t(), String.t(), atom() | String.t()) ::
+  @spec convert(Unit.t(), String.t(), atom() | String.t(), atom()) ::
           {:ok, map()} | {:error, String.t()}
-  def convert(%Unit{} = unit, target, locale) when is_binary(target) do
+  def convert(%Unit{} = unit, target, locale, format \\ :long) when is_binary(target) do
     with {:ok, converted} <- Unit.convert(unit, target),
-         {:ok, formatted} <- Unit.to_string(converted, locale: locale) do
+         {:ok, formatted} <- Unit.to_string(converted, locale: locale, format: format) do
       {:ok, %{unit: converted, formatted: formatted}}
     else
       {:error, %{__exception__: true} = exception} ->
@@ -166,12 +177,12 @@ defmodule LocalizePlaygroundWeb.UnitView do
   @doc """
   Converts a unit to the preferred unit for the given measurement system.
   """
-  @spec convert_measurement_system(Unit.t(), atom(), atom() | String.t()) ::
+  @spec convert_measurement_system(Unit.t(), atom(), atom() | String.t(), atom()) ::
           {:ok, map()} | {:error, String.t()}
-  def convert_measurement_system(%Unit{} = unit, system, locale)
+  def convert_measurement_system(%Unit{} = unit, system, locale, format \\ :long)
       when system in [:metric, :us, :uk] do
     with {:ok, converted} <- Unit.convert_measurement_system(unit, system),
-         {:ok, formatted} <- Unit.to_string(converted, locale: locale) do
+         {:ok, formatted} <- Unit.to_string(converted, locale: locale, format: format) do
       {:ok, %{unit: converted, formatted: formatted}}
     else
       {:error, %{__exception__: true} = exception} ->

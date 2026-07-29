@@ -10,22 +10,22 @@ defmodule LocalizePlaygroundWeb.DateTimeView do
   alias Localize.DateTime.Format.{Match, Compiler}
 
   @standard_styles [:short, :medium, :long, :full]
-  @duration_styles [:long, :short, :narrow]
+  @duration_formats [:long, :short, :narrow]
 
-  @interval_formats [:short, :medium, :long]
-  @interval_styles [:date, :month, :month_and_day, :year_and_month]
+  @interval_formats [:short, :medium, :long, :full]
+  @interval_fields [:date, :month, :month_and_day, :year_and_month]
 
   @doc "Four standard style atoms — ordered from compact to verbose."
   def standard_styles, do: @standard_styles
 
-  @doc "Duration-style atoms."
-  def duration_styles, do: @duration_styles
+  @doc "Duration `:format` atoms — the display width of each unit."
+  def duration_formats, do: @duration_formats
 
-  @doc "Interval format atoms (controls tightness)."
+  @doc "Interval `:format` atoms — how wide the selected fields render."
   def interval_formats, do: @interval_formats
 
-  @doc "Interval style atoms (controls which components render)."
-  def interval_styles, do: @interval_styles
+  @doc "Interval `:fields` atoms — which date fields appear."
+  def interval_fields, do: @interval_fields
 
   @doc "CLDR calendar atoms Localize will happily format through."
   def calendar_options do

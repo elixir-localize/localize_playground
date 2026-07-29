@@ -28,7 +28,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
     %{
       id: :named,
       label: gettext_noop("Named units"),
-      hint: gettext_noop("\"2 hours, 30 minutes\" — honours style")
+      hint: gettext_noop("\"2 hours, 30 minutes\" — honours format")
     },
     %{
       id: :time,
@@ -59,8 +59,8 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
       |> assign(:current_locale, locale)
       |> assign(:mode, :parts)
       |> assign(:format_kind, :named)
-      |> assign(:style, :long)
-      |> assign(:styles, DateTimeView.duration_styles())
+      |> assign(:format, :long)
+      |> assign(:formats, DateTimeView.duration_formats())
       |> assign(:part_values, part_values)
       |> assign(:from_datetime, "2024-01-01T00:00:00")
       |> assign(:to_datetime, "2024-12-31T00:00:00")
@@ -81,7 +81,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
     socket =
       socket
       |> apply_strings(params, ["locale", "from_datetime", "to_datetime", "seconds", "pattern"])
-      |> apply_atoms(params, ["mode", "format_kind", "style"])
+      |> apply_atoms(params, ["mode", "format_kind", "format"])
       |> apply_parts(params)
       |> assign(
         :current_locale,
@@ -146,7 +146,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
         socket.assigns.format_kind == :named ->
           DateTimeView.format_duration(duration,
             locale: socket.assigns.locale,
-            style: socket.assigns.style
+            format: socket.assigns.format
           )
 
         socket.assigns.format_kind == :time ->
@@ -215,7 +215,7 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
 
     case assigns.format_kind do
       :named ->
-        opts = [locale: inspect(assigns.locale), style: inspect(assigns.style)]
+        opts = [locale: inspect(assigns.locale), format: inspect(assigns.format)]
         kv = opts |> Enum.map_join(", ", fn {k, v} -> "#{k}: #{v}" end)
 
         "duration = #{duration_literal}\nLocalize.Duration.to_string(duration, #{kv})"
@@ -311,9 +311,9 @@ defmodule LocalizePlaygroundWeb.DurationsLive do
         <div class="lp-dt-format-controls">
           <%= case @format_kind do %>
             <% :named -> %>
-              <.field label={gettext("Style")}>
-                <select name="style">
-                  <option :for={s <- @styles} value={s} selected={@style == s}>{s}</option>
+              <.field label={gettext("Format")}>
+                <select name="format">
+                  <option :for={f <- @formats} value={f} selected={@format == f}>{f}</option>
                 </select>
               </.field>
             <% :time -> %>

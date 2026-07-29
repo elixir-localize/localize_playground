@@ -17,7 +17,7 @@ msgid "Calendars"
 msgstr "Календарі"
 
 #: lib/localize_playground_web/components/layouts/app.html.heex:40
-#: lib/localize_playground_web/views/locale_view.ex:35
+#: lib/localize_playground_web/views/locale_view.ex:53
 #, elixir-autogen, icu-format
 msgid "Collation"
 msgstr "Сортування"
@@ -77,397 +77,391 @@ msgstr "Числа"
 msgid "Units"
 msgstr "Одиниці"
 
-#: lib/localize_playground_web/live/locales_live.ex:211
-#: lib/localize_playground_web/live/locales_live.ex:223
+#: lib/localize_playground_web/live/locales_live.ex:214
+#: lib/localize_playground_web/live/locales_live.ex:226
 #, elixir-autogen, icu-format
 msgid "(unspecified)"
 msgstr "(не вказано)"
 
-#: lib/localize_playground_web/live/locales_live.ex:215
+#: lib/localize_playground_web/live/locales_live.ex:218
 #, elixir-autogen, icu-format
 msgid "All scripts"
 msgstr "Усі писемності"
 
-#: lib/localize_playground_web/live/locales_live.ex:227
+#: lib/localize_playground_web/live/locales_live.ex:230
 #, elixir-autogen, icu-format
 msgid "All territories"
 msgstr "Усі території"
 
-#: lib/localize_playground_web/live/locales_live.ex:209
+#: lib/localize_playground_web/live/locales_live.ex:212
 #, elixir-autogen, icu-format
 msgid "Any ISO-15924 script"
 msgstr "Будь-яка писемність ISO-15924"
 
-#: lib/localize_playground_web/live/locales_live.ex:221
+#: lib/localize_playground_web/live/locales_live.ex:224
 #, elixir-autogen, icu-format
 msgid "Any ISO-3166 territory"
 msgstr "Будь-яка територія ISO-3166"
 
-#: lib/localize_playground_web/live/locales_live.ex:235
+#: lib/localize_playground_web/live/locales_live.ex:238
 #, elixir-autogen, icu-format
 msgid "Canonical locale"
 msgstr "Канонічна локаль"
 
-#: lib/localize_playground_web/live/locales_live.ex:263
+#: lib/localize_playground_web/live/locales_live.ex:269
 #, elixir-autogen, icu-format
 msgid "Collation-specific knobs that tune string sorting. These share the {$namespace} namespace with the fields above."
 msgstr "Параметри сортування для налаштування впорядкування рядків. Вони спільні з полями вище в просторі імен {$namespace}."
 
-#: lib/localize_playground_web/live/locales_live.ex:251
+#: lib/localize_playground_web/live/locales_live.ex:257
 #, elixir-autogen, icu-format
 msgid "Each extension adds a {$segment} segment to the locale. Leave a field blank to omit it."
 msgstr "Кожне розширення додає до локалі сегмент {$segment}. Залиште поле порожнім, щоб пропустити."
 
-#: lib/localize_playground_web/live/locales_live.ex:212
-#: lib/localize_playground_web/live/locales_live.ex:224
+#: lib/localize_playground_web/live/locales_live.ex:215
+#: lib/localize_playground_web/live/locales_live.ex:227
 #, elixir-autogen, icu-format
 msgid "For this language"
 msgstr "Для цієї мови"
 
-#: lib/localize_playground_web/live/locales_live.ex:209
-#: lib/localize_playground_web/live/locales_live.ex:221
+#: lib/localize_playground_web/live/locales_live.ex:212
+#: lib/localize_playground_web/live/locales_live.ex:224
 #, elixir-autogen, icu-format
 msgid "Known for this language"
 msgstr "Відомі для цієї мови"
 
-#: lib/localize_playground_web/live/locales_live.ex:195
+#: lib/localize_playground_web/live/locales_live.ex:198
 #, elixir-autogen, icu-format
 msgid "Language"
 msgstr "Мова"
 
-#: lib/localize_playground_web/live/locales_live.ex:193
+#: lib/localize_playground_web/live/locales_live.ex:196
 #, elixir-autogen, icu-format
 msgid "Language, script, territory"
 msgstr "Мова, писемність, територія"
 
-#: lib/localize_playground_web/live/locales_live.ex:209
+#: lib/localize_playground_web/live/locales_live.ex:212
 #, elixir-autogen, icu-format
 msgid "Script"
 msgstr "Писемність"
 
-#: lib/localize_playground_web/live/calendars_live.ex:294
-#: lib/localize_playground_web/live/locales_live.ex:221
+#: lib/localize_playground_web/live/calendars_live.ex:329
+#: lib/localize_playground_web/live/locales_live.ex:224
 #, elixir-autogen, icu-format
 msgid "Territory"
 msgstr "Територія"
 
-#: lib/localize_playground_web/live/locales_live.ex:261
+#: lib/localize_playground_web/live/locales_live.ex:267
 #, elixir-autogen, icu-format
 msgid "Unicode -u collation extensions"
 msgstr "Розширення сортування Unicode -u"
 
-#: lib/localize_playground_web/live/locales_live.ex:249
+#: lib/localize_playground_web/live/locales_live.ex:255
 #, elixir-autogen, icu-format
 msgid "Unicode -u extensions"
 msgstr "Розширення Unicode -u"
 
-#: lib/localize_playground_web/live/locales_live.ex:237
+#: lib/localize_playground_web/live/locales_live.ex:240
 #, elixir-autogen, icu-format
 msgid "You entered {$raw}; it canonicalized to {$canonical}."
 msgstr "Ви ввели {$raw}; було канонізовано до {$canonical}."
 
-#: lib/localize_playground_web/live/locales_live.ex:195
+#: lib/localize_playground_web/live/locales_live.ex:198
 #, elixir-autogen, icu-format
 msgid "e.g. en, zh, ar"
 msgstr "напр. en, zh, ar"
 
-#: lib/localize_playground_web/live/numbers_live.ex:186
+#: lib/localize_playground_web/live/numbers_live.ex:187
 #, elixir-autogen, icu-format
 msgid "Advanced formatting options"
 msgstr "Додаткові параметри форматування"
 
-#: lib/localize_playground_web/live/numbers_live.ex:230
+#: lib/localize_playground_web/live/numbers_live.ex:231
 #, elixir-autogen, icu-format
 msgid "Auto-set by a locale's -u-nu- subtag"
 msgstr "Автоматично встановлюється підтегом -u-nu- локалі"
 
-#: lib/localize_playground_web/live/numbers_live.ex:162
+#: lib/localize_playground_web/live/numbers_live.ex:163
 #, elixir-autogen, icu-format
 msgid "Boundary"
 msgstr "Межа"
 
-#: lib/localize_playground_web/live/numbers_live.ex:170
+#: lib/localize_playground_web/live/numbers_live.ex:171
 #, elixir-autogen, icu-format
 msgid "CLDR format, e.g. #,##0.00;(#,##0.00)"
 msgstr "Формат CLDR, напр. #,##0.00;(#,##0.00)"
 
-#: lib/localize_playground_web/live/dates_live.ex:492
+#: lib/localize_playground_web/live/dates_live.ex:522
 #, elixir-autogen, icu-format
 msgid "CLDR pattern; quote literals with single quotes."
 msgstr "Шаблон CLDR; беріть літерали в одинарні лапки."
 
-#: lib/localize_playground_web/live/calendars_live.ex:218
-#: lib/localize_playground_web/live/dates_live.ex:401
+#: lib/localize_playground_web/live/calendars_live.ex:253
+#: lib/localize_playground_web/live/dates_live.ex:431
 #: lib/localize_playground_web/views/locale_view.ex:15
 #, elixir-autogen, icu-format, fuzzy
 msgid "Calendar"
 msgstr "Календар"
 
-#: lib/localize_playground_web/live/collation_live.ex:562
+#: lib/localize_playground_web/live/collation_live.ex:582
 #, elixir-autogen, icu-format
 msgid "Collation error:"
 msgstr "Помилка сортування:"
 
-#: lib/localize_playground_web/live/collation_live.ex:410
+#: lib/localize_playground_web/live/collation_live.ex:417
 #, elixir-autogen, icu-format
 msgid "Collation options"
 msgstr "Параметри сортування"
 
-#: lib/localize_playground_web/live/collation_live.ex:362
+#: lib/localize_playground_web/live/collation_live.ex:369
 #, elixir-autogen, icu-format
 msgid "Collation variant"
 msgstr "Варіант сортування"
 
-#: lib/localize_playground_web/live/calendars_live.ex:317
-#: lib/localize_playground_web/live/calendars_live.ex:322
-#: lib/localize_playground_web/live/collation_live.ex:548
-#: lib/localize_playground_web/live/dates_live.ex:521
-#: lib/localize_playground_web/live/dates_live.ex:528
-#: lib/localize_playground_web/live/durations_live.ex:279
-#: lib/localize_playground_web/live/durations_live.ex:284
-#: lib/localize_playground_web/live/intervals_live.ex:218
-#: lib/localize_playground_web/live/intervals_live.ex:223
-#: lib/localize_playground_web/live/lists_live.ex:247
-#: lib/localize_playground_web/live/lists_live.ex:252
-#: lib/localize_playground_web/live/locales_live.ex:353
-#: lib/localize_playground_web/live/messages_live.ex:276
-#: lib/localize_playground_web/live/messages_live.ex:281
-#: lib/localize_playground_web/live/numbers_live.ex:425
-#: lib/localize_playground_web/live/units_live.ex:471
-#: lib/localize_playground_web/live/units_live.ex:476
+#: lib/localize_playground_web/live/calendars_live.ex:352
+#: lib/localize_playground_web/live/calendars_live.ex:357
+#: lib/localize_playground_web/live/collation_live.ex:568
+#: lib/localize_playground_web/live/dates_live.ex:551
+#: lib/localize_playground_web/live/dates_live.ex:558
+#: lib/localize_playground_web/live/durations_live.ex:336
+#: lib/localize_playground_web/live/durations_live.ex:341
+#: lib/localize_playground_web/live/intervals_live.ex:240
+#: lib/localize_playground_web/live/intervals_live.ex:245
+#: lib/localize_playground_web/live/lists_live.ex:267
+#: lib/localize_playground_web/live/lists_live.ex:272
+#: lib/localize_playground_web/live/locales_live.ex:378
+#: lib/localize_playground_web/live/messages_live.ex:480
+#: lib/localize_playground_web/live/messages_live.ex:485
+#: lib/localize_playground_web/live/numbers_live.ex:426
+#: lib/localize_playground_web/live/units_live.ex:505
+#: lib/localize_playground_web/live/units_live.ex:510
 #, elixir-autogen, icu-format
 msgid "Copy"
 msgstr "Копіювати"
 
-#: lib/localize_playground_web/live/numbers_live.ex:418
+#: lib/localize_playground_web/live/numbers_live.ex:419
 #, elixir-autogen, icu-format
 msgid "Copy function call to clipboard"
 msgstr "Скопіювати виклик функції до буфера"
 
-#: lib/localize_playground_web/live/collation_live.ex:541
+#: lib/localize_playground_web/live/collation_live.ex:561
 #, elixir-autogen, icu-format
 msgid "Copy sort call to clipboard"
 msgstr "Скопіювати виклик сортування до буфера"
 
-#: lib/localize_playground_web/live/numbers_live.ex:301
+#: lib/localize_playground_web/live/numbers_live.ex:302
 #, elixir-autogen, icu-format
 msgid "Could not resolve pattern:"
 msgstr "Не вдалося розв'язати шаблон:"
 
-#: lib/localize_playground_web/live/numbers_live.ex:103
-#: lib/localize_playground_web/live/numbers_live.ex:131
-#: lib/localize_playground_web/live/page_live.ex:15
-#: lib/localize_playground_web/views/collation_view.ex:400
-#: lib/localize_playground_web/views/locale_view.ex:19
+#: lib/localize_playground_web/live/numbers_live.ex:104
+#: lib/localize_playground_web/live/numbers_live.ex:132
+#: lib/localize_playground_web/live/page_live.ex:21
+#: lib/localize_playground_web/views/collation_view.ex:470
+#: lib/localize_playground_web/views/locale_view.ex:23
 #, elixir-autogen, icu-format
 msgid "Currency"
 msgstr "Валюта"
 
-#: lib/localize_playground_web/live/numbers_live.ex:116
+#: lib/localize_playground_web/live/numbers_live.ex:117
 #, elixir-autogen, icu-format
 msgid "Currency symbol"
 msgstr "Символ валюти"
 
-#: lib/localize_playground_web/live/dates_live.ex:24
-#: lib/localize_playground_web/live/numbers_live.ex:170
-#: lib/localize_playground_web/live/page_live.ex:21
+#: lib/localize_playground_web/live/dates_live.ex:42
+#: lib/localize_playground_web/live/numbers_live.ex:171
+#: lib/localize_playground_web/live/page_live.ex:39
 #, elixir-autogen, icu-format
 msgid "Custom pattern"
 msgstr "Користувацький шаблон"
 
-#: lib/localize_playground_web/live/dates_live.ex:417
+#: lib/localize_playground_web/live/dates_live.ex:447
 #, elixir-autogen, icu-format
 msgid "Date & Time (ISO 8601)"
 msgstr "Дата й час (ISO 8601)"
 
-#: lib/localize_playground_web/live/dates_live.ex:409
+#: lib/localize_playground_web/live/dates_live.ex:439
 #, elixir-autogen, icu-format
 msgid "Date (YYYY-MM-DD)"
 msgstr "Дата (РРРР-ММ-ДД)"
 
-#: lib/localize_playground_web/live/dates_live.ex:548
-#: lib/localize_playground_web/live/durations_live.ex:300
-#: lib/localize_playground_web/live/intervals_live.ex:239
-#: lib/localize_playground_web/live/lists_live.ex:268
-#: lib/localize_playground_web/live/messages_live.ex:297
-#: lib/localize_playground_web/live/numbers_live.ex:271
-#: lib/localize_playground_web/live/units_live.ex:497
+#: lib/localize_playground_web/live/dates_live.ex:578
+#: lib/localize_playground_web/live/durations_live.ex:357
+#: lib/localize_playground_web/live/intervals_live.ex:261
+#: lib/localize_playground_web/live/lists_live.ex:288
+#: lib/localize_playground_web/live/messages_live.ex:501
+#: lib/localize_playground_web/live/numbers_live.ex:272
+#: lib/localize_playground_web/live/units_live.ex:531
 #, elixir-autogen, icu-format
 msgid "Error:"
 msgstr "Помилка:"
 
-#: lib/localize_playground_web/live/intervals_live.ex:184
+#: lib/localize_playground_web/live/intervals_live.ex:206
 #, elixir-autogen, icu-format
 msgid "Family"
 msgstr "Родина"
 
-#: lib/localize_playground_web/live/dates_live.ex:468
-#: lib/localize_playground_web/live/durations_live.ex:245
-#: lib/localize_playground_web/live/intervals_live.ex:196
+#: lib/localize_playground_web/live/dates_live.ex:498
+#: lib/localize_playground_web/live/durations_live.ex:302
+#: lib/localize_playground_web/live/durations_live.ex:314
+#: lib/localize_playground_web/live/intervals_live.ex:218
+#: lib/localize_playground_web/live/units_live.ex:356
 #, elixir-autogen, icu-format
 msgid "Format"
 msgstr "Формат"
 
-#: lib/localize_playground_web/live/numbers_live.ex:69
+#: lib/localize_playground_web/live/numbers_live.ex:70
 #, elixir-autogen, icu-format
 msgid "Format family"
 msgstr "Родина формату"
 
-#: lib/localize_playground_web/live/dates_live.ex:456
+#: lib/localize_playground_web/live/dates_live.ex:486
 #, elixir-autogen, icu-format
 msgid "Format kind"
 msgstr "Тип формату"
 
-#: lib/localize_playground_web/live/numbers_live.ex:84
+#: lib/localize_playground_web/live/numbers_live.ex:85
 #, elixir-autogen, icu-format
 msgid "Format options"
 msgstr "Параметри формату"
 
-#: lib/localize_playground_web/live/numbers_live.ex:242
+#: lib/localize_playground_web/live/numbers_live.ex:243
 #, elixir-autogen, icu-format
 msgid "Format pattern"
 msgstr "Шаблон формату"
 
-#: lib/localize_playground_web/live/durations_live.ex:240
+#: lib/localize_playground_web/live/durations_live.ex:297
 #, elixir-autogen, icu-format
 msgid "Formatted duration"
 msgstr "Форматована тривалість"
 
-#: lib/localize_playground_web/live/intervals_live.ex:179
+#: lib/localize_playground_web/live/intervals_live.ex:201
 #, elixir-autogen, icu-format
 msgid "Formatted interval"
 msgstr "Форматований інтервал"
 
-#: lib/localize_playground_web/live/numbers_live.ex:64
+#: lib/localize_playground_web/live/numbers_live.ex:65
 #, elixir-autogen, icu-format
 msgid "Formatted number"
 msgstr "Форматоване число"
 
-#: lib/localize_playground_web/live/dates_live.ex:441
-#: lib/localize_playground_web/live/lists_live.ex:184
-#: lib/localize_playground_web/live/messages_live.ex:229
-#: lib/localize_playground_web/live/units_live.ex:361
+#: lib/localize_playground_web/live/dates_live.ex:471
+#: lib/localize_playground_web/live/lists_live.ex:204
+#: lib/localize_playground_web/live/messages_live.ex:311
+#: lib/localize_playground_web/live/units_live.ex:395
 #, elixir-autogen, icu-format
 msgid "Formatted output"
 msgstr "Форматоване виведення"
 
-#: lib/localize_playground_web/live/intervals_live.ex:156
+#: lib/localize_playground_web/live/intervals_live.ex:178
 #, elixir-autogen, icu-format
 msgid "From"
 msgstr "Від"
 
-#: lib/localize_playground_web/live/durations_live.ex:226
-#: lib/localize_playground_web/live/intervals_live.ex:170
+#: lib/localize_playground_web/live/durations_live.ex:283
+#: lib/localize_playground_web/live/intervals_live.ex:192
 #, elixir-autogen, icu-format
 msgid "From (ISO 8601)"
 msgstr "Від (ISO 8601)"
 
-#: lib/localize_playground_web/live/numbers_live.ex:103
+#: lib/localize_playground_web/live/numbers_live.ex:104
 #, elixir-autogen, icu-format
 msgid "ISO 4217 code"
 msgstr "Код ISO 4217"
 
-#: lib/localize_playground_web/live/durations_live.ex:210
+#: lib/localize_playground_web/live/durations_live.ex:267
 #, elixir-autogen, icu-format
 msgid "Input mode"
 msgstr "Режим введення"
 
-#: lib/localize_playground_web/live/calendars_live.ex:211
-#: lib/localize_playground_web/live/collation_live.ex:351
-#: lib/localize_playground_web/live/dates_live.ex:387
-#: lib/localize_playground_web/live/durations_live.ex:199
-#: lib/localize_playground_web/live/durations_live.ex:201
-#: lib/localize_playground_web/live/intervals_live.ex:149
-#: lib/localize_playground_web/live/lists_live.ex:173
-#: lib/localize_playground_web/live/lists_live.ex:175
-#: lib/localize_playground_web/live/messages_live.ex:220
-#: lib/localize_playground_web/live/numbers_live.ex:14
-#: lib/localize_playground_web/live/units_live.ex:314
-#: lib/localize_playground_web/live/units_live.ex:316
+#: lib/localize_playground_web/live/calendars_live.ex:246
+#: lib/localize_playground_web/live/collation_live.ex:360
+#: lib/localize_playground_web/live/dates_live.ex:417
+#: lib/localize_playground_web/live/durations_live.ex:258
+#: lib/localize_playground_web/live/intervals_live.ex:171
+#: lib/localize_playground_web/live/lists_live.ex:195
+#: lib/localize_playground_web/live/messages_live.ex:302
+#: lib/localize_playground_web/live/numbers_live.ex:16
+#: lib/localize_playground_web/live/units_live.ex:340
 #, elixir-autogen, icu-format, fuzzy
 msgid "Locale"
 msgstr "Локаль"
 
-#: lib/localize_playground_web/live/collation_live.ex:349
+#: lib/localize_playground_web/live/collation_live.ex:358
 #, elixir-autogen, icu-format
 msgid "Locale & collation"
 msgstr "Локаль і сортування"
 
-#: lib/localize_playground_web/live/intervals_live.ex:147
+#: lib/localize_playground_web/live/intervals_live.ex:169
 #, elixir-autogen, icu-format
 msgid "Locale & range"
 msgstr "Локаль і діапазон"
 
-#: lib/localize_playground_web/live/dates_live.ex:385
+#: lib/localize_playground_web/live/dates_live.ex:415
 #, elixir-autogen, icu-format
 msgid "Locale & value"
 msgstr "Локаль і значення"
 
-#: lib/localize_playground_web/live/numbers_live.ex:250
+#: lib/localize_playground_web/live/numbers_live.ex:251
 #, elixir-autogen, icu-format
 msgid "Locale U-extensions (applied automatically)"
 msgstr "U-розширення локалі (застосовуються автоматично)"
 
-#: lib/localize_playground_web/live/numbers_live.ex:254
-#, elixir-autogen, icu-format
-msgid "Locale metadata"
-msgstr "Метадані локалі"
-
-#: lib/localize_playground_web/live/numbers_live.ex:200
+#: lib/localize_playground_web/live/numbers_live.ex:201
 #, elixir-autogen, icu-format
 msgid "Max fractional digits"
 msgstr "Макс. дробових цифр"
 
-#: lib/localize_playground_web/live/numbers_live.ex:188
+#: lib/localize_playground_web/live/numbers_live.ex:189
 #, elixir-autogen, icu-format
 msgid "Min fractional digits"
 msgstr "Мін. дробових цифр"
 
-#: lib/localize_playground_web/live/collation_live.ex:471
+#: lib/localize_playground_web/live/collation_live.ex:478
 #, elixir-autogen, icu-format
 msgid "Move down"
 msgstr "Перемістити вниз"
 
-#: lib/localize_playground_web/live/collation_live.ex:463
+#: lib/localize_playground_web/live/collation_live.ex:470
 #, elixir-autogen, icu-format
 msgid "Move up"
 msgstr "Перемістити вгору"
 
-#: lib/localize_playground_web/live/locales_live.ex:371
+#: lib/localize_playground_web/live/locales_live.ex:396
 #, elixir-autogen, icu-format
 msgid "Not a valid locale yet:"
 msgstr "Ще не припустима локаль:"
 
 #: lib/localize_playground_web/live/numbers_live.ex:30
-#: lib/localize_playground_web/live/units_live.ex:327
+#: lib/localize_playground_web/live/units_live.ex:351
 #, elixir-autogen, icu-format, fuzzy
 msgid "Number"
 msgstr "Число"
 
-#: lib/localize_playground_web/live/numbers_live.ex:230
-#: lib/localize_playground_web/live/numbers_live.ex:485
-#: lib/localize_playground_web/views/locale_view.ex:27
+#: lib/localize_playground_web/live/numbers_live.ex:231
+#: lib/localize_playground_web/live/numbers_live.ex:486
+#: lib/localize_playground_web/views/locale_view.ex:37
 #, elixir-autogen, icu-format
 msgid "Number system"
 msgstr "Система числення"
 
-#: lib/localize_playground_web/live/dates_live.ex:492
-#: lib/localize_playground_web/live/durations_live.ex:263
+#: lib/localize_playground_web/live/dates_live.ex:522
+#: lib/localize_playground_web/live/durations_live.ex:320
 #, elixir-autogen, icu-format
 msgid "Pattern"
 msgstr "Шаблон"
 
-#: lib/localize_playground_web/live/numbers_live.ex:246
+#: lib/localize_playground_web/live/numbers_live.ex:247
 #, elixir-autogen, icu-format
 msgid "Pattern metadata"
 msgstr "Метадані шаблону"
 
-#: lib/localize_playground_web/live/collation_live.ex:395
+#: lib/localize_playground_web/live/collation_live.ex:402
 #, elixir-autogen, icu-format
 msgid "Quick presets"
 msgstr "Швидкі налаштування"
 
-#: lib/localize_playground_web/live/numbers_live.ex:145
+#: lib/localize_playground_web/live/numbers_live.ex:146
 #, elixir-autogen, icu-format
 msgid "RBNF rule"
 msgstr "Правило RBNF"
@@ -482,180 +476,168 @@ msgstr "Кінець діапазону"
 msgid "Range start"
 msgstr "Початок діапазону"
 
-#: lib/localize_playground_web/live/collation_live.ex:477
+#: lib/localize_playground_web/live/collation_live.ex:484
 #, elixir-autogen, icu-format
 msgid "Remove"
 msgstr "Видалити"
 
-#: lib/localize_playground_web/live/collation_live.ex:427
+#: lib/localize_playground_web/live/collation_live.ex:434
 #, elixir-autogen, icu-format
 msgid "Reorder codes (-u-kr)"
 msgstr "Коди переупорядкування (-u-kr)"
 
-#: lib/localize_playground_web/live/numbers_live.ex:219
-#: lib/localize_playground_web/live/numbers_live.ex:379
+#: lib/localize_playground_web/live/numbers_live.ex:220
+#: lib/localize_playground_web/live/numbers_live.ex:380
 #, elixir-autogen, icu-format
 msgid "Round nearest"
 msgstr "Округлити до найближчого"
 
-#: lib/localize_playground_web/live/numbers_live.ex:212
+#: lib/localize_playground_web/live/numbers_live.ex:213
 #, elixir-autogen, icu-format
 msgid "Rounding mode"
 msgstr "Режим округлення"
 
-#: lib/localize_playground_web/live/numbers_live.ex:145
+#: lib/localize_playground_web/live/numbers_live.ex:146
 #, elixir-autogen, icu-format
 msgid "Rule sets vary by locale"
 msgstr "Набори правил залежать від локалі"
 
-#: lib/localize_playground_web/live/durations_live.ex:233
+#: lib/localize_playground_web/live/durations_live.ex:290
 #, elixir-autogen, icu-format
 msgid "Seconds"
 msgstr "Секунди"
 
-#: lib/localize_playground_web/live/dates_live.ex:480
+#: lib/localize_playground_web/live/dates_live.ex:510
 #, elixir-autogen, icu-format
 msgid "Skeleton"
 msgstr "Скелет"
 
-#: lib/localize_playground_web/live/dates_live.ex:504
+#: lib/localize_playground_web/live/dates_live.ex:534
 #, elixir-autogen, icu-format
 msgid "Skeleton resolution"
 msgstr "Розв'язання скелета"
 
-#: lib/localize_playground_web/live/collation_live.ex:372
+#: lib/localize_playground_web/live/collation_live.ex:379
 #, elixir-autogen, icu-format
 msgid "Sorted result"
 msgstr "Відсортований результат"
 
-#: lib/localize_playground_web/live/durations_live.ex:257
-#: lib/localize_playground_web/live/intervals_live.ex:201
-#: lib/localize_playground_web/live/numbers_live.ex:88
-#: lib/localize_playground_web/live/numbers_live.ex:96
-#: lib/localize_playground_web/live/numbers_live.ex:124
-#: lib/localize_playground_web/live/numbers_live.ex:154
+#: lib/localize_playground_web/live/numbers_live.ex:89
+#: lib/localize_playground_web/live/numbers_live.ex:97
+#: lib/localize_playground_web/live/numbers_live.ex:125
+#: lib/localize_playground_web/live/numbers_live.ex:155
 #, elixir-autogen, icu-format
 msgid "Style"
 msgstr "Стиль"
 
-#: lib/localize_playground_web/live/intervals_live.ex:194
+#: lib/localize_playground_web/live/intervals_live.ex:216
 #, elixir-autogen, icu-format
 msgid "Style & format"
 msgstr "Стиль і формат"
 
-#: lib/localize_playground_web/live/intervals_live.ex:196
+#: lib/localize_playground_web/live/intervals_live.ex:218
 #, elixir-autogen, icu-format
 msgid "Tightness of the representation"
 msgstr "Компактність представлення"
 
-#: lib/localize_playground_web/live/dates_live.ex:413
+#: lib/localize_playground_web/live/dates_live.ex:443
 #, elixir-autogen, icu-format
 msgid "Time (HH:MM:SS)"
 msgstr "Час (ГГ:ХВ:СС)"
 
-#: lib/localize_playground_web/live/intervals_live.ex:159
+#: lib/localize_playground_web/live/intervals_live.ex:181
 #, elixir-autogen, icu-format
 msgid "To"
 msgstr "До"
 
-#: lib/localize_playground_web/live/durations_live.ex:229
-#: lib/localize_playground_web/live/intervals_live.ex:173
+#: lib/localize_playground_web/live/durations_live.ex:286
+#: lib/localize_playground_web/live/intervals_live.ex:195
 #, elixir-autogen, icu-format
 msgid "To (ISO 8601)"
 msgstr "До (ISO 8601)"
 
-#: lib/localize_playground_web/live/collation_live.ex:362
+#: lib/localize_playground_web/live/collation_live.ex:369
 #, elixir-autogen, icu-format
 msgid "Variants available for this language."
 msgstr "Варіанти, доступні для цієї мови."
 
-#: lib/localize_playground_web/live/dates_live.ex:446
+#: lib/localize_playground_web/live/dates_live.ex:476
 #, elixir-autogen, icu-format
 msgid "What to format"
 msgstr "Що форматувати"
 
-#: lib/localize_playground_web/live/dates_live.ex:401
+#: lib/localize_playground_web/live/dates_live.ex:431
 #, elixir-autogen, icu-format
 msgid "Which CLDR calendar to format in."
 msgstr "У якому календарі CLDR форматувати."
 
-#: lib/localize_playground_web/live/intervals_live.ex:201
-#, elixir-autogen, icu-format
-msgid "Which components render"
-msgstr "Які компоненти відображати"
-
-#: lib/localize_playground_web/live/collation_live.ex:485
+#: lib/localize_playground_web/live/collation_live.ex:492
 #, elixir-autogen, icu-format
 msgid "Word list"
 msgstr "Список слів"
 
-#: lib/localize_playground_web/live/numbers_live.ex:196
-#: lib/localize_playground_web/live/numbers_live.ex:208
+#: lib/localize_playground_web/live/numbers_live.ex:197
+#: lib/localize_playground_web/live/numbers_live.ex:209
 #, elixir-autogen, icu-format
 msgid "auto"
 msgstr "авто"
 
-#: lib/localize_playground_web/live/durations_live.ex:263
+#: lib/localize_playground_web/live/durations_live.ex:320
 #, elixir-autogen, icu-format
 msgid "e.g. hh:mm:ss, h:mm, mm:ss"
 msgstr "напр. hh:mm:ss, h:mm, mm:ss"
 
-#: lib/localize_playground_web/live/collation_live.ex:384
+#: lib/localize_playground_web/live/collation_live.ex:391
 #, elixir-autogen, icu-format
 msgid "first word"
 msgstr "перше слово"
 
-#: lib/localize_playground_web/live/numbers_live.ex:226
+#: lib/localize_playground_web/live/numbers_live.ex:227
 #, elixir-autogen, icu-format
 msgid "off"
 msgstr "вимк."
 
-#: lib/localize_playground_web/live/collation_live.ex:389
+#: lib/localize_playground_web/live/collation_live.ex:396
 #, elixir-autogen, icu-format
 msgid "second word"
 msgstr "друге слово"
 
-#: lib/localize_playground_web/live/durations_live.ex:17
+#: lib/localize_playground_web/live/durations_live.ex:36
 #, elixir-autogen, icu-format
 msgid "\"02:30:00\" — numeric clock-style"
 msgstr "\"02:30:00\" — numeric clock-style"
 
-#: lib/localize_playground_web/live/durations_live.ex:16
-#, elixir-autogen, icu-format
-msgid "\"2 hours, 30 minutes\" — honours style"
-msgstr "\"2 hours, 30 minutes\" — honours style"
-
-#: lib/localize_playground_web/live/page_live.ex:18
+#: lib/localize_playground_web/live/page_live.ex:33
 #, elixir-autogen, icu-format
 msgid "\"one hundred twenty-three\""
 msgstr "\"one hundred twenty-three\""
 
-#: lib/localize_playground_web/live/page_live.ex:17
+#: lib/localize_playground_web/live/page_live.ex:29
 #, elixir-autogen, icu-format
 msgid "1.2K · 1 million · $1M"
 msgstr "1.2K · 1 million · $1M"
 
-#: lib/localize_playground_web/live/page_live.ex:19
+#: lib/localize_playground_web/live/page_live.ex:35
 #, elixir-autogen, icu-format
 msgid "3–5 · 1.5–2.5"
 msgstr "3–5 · 1.5–2.5"
 
-#: lib/localize_playground_web/live/durations_live.ex:12
+#: lib/localize_playground_web/live/durations_live.ex:23
 #, elixir-autogen, icu-format
 msgid "A raw duration in seconds"
 msgstr "Чиста тривалість у секундах"
 
-#: lib/localize_playground_web/live/page_live.ex:20
+#: lib/localize_playground_web/live/page_live.ex:36
 #, elixir-autogen, icu-format
 msgid "Approximate"
 msgstr "Приблизний"
 
-#: lib/localize_playground_web/live/numbers_live.ex:496
+#: lib/localize_playground_web/live/numbers_live.ex:498
 #, elixir-autogen, icu-format
 msgid "Approximately sign"
 msgstr "Знак приблизно"
 
-#: lib/localize_playground_web/live/intervals_live.ex:12
+#: lib/localize_playground_web/live/intervals_live.ex:15
 #, elixir-autogen, icu-format
 msgid "Apr 22 2024, 09:00 – Apr 25 2024, 17:00"
 msgstr "Apr 22 2024, 09:00 – Apr 25 2024, 17:00"
@@ -665,17 +647,17 @@ msgstr "Apr 22 2024, 09:00 – Apr 25 2024, 17:00"
 msgid "Apr 22–25, 2024"
 msgstr "Apr 22–25, 2024"
 
-#: lib/localize_playground_web/views/locale_view.ex:38
+#: lib/localize_playground_web/views/locale_view.ex:67
 #, elixir-autogen, icu-format
 msgid "Backward second-level sort"
-msgstr ""
+msgstr "Зворотне сортування на другому рівні"
 
-#: lib/localize_playground_web/live/durations_live.ex:11
+#: lib/localize_playground_web/live/durations_live.ex:17
 #, elixir-autogen, icu-format
 msgid "Between two dates"
 msgstr "Між двома датами"
 
-#: lib/localize_playground_web/live/dates_live.ex:23
+#: lib/localize_playground_web/live/dates_live.ex:38
 #, elixir-autogen, icu-format
 msgid "CLDR skeleton like yMMMd — locale picks the pattern"
 msgstr "CLDR-скелет на зразок yMMMd — локаль обирає шаблон"
@@ -683,54 +665,54 @@ msgstr "CLDR-скелет на зразок yMMMd — локаль обирає 
 #: lib/localize_playground_web/views/locale_view.ex:16
 #, elixir-autogen, icu-format
 msgid "Calendar system used for date interpretation — e.g. Gregorian, Buddhist, Hebrew."
-msgstr ""
+msgstr "Календарна система для тлумачення дат — наприклад, григоріанська, буддійська чи єврейська."
 
-#: lib/localize_playground_web/views/locale_view.ex:40
+#: lib/localize_playground_web/views/locale_view.ex:57
 #, elixir-autogen, icu-format
 msgid "Case-first sort"
-msgstr ""
+msgstr "Сортування з пріоритетом регістру"
 
-#: lib/localize_playground_web/views/locale_view.ex:39
+#: lib/localize_playground_web/views/locale_view.ex:69
 #, elixir-autogen, icu-format
 msgid "Case-level sort"
-msgstr ""
+msgstr "Сортування на рівні регістру"
 
-#: lib/localize_playground_web/views/locale_view.ex:22
+#: lib/localize_playground_web/views/locale_view.ex:29
 #, elixir-autogen, icu-format
 msgid "Clock style: h11 / h12 / h23 / h24."
-msgstr ""
+msgstr "Стиль годинника: h11 / h12 / h23 / h24."
 
-#: lib/localize_playground_web/live/dates_live.ex:18
+#: lib/localize_playground_web/live/dates_live.ex:25
 #, elixir-autogen, icu-format
 msgid "Combined, with locale join pattern"
 msgstr "Поєднано з шаблоном з'єднання локалі"
 
-#: lib/localize_playground_web/live/page_live.ex:17
+#: lib/localize_playground_web/live/page_live.ex:29
 #, elixir-autogen, icu-format
 msgid "Compact"
 msgstr "Компактний"
 
-#: lib/localize_playground_web/views/locale_view.ex:17
+#: lib/localize_playground_web/views/locale_view.ex:19
 #, elixir-autogen, icu-format
 msgid "Currency format"
 msgstr "Формат валюти"
 
-#: lib/localize_playground_web/views/locale_view.ex:44
+#: lib/localize_playground_web/views/locale_view.ex:59
 #, elixir-autogen, icu-format
 msgid "Custom script-reordering list."
-msgstr ""
+msgstr "Власний список перевпорядкування систем письма."
 
-#: lib/localize_playground_web/live/dates_live.ex:16
+#: lib/localize_playground_web/live/dates_live.ex:18
 #, elixir-autogen, icu-format
 msgid "Date"
 msgstr "Дата"
 
-#: lib/localize_playground_web/live/dates_live.ex:18
+#: lib/localize_playground_web/live/dates_live.ex:24
 #, elixir-autogen, icu-format, fuzzy
 msgid "Date & Time"
 msgstr "Дати й час"
 
-#: lib/localize_playground_web/live/intervals_live.ex:12
+#: lib/localize_playground_web/live/intervals_live.ex:14
 #, elixir-autogen, icu-format
 msgid "Date & time interval"
 msgstr "Інтервал дати й часу"
@@ -740,427 +722,427 @@ msgstr "Інтервал дати й часу"
 msgid "Date interval"
 msgstr "Інтервал дат"
 
-#: lib/localize_playground_web/live/page_live.ex:14
+#: lib/localize_playground_web/live/page_live.ex:16
 #, elixir-autogen, icu-format
 msgid "Decimal"
 msgstr "Десятковий"
 
-#: lib/localize_playground_web/live/numbers_live.ex:486
+#: lib/localize_playground_web/live/numbers_live.ex:487
 #, elixir-autogen, icu-format
 msgid "Decimal separator"
 msgstr "Десятковий роздільник"
 
-#: lib/localize_playground_web/views/locale_view.ex:19
+#: lib/localize_playground_web/views/locale_view.ex:24
 #, elixir-autogen, icu-format
 msgid "Default currency for money formatting (ISO 4217 code)."
-msgstr ""
+msgstr "Типова валюта для грошового форматування (код ISO 4217)."
 
-#: lib/localize_playground_web/views/locale_view.ex:41
+#: lib/localize_playground_web/views/locale_view.ex:72
 #, elixir-autogen, icu-format
 msgid "Distinguish hiragana vs katakana — true / false."
-msgstr ""
+msgstr "Розрізняти хіраґану й катакану — true / false."
 
-#: lib/localize_playground_web/live/durations_live.ex:11
+#: lib/localize_playground_web/live/durations_live.ex:18
 #, elixir-autogen, icu-format
 msgid "Elapsed time between two moments"
 msgstr "Проміжок часу між двома моментами"
 
-#: lib/localize_playground_web/views/locale_view.ex:20
+#: lib/localize_playground_web/views/locale_view.ex:25
 #, elixir-autogen, icu-format
 msgid "Emoji presentation"
 msgstr "Представлення емодзі"
 
-#: lib/localize_playground_web/live/page_live.ex:21
+#: lib/localize_playground_web/live/page_live.ex:40
 #, elixir-autogen, icu-format
 msgid "Enter a CLDR format string"
 msgstr "Введіть рядок формату CLDR"
 
-#: lib/localize_playground_web/live/numbers_live.ex:492
+#: lib/localize_playground_web/live/numbers_live.ex:493
 #, elixir-autogen, icu-format
 msgid "Exponential"
 msgstr "Експоненційний"
 
-#: lib/localize_playground_web/live/calendars_live.ex:286
-#: lib/localize_playground_web/live/numbers_live.ex:509
+#: lib/localize_playground_web/live/calendars_live.ex:321
+#: lib/localize_playground_web/live/numbers_live.ex:511
 #, elixir-autogen, icu-format
 msgid "Field"
 msgstr "Поле"
 
-#: lib/localize_playground_web/live/calendars_live.ex:296
-#: lib/localize_playground_web/views/locale_view.ex:21
+#: lib/localize_playground_web/live/calendars_live.ex:331
+#: lib/localize_playground_web/views/locale_view.ex:27
 #, elixir-autogen, icu-format
 msgid "First day of week"
 msgstr "Перший день тижня"
 
-#: lib/localize_playground_web/views/locale_view.ex:18
+#: lib/localize_playground_web/views/locale_view.ex:20
 #, elixir-autogen, icu-format
 msgid "Format style for currencies: :standard or :account (parentheses for negatives)."
-msgstr ""
+msgstr "Стиль формату валют: :standard або :account (дужки для від'ємних значень)."
 
-#: lib/localize_playground_web/live/numbers_live.ex:357
+#: lib/localize_playground_web/live/numbers_live.ex:358
 #, elixir-autogen, icu-format
 msgid "Fractional digits"
 msgstr "Дробові розряди"
 
-#: lib/localize_playground_web/live/durations_live.ex:10
+#: lib/localize_playground_web/live/durations_live.ex:12
 #, elixir-autogen, icu-format
 msgid "From parts"
 msgstr "За частинами"
 
-#: lib/localize_playground_web/live/durations_live.ex:12
+#: lib/localize_playground_web/live/durations_live.ex:22
 #, elixir-autogen, icu-format
 msgid "From seconds"
 msgstr "З секунд"
 
-#: lib/localize_playground_web/live/numbers_live.ex:487
+#: lib/localize_playground_web/live/numbers_live.ex:488
 #, elixir-autogen, icu-format
 msgid "Grouping separator"
 msgstr "Роздільник груп"
 
-#: lib/localize_playground_web/views/locale_view.ex:41
+#: lib/localize_playground_web/views/locale_view.ex:71
 #, elixir-autogen, icu-format
 msgid "Hiragana-quaternary"
-msgstr ""
+msgstr "Хіраґана-четвертинна"
 
-#: lib/localize_playground_web/live/dates_live.ex:431
-#: lib/localize_playground_web/views/locale_view.ex:22
+#: lib/localize_playground_web/live/dates_live.ex:461
+#: lib/localize_playground_web/views/locale_view.ex:29
 #, elixir-autogen, icu-format
 msgid "Hour cycle"
 msgstr "Цикл годин"
 
-#: lib/localize_playground_web/views/locale_view.ex:37
+#: lib/localize_playground_web/views/locale_view.ex:55
 #, elixir-autogen, icu-format
 msgid "Ignore accents"
-msgstr ""
+msgstr "Ігнорувати діакритику"
 
-#: lib/localize_playground_web/views/locale_view.ex:39
+#: lib/localize_playground_web/views/locale_view.ex:70
 #, elixir-autogen, icu-format
 msgid "Include case differences — true / false."
-msgstr ""
+msgstr "Враховувати відмінності регістру — true / false."
 
-#: lib/localize_playground_web/live/numbers_live.ex:494
+#: lib/localize_playground_web/live/numbers_live.ex:496
 #, elixir-autogen, icu-format
 msgid "Infinity"
 msgstr "Нескінченність"
 
-#: lib/localize_playground_web/live/numbers_live.ex:354
+#: lib/localize_playground_web/live/numbers_live.ex:355
 #, elixir-autogen, icu-format
 msgid "Integer digits"
 msgstr "Цілочисельні розряди"
 
-#: lib/localize_playground_web/live/numbers_live.ex:365
+#: lib/localize_playground_web/live/numbers_live.ex:366
 #, elixir-autogen, icu-format
 msgid "Integer grouping"
-msgstr ""
+msgstr "Групування цілої частини"
 
-#: lib/localize_playground_web/live/dates_live.ex:16
+#: lib/localize_playground_web/live/dates_live.ex:19
 #, elixir-autogen, icu-format
 msgid "Just the date — no time of day"
 msgstr "Лише дата — без часу доби"
 
-#: lib/localize_playground_web/live/dates_live.ex:17
+#: lib/localize_playground_web/live/dates_live.ex:21
 #, elixir-autogen, icu-format
 msgid "Just the time — no date"
 msgstr "Лише час — без дати"
 
-#: lib/localize_playground_web/live/numbers_live.ex:341
+#: lib/localize_playground_web/live/numbers_live.ex:342
 #, elixir-autogen, icu-format
 msgid "Kind"
 msgstr "Тип"
 
-#: lib/localize_playground_web/views/locale_view.ex:23
+#: lib/localize_playground_web/views/locale_view.ex:30
 #, elixir-autogen, icu-format
 msgid "Line break"
 msgstr "Перенесення рядка"
 
-#: lib/localize_playground_web/live/numbers_live.ex:497
+#: lib/localize_playground_web/live/numbers_live.ex:499
 #, elixir-autogen, icu-format
 msgid "List separator"
 msgstr "Роздільник списку"
 
-#: lib/localize_playground_web/live/units_live.ex:431
-#: lib/localize_playground_web/views/locale_view.ex:25
+#: lib/localize_playground_web/live/units_live.ex:465
+#: lib/localize_playground_web/views/locale_view.ex:34
 #, elixir-autogen, icu-format
 msgid "Measurement system"
 msgstr "Система вимірювань"
 
-#: lib/localize_playground_web/views/locale_view.ex:26
+#: lib/localize_playground_web/views/locale_view.ex:35
 #, elixir-autogen, icu-format
 msgid "Measurement unit"
 msgstr "Одиниця вимірювання"
 
-#: lib/localize_playground_web/live/numbers_live.ex:488
+#: lib/localize_playground_web/live/numbers_live.ex:489
 #, elixir-autogen, icu-format
 msgid "Minus sign"
 msgstr "Знак мінус"
 
-#: lib/localize_playground_web/live/page_live.ex:15
+#: lib/localize_playground_web/live/page_live.ex:22
 #, elixir-autogen, icu-format
 msgid "Money amounts with currency symbols"
 msgstr "Грошові суми з символами валюти"
 
-#: lib/localize_playground_web/live/numbers_live.ex:373
+#: lib/localize_playground_web/live/numbers_live.ex:374
 #, elixir-autogen, icu-format
 msgid "Multiplier"
 msgstr "Множник"
 
-#: lib/localize_playground_web/live/durations_live.ex:16
+#: lib/localize_playground_web/live/durations_live.ex:30
 #, elixir-autogen, icu-format
 msgid "Named units"
 msgstr "Іменовані одиниці"
 
-#: lib/localize_playground_web/views/locale_view.ex:42
+#: lib/localize_playground_web/views/locale_view.ex:73
 #, elixir-autogen, icu-format
 msgid "Normalization"
 msgstr "Нормалізація"
 
-#: lib/localize_playground_web/live/numbers_live.ex:495
+#: lib/localize_playground_web/live/numbers_live.ex:497
 #, elixir-autogen, icu-format
 msgid "Not-a-number"
 msgstr "Не число"
 
-#: lib/localize_playground_web/views/locale_view.ex:27
+#: lib/localize_playground_web/views/locale_view.ex:38
 #, elixir-autogen, icu-format
 msgid "Numeral system for digits — latn / arab / thai / hans …"
-msgstr ""
+msgstr "Система цифр — latn / arab / thai / hans …"
 
-#: lib/localize_playground_web/views/locale_view.ex:43
+#: lib/localize_playground_web/views/locale_view.ex:75
 #, elixir-autogen, icu-format
 msgid "Numeric sort"
 msgstr "Числове сортування"
 
-#: lib/localize_playground_web/views/locale_view.ex:28
+#: lib/localize_playground_web/views/locale_view.ex:40
 #, elixir-autogen, icu-format
 msgid "Override the region for region-specific data (e.g. en-u-rg-gbzzzz)."
-msgstr ""
+msgstr "Перевизначити регіон для регіональних даних (наприклад, en-u-rg-gbzzzz)."
 
-#: lib/localize_playground_web/live/numbers_live.ex:491
+#: lib/localize_playground_web/live/numbers_live.ex:492
 #, elixir-autogen, icu-format
 msgid "Per-mille sign"
 msgstr "Знак проміле"
 
-#: lib/localize_playground_web/live/page_live.ex:16
+#: lib/localize_playground_web/live/page_live.ex:26
 #, elixir-autogen, icu-format
 msgid "Percent"
 msgstr "Відсоток"
 
-#: lib/localize_playground_web/live/numbers_live.ex:490
+#: lib/localize_playground_web/live/numbers_live.ex:491
 #, elixir-autogen, icu-format
 msgid "Percent sign"
 msgstr "Знак відсотка"
 
-#: lib/localize_playground_web/live/page_live.ex:14
+#: lib/localize_playground_web/live/page_live.ex:17
 #, elixir-autogen, icu-format
 msgid "Plain numbers with locale grouping"
 msgstr "Звичайні числа з групуванням локалі"
 
-#: lib/localize_playground_web/live/numbers_live.ex:489
+#: lib/localize_playground_web/live/numbers_live.ex:490
 #, elixir-autogen, icu-format
 msgid "Plus sign"
 msgstr "Знак плюс"
 
-#: lib/localize_playground_web/views/locale_view.ex:40
+#: lib/localize_playground_web/views/locale_view.ex:58
 #, elixir-autogen, icu-format
 msgid "Put uppercase or lowercase first — upper / lower / false."
-msgstr ""
+msgstr "Ставити спершу великі чи малі літери — upper / lower / false."
 
-#: lib/localize_playground_web/live/page_live.ex:19
+#: lib/localize_playground_web/live/page_live.ex:35
 #, elixir-autogen, icu-format
 msgid "Range"
 msgstr "Діапазон"
 
-#: lib/localize_playground_web/live/dates_live.ex:24
+#: lib/localize_playground_web/live/dates_live.ex:43
 #, elixir-autogen, icu-format
 msgid "Raw CLDR pattern, e.g. yyyy-MM-dd 'at' HH:mm"
 msgstr "Сирий шаблон CLDR, наприклад yyyy-MM-dd 'at' HH:mm"
 
-#: lib/localize_playground_web/views/locale_view.ex:28
+#: lib/localize_playground_web/views/locale_view.ex:39
 #, elixir-autogen, icu-format
 msgid "Region override"
 msgstr "Перевизначення регіону"
 
-#: lib/localize_playground_web/views/locale_view.ex:29
+#: lib/localize_playground_web/views/locale_view.ex:42
 #, elixir-autogen, icu-format
 msgid "Region subdivision identifier (shown next to its localized name)."
-msgstr ""
+msgstr "Ідентифікатор підрозділу регіону (показано поряд із його локалізованою назвою)."
 
-#: lib/localize_playground_web/views/locale_view.ex:44
+#: lib/localize_playground_web/views/locale_view.ex:59
 #, elixir-autogen, icu-format
 msgid "Reordering"
 msgstr "Перевпорядкування"
 
-#: lib/localize_playground_web/live/numbers_live.ex:343
+#: lib/localize_playground_web/live/numbers_live.ex:344
 #, elixir-autogen, icu-format
 msgid "Rule name"
 msgstr "Назва правила"
 
-#: lib/localize_playground_web/live/page_live.ex:16
+#: lib/localize_playground_web/live/page_live.ex:27
 #, elixir-autogen, icu-format
 msgid "Scaled by 100 with a % sign"
 msgstr "Помножено на 100 зі знаком %"
 
-#: lib/localize_playground_web/views/locale_view.ex:46
+#: lib/localize_playground_web/views/locale_view.ex:63
 #, elixir-autogen, icu-format
 msgid "Script below which characters are variable — punct / space / symbol / currency."
-msgstr ""
+msgstr "Система письма, нижче якої символи є змінними — punct / space / symbol / currency."
 
-#: lib/localize_playground_web/views/locale_view.ex:31
+#: lib/localize_playground_web/views/locale_view.ex:46
 #, elixir-autogen, icu-format
 msgid "Short UN/LOCODE-style time-zone identifier (shown next to its IANA/Olson name)."
-msgstr ""
+msgstr "Короткий ідентифікатор часового поясу в стилі UN/LOCODE (показано поряд з іменем IANA/Olson)."
 
-#: lib/localize_playground_web/views/locale_view.ex:38
+#: lib/localize_playground_web/views/locale_view.ex:68
 #, elixir-autogen, icu-format
 msgid "Sort accents right-to-left — true / false."
-msgstr ""
+msgstr "Сортувати діакритику справа наліво — true / false."
 
-#: lib/localize_playground_web/views/locale_view.ex:45
+#: lib/localize_playground_web/views/locale_view.ex:60
 #, elixir-autogen, icu-format
 msgid "Sort strength"
 msgstr "Сила сортування"
 
-#: lib/localize_playground_web/views/locale_view.ex:36
+#: lib/localize_playground_web/views/locale_view.ex:54
 #, elixir-autogen, icu-format
 msgid "Sort-order variant — e.g. phonebook, pinyin, stroke, traditional."
-msgstr ""
+msgstr "Варіант порядку сортування — наприклад, phonebook, pinyin, stroke або traditional."
 
-#: lib/localize_playground_web/live/page_live.ex:18
+#: lib/localize_playground_web/live/page_live.ex:32
 #, elixir-autogen, icu-format
 msgid "Spellout / RBNF"
 msgstr "Прописом / RBNF"
 
-#: lib/localize_playground_web/views/locale_view.ex:37
+#: lib/localize_playground_web/views/locale_view.ex:56
 #, elixir-autogen, icu-format
 msgid "Strip accents while sorting — noignore / shifted."
-msgstr ""
+msgstr "Прибирати діакритику під час сортування — noignore / shifted."
 
-#: lib/localize_playground_web/views/locale_view.ex:29
+#: lib/localize_playground_web/views/locale_view.ex:41
 #, elixir-autogen, icu-format
 msgid "Subdivision"
 msgstr "Підрозділ"
 
-#: lib/localize_playground_web/live/numbers_live.ex:493
+#: lib/localize_playground_web/live/numbers_live.ex:494
 #, elixir-autogen, icu-format
 msgid "Superscripting exponent"
-msgstr ""
+msgstr "Надрядковий показник степеня"
 
-#: lib/localize_playground_web/views/locale_view.ex:30
+#: lib/localize_playground_web/views/locale_view.ex:43
 #, elixir-autogen, icu-format
 msgid "Suppress segmentation"
-msgstr ""
+msgstr "Придушити сегментацію"
 
-#: lib/localize_playground_web/live/numbers_live.ex:508
-#: lib/localize_playground_web/views/collation_view.ex:399
+#: lib/localize_playground_web/live/numbers_live.ex:510
+#: lib/localize_playground_web/views/collation_view.ex:469
 #, elixir-autogen, icu-format
 msgid "Symbol"
 msgstr "Символ"
 
-#: lib/localize_playground_web/live/dates_live.ex:17
+#: lib/localize_playground_web/live/dates_live.ex:21
 #, elixir-autogen, icu-format
 msgid "Time"
 msgstr "Час"
 
-#: lib/localize_playground_web/live/durations_live.ex:17
+#: lib/localize_playground_web/live/durations_live.ex:35
 #, elixir-autogen, icu-format
 msgid "Time pattern"
 msgstr "Шаблон часу"
 
-#: lib/localize_playground_web/live/numbers_live.ex:498
+#: lib/localize_playground_web/live/numbers_live.ex:500
 #, elixir-autogen, icu-format
 msgid "Time separator"
 msgstr "Роздільник часу"
 
-#: lib/localize_playground_web/views/locale_view.ex:31
+#: lib/localize_playground_web/views/locale_view.ex:45
 #, elixir-autogen, icu-format
 msgid "Time zone"
 msgstr "Часовий пояс"
 
-#: lib/localize_playground_web/views/locale_view.ex:43
+#: lib/localize_playground_web/views/locale_view.ex:76
 #, elixir-autogen, icu-format
 msgid "Treat digit runs as numbers — true / false."
-msgstr ""
+msgstr "Вважати послідовності цифр числами — true / false."
 
-#: lib/localize_playground_web/views/locale_view.ex:42
+#: lib/localize_playground_web/views/locale_view.ex:74
 #, elixir-autogen, icu-format
 msgid "Unicode-normalize strings before sorting — true / false."
-msgstr ""
+msgstr "Нормалізувати рядки за Unicode перед сортуванням — true / false."
 
-#: lib/localize_playground_web/views/locale_view.ex:26
+#: lib/localize_playground_web/views/locale_view.ex:36
 #, elixir-autogen, icu-format
 msgid "Unit of length used in unit-aware messages."
-msgstr ""
+msgstr "Одиниця довжини, що використовується в повідомленнях з урахуванням одиниць."
 
-#: lib/localize_playground_web/live/calendars_live.ex:345
-#: lib/localize_playground_web/live/numbers_live.ex:510
-#: lib/localize_playground_web/live/numbers_live.ex:573
+#: lib/localize_playground_web/live/calendars_live.ex:380
+#: lib/localize_playground_web/live/numbers_live.ex:512
+#: lib/localize_playground_web/live/numbers_live.ex:577
 #, elixir-autogen, icu-format
 msgid "Value"
 msgstr "Значення"
 
-#: lib/localize_playground_web/views/locale_view.ex:46
+#: lib/localize_playground_web/views/locale_view.ex:62
 #, elixir-autogen, icu-format
 msgid "Variable top"
-msgstr ""
+msgstr "Variable top"
 
-#: lib/localize_playground_web/views/locale_view.ex:21
+#: lib/localize_playground_web/views/locale_view.ex:28
 #, elixir-autogen, icu-format
 msgid "Which weekday starts a week — sun / mon / tue ... / sat."
-msgstr ""
+msgstr "З якого дня тижня він починається — sun / mon / tue ... / sat."
 
-#: lib/localize_playground_web/views/locale_view.ex:24
+#: lib/localize_playground_web/views/locale_view.ex:32
 #, elixir-autogen, icu-format
 msgid "Word break"
-msgstr ""
+msgstr "Перенесення слів"
 
-#: lib/localize_playground_web/live/durations_live.ex:10
+#: lib/localize_playground_web/live/durations_live.ex:13
 #, elixir-autogen, icu-format
 msgid "Years, months, days, hours, minutes, seconds"
 msgstr "Роки, місяці, дні, години, хвилини, секунди"
 
-#: lib/localize_playground_web/views/locale_view.ex:20
+#: lib/localize_playground_web/views/locale_view.ex:26
 #, elixir-autogen, icu-format
 msgid "emoji / text / default — how ambiguous glyphs render."
-msgstr ""
+msgstr "emoji / text / default — як відображаються неоднозначні гліфи."
 
-#: lib/localize_playground_web/views/locale_view.ex:45
+#: lib/localize_playground_web/views/locale_view.ex:61
 #, elixir-autogen, icu-format
 msgid "level1 / level2 / level3 / level4 / identical."
-msgstr ""
+msgstr "level1 / level2 / level3 / level4 / identical."
 
-#: lib/localize_playground_web/views/locale_view.ex:23
+#: lib/localize_playground_web/views/locale_view.ex:31
 #, elixir-autogen, icu-format
 msgid "loose / normal / strict line-breaking style."
-msgstr ""
+msgstr "Стиль перенесення рядків loose / normal / strict."
 
-#: lib/localize_playground_web/views/locale_view.ex:25
+#: lib/localize_playground_web/views/locale_view.ex:34
 #, elixir-autogen, icu-format
 msgid "metric / ussystem / uksystem."
-msgstr ""
+msgstr "metric / ussystem / uksystem."
 
-#: lib/localize_playground_web/views/locale_view.ex:30
+#: lib/localize_playground_web/views/locale_view.ex:44
 #, elixir-autogen, icu-format
 msgid "none / standard — suppress word-segmentation exceptions."
-msgstr ""
+msgstr "none / standard — придушити винятки сегментації слів."
 
-#: lib/localize_playground_web/views/locale_view.ex:24
+#: lib/localize_playground_web/views/locale_view.ex:33
 #, elixir-autogen, icu-format
 msgid "normal / breakall / keepall / phrase word-break style."
-msgstr ""
+msgstr "Стиль перенесення слів normal / breakall / keepall / phrase."
 
-#: lib/localize_playground_web/live/dates_live.ex:22
+#: lib/localize_playground_web/live/dates_live.ex:33
 #, elixir-autogen, icu-format
 msgid "short · medium · long · full"
 msgstr "short · medium · long · full"
 
-#: lib/localize_playground_web/live/page_live.ex:20
+#: lib/localize_playground_web/live/page_live.ex:36
 #, elixir-autogen, icu-format
 msgid "~5 · 5+ · ≤5"
 msgstr "~5 · 5+ · ≤5"
 
-#: lib/localize_playground_web/views/collation_view.ex:369
-#: lib/localize_playground_web/views/collation_view.ex:380
-#: lib/localize_playground_web/views/collation_view.ex:388
-#: lib/localize_playground_web/views/collation_view.ex:396
+#: lib/localize_playground_web/views/collation_view.ex:437
+#: lib/localize_playground_web/views/collation_view.ex:449
+#: lib/localize_playground_web/views/collation_view.ex:457
+#: lib/localize_playground_web/views/collation_view.ex:466
 #, elixir-autogen, icu-format
 msgid "(locale default)"
 msgstr "(за замовчуванням локалі)"
@@ -1168,270 +1150,270 @@ msgstr "(за замовчуванням локалі)"
 #: lib/localize_playground_web/live/intervals_live.ex:11
 #, elixir-autogen, icu-format
 msgid "09:00 – 17:00"
-msgstr ""
+msgstr "09:00 – 17:00"
 
-#: lib/localize_playground_web/live/dates_live.ex:476
-#: lib/localize_playground_web/live/dates_live.ex:488
+#: lib/localize_playground_web/live/dates_live.ex:506
+#: lib/localize_playground_web/live/dates_live.ex:518
 #, elixir-autogen, icu-format
 msgid "ASCII-only"
 msgstr "Лише ASCII"
 
-#: lib/localize_playground_web/views/collation_view.ex:313
+#: lib/localize_playground_web/views/collation_view.ex:380
 #, elixir-autogen, icu-format
 msgid "Accent-insensitive"
 msgstr "Без урахування акцентів"
 
-#: lib/localize_playground_web/views/collation_view.ex:376
+#: lib/localize_playground_web/views/collation_view.ex:444
 #, elixir-autogen, icu-format
 msgid "Alternate"
 msgstr "Альтернативний"
 
-#: lib/localize_playground_web/views/collation_view.ex:320
+#: lib/localize_playground_web/views/collation_view.ex:387
 #, elixir-autogen, icu-format
 msgid "Applied at tertiary strength."
 msgstr "Застосовується при третинному рівні."
 
-#: lib/localize_playground_web/views/collation_view.ex:405
+#: lib/localize_playground_web/views/collation_view.ex:476
 #, elixir-autogen, icu-format
 msgid "Backwards secondary (French)"
 msgstr "Зворотний вторинний (французька)"
 
-#: lib/localize_playground_web/views/collation_view.ex:409
+#: lib/localize_playground_web/views/collation_view.ex:480
 #, elixir-autogen, icu-format
 msgid "Canonicalize input before comparing. Usually only needed for unusual source data."
 msgstr "Приводить ввід до канонічної форми перед порівнянням. Зазвичай потрібно лише для незвичних даних."
 
-#: lib/localize_playground_web/views/collation_view.ex:384
+#: lib/localize_playground_web/views/collation_view.ex:453
 #, elixir-autogen, icu-format
 msgid "Case first"
 msgstr "Регістр першим"
 
-#: lib/localize_playground_web/views/collation_view.ex:402
+#: lib/localize_playground_web/views/collation_view.ex:472
 #, elixir-autogen, icu-format
 msgid "Case level"
 msgstr "Рівень регістру"
 
-#: lib/localize_playground_web/views/collation_view.ex:311
+#: lib/localize_playground_web/views/collation_view.ex:378
 #, elixir-autogen, icu-format
 msgid "Case-insensitive"
 msgstr "Без урахування регістру"
 
-#: lib/localize_playground_web/views/collation_view.ex:310
+#: lib/localize_playground_web/views/collation_view.ex:377
 #, elixir-autogen, icu-format
 msgid "Clear every override."
 msgstr "Очистити всі перевизначення."
 
-#: lib/localize_playground_web/views/collation_view.ex:312
+#: lib/localize_playground_web/views/collation_view.ex:379
 #, elixir-autogen, icu-format
 msgid "Collapses uppercase and lowercase."
 msgstr "Об'єднує верхній і нижній регістри."
 
-#: lib/localize_playground_web/views/collation_view.ex:310
+#: lib/localize_playground_web/views/collation_view.ex:377
 #, elixir-autogen, icu-format
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: lib/localize_playground_web/live/dates_live.ex:573
+#: lib/localize_playground_web/live/dates_live.ex:603
 #, elixir-autogen, icu-format
 msgid "Derived pattern"
 msgstr "Похідний шаблон"
 
-#: lib/localize_playground_web/views/collation_view.ex:318
+#: lib/localize_playground_web/views/collation_view.ex:385
 #, elixir-autogen, icu-format
 msgid "Digit runs compared as numbers — item2 before item10."
 msgstr "Послідовності цифр порівнюються як числа — item2 перед item10."
 
-#: lib/localize_playground_web/live/collation_live.ex:412
+#: lib/localize_playground_web/live/collation_live.ex:419
 #, elixir-autogen, icu-format
 msgid "Each option here is applied on top of the locale's built-in tailoring. Leave a select on its default to let the locale decide."
 msgstr "Кожен параметр застосовується поверх вбудованого налаштування локалі. Залиште на значенні за замовчуванням, щоб локаль сама вирішувала."
 
-#: lib/localize_playground_web/live/collation_live.ex:517
+#: lib/localize_playground_web/live/collation_live.ex:524
 #, elixir-autogen, icu-format
 msgid "Enable"
 msgstr "Увімкнути"
 
-#: lib/localize_playground_web/views/collation_view.ex:321
+#: lib/localize_playground_web/views/collation_view.ex:388
 #, elixir-autogen, icu-format
 msgid "French accents"
 msgstr "Французькі акценти"
 
-#: lib/localize_playground_web/live/intervals_live.ex:163
+#: lib/localize_playground_web/live/intervals_live.ex:185
 #, elixir-autogen, icu-format
 msgid "From (HH:MM:SS)"
-msgstr ""
+msgstr "Від (HH:MM:SS)"
 
-#: lib/localize_playground_web/live/collation_live.ex:376
+#: lib/localize_playground_web/live/collation_live.ex:383
 #, elixir-autogen, icu-format
 msgid "Hide sort keys"
 msgstr "Приховати ключі сортування"
 
-#: lib/localize_playground_web/views/collation_view.ex:366
+#: lib/localize_playground_web/views/collation_view.ex:433
 #, elixir-autogen, icu-format
 msgid "How fine-grained the comparison is. Higher strength distinguishes more differences (case, accents)."
 msgstr "Наскільки детальне порівняння. Вища сила розрізняє більше відмінностей (регістр, акценти)."
 
-#: lib/localize_playground_web/views/collation_view.ex:374
+#: lib/localize_playground_web/views/collation_view.ex:442
 #, elixir-autogen, icu-format
 msgid "Identical — full code-point"
 msgstr "Ідентичний — повна кодова точка"
 
-#: lib/localize_playground_web/views/collation_view.ex:315
+#: lib/localize_playground_web/views/collation_view.ex:382
 #, elixir-autogen, icu-format
 msgid "Ignore punctuation"
 msgstr "Ігнорувати пунктуацію"
 
-#: lib/localize_playground_web/views/collation_view.ex:314
+#: lib/localize_playground_web/views/collation_view.ex:381
 #, elixir-autogen, icu-format
 msgid "Ignores accents and case."
 msgstr "Ігнорує акценти та регістр."
 
-#: lib/localize_playground_web/views/collation_view.ex:403
+#: lib/localize_playground_web/views/collation_view.ex:473
 #, elixir-autogen, icu-format
 msgid "Inserts a dedicated case comparison level. Lets primary strength still distinguish case."
 msgstr "Вставляє спеціальний рівень порівняння регістру. Дозволяє первинній силі все ще розрізняти регістр."
 
-#: lib/localize_playground_web/live/intervals_live.ex:107
+#: lib/localize_playground_web/live/intervals_live.ex:129
 #, elixir-autogen, icu-format
 msgid "Invalid date in range"
 msgstr "Недійсна дата в діапазоні"
 
-#: lib/localize_playground_web/live/intervals_live.ex:125
+#: lib/localize_playground_web/live/intervals_live.ex:147
 #, elixir-autogen, icu-format
 msgid "Invalid date/time in range"
 msgstr "Недійсна дата/час у діапазоні"
 
-#: lib/localize_playground_web/live/intervals_live.ex:116
+#: lib/localize_playground_web/live/intervals_live.ex:138
 #, elixir-autogen, icu-format
 msgid "Invalid time in range"
 msgstr "Недійсний час у діапазоні"
 
-#: lib/localize_playground_web/views/collation_view.ex:390
+#: lib/localize_playground_web/views/collation_view.ex:459
 #, elixir-autogen, icu-format
 msgid "Lower first"
 msgstr "Нижній регістр першим"
 
-#: lib/localize_playground_web/views/collation_view.ex:392
+#: lib/localize_playground_web/views/collation_view.ex:461
 #, elixir-autogen, icu-format
 msgid "Max variable"
 msgstr "Макс. змінний"
 
-#: lib/localize_playground_web/views/collation_view.ex:408
+#: lib/localize_playground_web/views/collation_view.ex:479
 #, elixir-autogen, icu-format, fuzzy
 msgid "NFD normalization"
 msgstr "NFD-нормалізація"
 
-#: lib/localize_playground_web/views/collation_view.ex:317
+#: lib/localize_playground_web/views/collation_view.ex:384
 #, elixir-autogen, icu-format
 msgid "Natural numbers"
 msgstr "Натуральні числа"
 
-#: lib/localize_playground_web/views/collation_view.ex:381
+#: lib/localize_playground_web/views/collation_view.ex:450
 #, elixir-autogen, icu-format
 msgid "Non-ignorable (default)"
 msgstr "Неігнорований (за замовчуванням)"
 
-#: lib/localize_playground_web/views/collation_view.ex:411
+#: lib/localize_playground_web/views/collation_view.ex:483
 #, elixir-autogen, icu-format
 msgid "Numeric mode"
 msgstr "Числовий режим"
 
-#: lib/localize_playground_web/live/collation_live.ex:490
+#: lib/localize_playground_web/live/collation_live.ex:497
 #, elixir-autogen, icu-format
 msgid "One word per line. Changing the language swaps in a fresh seed list; your edits are kept otherwise."
 msgstr "Одне слово на рядок. Зміна мови замінює на новий стартовий список; інакше ваші правки зберігаються."
 
-#: lib/localize_playground_web/live/collation_live.ex:397
+#: lib/localize_playground_web/live/collation_live.ex:404
 #, elixir-autogen, icu-format
 msgid "One-click combinations of the options below. They replace any current overrides."
 msgstr "Комбінації параметрів нижче в один клік. Замінюють усі поточні перевизначення."
 
-#: lib/localize_playground_web/live/collation_live.ex:382
+#: lib/localize_playground_web/live/collation_live.ex:389
 #, elixir-autogen, icu-format
 msgid "Pairwise compare"
 msgstr "Попарне порівняння"
 
-#: lib/localize_playground_web/live/collation_live.ex:434
+#: lib/localize_playground_web/live/collation_live.ex:441
 #, elixir-autogen, icu-format
 msgid "Pick a script or group…"
 msgstr "Виберіть скрипт або групу…"
 
-#: lib/localize_playground_web/views/collation_view.ex:370
+#: lib/localize_playground_web/views/collation_view.ex:438
 #, elixir-autogen, icu-format
 msgid "Primary — base letters only"
 msgstr "Первинний — лише базові літери"
 
-#: lib/localize_playground_web/views/collation_view.ex:397
+#: lib/localize_playground_web/views/collation_view.ex:467
 #, elixir-autogen, icu-format
 msgid "Punctuation (default)"
 msgstr "Пунктуація (за замовчуванням)"
 
-#: lib/localize_playground_web/views/collation_view.ex:373
+#: lib/localize_playground_web/views/collation_view.ex:441
 #, elixir-autogen, icu-format
 msgid "Quaternary — also punctuation"
 msgstr "Четвертинний — також пунктуація"
 
-#: lib/localize_playground_web/live/collation_live.ex:429
+#: lib/localize_playground_web/live/collation_live.ex:436
 #, elixir-autogen, icu-format
 msgid "Reorder groups of scripts relative to each other. Earlier entries sort first; anything not listed keeps its default position. Example: add {$script_a} then {$script_b} to make Cyrillic sort before Latin."
 msgstr "Переупорядкуйте групи скриптів відносно одна одної. Попередні записи сортуються першими; те, що не в списку, зберігає стандартну позицію. Приклад: додайте {$script_a}, потім {$script_b}, щоб кирилиця сортувалася перед латиницею."
 
-#: lib/localize_playground_web/live/dates_live.ex:569
+#: lib/localize_playground_web/live/dates_live.ex:599
 #, elixir-autogen, icu-format
 msgid "Requested skeleton"
 msgstr "Запитаний скелет"
 
-#: lib/localize_playground_web/live/dates_live.ex:571
+#: lib/localize_playground_web/live/dates_live.ex:601
 #, elixir-autogen, icu-format
 msgid "Resolved skeleton"
 msgstr "Розв'язаний скелет"
 
-#: lib/localize_playground_web/views/collation_view.ex:406
+#: lib/localize_playground_web/views/collation_view.ex:477
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level — the classic French accent rule."
 msgstr "Змінює вторинний рівень на зворотний — класичне французьке правило акцентів."
 
-#: lib/localize_playground_web/views/collation_view.ex:322
+#: lib/localize_playground_web/views/collation_view.ex:389
 #, elixir-autogen, icu-format
 msgid "Reverses the secondary level, the classic French accent rule."
 msgstr "Розвертає вторинний рівень — класичне французьке правило акцентів."
 
-#: lib/localize_playground_web/views/collation_view.ex:371
+#: lib/localize_playground_web/views/collation_view.ex:439
 #, elixir-autogen, icu-format
 msgid "Secondary — also accents"
 msgstr "Вторинний — також акценти"
 
-#: lib/localize_playground_web/views/collation_view.ex:382
+#: lib/localize_playground_web/views/collation_view.ex:451
 #, elixir-autogen, icu-format
 msgid "Shifted"
 msgstr "Зсунутий"
 
-#: lib/localize_playground_web/live/collation_live.ex:376
+#: lib/localize_playground_web/live/collation_live.ex:383
 #, elixir-autogen, icu-format
 msgid "Show sort keys"
 msgstr "Показати ключі сортування"
 
-#: lib/localize_playground_web/views/collation_view.ex:398
+#: lib/localize_playground_web/views/collation_view.ex:468
 #, elixir-autogen, icu-format
 msgid "Space"
 msgstr "Пробіл"
 
-#: lib/localize_playground_web/views/collation_view.ex:316
+#: lib/localize_playground_web/views/collation_view.ex:383
 #, elixir-autogen, icu-format
 msgid "Spaces and punctuation drop to the lowest level."
 msgstr "Пробіли та пунктуація опускаються на найнижчий рівень."
 
-#: lib/localize_playground_web/views/collation_view.ex:365
+#: lib/localize_playground_web/views/collation_view.ex:432
 #, elixir-autogen, icu-format
 msgid "Strength"
 msgstr "Сила"
 
-#: lib/localize_playground_web/live/numbers_live.ex:571
+#: lib/localize_playground_web/live/numbers_live.ex:575
 #, elixir-autogen, icu-format
 msgid "Subtag"
 msgstr "Підтег"
 
-#: lib/localize_playground_web/views/collation_view.ex:372
+#: lib/localize_playground_web/views/collation_view.ex:440
 #, elixir-autogen, icu-format
 msgid "Tertiary — also case"
 msgstr "Третинний — також регістр"
@@ -1441,66 +1423,61 @@ msgstr "Третинний — також регістр"
 msgid "Time interval"
 msgstr "Інтервал часу"
 
-#: lib/localize_playground_web/live/intervals_live.ex:166
+#: lib/localize_playground_web/live/intervals_live.ex:188
 #, elixir-autogen, icu-format, fuzzy
 msgid "To (HH:MM:SS)"
 msgstr "Час (ГГ:ХВ:СС)"
 
-#: lib/localize_playground_web/views/collation_view.ex:412
+#: lib/localize_playground_web/views/collation_view.ex:484
 #, elixir-autogen, icu-format
 msgid "Treat digit runs as numbers (so `item2` sorts before `item10`)."
 msgstr "Обробляти послідовності цифр як числа (щоб `item2` сортувався перед `item10`)."
 
-#: lib/localize_playground_web/views/collation_view.ex:389
+#: lib/localize_playground_web/views/collation_view.ex:458
 #, elixir-autogen, icu-format
 msgid "Upper first"
 msgstr "Верхній регістр першим"
 
-#: lib/localize_playground_web/views/collation_view.ex:319
+#: lib/localize_playground_web/views/collation_view.ex:386
 #, elixir-autogen, icu-format
 msgid "Uppercase first"
 msgstr "Верхній регістр першим"
 
-#: lib/localize_playground_web/views/collation_view.ex:385
+#: lib/localize_playground_web/views/collation_view.ex:454
 #, elixir-autogen, icu-format
 msgid "When strength ≥ tertiary, whether uppercase or lowercase sorts first."
 msgstr "Коли сила ≥ третинна, чи сортуються спочатку великі чи малі літери."
 
-#: lib/localize_playground_web/views/collation_view.ex:377
+#: lib/localize_playground_web/views/collation_view.ex:445
 #, elixir-autogen, icu-format
 msgid "Whether punctuation and whitespace carry weight. `Shifted` pushes them to the last level."
 msgstr "Чи враховуються пунктуація та пробіли. `Зсунутий` переносить їх на останній рівень."
 
-#: lib/localize_playground_web/views/collation_view.ex:393
+#: lib/localize_playground_web/views/collation_view.ex:462
 #, elixir-autogen, icu-format
 msgid "Which classes of characters are treated as variable-weight when alternate = shifted."
 msgstr "Які класи символів вважаються змінної ваги коли alternate = shifted."
 
-#: lib/localize_playground_web/live/dates_live.ex:424
+#: lib/localize_playground_web/live/dates_live.ex:454
 #: lib/localize_playground_web/live/units_live.ex:12
 #: lib/localize_playground_web/live/units_live.ex:36
 #, elixir-autogen, icu-format
 msgid "(none)"
 msgstr "(немає)"
 
-#: lib/localize_playground_web/live/units_live.ex:347
-#: lib/localize_playground_web/live/units_live.ex:377
-#: lib/localize_playground_web/live/units_live.ex:408
+#: lib/localize_playground_web/live/units_live.ex:381
+#: lib/localize_playground_web/live/units_live.ex:411
+#: lib/localize_playground_web/live/units_live.ex:442
 #, elixir-autogen, icu-format
 msgid "Category"
 msgstr "Категорія"
 
-#: lib/localize_playground_web/live/units_live.ex:390
-#, elixir-autogen, icu-format
-msgid "Conversion"
-msgstr "Перетворення"
-
-#: lib/localize_playground_web/live/units_live.ex:367
+#: lib/localize_playground_web/live/units_live.ex:401
 #, elixir-autogen, icu-format
 msgid "Display name"
 msgstr "Відображуване ім'я"
 
-#: lib/localize_playground_web/live/units_live.ex:445
+#: lib/localize_playground_web/live/units_live.ex:479
 #, elixir-autogen, icu-format
 msgid "Locale {$locale} → measurement system {$system}."
 msgstr "Локаль {$locale} → система вимірювань {$system}."
@@ -1510,29 +1487,19 @@ msgstr "Локаль {$locale} → система вимірювань {$system}
 msgid "Metric (SI)"
 msgstr "Метрична (СІ)"
 
-#: lib/localize_playground_web/live/units_live.ex:331
-#: lib/localize_playground_web/live/units_live.ex:392
+#: lib/localize_playground_web/live/units_live.ex:365
+#: lib/localize_playground_web/live/units_live.ex:426
 #, elixir-autogen, icu-format
 msgid "Power"
 msgstr "Степінь"
 
-#: lib/localize_playground_web/live/units_live.ex:430
-#, elixir-autogen, icu-format
-msgid "Preferred unit for measurement system"
-msgstr "Переважна одиниця для системи вимірювань"
-
-#: lib/localize_playground_web/live/units_live.ex:443
-#, elixir-autogen, icu-format
-msgid "Preferred unit for the locale's territory"
-msgstr "Переважна одиниця для території локалі"
-
-#: lib/localize_playground_web/live/units_live.ex:339
-#: lib/localize_playground_web/live/units_live.ex:400
+#: lib/localize_playground_web/live/units_live.ex:373
+#: lib/localize_playground_web/live/units_live.ex:434
 #, elixir-autogen, icu-format
 msgid "Prefix"
 msgstr "Префікс"
 
-#: lib/localize_playground_web/live/units_live.ex:422
+#: lib/localize_playground_web/live/units_live.ex:456
 #, elixir-autogen, icu-format
 msgid "Target unit"
 msgstr "Цільова одиниця"
@@ -1547,14 +1514,15 @@ msgstr "Британська імперська"
 msgid "US customary"
 msgstr "Американська"
 
-#: lib/localize_playground_web/live/units_live.ex:325
-#: lib/localize_playground_web/live/units_live.ex:353
-#: lib/localize_playground_web/live/units_live.ex:414
+#: lib/localize_playground_web/live/units_live.ex:338
+#: lib/localize_playground_web/live/units_live.ex:349
+#: lib/localize_playground_web/live/units_live.ex:387
+#: lib/localize_playground_web/live/units_live.ex:448
 #, elixir-autogen, icu-format, fuzzy
 msgid "Unit"
 msgstr "Одиниці"
 
-#: lib/localize_playground_web/live/units_live.ex:365
+#: lib/localize_playground_web/live/units_live.ex:399
 #, elixir-autogen, icu-format
 msgid "Unit name"
 msgstr "Назва одиниці"
@@ -1699,371 +1667,341 @@ msgstr "zepto (10⁻²¹)"
 msgid "zetta (10²¹)"
 msgstr "zetta (10²¹)"
 
-#: lib/localize_playground_web/live/dates_live.ex:31
+#: lib/localize_playground_web/live/dates_live.ex:51
 #, elixir-autogen, icu-format
 msgid "12-hour (h11) — 0–11"
 msgstr "12-годинний (h11) — 0–11"
 
-#: lib/localize_playground_web/live/dates_live.ex:29
+#: lib/localize_playground_web/live/dates_live.ex:49
 #, elixir-autogen, icu-format
 msgid "12-hour (h12) — 1–12"
 msgstr "12-годинний (h12) — 1–12"
 
-#: lib/localize_playground_web/live/dates_live.ex:30
+#: lib/localize_playground_web/live/dates_live.ex:50
 #, elixir-autogen, icu-format
 msgid "24-hour (h23) — 0–23"
 msgstr "24-годинний (h23) — 0–23"
 
-#: lib/localize_playground_web/live/dates_live.ex:32
+#: lib/localize_playground_web/live/dates_live.ex:52
 #, elixir-autogen, icu-format
 msgid "24-hour (h24) — 1–24"
 msgstr "24-годинний (h24) — 1–24"
 
-#: lib/localize_playground_web/live/dates_live.ex:417
+#: lib/localize_playground_web/live/dates_live.ex:447
 #, elixir-autogen, icu-format
 msgid "Add a trailing Z or ±HH:MM offset to format as a DateTime with time zone."
 msgstr "Додайте Z або зсув ±HH:MM у кінці, щоб відформатувати як DateTime із часовим поясом."
 
-#: lib/localize_playground_web/live/dates_live.ex:480
+#: lib/localize_playground_web/live/dates_live.ex:510
 #, elixir-autogen, icu-format
 msgid "All CLDR skeletons for date, time, and datetime."
 msgstr "Усі скелети CLDR для дати, часу та дати-часу."
 
-#: lib/localize_playground_web/live/messages_live.ex:263
+#: lib/localize_playground_web/live/messages_live.ex:395
 #, elixir-autogen, icu-format
 msgid "Binding error:"
 msgstr "Помилка прив'язки:"
 
-#: lib/localize_playground_web/live/messages_live.ex:259
-#, elixir-autogen, icu-format
-msgid "Bindings"
-msgstr "Прив'язки"
-
-#: lib/localize_playground_web/live/messages_live.ex:260
-#, elixir-autogen, icu-format
-msgid "Elixir map or keyword list"
-msgstr "Карта Elixir або список ключових слів"
-
-#: lib/localize_playground_web/live/messages_live.ex:260
-#, elixir-autogen, icu-format
-msgid "Evaluated as Elixir source. Use a map or keyword list."
-msgstr "Оцінюється як код Elixir. Використовуйте карту або список ключових слів."
-
-#: lib/localize_playground_web/live/lists_live.ex:221
-#: lib/localize_playground_web/live/messages_live.ex:234
+#: lib/localize_playground_web/live/lists_live.ex:241
+#: lib/localize_playground_web/live/messages_live.ex:316
 #, elixir-autogen, icu-format
 msgid "Examples"
 msgstr "Приклади"
 
-#: lib/localize_playground_web/live/dates_live.ex:28
+#: lib/localize_playground_web/live/dates_live.ex:48
 #, elixir-autogen, icu-format
 msgid "Locale default"
 msgstr "За замовчуванням локалі"
 
-#: lib/localize_playground_web/live/dates_live.ex:23
+#: lib/localize_playground_web/live/dates_live.ex:37
 #, elixir-autogen, icu-format
 msgid "Locale skeletons"
 msgstr "Скелети локалі"
 
-#: lib/localize_playground_web/live/messages_live.ex:253
-#, elixir-autogen, icu-format
-msgid "MF2 message"
-msgstr "Повідомлення MF2"
-
-#: lib/localize_playground_web/live/messages_live.ex:218
+#: lib/localize_playground_web/live/messages_live.ex:300
 #, elixir-autogen, icu-format, fuzzy
 msgid "Message"
 msgstr "Повідомлення"
 
-#: lib/localize_playground_web/live/messages_live.ex:254
-#, elixir-autogen, icu-format
-msgid "MessageFormat 2 syntax. See messageformat.unicode.org for the spec."
-msgstr "Синтаксис MessageFormat 2. Специфікація: messageformat.unicode.org."
-
-#: lib/localize_playground_web/live/dates_live.ex:421
+#: lib/localize_playground_web/live/dates_live.ex:451
 #, elixir-autogen, icu-format
 msgid "Picks an IANA zone and calls DateTime.shift_zone/2."
 msgstr "Вибирає зону IANA і викликає DateTime.shift_zone/2."
 
-#: lib/localize_playground_web/live/dates_live.ex:473
-#: lib/localize_playground_web/live/dates_live.ex:485
+#: lib/localize_playground_web/live/dates_live.ex:503
+#: lib/localize_playground_web/live/dates_live.ex:515
 #, elixir-autogen, icu-format
 msgid "Prefer"
 msgstr "Надавати перевагу"
 
-#: lib/localize_playground_web/live/dates_live.ex:421
+#: lib/localize_playground_web/live/dates_live.ex:451
 #, elixir-autogen, icu-format
 msgid "Shift to time zone"
 msgstr "Зсунути в часовий пояс"
 
-#: lib/localize_playground_web/live/dates_live.ex:22
+#: lib/localize_playground_web/live/dates_live.ex:32
 #, elixir-autogen, icu-format
 msgid "Standard format"
 msgstr "Стандартний формат"
 
-#: lib/localize_playground_web/live/dates_live.ex:475
-#: lib/localize_playground_web/live/dates_live.ex:487
+#: lib/localize_playground_web/live/dates_live.ex:505
+#: lib/localize_playground_web/live/dates_live.ex:517
 #, elixir-autogen, icu-format
 msgid "Unicode (recommended)"
 msgstr "Unicode (рекомендовано)"
 
-#: lib/localize_playground_web/live/messages_live.ex:248
+#: lib/localize_playground_web/live/messages_live.ex:330
 #, elixir-autogen, icu-format
 msgid "📖 Open MF2 syntax reference"
 msgstr "📖 Відкрити довідник синтаксису MF2"
 
-#: lib/localize_playground_web/live/dates_live.ex:497
+#: lib/localize_playground_web/live/dates_live.ex:527
 #, elixir-autogen, icu-format
 msgid "📖 Open pattern reference panel"
 msgstr "📖 Відкрити панель довідки шаблонів"
 
-#: lib/localize_playground_web/live/lists_live.ex:24
+#: lib/localize_playground_web/live/lists_live.ex:28
 #, elixir-autogen, icu-format
 msgid "\"1 foot, 3 inches\" — for combining measurement unit values."
 msgstr "\"1 foot, 3 inches\" — для поєднання значень одиниць вимірювання."
 
-#: lib/localize_playground_web/live/lists_live.ex:25
+#: lib/localize_playground_web/live/lists_live.ex:30
 #, elixir-autogen, icu-format
 msgid "\"1 ft, 3 in\" — shorter unit combination."
 msgstr "\"1 ft, 3 in\" — коротша комбінація одиниць."
 
-#: lib/localize_playground_web/live/lists_live.ex:26
+#: lib/localize_playground_web/live/lists_live.ex:32
 #, elixir-autogen, icu-format
 msgid "\"1ft 3in\" — narrowest unit combination."
 msgstr "\"1ft 3in\" — найвужча комбінація одиниць."
 
-#: lib/localize_playground_web/live/lists_live.ex:18
+#: lib/localize_playground_web/live/lists_live.ex:19
 #, elixir-autogen, icu-format
 msgid "\"A, B, and C\" — default conjunctive list (long width)."
 msgstr "\"A, B та C\" — сполучний список за замовчуванням (довга ширина)."
 
-#: lib/localize_playground_web/live/lists_live.ex:21
+#: lib/localize_playground_web/live/lists_live.ex:24
 #, elixir-autogen, icu-format
 msgid "\"A, B, or C\" — default disjunctive list."
 msgstr "\"A, B або C\" — розділовий список за замовчуванням."
 
-#: lib/localize_playground_web/live/calendars_live.ex:277
+#: lib/localize_playground_web/live/calendars_live.ex:312
 #, elixir-autogen, icu-format
 msgid "AM/PM plus CLDR's flexible day-period set: :morning1, :afternoon1, :evening1, :night1, etc. Not every locale defines every period."
-msgstr ""
+msgstr "AM/PM разом із гнучким набором періодів доби CLDR: :morning1, :afternoon1, :evening1, :night1 тощо. Не кожна локаль визначає кожен період."
 
-#: lib/localize_playground_web/live/calendars_live.ex:232
+#: lib/localize_playground_web/live/calendars_live.ex:267
 #, elixir-autogen, icu-format
 msgid "Affects capitalisation + choice of variant."
-msgstr ""
+msgstr "Впливає на регістр і вибір варіанта."
 
-#: lib/localize_playground_web/live/lists_live.ex:216
+#: lib/localize_playground_web/live/lists_live.ex:236
 #, elixir-autogen, icu-format
 msgid "CLDR list patterns use four slots — start, middle, end, and the special two-item pattern for lists of exactly two. `{0}` and `{1}` are substituted with list elements."
 msgstr "Шаблони списків CLDR використовують чотири слоти — початок, середину, кінець, та спеціальний шаблон для списків з рівно двох елементів. `{0}` та `{1}` замінюються елементами списку."
 
-#: lib/localize_playground_web/live/lists_live.ex:197
+#: lib/localize_playground_web/live/lists_live.ex:217
 #, elixir-autogen, icu-format
 msgid "CLDR provides three list families — standard (conjunctive), or (disjunctive), and unit (measurement) — each in three widths. Pick a style below to see how the join pattern changes."
-msgstr ""
+msgstr "CLDR надає три родини списків — standard (єднальний), or (розділовий) і unit (одиниці вимірювання) — кожну в трьох варіантах ширини. Виберіть стиль нижче, щоб побачити, як змінюється шаблон з'єднання."
 
-#: lib/localize_playground_web/live/calendars_live.ex:291
+#: lib/localize_playground_web/live/calendars_live.ex:326
 #, elixir-autogen, icu-format
 msgid "CLDR tracks per-territory week conventions: which day starts the week, how many days the first week of the year must contain, and which days are weekend."
-msgstr ""
+msgstr "CLDR відстежує тижневі домовленості за територіями: з якого дня починається тиждень, скільки днів має містити перший тиждень року та які дні є вихідними."
 
-#: lib/localize_playground_web/live/calendars_live.ex:242
+#: lib/localize_playground_web/live/calendars_live.ex:277
 #, elixir-autogen, icu-format
 msgid "Calendar system"
 msgstr "Календарна система"
 
-#: lib/localize_playground_web/live/calendars_live.ex:232
+#: lib/localize_playground_web/live/calendars_live.ex:267
 #, elixir-autogen, icu-format
 msgid "Context"
 msgstr "Контекст"
 
-#: lib/localize_playground_web/live/calendars_live.ex:282
+#: lib/localize_playground_web/live/calendars_live.ex:317
 #, elixir-autogen, icu-format
 msgid "Date-time field names"
 msgstr "Імена полів дати-часу"
 
-#: lib/localize_playground_web/live/calendars_live.ex:261
+#: lib/localize_playground_web/live/calendars_live.ex:296
 #, elixir-autogen, icu-format
 msgid "Day"
 msgstr "День"
 
-#: lib/localize_playground_web/live/calendars_live.ex:275
+#: lib/localize_playground_web/live/calendars_live.ex:310
 #, elixir-autogen, icu-format
 msgid "Day periods"
 msgstr "Періоди дня"
 
-#: lib/localize_playground_web/live/calendars_live.ex:257
+#: lib/localize_playground_web/live/calendars_live.ex:292
 #, elixir-autogen, icu-format
 msgid "Days of week"
 msgstr "Дні тижня"
 
-#: lib/localize_playground_web/live/calendars_live.ex:270
+#: lib/localize_playground_web/live/calendars_live.ex:305
 #, elixir-autogen, icu-format
 msgid "Each calendar defines its own era sequence. E.g., :japanese has Meiji, Taisho, Shōwa, Heisei, Reiwa; :gregorian has BC / AD."
-msgstr ""
+msgstr "Кожен календар визначає власну послідовність ер. Наприклад, :japanese має Мейджі, Тайсьо, Сьова, Хейсей і Рейва; :gregorian має до н. е. / н. е."
 
-#: lib/localize_playground_web/live/lists_live.ex:190
+#: lib/localize_playground_web/live/lists_live.ex:210
 #, elixir-autogen, icu-format
 msgid "Each line becomes one element in the list."
-msgstr ""
+msgstr "Кожен рядок стає окремим елементом списку."
 
-#: lib/localize_playground_web/live/lists_live.ex:281
+#: lib/localize_playground_web/live/lists_live.ex:301
 #, elixir-autogen, icu-format
 msgid "End"
 msgstr "Кінець"
 
-#: lib/localize_playground_web/live/calendars_live.ex:272
+#: lib/localize_playground_web/live/calendars_live.ex:307
 #, elixir-autogen, icu-format
 msgid "Era"
 msgstr "Ера"
 
-#: lib/localize_playground_web/live/calendars_live.ex:268
+#: lib/localize_playground_web/live/calendars_live.ex:303
 #, elixir-autogen, icu-format
 msgid "Eras"
 msgstr "Ери"
 
-#: lib/localize_playground_web/live/calendars_live.ex:259
+#: lib/localize_playground_web/live/calendars_live.ex:294
 #, elixir-autogen, icu-format
 msgid "ISO 8601 day numbers: 1 = Monday through 7 = Sunday. The first day varies by locale — see the Week info panel below."
-msgstr ""
+msgstr "Номери днів за ISO 8601: 1 = понеділок і до 7 = неділя. Перший день залежить від локалі — див. панель відомостей про тиждень нижче."
 
-#: lib/localize_playground_web/live/lists_live.ex:190
+#: lib/localize_playground_web/live/lists_live.ex:210
 #, elixir-autogen, icu-format
 msgid "Items (one per line)"
 msgstr "Елементи (по одному на рядок)"
 
-#: lib/localize_playground_web/live/lists_live.ex:195
+#: lib/localize_playground_web/live/lists_live.ex:215
 #, elixir-autogen, icu-format
 msgid "List style"
 msgstr "Стиль списку"
 
-#: lib/localize_playground_web/live/calendars_live.ex:209
+#: lib/localize_playground_web/live/calendars_live.ex:244
 #, elixir-autogen, icu-format
 msgid "Locale & calendar"
 msgstr "Локаль і календар"
 
-#: lib/localize_playground_web/live/calendars_live.ex:284
+#: lib/localize_playground_web/live/calendars_live.ex:319
 #, elixir-autogen, icu-format
 msgid "Localized labels for the individual fields — useful for form captions, error messages, and chrono-aware UIs."
-msgstr ""
+msgstr "Локалізовані підписи окремих полів — корисні для підписів форм, повідомлень про помилки та інтерфейсів, що враховують час."
 
-#: lib/localize_playground_web/live/calendars_live.ex:345
+#: lib/localize_playground_web/live/calendars_live.ex:380
 #, elixir-autogen, icu-format
 msgid "Localized name"
 msgstr "Локалізована назва"
 
-#: lib/localize_playground_web/live/messages_live.ex:254
-#, elixir-autogen, icu-format
-msgid "MessageFormat 2 syntax"
-msgstr "Синтаксис MessageFormat 2"
-
-#: lib/localize_playground_web/live/lists_live.ex:279
+#: lib/localize_playground_web/live/lists_live.ex:299
 #, elixir-autogen, icu-format
 msgid "Middle"
 msgstr "Середина"
 
-#: lib/localize_playground_web/live/calendars_live.ex:298
+#: lib/localize_playground_web/live/calendars_live.ex:333
 #, elixir-autogen, icu-format
 msgid "Minimum days in first week"
 msgstr "Мін. днів у першому тижні"
 
-#: lib/localize_playground_web/live/calendars_live.ex:254
+#: lib/localize_playground_web/live/calendars_live.ex:289
 #, elixir-autogen, icu-format
 msgid "Month"
 msgstr "Місяць"
 
-#: lib/localize_playground_web/live/calendars_live.ex:252
+#: lib/localize_playground_web/live/calendars_live.ex:287
 #, elixir-autogen, icu-format
 msgid "Month numbers are 1-based. Some calendars (e.g. Hebrew) have 13 months."
-msgstr ""
+msgstr "Номери місяців починаються з 1. У деяких календарях (наприклад, у єврейському) 13 місяців."
 
-#: lib/localize_playground_web/live/calendars_live.ex:250
+#: lib/localize_playground_web/live/calendars_live.ex:285
 #, elixir-autogen, icu-format
 msgid "Months"
 msgstr "Місяці"
 
-#: lib/localize_playground_web/live/lists_live.ex:20
+#: lib/localize_playground_web/live/lists_live.ex:23
 #, elixir-autogen, icu-format
 msgid "Narrowest conjunctive form — may omit conjunction altogether."
 msgstr "Найвужча сполучна форма — може повністю опустити сполучник."
 
-#: lib/localize_playground_web/live/lists_live.ex:23
+#: lib/localize_playground_web/live/lists_live.ex:26
 #, elixir-autogen, icu-format
 msgid "Narrowest disjunctive form."
 msgstr "Найвужча розділова форма."
 
-#: lib/localize_playground_web/live/lists_live.ex:214
+#: lib/localize_playground_web/live/lists_live.ex:234
 #, elixir-autogen, icu-format
 msgid "Pattern for this locale × style"
 msgstr "Шаблон для цієї локалі × стилю"
 
-#: lib/localize_playground_web/live/calendars_live.ex:279
+#: lib/localize_playground_web/live/calendars_live.ex:314
 #, elixir-autogen, icu-format
 msgid "Period"
 msgstr "Період"
 
-#: lib/localize_playground_web/live/calendars_live.ex:265
+#: lib/localize_playground_web/live/calendars_live.ex:300
 #, elixir-autogen, icu-format
 msgid "Quarter"
 msgstr "Квартал"
 
-#: lib/localize_playground_web/live/calendars_live.ex:264
+#: lib/localize_playground_web/live/calendars_live.ex:299
 #, elixir-autogen, icu-format
 msgid "Quarters"
 msgstr "Квартали"
 
-#: lib/localize_playground_web/live/lists_live.ex:22
+#: lib/localize_playground_web/live/lists_live.ex:25
 #, elixir-autogen, icu-format
 msgid "Shorter disjunctive form."
 msgstr "Коротша розділова форма."
 
-#: lib/localize_playground_web/live/lists_live.ex:19
+#: lib/localize_playground_web/live/lists_live.ex:21
 #, elixir-autogen, icu-format
 msgid "Shorter punctuation and conjunction form of standard."
 msgstr "Коротша форма пунктуації та сполучника для standard."
 
-#: lib/localize_playground_web/live/lists_live.ex:277
+#: lib/localize_playground_web/live/lists_live.ex:297
 #, elixir-autogen, icu-format
 msgid "Start"
 msgstr "Початок"
 
-#: lib/localize_playground_web/live/calendars_live.ex:224
+#: lib/localize_playground_web/live/calendars_live.ex:259
 #, elixir-autogen, icu-format
 msgid "Style / width"
 msgstr "Стиль / ширина"
 
-#: lib/localize_playground_web/live/calendars_live.ex:244
+#: lib/localize_playground_web/live/calendars_live.ex:279
 #, elixir-autogen, icu-format
 msgid "The localized display name of the calendar system itself — derived from CLDR via Localize.Calendar.display_name/3."
-msgstr ""
+msgstr "Локалізована відображувана назва самої календарної системи — отримана з CLDR через Localize.Calendar.display_name/3."
 
-#: lib/localize_playground_web/live/lists_live.ex:210
+#: lib/localize_playground_web/live/lists_live.ex:230
 #, elixir-autogen, icu-format
 msgid "Treat the last joiner as middle (omit the final conjunction)"
 msgstr "Вважати останній з'єднувач середнім (опускати остаточний сполучник)"
 
-#: lib/localize_playground_web/live/calendars_live.ex:218
+#: lib/localize_playground_web/live/calendars_live.ex:253
 #, elixir-autogen, icu-format
 msgid "Try :japanese, :hebrew, :islamic, :buddhist, :ethiopic…"
-msgstr ""
+msgstr "Спробуйте :japanese, :hebrew, :islamic, :buddhist, :ethiopic…"
 
-#: lib/localize_playground_web/live/lists_live.ex:283
+#: lib/localize_playground_web/live/lists_live.ex:303
 #, elixir-autogen, icu-format
 msgid "Two (special)"
 msgstr "Два (особливий)"
 
-#: lib/localize_playground_web/live/calendars_live.ex:289
+#: lib/localize_playground_web/live/calendars_live.ex:324
 #, elixir-autogen, icu-format
 msgid "Week info for the locale's territory"
 msgstr "Інформація про тиждень для території локалі"
 
-#: lib/localize_playground_web/live/calendars_live.ex:302
-#: lib/localize_playground_web/live/lists_live.ex:32
+#: lib/localize_playground_web/live/calendars_live.ex:337
+#: lib/localize_playground_web/live/lists_live.ex:39
 #, elixir-autogen, icu-format
 msgid "Weekdays"
 msgstr "Будні дні"
 
-#: lib/localize_playground_web/live/calendars_live.ex:300
+#: lib/localize_playground_web/live/calendars_live.ex:335
 #, elixir-autogen, icu-format
 msgid "Weekend"
 msgstr "Вихідні"
@@ -2071,29 +2009,29 @@ msgstr "Вихідні"
 #: lib/localize_playground_web/live/calendars_live.ex:16
 #, elixir-autogen, icu-format
 msgid "abbreviated — e.g. \"Jan\""
-msgstr ""
+msgstr "abbreviated — наприклад, \"січ\""
 
 #: lib/localize_playground_web/live/calendars_live.ex:22
 #, elixir-autogen, icu-format
 msgid "format — used inside a date (\"on Monday\")"
-msgstr ""
+msgstr "format — використовується всередині дати (\"у понеділок\")"
 
 #: lib/localize_playground_web/live/calendars_live.ex:17
 #, elixir-autogen, icu-format
 msgid "narrow — e.g. \"J\""
-msgstr ""
+msgstr "narrow — наприклад, \"С\""
 
-#: lib/localize_playground_web/live/lists_live.ex:21
+#: lib/localize_playground_web/live/lists_live.ex:24
 #, elixir-autogen, icu-format
 msgid "or"
 msgstr "or"
 
-#: lib/localize_playground_web/live/lists_live.ex:23
+#: lib/localize_playground_web/live/lists_live.ex:26
 #, elixir-autogen, icu-format
 msgid "or_narrow"
 msgstr "or_narrow"
 
-#: lib/localize_playground_web/live/lists_live.ex:22
+#: lib/localize_playground_web/live/lists_live.ex:25
 #, elixir-autogen, icu-format
 msgid "or_short"
 msgstr "or_short"
@@ -2101,39 +2039,39 @@ msgstr "or_short"
 #: lib/localize_playground_web/live/calendars_live.ex:18
 #, elixir-autogen, icu-format
 msgid "short — day names only (Su/Mo)"
-msgstr ""
+msgstr "short — лише назви днів (нд/пн)"
 
 #: lib/localize_playground_web/live/calendars_live.ex:23
 #, elixir-autogen, icu-format
 msgid "stand_alone — standalone capitalisation (\"Monday\")"
-msgstr ""
+msgstr "stand_alone — самостійна форма з великої літери (\"Понеділок\")"
 
 #: lib/localize_playground_web/live/lists_live.ex:18
 #, elixir-autogen, icu-format
 msgid "standard"
 msgstr "standard"
 
-#: lib/localize_playground_web/live/lists_live.ex:20
+#: lib/localize_playground_web/live/lists_live.ex:22
 #, elixir-autogen, icu-format
 msgid "standard_narrow"
 msgstr "standard_narrow"
 
-#: lib/localize_playground_web/live/lists_live.ex:19
+#: lib/localize_playground_web/live/lists_live.ex:20
 #, elixir-autogen, icu-format
 msgid "standard_short"
 msgstr "standard_short"
 
-#: lib/localize_playground_web/live/lists_live.ex:24
+#: lib/localize_playground_web/live/lists_live.ex:27
 #, elixir-autogen, icu-format
 msgid "unit"
 msgstr "unit"
 
-#: lib/localize_playground_web/live/lists_live.ex:26
+#: lib/localize_playground_web/live/lists_live.ex:31
 #, elixir-autogen, icu-format
 msgid "unit_narrow"
 msgstr "unit_narrow"
 
-#: lib/localize_playground_web/live/lists_live.ex:25
+#: lib/localize_playground_web/live/lists_live.ex:29
 #, elixir-autogen, icu-format
 msgid "unit_short"
 msgstr "unit_short"
@@ -2141,29 +2079,29 @@ msgstr "unit_short"
 #: lib/localize_playground_web/live/calendars_live.ex:15
 #, elixir-autogen, icu-format
 msgid "wide — e.g. \"January\""
-msgstr ""
+msgstr "wide — наприклад, \"січень\""
 
-#: lib/localize_playground_web/live/lists_live.ex:189
+#: lib/localize_playground_web/live/lists_live.ex:209
 #, elixir-autogen, icu-format
 msgid "Items"
-msgstr ""
+msgstr "Елементи"
 
-#: lib/localize_playground_web/live/lists_live.ex:34
+#: lib/localize_playground_web/live/lists_live.ex:45
 #, elixir-autogen, icu-format
 msgid "Many items"
 msgstr "Багато елементів"
 
-#: lib/localize_playground_web/live/lists_live.ex:33
+#: lib/localize_playground_web/live/lists_live.ex:43
 #, elixir-autogen, icu-format
 msgid "Mixed types"
 msgstr "Змішані типи"
 
-#: lib/localize_playground_web/live/lists_live.ex:30
+#: lib/localize_playground_web/live/lists_live.ex:36
 #, elixir-autogen, icu-format
 msgid "Three colours"
 msgstr "Три кольори"
 
-#: lib/localize_playground_web/live/lists_live.ex:31
+#: lib/localize_playground_web/live/lists_live.ex:37
 #, elixir-autogen, icu-format
 msgid "Two choices"
 msgstr "Два варіанти"
@@ -2173,162 +2111,343 @@ msgstr "Два варіанти"
 msgid "Provide feedback"
 msgstr "Залишити відгук"
 
-#: lib/localize_playground_web/views/collation_view.ex:281
+#: lib/localize_playground_web/views/collation_view.ex:337
 #, elixir-autogen, icu-format
 msgid "Arabic follows the abjadi order; hamza-bearing forms (أ, إ, آ) normalise to alif at primary strength."
-msgstr ""
+msgstr "Арабська дотримується порядку абджаді; форми з хамзою (أ, إ, آ) за первинної сили нормалізуються в аліф."
 
-#: lib/localize_playground_web/views/collation_view.ex:285
+#: lib/localize_playground_web/views/collation_view.ex:350
 #, elixir-autogen, icu-format
 msgid "Devanagari vowel + consonant order; vowel signs collate with their independent forms."
-msgstr ""
+msgstr "Порядок голосних і приголосних деванагарі; знаки голосних сортуються разом зі своїми самостійними формами."
 
-#: lib/localize_playground_web/views/collation_view.ex:275
+#: lib/localize_playground_web/views/collation_view.ex:322
 #, elixir-autogen, icu-format
 msgid "Digraphs cs / gy / ly / ny / sz / zs each behave as single letters between their base letters."
-msgstr ""
+msgstr "Диграфи cs / gy / ly / ny / sz / zs поводяться як окремі літери між своїми базовими літерами."
 
-#: lib/localize_playground_web/views/collation_view.ex:263
+#: lib/localize_playground_web/views/collation_view.ex:286
 #, elixir-autogen, icu-format
 msgid "Digraphs dž, lj, nj each act as a single letter — lj sorts between l and m, not inside l."
-msgstr ""
+msgstr "Диграфи dž, lj, nj рахуються як одна літера кожен — lj сортується між l і m, а не всередині l."
 
-#: lib/localize_playground_web/views/collation_view.ex:277
+#: lib/localize_playground_web/views/collation_view.ex:327
 #, elixir-autogen, icu-format
 msgid "Dotted İ / i vs dotless I / ı — these are different letters in Turkish, never collapsed."
-msgstr ""
+msgstr "İ / i з крапкою проти I / ı без крапки: у турецькій це різні літери, які ніколи не об'єднуються."
+
+#: lib/localize_playground_web/views/collation_view.ex:325
+#, elixir-autogen, icu-format
+msgid "Finnish ä and ö sort after z, like Swedish."
+msgstr "Фінські ä та ö сортуються після z, як і у шведській."
+
+#: lib/localize_playground_web/views/collation_view.ex:345
+#, elixir-autogen, icu-format
+msgid "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."
+msgstr "Грецькі малі та великі форми збігаються на третинній силі; голосні з наголосом — на вторинній."
+
+#: lib/localize_playground_web/views/collation_view.ex:314
+#, elixir-autogen, icu-format
+msgid "Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."
+msgstr "Хангиль сортується за чамо: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."
+
+#: lib/localize_playground_web/views/collation_view.ex:341
+#, elixir-autogen, icu-format
+msgid "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."
+msgstr "Єврейські літери в канонічному порядку; кінцеві форми (ך ם ן ף ץ) сортуються разом зі своїми основними формами."
+
+#: lib/localize_playground_web/views/collation_view.ex:320
+#, elixir-autogen, icu-format
+msgid "Icelandic has ð (after d), þ (after z), æ (after y), ö (after z)."
+msgstr "В ісландській є ð (після d), þ (після z), æ (після y) та ö (після z)."
+
+#: lib/localize_playground_web/views/collation_view.ex:311
+#, elixir-autogen, icu-format
+msgid "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."
+msgstr "Кана сортується спершу в порядку годзюон, далі йдуть кандзі — перемкніться на Unihan, щоб перевпорядкувати блок кандзі."
+
+#: lib/localize_playground_web/views/collation_view.ex:335
+#, elixir-autogen, icu-format
+msgid "Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots."
+msgstr "Латиська вставляє č, ģ, ķ, ļ, ņ, š, ž у налаштовані позиції."
 
 #: lib/localize_playground_web/views/collation_view.ex:276
 #, elixir-autogen, icu-format
-msgid "Finnish ä and ö sort after z, like Swedish."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:283
-#, elixir-autogen, icu-format
-msgid "Greek lower/upper forms fold at tertiary strength; accented vowels fold at secondary."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:271
-#, elixir-autogen, icu-format
-msgid "Hangul sorts by jamo: ㄱ → ㄴ → ㄷ → ㅂ → ㅅ → ㅇ → ㅈ → ㅎ."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:282
-#, elixir-autogen, icu-format
-msgid "Hebrew letters in their canonical order; final-forms (ך ם ן ף ץ) collate with their primary forms."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:274
-#, elixir-autogen, icu-format
-msgid "Icelandic has ð (after d), þ (after z), æ (after y), ö (after z)."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:270
-#, elixir-autogen, icu-format
-msgid "Kana sort in gojūon order first, kanji follow — switch to Unihan to reorder the kanji block."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:280
-#, elixir-autogen, icu-format
-msgid "Latvian inserts č, ģ, ķ, ļ, ņ, š, ž into the tailored slots."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:260
-#, elixir-autogen, icu-format
 msgid "Like Czech, ch is one letter; note ľ and ô in their tailored slots."
-msgstr ""
+msgstr "Як і в чеській, ch — одна літера; зверніть увагу на ľ та ô в їхніх налаштованих позиціях."
 
-#: lib/localize_playground_web/views/collation_view.ex:268
+#: lib/localize_playground_web/views/collation_view.ex:303
 #, elixir-autogen, icu-format
 msgid "Macedonian adds ѓ, ѕ, ј, љ, њ, ќ, џ — each tailored between its Cyrillic neighbours."
-msgstr ""
+msgstr "Македонська додає ѓ, ѕ, ј, љ, њ, ќ, џ — кожну налаштовано між її кириличними сусідками."
 
-#: lib/localize_playground_web/views/collation_view.ex:266
+#: lib/localize_playground_web/views/collation_view.ex:298
 #, elixir-autogen, icu-format
 msgid "No special letters beyond the shared Cyrillic base — shows baseline Cyrillic ordering."
-msgstr ""
+msgstr "Жодних особливих літер понад спільну кириличну основу — показує базовий кириличний порядок."
 
-#: lib/localize_playground_web/views/collation_view.ex:259
+#: lib/localize_playground_web/views/collation_view.ex:273
 #, elixir-autogen, icu-format
 msgid "Notice that chléb sorts after hora — ch is a single letter in Czech, positioned after h."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:257
-#, elixir-autogen, icu-format
-msgid "Primary strength ignores the accents on città, perché, così."
-msgstr ""
+msgstr "Зверніть увагу, що chléb сортується після hora — у чеській ch є однією літерою і стоїть після h."
 
 #: lib/localize_playground_web/views/collation_view.ex:267
 #, elixir-autogen, icu-format
-msgid "Serbian Cyrillic order: ђ after д, љ after л, њ after н."
-msgstr ""
+msgid "Primary strength ignores the accents on città, perché, così."
+msgstr "Первинна сила ігнорує діакритику в città, perché та così."
 
-#: lib/localize_playground_web/views/collation_view.ex:262
+#: lib/localize_playground_web/views/collation_view.ex:301
+#, elixir-autogen, icu-format
+msgid "Serbian Cyrillic order: ђ after д, љ after л, њ after н."
+msgstr "Сербський кириличний порядок: ђ після д, љ після л, њ після н."
+
+#: lib/localize_playground_web/views/collation_view.ex:282
 #, elixir-autogen, icu-format
 msgid "Slovene adds only č, š, ž — cleaner than neighbours but still distinct from their unaccented forms."
-msgstr ""
+msgstr "Словенська додає лише č, š, ž — стриманіше за сусідів, але й далі відмінно від форм без діакритики."
 
-#: lib/localize_playground_web/views/collation_view.ex:254
+#: lib/localize_playground_web/views/collation_view.ex:256
 #, elixir-autogen, icu-format
 msgid "Standard English mixes case and accented forms — try strength = primary to collapse them."
 msgstr "Стандартна англійська змішує регістр та акцентовані форми — спробуйте силу = primary, щоб їх об'єднати."
 
-#: lib/localize_playground_web/views/collation_view.ex:264
+#: lib/localize_playground_web/views/collation_view.ex:290
 #, elixir-autogen, icu-format
 msgid "Standard Russian alphabet order; ё is usually folded into е unless strength is tertiary+."
-msgstr ""
+msgstr "Стандартний порядок російської абетки; ё зазвичай об'єднується з е, якщо сила не третинна або вища."
 
-#: lib/localize_playground_web/views/collation_view.ex:273
+#: lib/localize_playground_web/views/collation_view.ex:319
 #, elixir-autogen, icu-format
 msgid "Swedish: ä / ö / å all come after z, in that specific order."
-msgstr ""
+msgstr "Шведська: ä / ö / å ідуть після z, саме в такому порядку."
 
-#: lib/localize_playground_web/views/collation_view.ex:269
+#: lib/localize_playground_web/views/collation_view.ex:307
 #, elixir-autogen, icu-format
 msgid "Switch between Pinyin / Stroke / Zhuyin to see the same characters reorder completely."
-msgstr ""
+msgstr "Перемикайтеся між Pinyin / Stroke / Zhuyin, щоб побачити, як ті самі символи повністю змінюють порядок."
 
-#: lib/localize_playground_web/views/collation_view.ex:256
+#: lib/localize_playground_web/views/collation_view.ex:264
 #, elixir-autogen, icu-format
 msgid "Switch between Standard and Phonebook — Phonebook treats ü like ue, so Müller moves between Mueller and Muller."
 msgstr "Перемикайте між Standard та Phonebook — Phonebook обробляє ü як ue, тому Müller стає між Mueller і Muller."
 
-#: lib/localize_playground_web/views/collation_view.ex:258
+#: lib/localize_playground_web/views/collation_view.ex:269
 #, elixir-autogen, icu-format
 msgid "Switch between Standard and Traditional — Traditional splits ch and ll into their own letters after c and l."
-msgstr ""
+msgstr "Перемикайтеся між Standard і Traditional — Traditional виділяє ch і ll в окремі літери після c і l."
 
-#: lib/localize_playground_web/views/collation_view.ex:284
+#: lib/localize_playground_web/views/collation_view.ex:348
 #, elixir-autogen, icu-format
 msgid "Thai ordering follows the Royal Institute sequence ก ข ฃ ค ฅ ฆ…"
-msgstr ""
+msgstr "Тайський порядок відповідає послідовності Royal Institute ก ข ฃ ค ฅ ฆ…"
 
-#: lib/localize_playground_web/views/collation_view.ex:255
+#: lib/localize_playground_web/views/collation_view.ex:260
 #, elixir-autogen, icu-format
 msgid "Toggle Backwards-secondary (French) to see côté / coté swap because accent order reads right-to-left."
-msgstr ""
+msgstr "Увімкніть Backwards-secondary (французька), щоб побачити, як côté / coté міняються місцями, адже порядок діакритики читається справа наліво."
+
+#: lib/localize_playground_web/views/collation_view.ex:331
+#, elixir-autogen, icu-format
+msgid "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."
+msgstr "Тонові знаки змінюють вторинний рівень — ba, bà, bá, bả, bã, bạ — канонічний порядок тонів."
+
+#: lib/localize_playground_web/views/collation_view.ex:316
+#, elixir-autogen, icu-format
+msgid "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."
+msgstr "æ / ø / å сортуються в данській після z — протилежно до того, що дав би порядок кодових точок."
 
 #: lib/localize_playground_web/views/collation_view.ex:278
 #, elixir-autogen, icu-format
-msgid "Tone marks alter the secondary level — ba, bà, bá, bả, bã, bạ is the canonical tone order."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:272
-#, elixir-autogen, icu-format
-msgid "æ / ø / å sort after z in Danish — the opposite of what codepoint order would give you."
-msgstr ""
-
-#: lib/localize_playground_web/views/collation_view.ex:261
-#, elixir-autogen, icu-format
 msgid "ą / ć / ł / ń / ś / ź / ż each sit directly after their base letter, never collapsed into them."
-msgstr ""
+msgstr "ą / ć / ł / ń / ś / ź / ż стоять одразу після своєї базової літери й ніколи з нею не зливаються."
 
-#: lib/localize_playground_web/views/collation_view.ex:279
+#: lib/localize_playground_web/views/collation_view.ex:334
 #, elixir-autogen, icu-format
 msgid "ą, č, ę, ė, į, š, ų, ū, ž — each in tailored positions."
-msgstr ""
+msgstr "ą, č, ę, ė, į, š, ų, ū, ž — кожна в налаштованій позиції."
 
-#: lib/localize_playground_web/views/collation_view.ex:265
+#: lib/localize_playground_web/views/collation_view.ex:294
 #, elixir-autogen, icu-format
 msgid "ґ sorts after г, є after е, ї after і — Ukrainian adds letters Russian doesn't have."
-msgstr ""
+msgstr "ґ сортується після г, є після е, ї після і — українська додає літери, яких немає в російській."
+
+#: lib/localize_playground_web/live/durations_live.ex:31
+#, elixir-autogen, icu-format
+msgid "\"2 hours, 30 minutes\" — honours format"
+msgstr "«2 години, 30 хвилин» — враховує формат"
+
+#: lib/localize_playground_web/live/messages_live.ex:452
+#, elixir-autogen, icu-format
+msgid "Attributes"
+msgstr "Атрибути"
+
+#: lib/localize_playground_web/live/messages_live.ex:461
+#, elixir-autogen, icu-format
+msgid "Auto-close to brackets and pipes"
+msgstr "Автоматично закривати дужки та вертикальні риски"
+
+#: lib/localize_playground_web/live/messages_live.ex:392
+#, elixir-autogen, icu-format
+msgid "Bindings (Elixir map or keyword list)"
+msgstr "Прив'язки (асоціативний масив або keyword list Elixir)"
+
+#: lib/localize_playground_web/live/messages_live.ex:449
+#, elixir-autogen, icu-format
+msgid "Built-in functions"
+msgstr "Вбудовані функції"
+
+#: lib/localize_playground_web/live/messages_live.ex:443
+#, elixir-autogen, icu-format
+msgid "Completion"
+msgstr "Автодоповнення"
+
+#: lib/localize_playground_web/live/units_live.ex:424
+#, elixir-autogen, icu-format
+msgid "Convert to"
+msgstr "Перетворити на"
+
+#: lib/localize_playground_web/live/units_live.ex:464
+#, elixir-autogen, icu-format
+msgid "Convert to preferred unit for measurement system"
+msgstr "Перетворити в одиницю, бажану для системи мір"
+
+#: lib/localize_playground_web/live/units_live.ex:477
+#, elixir-autogen, icu-format
+msgid "Convert to preferred unit for the locale's territory"
+msgstr "Перетворити в одиницю, бажану для території локалі"
+
+#: lib/localize_playground_web/live/units_live.ex:358
+#, elixir-autogen, icu-format
+msgid "Display width — to_string/2 takes it as :format, display_name/2 as :style"
+msgstr "Ширина відображення — to_string/2 приймає її як :format, display_name/2 як :style"
+
+#: lib/localize_playground_web/live/durations_live.ex:256
+#, elixir-autogen, icu-format
+msgid "Duration"
+msgstr "Тривалість"
+
+#: lib/localize_playground_web/live/locales_live.ex:340
+#, elixir-autogen, icu-format
+msgid "Enable?"
+msgstr "Увімкнути?"
+
+#: lib/localize_playground_web/live/messages_live.ex:467
+#, elixir-autogen, icu-format
+msgid "Expand matcher skeleton with CLDR plurals"
+msgstr "Розгорнути заготовку зіставлення з формами множини CLDR"
+
+#: lib/localize_playground_web/live/intervals_live.ex:223
+#, elixir-autogen, icu-format
+msgid "Fields"
+msgstr "Поля"
+
+#: lib/localize_playground_web/live/numbers_live.ex:255
+#, elixir-autogen, icu-format
+msgid "Format metadata"
+msgstr "Метадані формату"
+
+#: lib/localize_playground_web/live/messages_live.ex:422
+#, elixir-autogen, icu-format
+msgid "Go to definition of"
+msgstr "Перейти до визначення"
+
+#: lib/localize_playground_web/live/messages_live.ex:431
+#, elixir-autogen, icu-format
+msgid "Grow selection to enclosing node"
+msgstr "Розширити виділення до охоплюючого вузла"
+
+#: lib/localize_playground_web/live/messages_live.ex:446
+#, elixir-autogen, icu-format
+msgid "In-scope variables"
+msgstr "Змінні в області видимості"
+
+#: lib/localize_playground_web/live/lists_live.ex:193
+#, elixir-autogen, icu-format
+msgid "List"
+msgstr "Список"
+
+#: lib/localize_playground_web/live/numbers_live.ex:14
+#, elixir-autogen, icu-format
+msgid "Locale and number"
+msgstr "Локаль і число"
+
+#: lib/localize_playground_web/live/messages_live.ex:418
+#, elixir-autogen, icu-format
+msgid "MF2 editor keyboard shortcuts"
+msgstr "Комбінації клавіш редактора MF2"
+
+#: lib/localize_playground_web/live/messages_live.ex:335
+#, elixir-autogen, icu-format
+msgid "Message and bindings"
+msgstr "Повідомлення та прив'язки"
+
+#: lib/localize_playground_web/live/messages_live.ex:373
+#: lib/localize_playground_web/live/messages_live.ex:383
+#, elixir-autogen, icu-format
+msgid "MessageFormat 2 source"
+msgstr "Вихідний код MessageFormat 2"
+
+#: lib/localize_playground_web/live/messages_live.ex:337
+#, elixir-autogen, icu-format
+msgid "MessageFormat 2 syntax — see messageformat.unicode.org for the spec. Bindings are Elixir source; use a map or keyword list."
+msgstr "Синтаксис MessageFormat 2 — специфікація доступна на messageformat.unicode.org. Прив'язки — це код Elixir; використовуйте асоціативний масив або keyword list."
+
+#: lib/localize_playground_web/live/messages_live.ex:455
+#, elixir-autogen, icu-format
+msgid "Navigate, accept, dismiss"
+msgstr "Навігація, підтвердження, скасування"
+
+#: lib/localize_playground_web/live/messages_live.ex:419
+#, elixir-autogen, icu-format
+msgid "Navigation"
+msgstr "Навігація"
+
+#: lib/localize_playground_web/live/messages_live.ex:428
+#, elixir-autogen, icu-format
+msgid "Outline: jump to any"
+msgstr "Структура: перейти до"
+
+#: lib/localize_playground_web/live/messages_live.ex:437
+#, elixir-autogen, icu-format
+msgid "Refactoring"
+msgstr "Рефакторинг"
+
+#: lib/localize_playground_web/live/messages_live.ex:440
+#, elixir-autogen, icu-format
+msgid "Rename variable in scope"
+msgstr "Перейменувати змінну в області видимості"
+
+#: lib/localize_playground_web/live/messages_live.ex:425
+#, elixir-autogen, icu-format
+msgid "Same, with the mouse"
+msgstr "Те саме мишею"
+
+#: lib/localize_playground_web/live/messages_live.ex:434
+#, elixir-autogen, icu-format
+msgid "Shrink selection"
+msgstr "Звузити виділення"
+
+#: lib/localize_playground_web/live/messages_live.ex:464
+#, elixir-autogen, icu-format
+msgid "Smart indent in patterns and matchers"
+msgstr "Розумні відступи в шаблонах і зіставленнях"
+
+#: lib/localize_playground_web/live/messages_live.ex:458
+#, elixir-autogen, icu-format
+msgid "Smart typing"
+msgstr "Розумне введення"
+
+#: lib/localize_playground_web/live/messages_live.ex:505
+#, elixir-autogen, icu-format
+msgid "Waiting for valid MF2…"
+msgstr "Очікування коректного MF2…"
+
+#: lib/localize_playground_web/live/intervals_live.ex:223
+#, elixir-autogen, icu-format
+msgid "Which date fields appear"
+msgstr "Які поля дати відображаються"
+
+#: lib/localize_playground_web/live/locales_live.ex:243
+#, elixir-autogen, icu-format
+msgid "Your locale is already canonical: {$locale}."
+msgstr "Ваша локаль уже канонічна: {$locale}."

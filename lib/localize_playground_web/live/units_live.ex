@@ -80,6 +80,8 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
       |> assign(:target_category, "length")
       |> assign(:target_unit, "mile")
       |> assign(:system, :us)
+      |> assign(:format, :long)
+      |> assign(:formats, UnitView.unit_formats())
       |> compute()
 
     {:ok, socket}
@@ -95,6 +97,7 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
         "source_prefix",
         "target_power",
         "target_prefix",
+        "format",
         "system"
       ])
       |> apply_category_and_unit(params, :source)
@@ -193,9 +196,9 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
           {{:error, message}, nil, build_new_code(a.number, source_name)}
 
         {:ok, value} ->
-          case UnitView.build_and_format(value, source_name, locale) do
+          case UnitView.build_and_format(value, source_name, locale, a.format) do
             {:ok, %{unit: unit} = info} ->
-              {{:ok, info}, unit, build_to_string_code(value, source_name, locale)}
+              {{:ok, info}, unit, build_to_string_code(value, source_name, locale, a.format)}
 
             {:error, message} ->
               {{:error, message}, nil, build_new_code(value, source_name)}
@@ -208,10 +211,10 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
           nil
 
         unit ->
-          UnitView.convert(unit, target_name, locale)
+          UnitView.convert(unit, target_name, locale, a.format)
       end
 
-    conversion_code = build_convert_code(source_name, target_name, locale)
+    conversion_code = build_convert_code(source_name, target_name, locale, a.format)
 
     preferred_result =
       case source_unit_struct do
@@ -219,10 +222,10 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
           nil
 
         unit ->
-          UnitView.convert_measurement_system(unit, a.system, locale)
+          UnitView.convert_measurement_system(unit, a.system, locale, a.format)
       end
 
-    preferred_code = build_preferred_code(source_name, a.system, locale)
+    preferred_code = build_preferred_code(source_name, a.system, locale, a.format)
 
     territory_system = territory_system_for_locale(locale)
 
@@ -232,10 +235,10 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
           nil
 
         unit ->
-          UnitView.convert_measurement_system(unit, territory_system, locale)
+          UnitView.convert_measurement_system(unit, territory_system, locale, a.format)
       end
 
-    territory_code = build_territory_system_code(source_name, locale)
+    territory_code = build_territory_system_code(source_name, locale, a.format)
 
     socket
     |> assign(:source_unit_name, source_name)
@@ -243,7 +246,7 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
     |> assign(:source_result, source_result)
     |> assign(:source_call_code, source_call_code)
     |> assign(:unit_name_code, build_unit_name_code(source_name))
-    |> assign(:display_name_code, build_display_name_code(source_name, locale))
+    |> assign(:display_name_code, build_display_name_code(source_name, locale, a.format))
     |> assign(:category_code, build_category_code(source_name))
     |> assign(:conversion_result, conversion_result)
     |> assign(:conversion_call_code, conversion_code)
@@ -265,11 +268,23 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
     _ -> :metric
   end
 
-  defp build_to_string_code(value, unit_name, locale) do
+  # Trailing option list for the generated snippets. Each option is
+  # omitted at its default so the common case stays readable. The width
+  # key differs by function: `to_string/2` renders a value and takes
+  # `:format`; `display_name/2` names a thing and takes `:style`.
+  defp options_suffix(locale, format, width_key) do
     locale_opt =
       if to_string(locale) == "en", do: "", else: ", locale: #{inspect(to_string(locale))}"
 
-    "{:ok, unit} = Localize.Unit.new(#{inspect(value)}, #{inspect(unit_name)})\nLocalize.Unit.to_string(unit#{locale_opt})"
+    width_opt = if format == :long, do: "", else: ", #{width_key}: #{inspect(format)}"
+
+    locale_opt <> width_opt
+  end
+
+  defp build_to_string_code(value, unit_name, locale, format) do
+    options = options_suffix(locale, format, :format)
+
+    "{:ok, unit} = Localize.Unit.new(#{inspect(value)}, #{inspect(unit_name)})\nLocalize.Unit.to_string(unit#{options})"
   end
 
   defp build_new_code(value, unit_name) do
@@ -280,38 +295,35 @@ defmodule LocalizePlaygroundWeb.UnitsLive do
     "{:ok, unit} = Localize.Unit.new(value, #{inspect(unit_name)})\nunit.name"
   end
 
-  defp build_display_name_code(unit_name, locale) do
-    locale_opt =
-      if to_string(locale) == "en", do: "", else: ", locale: #{inspect(to_string(locale))}"
+  defp build_display_name_code(unit_name, locale, format) do
+    options = options_suffix(locale, format, :style)
 
-    "Localize.Unit.display_name(#{inspect(unit_name)}#{locale_opt})"
+    "Localize.Unit.display_name(#{inspect(unit_name)}#{options})"
   end
 
   defp build_category_code(unit_name) do
     "Localize.Unit.unit_category(#{inspect(unit_name)})"
   end
 
-  defp build_convert_code(source_name, target_name, locale) do
-    locale_opt =
-      if to_string(locale) == "en", do: "", else: ", locale: #{inspect(to_string(locale))}"
+  defp build_convert_code(source_name, target_name, locale, format) do
+    locale_opt = options_suffix(locale, format, :format)
 
     ~s|{:ok, unit} = Localize.Unit.new(value, #{inspect(source_name)})
 {:ok, converted} = Localize.Unit.convert(unit, #{inspect(target_name)})
 Localize.Unit.to_string(converted#{locale_opt})|
   end
 
-  defp build_preferred_code(source_name, system, locale) do
-    locale_opt =
-      if to_string(locale) == "en", do: "", else: ", locale: #{inspect(to_string(locale))}"
+  defp build_preferred_code(source_name, system, locale, format) do
+    locale_opt = options_suffix(locale, format, :format)
 
     ~s|{:ok, unit} = Localize.Unit.new(value, #{inspect(source_name)})
 {:ok, converted} = Localize.Unit.convert_measurement_system(unit, #{inspect(system)})
 Localize.Unit.to_string(converted#{locale_opt})|
   end
 
-  defp build_territory_system_code(source_name, locale) do
+  defp build_territory_system_code(source_name, locale, format) do
     locale_str = to_string(locale)
-    locale_opt = if locale_str == "en", do: "", else: ", locale: #{inspect(locale_str)}"
+    locale_opt = options_suffix(locale, format, :format)
 
     ~s|system = Localize.Unit.measurement_system_for_territory(territory_for(#{inspect(locale_str)}))
 {:ok, unit} = Localize.Unit.new(value, #{inspect(source_name)})
@@ -338,6 +350,16 @@ Localize.Unit.to_string(converted#{locale_opt})|
         <div class="lp-unit-builder">
           <.field label={gettext("Number")} for="number">
             <input id="number" name="number" type="text" value={@number} inputmode="decimal" phx-debounce="200" />
+          </.field>
+
+          <.field
+            label={gettext("Format")}
+            for="format"
+            hint={gettext("Display width — to_string/2 takes it as :format, display_name/2 as :style")}
+          >
+            <select id="format" name="format">
+              <option :for={f <- @formats} value={f} selected={@format == f}>{f}</option>
+            </select>
           </.field>
 
           <.field label={gettext("Power")} for="source_power">

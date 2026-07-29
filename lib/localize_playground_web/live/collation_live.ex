@@ -191,17 +191,20 @@ defmodule LocalizePlaygroundWeb.CollationLive do
 
     options =
       case preset_id do
+        # An unknown preset name never became an atom above; keep the
+        # options as they are. `nil` is itself an atom, so this clause
+        # has to come before the general one to be reachable.
+        nil ->
+          socket.assigns.options
+
         :default ->
           CollationView.default_options(socket.assigns.option_specs)
 
-        id when is_atom(id) ->
+        id ->
           case CollationView.preset_options(id) do
             nil -> socket.assigns.options
             overrides -> apply_preset_overrides(socket.assigns, overrides)
           end
-
-        _ ->
-          socket.assigns.options
       end
 
     {:noreply, socket |> assign(:options, options) |> compute()}

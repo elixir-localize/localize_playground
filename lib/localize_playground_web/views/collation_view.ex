@@ -552,7 +552,7 @@ defmodule LocalizePlaygroundWeb.CollationView do
 
   @doc """
   Returns the ordered list of choices for the -u-kr reorder-code
-  picker. Script atoms come from `Localize.Script.available_scripts/0`;
+  picker. Script atoms come from `Localize.Script.scripts_for/0`;
   CLDR-defined special groups are prepended.
   """
   @spec reorder_choices() :: [{String.t(), String.t()}]
@@ -567,7 +567,7 @@ defmodule LocalizePlaygroundWeb.CollationView do
     ]
 
     scripts =
-      case Localize.Script.available_scripts() do
+      case Localize.Script.scripts_for() do
         {:ok, list} ->
           list
           |> Enum.map(&{to_string(&1), to_string(&1)})

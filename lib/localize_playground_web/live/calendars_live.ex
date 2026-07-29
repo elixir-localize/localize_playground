@@ -103,7 +103,7 @@ defmodule LocalizePlaygroundWeb.CalendarsLive do
     |> assign(:calendar_name, lookup(:calendar, calendar, locale, style, context, calendar))
     |> assign(:calendar_call_code, build_calendar_call_code(calendar, locale, style, context))
     |> assign(:months, fetch_range(1..13, :month, locale, style, context, calendar))
-    |> assign(:days, fetch_range(1..7, :day, locale, style, context, calendar))
+    |> assign(:days, fetch_range(1..7, :day_of_week, locale, style, context, calendar))
     |> assign(:quarters, fetch_range(1..4, :quarter, locale, style, context, calendar))
     |> assign(:eras, fetch_eras(locale, style, context, calendar))
     |> assign(:day_periods, fetch_day_periods(locale, style, context, calendar))

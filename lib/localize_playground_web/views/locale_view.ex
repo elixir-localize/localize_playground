@@ -277,7 +277,7 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   """
   @spec languages() :: [String.t()]
   def languages do
-    case Localize.Language.available_languages() do
+    case Localize.Language.languages_for() do
       {:ok, list} -> list |> Enum.map(&to_string/1) |> Enum.sort()
       _ -> []
     end
@@ -288,7 +288,7 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   """
   @spec scripts() :: [String.t()]
   def scripts do
-    case Localize.Script.available_scripts() do
+    case Localize.Script.scripts_for() do
       {:ok, list} -> list |> Enum.map(&to_string/1) |> Enum.sort()
       _ -> []
     end
@@ -561,6 +561,11 @@ defmodule LocalizePlaygroundWeb.LocaleView do
 
   defp lookup_calendar_name(nil), do: nil
 
+  # A deprecated BCP 47 code carries its replacement rather than a bare
+  # alias — `islamicc` arrives as `{:deprecated, "islamic_civil"}`. Look
+  # the replacement up so the picker still shows a real name.
+  defp lookup_calendar_name({:deprecated, name}), do: lookup_calendar_name(name)
+
   defp lookup_calendar_name(name) when is_binary(name) do
     atom =
       try do
@@ -574,6 +579,10 @@ defmodule LocalizePlaygroundWeb.LocaleView do
       _ -> nil
     end
   end
+
+  # The validity data is CLDR-derived and its value shapes can grow. Fall
+  # back to the raw code rather than taking down the page.
+  defp lookup_calendar_name(_other), do: nil
 
   @day_names %{
     "sun" => "Sunday",
@@ -694,13 +703,13 @@ defmodule LocalizePlaygroundWeb.LocaleView do
   end
 
   # CLDR's calendar data exposes wide-form weekday names per locale
-  # via `Localize.Calendar.display_name(:day, N, locale: ui_locale)`.
+  # via `Localize.Calendar.display_name(:day_of_week, N, locale: ui_locale)`.
   # N is the ISO day number (1 = Monday … 7 = Sunday).
   defp localized_weekday_names(nil), do: %{}
 
   defp localized_weekday_names(ui_locale) do
     Enum.reduce(@day_name_numeric, %{}, fn {code, iso_day}, acc ->
-      case Localize.Calendar.display_name(:day, iso_day, locale: ui_locale) do
+      case Localize.Calendar.display_name(:day_of_week, iso_day, locale: ui_locale) do
         {:ok, name} -> Map.put(acc, code, String.capitalize(name))
         _ -> acc
       end
