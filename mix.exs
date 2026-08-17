@@ -29,7 +29,7 @@ defmodule LocalizePlayground.MixProject do
       {:localize_web, "~> 1.0-rc"},
       {:calendrical, "~> 1.0-rc"},
       {:mf2_wasm_editor, "~> 0.2"},
-      {:phoenix, "~> 1.7"},
+      {:phoenix, "~> 1.8"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 1.0"},
       {:tz, "~> 0.28"},
@@ -39,7 +39,8 @@ defmodule LocalizePlayground.MixProject do
       {:makeup_elixir, "~> 1.0"},
       {:jason, "~> 1.4"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:phoenix_live_reload, "~> 1.5", only: :dev}
+      {:phoenix_live_reload, "~> 1.5", only: :dev},
+      {:plug_crypto, "~> 2.2", [env: :prod, hex: "plug_crypto", repo: "hexpm", optional: false]}
     ]
   end
 
