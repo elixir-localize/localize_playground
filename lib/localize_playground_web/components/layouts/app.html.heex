@@ -1,9 +1,16 @@
 <header class="lp-header">
   <div class="lp-header-top">
-    <a class="lp-brand" href="/">
-      <img class="lp-logo" src="/assets/logo.png" alt={gettext("Localize")} />
-      <h1>{gettext("Localize Playground")}</h1>
-    </a>
+    <div class="lp-brand">
+      <a class="lp-brand-home" href="/">
+        <img class="lp-logo" src="/assets/logo.png" alt={gettext("Localize")} />
+      </a>
+      <div class="lp-brand-text">
+        <h1><a class="lp-brand-home" href="/">{gettext("Localize Playground")}</a></h1>
+        <p>
+          <a class="lp-repo" href="https://github.com/elixir-localize/localize_playground" target="_blank" rel="noopener">github.com/elixir-localize/localize_playground</a>
+        </p>
+      </div>
+    </div>
 
     <details :if={assigns[:ui_locale]} class="lp-ui-locale-picker">
       <summary class="lp-ui-locale-current">
