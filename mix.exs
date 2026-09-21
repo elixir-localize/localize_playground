@@ -7,7 +7,7 @@ defmodule LocalizePlayground.MixProject do
     [
       app: :localize_playground,
       version: @version,
-      elixir: "~> 1.17",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       listeners: [Phoenix.CodeReloader],
       gettext: [fuzzy_threshold: 0.9],
@@ -37,7 +37,6 @@ defmodule LocalizePlayground.MixProject do
       {:gettext, "~> 1.0"},
       {:makeup, "~> 1.2"},
       {:makeup_elixir, "~> 1.0"},
-      {:jason, "~> 1.4"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:phoenix_live_reload, "~> 1.5", only: :dev},
       {:plug_crypto, "~> 2.2", [env: :prod, hex: "plug_crypto", repo: "hexpm", optional: false]}

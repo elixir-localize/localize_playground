@@ -10,7 +10,7 @@ config :localize_playground, LocalizePlaygroundWeb.Endpoint,
   pubsub_server: LocalizePlayground.PubSub,
   live_view: [signing_salt: "Uh4qO3Rn+0Xy9m2Zk8sI"]
 
-config :phoenix, :json_library, Jason
+config :phoenix, :json_library, JSON
 
 config :gettext, :plural_forms, LocalizePlaygroundWeb.GettextPlural
 
