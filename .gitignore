@@ -28,3 +28,5 @@ localize_playground-*.tar
 /assets/node_modules/
 
 .DS_Store
+# Session context written by Claude; personal, never committed.
+CLAUDE.local.md

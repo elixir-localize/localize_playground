@@ -1,63 +1,11 @@
-# Localize Playground — TODO
+# TODO
 
-## Collation tab
+## Open
 
-### Seed word lists — minority / indigenous languages
+* [ ] **Seed word lists for minority and indigenous languages** — 27 tailored locales still fall back to the `en` seed list; each needs a curated 10-word list that moves under its tailoring. The locale table is in [plans/collation-seed-words.md](plans/collation-seed-words.md).
+* [ ] **Better seed lists for the covered locales** — some of the ~50 existing lists lean on "first letter per alphabet letter" rather than tailoring-sensitive word pairs.
+* [ ] **Remaining tabs** — Dates & Times, Units, Messages, Calendars and Lists are disabled in the header; each needs its own tab-rendering LiveView modelled on `NumbersLive` and `CollationLive`.
 
-`Localize.Collation.Tailoring.supported_locales/0` exposes 116 tailored
-locales. `CollationView.@seed_words` currently covers the ~50 languages
-where I could produce genuinely representative words drawn from common
-vocabulary. The remaining tailored locales fall back to the `en` seed
-list, which defeats the point of showcasing their tailoring.
+## Done
 
-These still need properly curated 10-word seed lists written by someone
-with native/working knowledge of each orthography (a synthetic list of
-"one word per alphabet letter" is less useful than words that actually
-move around under the tailoring):
-
-| Locale | Language | Notes |
-|--------|----------|-------|
-| `aa` | Afar | Latin |
-| `bal`, `bal-Latn` | Baluchi | Arabic / Latin |
-| `blo` | Anii | Latin |
-| `br` | Breton | Latin, has some tailoring |
-| `bs`, `bs-Cyrl` | Bosnian (both scripts) | already covered by `hr` sibling, but BCP-47 wise distinct |
-| `ceb` | Cebuano | Latin |
-| `cy` | Welsh | covered — digraphs ch, dd, ff, ng, ll, ph, rh, th |
-| `de-AT` | Austrian German | inherits `de` seeds (fine) |
-| `dsb`, `hsb` | Lower / Upper Sorbian | Latin |
-| `en-US-POSIX` | POSIX ordering | codepoint test — use ASCII subset |
-| `ff-Adlm` | Fulah (Adlam script) | Adlam alphabet |
-| `fr-CA` | Canadian French | inherits `fr` (fine) |
-| `kk-Arab` | Kazakh (Arabic script) | separate from Cyrillic `kk` |
-| `kl` | Kalaallisut (Greenlandic) | Latin |
-| `kok` | Konkani | Devanagari |
-| `ku` | Kurdish | Latin |
-| `ln` | Lingala | Latin |
-| `nso` | Northern Sotho | Latin |
-| `sgs` | Samogitian | Latin |
-| `smn` | Inari Sami | Latin |
-| `sr-Latn` | Serbian (Latin) | inherits `hr` seeds loosely, but distinct tailoring |
-| `ssy` | Saho | Latin |
-| `to` | Tongan | Latin |
-| `ug` | Uyghur | Arabic script |
-| `und` | Root / default | probably skip — pointless to seed |
-| `wae` | Walser | Latin |
-| `yi` | Yiddish | Hebrew script |
-
-For the well-covered set (~50 locales spanning Western European, Slavic,
-Baltic, Finno-Ugric, Turkic, Semitic, Indic, Southeast Asian, East Asian,
-Ethiopic, Cherokee), further iteration would also be welcome — some
-lists lean heavily on "first letter per alphabet letter" rather than
-tailoring-sensitive word pairs.
-
-## Collation tab — other pending work
-
-*(Both of the items previously listed here — the `-u-kr` reorder-code
-editor and Han tailoring — are now working as of Localize 0.12.)*
-
-## Other tabs
-
-* Dates & Times, Units, Messages, Calendars, Lists — all disabled in the
-  header. Each needs its own tab-rendering LiveView modelled on
-  `NumbersLive` / `CollationLive`.
+* [x] **`-u-kr` reorder-code editor and Han tailoring** — both working as of Localize 0.12.
